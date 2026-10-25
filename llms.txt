@@ -1,0 +1,91 @@
+# CoinLoader.com
+
+> CoinLoader.com distributes non-custodial Crypto, Solana, and Security agent templates for Grok Bot. Every template executes locally inside the buyer's isolated Grok Bot Linux container (`/workspace`) with deterministic `SKILL.md` rules, zero monthly subscriptions, and zero custodial private keys.
+
+- Canonical URL: https://coinloader.com/
+- Upstream API Base URL: https://wattcoin.org/api/v1
+- Upstream API Documentation: https://wattcoin.org/llms.txt
+- Sister Portal (Enterprise OSINT & Physical Infrastructure Templates): https://botappstore.com
+
+## Live Template (Available Now)
+
+### 1. WattCoin Web Scraper
+- **Status:** LIVE (`available`)
+- **Price:** Free (includes 100 WATT starter balance grant + 10 free `text` scrapes per UTC day)
+- **Template URL:** https://x.ai/bot/k1oyHmw4iS4VBW1U8_3Ol
+- **Included Skills:** `getting-started`, `wattcoin-scraper`
+- **What It Does:**
+  1. **Turn-1 Self-Onboarding (`getting-started`):** If `/workspace/.wattcoin_env` is absent, slugifies the bot name to `^[A-Za-z0-9_-]{3,64}$` (fallback `scraper-bot`), calls `POST https://wattcoin.org/api/v1/agents/register`, saves `WATTCOIN_AGENT_ID` and `WATTCOIN_AGENT_KEY` (`wck_...`) to `/workspace/.wattcoin_env` with `0600` permissions, and completes `onboarding_v1` (25 WATT, reading `data.mint` from `GET /api/v1/price`) + `starter_v1` (75 WATT, reading `withdraw_min` from `GET /api/v1/agents/stats`).
+  2. **Web & JSON Extraction (`wattcoin-scraper`):** Calls `POST https://wattcoin.org/api/v1/scrape` with `X-Agent-Key: wck_...`.
+     - `format: "text"` (Free tier, 10 calls/UTC day): Server-side static HTTP `requests.get` + BeautifulSoup plain-text extraction. Returns `free_tier: true` and `X-Quota-Limit: 10`, `X-Quota-Remaining`, `X-Quota-Reset` headers.
+     - `format: "html"` (Paid tier, 100 WATT/call): Raw HTML response string.
+     - `format: "json"` (Paid tier, 100 WATT/call): Parsed JSON from endpoints returning valid JSON (`json.loads`).
+  3. **Error Branching & Local Fallback:** Branches on the JSON `reason` field (`tasks_incomplete`, `format_requires_payment`, `quota_exhausted`) rather than `error` alone, and falls back to local `curl -sL <url>` + Python HTML-to-text parsing (`bs4` if installed, or Python stdlib `html.parser`) inside `/workspace` when daily quota is exhausted.
+- **Requires:** Grok Bot environment with `/workspace` shell access. No Solana wallet, private key, or credit card required for registration or free tier.
+- **Refusal Boundaries (What It Won't Do):**
+  - Does not execute client-side JavaScript or headless browser rendering on `/api/v1/scrape`.
+  - Never prints `WATTCOIN_AGENT_KEY` (`wck_...`) in chat.
+  - Never executes paid `html` or `json` scrapes (100 WATT) without explicit per-call user confirmation.
+  - Rejects loopback, RFC1918 private IPs, and cloud metadata targets (`400` without consuming quota).
+
+---
+
+## Planned Templates (In Development — Specifications Only, Not Yet Available for Purchase)
+
+### 2. Solana Wallet Hygiene Bot (`solana-wallet-hygiene`)
+- **Status:** IN DEVELOPMENT (`Phase 2 Spec — Not Yet Available`)
+- **Planned Price:** $19 (one-time, settled in SOL)
+- **What It Does:**
+  - Queries Solana RPC `getParsedTokenAccountsByOwner` across both legacy SPL Token (`TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA`) and Token-2022 (`TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb`).
+  - Classifies every account into one of 3 deterministic buckets:
+    1. `SAFE TO CLOSE`: Zero balance, no delegate, owner holds close authority, no Token-2022 withheld fees (`transferFeeAmount.withheldAmount == "0"`), not frozen.
+    2. `NEEDS YOUR CONFIRMATION` (one-by-one, never batched): Non-null `delegate` or non-zero `delegatedAmount`, recent ATA activity, or unreadable Token-2022 extensions.
+    3. `DO NOT TOUCH`: Non-zero balance, frozen state, non-zero Token-2022 `withheldAmount`, or third-party close authority.
+  - Computes exact reclaimable rent (`>=0.002039 SOL` floor per standard 165-byte empty account; higher for Token-2022 accounts with extensions) vs. transaction fees and stages unsigned base64 transaction payloads in `/workspace`.
+- **Requires:** Public Solana wallet address (Base58) and an activated `wck_...` license key checked via `GET https://wattcoin.org/api/v1/agents/license`.
+- **Refusal Boundaries (What It Won't Do):**
+  - Never accepts, reads, or stores private keys or seed phrases.
+  - Never signs or broadcasts transactions on the user's behalf.
+  - Never batches `NEEDS YOUR CONFIRMATION` accounts into automatic close instructions.
+
+### 3. Retail Token Due-Diligence Bot (`solana-token-dd`)
+- **Status:** IN DEVELOPMENT (`Phase 2 Spec — Not Yet Available`)
+- **Planned Price:** $29 (one-time, settled in SOL)
+- **What It Does:**
+  - Inspects Solana mint authority, freeze authority, metadata update authority, total supply, decimals, and mint creation age.
+  - Parses Token-2022 extensions (`TransferFeeConfig`, `TransferHook`, `PermanentDelegate`, `NonTransferable`, `DefaultAccountState`) and states what each extension mechanically permits.
+  - Reports Top-10 / Top-20 holder concentration (separating known program/LP/exchange vaults from individual wallets) and DexScreener pool liquidity/lock state with UTC timestamps.
+- **Requires:** Solana token mint address (Base58) and an activated `wck_...` license key.
+- **Refusal Boundaries (What It Won't Do):**
+  - Never labels a token "safe", "unsafe", "scam", "rug", or "promising".
+  - Never outputs a numerical safety score, letter grade, or buy/sell/hold opinion.
+  - Never hides missing pool data or unreadable extension bytes (flags all unknowns explicitly).
+
+### 4. Bot & Skill Security Auditor (`bot-skill-auditor`)
+- **Status:** IN DEVELOPMENT (`Phase 2 Spec — Not Yet Available`)
+- **Planned Price:** $29 (one-time, settled in SOL)
+- **What It Does:**
+  - Performs static, read-only inspection of third-party Grok Bot templates, `SKILL.md` files, routine prompts, and linked GitHub repositories across 5 capability buckets:
+    1. Prompt & confirmation bypass
+    2. Secret & filesystem access (`.env`, `/home/box/agent-data`, `~/.config/solana/id.json`)
+    3. Outbound network & exfiltration endpoints
+    4. Unverifiable runtime execution (`curl | sh`, `eval`, base64-decoded payloads, unpinned `pip`/`npm`/`npx` installs)
+    5. Local machine escalation (`machineId` targeting)
+  - Quotes exact file paths and line numbers and pairs combined capabilities (e.g., secret read + outbound POST) as factual mechanical paths.
+- **Requires:** Target `SKILL.md`, bot template JSON, or repository files in `/workspace`, plus an activated `wck_...` license key.
+- **Refusal Boundaries (What It Won't Do):**
+  - Never executes bash, Python, or Node code contained inside an audited artifact.
+  - Never curls embedded URLs or installs packages during an audit.
+  - Never issues a "safe", "clean", or "passed" badge or numeric security score.
+
+### 5. Hyperliquid & Perp Basis Monitor (`hyperliquid-monitor`)
+- **Status:** IN DEVELOPMENT (`Phase 3 Spec — Not Yet Available`)
+- **Planned Price:** $29 (one-time, settled in SOL)
+- **What It Does:**
+  - Queries unauthenticated `POST https://api.hyperliquid.xyz/info` (`metaAndAssetCtxs`, `predictedFundings`, `clearinghouseState`, `vaultDetails`).
+  - Reports current and predicted funding rates, sign flips, open interest, perp-vs-spot basis, margin ratio, liquidation price, and exact distance to liquidation ($ and %) with UTC timestamps.
+- **Requires:** Public 42-character `0x...` address (for position/liquidation monitoring) and an activated `wck_...` license key.
+- **Refusal Boundaries (What It Won't Do):**
+  - Immediately refuses any Hyperliquid API wallet key, private key, or seed phrase.
+  - Never places, modifies, or cancels orders.
+  - Never forecasts funding directions or advises whether to close, add margin, or hedge a position.
