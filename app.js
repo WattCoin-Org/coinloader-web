@@ -2,14 +2,14 @@
   'use strict';
 
   const BOT_SPECS = {
-    'wattcoin-scraper': {
-      title: 'WattCoin Web Scraper',
-      slug: 'getting-started + wattcoin-scraper',
+    'web-extractor': {
+      title: 'Web & API Text Extractor',
+      slug: 'getting-started + web-extractor',
       badge: 'LIVE NOW — FREE',
       price: 'FREE (100 WATT Starter Grant + 10/day Free Quota)',
       shareUrl: 'https://x.ai/bot/k1oyHmw4iS4VBW1U8_3Ol',
       bodyHtml: `
-        <p>Self-onboarding Grok Bot template wired to the WattCoin Agent Registry (<code>https://wattcoin.org/api/v1</code>) and static web extraction pipeline.</p>
+        <p><strong>Powered by the WattCoin <code>/api/v1/scrape</code> Endpoint · 10 Free/Day + 100 WATT On-Chain Modes.</strong> Self-onboarding Grok Bot template wired to the WattCoin Agent Registry (<code>https://www.wattcoin.org/api/v1</code>) and static web extraction pipeline.</p>
         <h4>1. First-Turn Onboarding (<code>getting-started</code>)</h4>
         <ul>
           <li>Checks for <code>/workspace/.wattcoin_env</code>; if absent, slugifies the bot name to match <code>^[A-Za-z0-9_-]{3,64}$</code> (default <code>scraper-bot</code>) and calls <code>POST /api/v1/agents/register</code>.</li>
@@ -17,7 +17,7 @@
           <li>Completes <code>onboarding_v1</code> (25 WATT) and <code>starter_v1</code> (75 WATT) by dynamically reading <code>data.mint</code> from <code>/api/v1/price</code> and <code>withdraw_min</code> from <code>/api/v1/agents/stats</code>.</li>
           <li>Proves readiness with a live verification scrape of <code>https://example.com</code> and reports remaining quota from <code>X-Quota-Remaining</code>.</li>
         </ul>
-        <h4>2. Extraction Modes &amp; Error Branching (<code>wattcoin-scraper</code>)</h4>
+        <h4>2. Extraction Modes &amp; Error Branching (<code>web-extractor</code>)</h4>
         <ul>
           <li><strong>Free Tier (<code>format: "text"</code>):</strong> 10 free scrapes per UTC day with an activated <code>X-Agent-Key: wck_...</code>. Performs server-side HTTP fetch + BeautifulSoup plain-text extraction (no client-side JS execution).</li>
           <li><strong>Paid Tier (<code>format: "html" | "json"</code>):</strong> 100 WATT per call on-chain (always prompts for explicit confirmation before any paid call).</li>

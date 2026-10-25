@@ -3,20 +3,21 @@
 > CoinLoader.com distributes non-custodial Crypto, Solana, and Security agent templates for Grok Bot. Every template executes locally inside the buyer's isolated Grok Bot Linux container (`/workspace`) with deterministic `SKILL.md` rules, zero monthly subscriptions, and zero custodial private keys.
 
 - Canonical URL: https://coinloader.com/
-- Upstream API Base URL: https://wattcoin.org/api/v1
-- Upstream API Documentation: https://wattcoin.org/llms.txt
+- Upstream API Base URL: https://www.wattcoin.org/api/v1
+- Upstream API Documentation: https://www.wattcoin.org/llms.txt
 - Sister Portal (Enterprise OSINT & Physical Infrastructure Templates): https://botappstore.com
 
 ## Live Template (Available Now)
 
-### 1. WattCoin Web Scraper
+### 1. Web & API Text Extractor
+- **Subtitle:** Powered by the WattCoin `/api/v1/scrape` Endpoint · 10 Free/Day + 100 WATT On-Chain Modes
 - **Status:** LIVE (`available`)
 - **Price:** Free (includes 100 WATT starter balance grant + 10 free `text` scrapes per UTC day)
 - **Template URL:** https://x.ai/bot/k1oyHmw4iS4VBW1U8_3Ol
-- **Included Skills:** `getting-started`, `wattcoin-scraper`
+- **Included Skills:** `getting-started`, `web-extractor`
 - **What It Does:**
-  1. **Turn-1 Self-Onboarding (`getting-started`):** If `/workspace/.wattcoin_env` is absent, slugifies the bot name to `^[A-Za-z0-9_-]{3,64}$` (fallback `scraper-bot`), calls `POST https://wattcoin.org/api/v1/agents/register`, saves `WATTCOIN_AGENT_ID` and `WATTCOIN_AGENT_KEY` (`wck_...`) to `/workspace/.wattcoin_env` with `0600` permissions, and completes `onboarding_v1` (25 WATT, reading `data.mint` from `GET /api/v1/price`) + `starter_v1` (75 WATT, reading `withdraw_min` from `GET /api/v1/agents/stats`).
-  2. **Web & JSON Extraction (`wattcoin-scraper`):** Calls `POST https://wattcoin.org/api/v1/scrape` with `X-Agent-Key: wck_...`.
+  1. **Turn-1 Self-Onboarding (`getting-started`):** If `/workspace/.wattcoin_env` is absent, slugifies the bot name to `^[A-Za-z0-9_-]{3,64}$` (fallback `scraper-bot`), calls `POST https://www.wattcoin.org/api/v1/agents/register`, saves `WATTCOIN_AGENT_ID` and `WATTCOIN_AGENT_KEY` (`wck_...`) to `/workspace/.wattcoin_env` with `0600` permissions, and completes `onboarding_v1` (25 WATT, reading `data.mint` from `GET /api/v1/price`) + `starter_v1` (75 WATT, reading `withdraw_min` from `GET /api/v1/agents/stats`).
+  2. **Web & JSON Extraction (`web-extractor`):** Calls `POST https://www.wattcoin.org/api/v1/scrape` with `X-Agent-Key: wck_...`.
      - `format: "text"` (Free tier, 10 calls/UTC day): Server-side static HTTP `requests.get` + BeautifulSoup plain-text extraction. Returns `free_tier: true` and `X-Quota-Limit: 10`, `X-Quota-Remaining`, `X-Quota-Reset` headers.
      - `format: "html"` (Paid tier, 100 WATT/call): Raw HTML response string.
      - `format: "json"` (Paid tier, 100 WATT/call): Parsed JSON from endpoints returning valid JSON (`json.loads`).
@@ -42,7 +43,7 @@
     2. `NEEDS YOUR CONFIRMATION` (one-by-one, never batched): Non-null `delegate` or non-zero `delegatedAmount`, recent ATA activity, or unreadable Token-2022 extensions.
     3. `DO NOT TOUCH`: Non-zero balance, frozen state, non-zero Token-2022 `withheldAmount`, or third-party close authority.
   - Computes exact reclaimable rent (`>=0.002039 SOL` floor per standard 165-byte empty account; higher for Token-2022 accounts with extensions) vs. transaction fees and stages unsigned base64 transaction payloads in `/workspace`.
-- **Requires:** Public Solana wallet address (Base58) and an activated `wck_...` license key checked via `GET https://wattcoin.org/api/v1/agents/license`.
+- **Requires:** Public Solana wallet address (Base58) and an activated `wck_...` license key checked via `GET https://www.wattcoin.org/api/v1/agents/license`.
 - **Refusal Boundaries (What It Won't Do):**
   - Never accepts, reads, or stores private keys or seed phrases.
   - Never signs or broadcasts transactions on the user's behalf.
