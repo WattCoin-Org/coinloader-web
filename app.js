@@ -6,8 +6,64 @@
 
 const WATTCOIN_API_BASE = 'https://www.wattcoin.org';
 const EXPECTED_TREASURY_WALLET = 'Atu5phbGGGFogbKhi259czz887dSdTfXwJxwbuE5aF5q';
-const ACTIVE_QUOTE_STORAGE_KEY = 'wcl_active_quote_bot-skill-auditor';
 const PURCHASED_LICENSES_STORAGE_KEY = 'wcl_purchased_licenses';
+
+const CHECKOUT_SKUS = {
+  'bot-skill-auditor': {
+    sku: 'bot-skill-auditor',
+    name: 'Bot & Skill Security Auditor',
+    title: 'Bot & Skill Security Auditor — $29 in SOL',
+    slugMeta: 'sku: bot-skill-auditor · Skills: auditor-setup + bot-skill-auditor · 3 Rebinds',
+    priceUsd: 29,
+    priceUsdHtml: '$29.00 <small>USD</small>',
+    statusFooterText: 'Status: LIVE · $29 One-Time in SOL (Non-Custodial)',
+    ctaButtonText: 'Buy License ($29 in SOL) →',
+    stepADescHtml:
+      'Click below to open the private <strong>Bot &amp; Skill Security Auditor</strong> template in Grok Bot and add it to your sidebar:',
+    stepABtnText: 'Open Security Auditor in Grok Bot ↗',
+    stepCHintHtml:
+      'Paste this prompt on Turn 1 (or together with any <code>SKILL.md</code> or GitHub repo URL you want inspected):',
+    stepCFootHtml:
+      'On Turn 1, <code>auditor-setup</code> installs the read-only helpers (<code>.wattcoin_license_check.py</code> &amp; <code>.wattcoin_audit_prep.py</code> at <code>0500</code>), provisions <code>/workspace/.wattcoin_env</code> (<code>0600</code>), completes the 100 WATT starter activation, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
+    defaultPrompt: (code) => `Activate my Bot & Skill Security Auditor with license code ${code}`
+  },
+  'solana-wallet-hygiene': {
+    sku: 'solana-wallet-hygiene',
+    name: 'Solana Wallet Hygiene Bot',
+    title: 'Solana Wallet Hygiene Bot — $19 in SOL',
+    slugMeta: 'sku: solana-wallet-hygiene · Skills: wallet-hygiene-setup + solana-wallet-hygiene · 3 Rebinds',
+    priceUsd: 19,
+    priceUsdHtml: '$19.00 <small>USD</small>',
+    statusFooterText: 'Status: LIVE · $19 One-Time in SOL (Non-Custodial)',
+    ctaButtonText: 'Buy License ($19 in SOL) →',
+    stepADescHtml:
+      'Click below to open the private <strong>Solana Wallet Hygiene Bot</strong> template in Grok Bot and add it to your sidebar:',
+    stepABtnText: 'Open Wallet Hygiene Bot in Grok Bot ↗',
+    stepCHintHtml:
+      'Paste this prompt on Turn 1 (or together with the <strong>public</strong> wallet address you want scanned—never a seed phrase or private key):',
+    stepCFootHtml:
+      'On Turn 1, <code>wallet-hygiene-setup</code> installs the read-only license helper (<code>.wattcoin_license_check.py</code> at <code>0500</code>), provisions <code>/workspace/.wattcoin_env</code> (<code>0600</code>), completes the 100 WATT starter activation, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>. The bot never asks for a seed phrase or private key.',
+    defaultPrompt: (code) => `Activate my Solana Wallet Hygiene Bot with license code ${code}`
+  },
+  'solana-token-scanner': {
+    sku: 'solana-token-scanner',
+    name: 'Retail Token Due-Diligence Bot',
+    title: 'Retail Token Due-Diligence Bot — $29 in SOL',
+    slugMeta: 'sku: solana-token-scanner · Skills: solana-token-scanner-setup + solana-token-scanner · 3 Rebinds',
+    priceUsd: 29,
+    priceUsdHtml: '$29.00 <small>USD</small>',
+    statusFooterText: 'Status: LIVE · $29 One-Time in SOL (Non-Custodial)',
+    ctaButtonText: 'Buy License ($29 in SOL) →',
+    stepADescHtml:
+      'Click below to open the private <strong>Retail Token Due-Diligence Bot</strong> template in Grok Bot and add it to your sidebar:',
+    stepABtnText: 'Open Token Due-Diligence Bot in Grok Bot ↗',
+    stepCHintHtml:
+      'Paste this prompt on Turn 1 (or together with the Solana mint address you want inspected):',
+    stepCFootHtml:
+      'On Turn 1, <code>solana-token-scanner-setup</code> installs the read-only license helper (<code>.wattcoin_license_check.py</code> at <code>0500</code>), provisions <code>/workspace/.wattcoin_env</code> (<code>0600</code>), completes the 100 WATT starter activation, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
+    defaultPrompt: (code) => `Activate my Retail Token Due-Diligence Bot with license code ${code}`
+  }
+};
 
 const BOT_SPECS = {
   'web-extractor': {
@@ -93,51 +149,61 @@ const BOT_SPECS = {
     `
   },
   'solana-wallet-hygiene': {
-    title: 'Solana Wallet Hygiene & Rent Recovery Bot',
-    slug: 'solana-wallet-hygiene',
-    badge: 'PHASE 2 SPEC · $19 IN SOL',
-    badgeClass: 'phase2',
-    price: '$19 One-Time in SOL',
+    title: 'Solana Wallet Hygiene Bot',
+    slug: 'wallet-hygiene-setup + solana-wallet-hygiene',
+    badge: 'LIVE · $19 IN SOL',
+    badgeClass: 'live',
+    status: 'Available Now — $19 One-Time License (Paid in SOL)',
+    price: '$19 One-Time in SOL (Includes 3 Workspace-Reset Rebinds)',
+    ctaType: 'checkout',
+    sku: 'solana-wallet-hygiene',
     bodyHtml: `
-      <p><strong>Target Price:</strong> $19 one-time in SOL · <strong>Execution Mode:</strong> Read-only RPC scan first; stages unsigned base64 transactions locally.</p>
-      <h4>1. Dual Token Program Discovery</h4>
+      <p><strong>Deliverable:</strong> <em>Find the rent locked in empty token accounts and the stale delegations attached to your wallet—then reclaim it yourself, non-custodially.</em></p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$19 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <h4>1. Dual Token Program Discovery (<code>wallet-hygiene-setup</code> + <code>solana-wallet-hygiene</code>)</h4>
       <ul>
         <li>Queries <code>getParsedTokenAccountsByOwner</code> across both legacy SPL Token (<code>TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA</code>) and Token-2022 (<code>TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</code>).</li>
-        <li>Reads live <code>lamports</code> on each account (≥0.00203928 SOL floor for standard 165-byte SPL accounts; higher for Token-2022 extension accounts).</li>
+        <li>Reads live <code>lamports</code> on each account: exactly <code>0.00203928 SOL</code> (<code>2,039,280 lamports</code>) for a standard 165-byte SPL account; higher for Token-2022 accounts with extensions.</li>
       </ul>
-      <h4>2. Strict Three-Bucket Account Classification</h4>
+      <h4>2. Strict Three-Bucket Report</h4>
       <ul>
-        <li><strong>Bucket 1 — SAFE TO CLOSE:</strong> Balance == 0, no active delegate, not frozen, and (for Token-2022) <code>withheldAmount == 0</code> and no <code>PermanentDelegate</code> or <code>NonTransferable</code> extension.</li>
-        <li><strong>Bucket 2 — NEEDS YOUR CONFIRMATION:</strong> Non-zero dust balance or active token delegation (confirmed one-by-one with mint, delegate address, and max allowance).</li>
-        <li><strong>Bucket 3 — DO NOT TOUCH:</strong> Active balances, LP receipts, NFTs, staking tickets, frozen accounts, or unharvested Token-2022 transfer fees.</li>
+        <li><strong><code>SAFE_TO_RECLAIM</code>:</strong> Balance == 0, no active delegate, not frozen, and (for Token-2022) <code>withheldAmount == 0</code> with no <code>PermanentDelegate</code> or <code>NonTransferable</code> extension.</li>
+        <li><strong><code>NEEDS_CONFIRMATION</code>:</strong> Non-zero dust balance or active token delegation (shown one-by-one with mint, delegate address, and remaining allowance).</li>
+        <li><strong><code>DO_NOT_TOUCH</code>:</strong> Active balances, LP receipts, NFTs, staking tickets, frozen accounts, or unharvested Token-2022 transfer fees.</li>
       </ul>
-      <h4>3. Non-Custodial Guardrails</h4>
+      <h4>3. Non-Custodial Reclaim Commands</h4>
       <ul>
-        <li>Never asks for a seed phrase or private key; immediately refuses if pasted.</li>
-        <li>Writes unsigned <code>closeAccount</code> and <code>revoke</code> transaction batches (≤12 instructions/tx) to <code>/workspace/wallet_hygiene_unsigned_txs.json</code>.</li>
+        <li>Outputs Phantom / Solflare step-by-step instructions and <code>spl-token</code> CLI commands (<code>spl-token close-account</code>, <code>spl-token revoke</code>); you sign every transaction yourself.</li>
+        <li>Never asks for a seed phrase or private key (refuses immediately if pasted), never signs, and never broadcasts.</li>
+        <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>) and verifies <code>GET /api/v1/agents/license?sku=solana-wallet-hygiene</code> returns <code>"sku_licensed": true</code>.</li>
       </ul>
     `
   },
-  'solana-token-dd': {
+  'solana-token-scanner': {
     title: 'Retail Token Due-Diligence Bot',
-    slug: 'solana-token-dd',
-    badge: 'PHASE 2 SPEC · $29 IN SOL',
-    badgeClass: 'phase2',
-    price: '$29 One-Time in SOL',
+    slug: 'solana-token-scanner-setup + solana-token-scanner',
+    badge: 'LIVE · $29 IN SOL',
+    badgeClass: 'live',
+    status: 'Available Now — $29 One-Time License (Paid in SOL)',
+    price: '$29 One-Time in SOL (Includes 3 Workspace-Reset Rebinds)',
+    ctaType: 'checkout',
+    sku: 'solana-token-scanner',
     bodyHtml: `
-      <p><strong>Target Price:</strong> $29 one-time in SOL · <strong>Philosophy:</strong> <em>Mechanics, Not Motives.</em></p>
-      <h4>1. Five Factual On-Chain Inspection Sections</h4>
+      <p><strong>Deliverable:</strong> <em>Verifiable, timestamped on-chain facts for any Solana mint—mechanics, not motives.</em></p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <h4>1. Five-Section Due-Diligence Report (<code>solana-token-scanner-setup</code> + <code>solana-token-scanner</code>)</h4>
       <ul>
-        <li><strong>Authorities &amp; Supply:</strong> Mint authority, freeze authority, metadata update authority (present vs. revoked), total supply, decimals, and creation slot.</li>
-        <li><strong>Token-2022 Extensions:</strong> Reports <code>TransferFeeConfig</code> (bps + max fee), <code>PermanentDelegate</code>, <code>TransferHook</code> program ID, <code>DefaultAccountState</code>, and <code>MintCloseAuthority</code>.</li>
-        <li><strong>Holder Concentration:</strong> Top-10 and Top-20 holder shares via <code>getTokenLargestAccounts</code>, separating known LP/AMM/exchange vaults from unidentified individual wallets.</li>
-        <li><strong>Liquidity &amp; Venues:</strong> Queries DexScreener API for primary pools (Raydium, Meteora, Orca, PumpSwap), USD liquidity depth, 24h volume, and observable LP lock/burn status.</li>
-        <li><strong>Deployer Provenance:</strong> Funding source and age of the deployer/authority wallet (up to 1–2 hops).</li>
+        <li><strong>Section 1 — Mint &amp; Program Identity:</strong> Owning token program, decimals, supply, and creation slot.</li>
+        <li><strong>Section 2 — Authority &amp; Token-2022 Extension Controls:</strong> Mint, freeze, and metadata update authorities (present vs. revoked) plus <code>TransferFeeConfig</code>, <code>PermanentDelegate</code>, <code>TransferHook</code>, and <code>DefaultAccountState</code>.</li>
+        <li><strong>Section 3 — Top-20 Holder Concentration:</strong> Top-10 and Top-20 shares via <code>getTokenLargestAccounts</code>, separating known LP/AMM/exchange vaults from individual wallets.</li>
+        <li><strong>Section 4 — DEX Liquidity &amp; Pair Snapshot:</strong> Primary pairs, USD liquidity depth, and 24h volume from the DexScreener API.</li>
+        <li><strong>Section 5 — Mandatory Non-Advice Scope Note:</strong> Prepended or appended to every report, stating what the report cannot see.</li>
       </ul>
       <h4>2. Hard Guardrails</h4>
       <ul>
         <li>Never outputs "safe", "unsafe", "legit", "scam", or "rug", and never assigns a numerical safety score (e.g., <code>7/10</code>).</li>
         <li>Every metric cites its RPC call, slot/timestamp, or API source.</li>
+        <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>) and verifies <code>GET /api/v1/agents/license?sku=solana-token-scanner</code> returns <code>"sku_licensed": true</code>.</li>
       </ul>
     `
   },
@@ -163,6 +229,10 @@ const BOT_SPECS = {
     `
   }
 };
+
+// Short-key aliases resolve to the canonical SKU specs
+BOT_SPECS['wallet-hygiene'] = BOT_SPECS['solana-wallet-hygiene'];
+BOT_SPECS['token-scanner'] = BOT_SPECS['solana-token-scanner'];
 
 document.addEventListener('DOMContentLoaded', () => {
   const toastEl = document.getElementById('copy-toast');
@@ -331,13 +401,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modalFooter) {
       modalFooter.innerHTML = '';
       if (spec.ctaType === 'checkout') {
+        const skuKey = CHECKOUT_SKUS[spec.sku] ? spec.sku : 'bot-skill-auditor';
         const buyBtn = document.createElement('button');
         buyBtn.type = 'button';
         buyBtn.className = 'btn btn-primary btn-sm';
-        buyBtn.textContent = 'Buy License ($29 in SOL) →';
+        buyBtn.setAttribute('data-open-checkout', skuKey);
+        buyBtn.textContent = CHECKOUT_SKUS[skuKey].ctaButtonText;
         buyBtn.addEventListener('click', () => {
+          const savedTrigger = lastFocusedTrigger;
           closeSpecModal(false);
-          openCheckoutModal(spec.sku || 'bot-skill-auditor', lastFocusedTrigger);
+          openCheckoutModal(skuKey, savedTrigger);
         });
         const closeBtn = document.createElement('button');
         closeBtn.type = 'button';
@@ -398,6 +471,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. On-Chain SOL Checkout Modal Controller (#checkout-modal)
   const checkoutModal = document.getElementById('checkout-modal');
   const checkoutCloseBtn = document.getElementById('checkout-modal-close');
+  const checkoutModalTitle = document.getElementById('checkout-modal-title');
+  const checkoutModalSlug = document.getElementById('checkout-modal-slug');
+  const checkoutPriceUsd = document.getElementById('checkout-price-usd');
   const checkoutStepPay = document.getElementById('checkout-step-pay');
   const checkoutStepFulfilled = document.getElementById('checkout-step-fulfilled');
 
@@ -435,13 +511,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const verifyFeedback = document.getElementById('checkout-verify-feedback');
 
   // Step 3 Fulfilled elements
+  const fulfilledStepADesc = document.getElementById('fulfilled-step-a-desc');
   const fulfilledOpenTemplateBtn = document.getElementById('fulfilled-open-template-btn');
   const fulfilledCopyTemplateBtn = document.getElementById('fulfilled-copy-template-btn');
   const fulfilledTemplateUrlEl = document.getElementById('fulfilled-template-url');
   const fulfilledLicenseCodeEl = document.getElementById('fulfilled-license-code');
   const fulfilledCopyCodeBtn = document.getElementById('fulfilled-copy-code-btn');
+  const fulfilledStepCHint = document.getElementById('fulfilled-step-c-hint');
   const fulfilledActivationPromptEl = document.getElementById('fulfilled-activation-prompt');
   const fulfilledCopyPromptBtn = document.getElementById('fulfilled-copy-prompt-btn');
+  const fulfilledStepCFoot = document.getElementById('fulfilled-step-c-foot');
   const fulfilledOrderIdEl = document.getElementById('fulfilled-order-id');
   const fulfilledTxSigEl = document.getElementById('fulfilled-tx-sig');
   const fulfilledSolscanLink = document.getElementById('fulfilled-solscan-link');
@@ -449,13 +528,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const fulfilledNewOrderBtn = document.getElementById('fulfilled-new-order-btn');
   const fulfilledClearStorageBtn = document.getElementById('fulfilled-clear-storage-btn');
 
+  let currentCheckoutSku = 'bot-skill-auditor';
   let activeQuote = null;
   let activeFulfilledReceipt = null;
   let quoteCountdownInterval = null;
   let isVerifyingPayment = false;
 
-  function isValidQuote(q) {
+  function getCheckoutSkuConfig(sku) {
+    return CHECKOUT_SKUS[sku] || CHECKOUT_SKUS['bot-skill-auditor'];
+  }
+
+  function getActiveQuoteStorageKey(sku) {
+    return 'wcl_active_quote_' + (sku || currentCheckoutSku || 'bot-skill-auditor');
+  }
+
+  function applyCheckoutSkuLabels(sku) {
+    const cfg = getCheckoutSkuConfig(sku);
+    if (checkoutModalTitle) checkoutModalTitle.textContent = cfg.title;
+    if (checkoutModalSlug) checkoutModalSlug.textContent = cfg.slugMeta;
+    if (checkoutPriceUsd) checkoutPriceUsd.innerHTML = cfg.priceUsdHtml;
+    if (fulfilledStepADesc) fulfilledStepADesc.innerHTML = cfg.stepADescHtml;
+    if (fulfilledOpenTemplateBtn) fulfilledOpenTemplateBtn.textContent = cfg.stepABtnText;
+    if (fulfilledStepCHint) fulfilledStepCHint.innerHTML = cfg.stepCHintHtml;
+    if (fulfilledStepCFoot) fulfilledStepCFoot.innerHTML = cfg.stepCFootHtml;
+  }
+
+  function isValidQuote(q, expectedSku) {
     if (!q || typeof q !== 'object') return false;
+    if (expectedSku && q.sku && q.sku !== expectedSku) return false;
     if (typeof q.order_id !== 'string' || !/^ord_[a-f0-9]{24}$/.test(q.order_id)) return false;
     if (typeof q.checkout_token !== 'string' || !/^ct_[a-f0-9]{48}$/.test(q.checkout_token)) return false;
     if (typeof q.amount_sol !== 'string' || !/^\d+\.\d{1,9}$/.test(q.amount_sol) || !(Number(q.amount_sol) > 0)) return false;
@@ -475,6 +575,10 @@ document.addEventListener('DOMContentLoaded', () => {
         : '';
     if (!licenseCode) return null;
 
+    const resolvedSku =
+      typeof raw.sku === 'string' && CHECKOUT_SKUS[raw.sku] ? raw.sku : currentCheckoutSku || 'bot-skill-auditor';
+    const skuCfg = getCheckoutSkuConfig(resolvedSku);
+
     const templateUrl =
       typeof raw.template_url === 'string' && /^https:\/\/x\.ai\/bot\/[A-Za-z0-9_-]+$/.test(raw.template_url)
         ? raw.template_url
@@ -489,8 +593,8 @@ document.addEventListener('DOMContentLoaded', () => {
         : '';
 
     return {
-      sku: 'bot-skill-auditor',
-      name: 'Bot & Skill Security Auditor',
+      sku: resolvedSku,
+      name: skuCfg.name,
       order_id: orderId,
       tx_signature: txSignature,
       payer_wallet: typeof raw.payer_wallet === 'string' ? raw.payer_wallet : '',
@@ -500,18 +604,19 @@ document.addEventListener('DOMContentLoaded', () => {
       activation_prompt:
         typeof raw.activation_prompt === 'string' && raw.activation_prompt.includes(licenseCode)
           ? raw.activation_prompt
-          : `Activate my Bot & Skill Security Auditor with license code ${licenseCode}`,
+          : skuCfg.defaultPrompt(licenseCode),
       purchased_at: typeof raw.purchased_at === 'string' ? raw.purchased_at : new Date().toISOString()
     };
   }
 
-  function loadSavedLicenses() {
+  function loadSavedLicenses(skuFilter) {
     try {
       const raw = localStorage.getItem(PURCHASED_LICENSES_STORAGE_KEY);
       if (!raw) return [];
       const parsed = JSON.parse(raw);
       if (!Array.isArray(parsed)) return [];
-      return parsed.map(sanitizeReceipt).filter(Boolean);
+      const all = parsed.map(sanitizeReceipt).filter(Boolean);
+      return skuFilter ? all.filter((item) => item.sku === skuFilter) : all;
     } catch (_) {
       return [];
     }
@@ -525,16 +630,22 @@ document.addEventListener('DOMContentLoaded', () => {
         (item) => item.license_code !== clean.license_code && (!clean.order_id || item.order_id !== clean.order_id)
       );
       list.unshift(clean);
-      localStorage.setItem(PURCHASED_LICENSES_STORAGE_KEY, JSON.stringify(list.slice(0, 10)));
+      localStorage.setItem(PURCHASED_LICENSES_STORAGE_KEY, JSON.stringify(list.slice(0, 15)));
     } catch (_) {
       // Ignore storage quota errors
     }
     return clean;
   }
 
-  function clearSavedLicenses() {
+  function clearSavedLicenses(skuFilter) {
+    const targetSku = skuFilter || currentCheckoutSku;
     try {
-      localStorage.removeItem(PURCHASED_LICENSES_STORAGE_KEY);
+      const remaining = loadSavedLicenses().filter((item) => item.sku !== targetSku);
+      if (remaining.length === 0) {
+        localStorage.removeItem(PURCHASED_LICENSES_STORAGE_KEY);
+      } else {
+        localStorage.setItem(PURCHASED_LICENSES_STORAGE_KEY, JSON.stringify(remaining));
+      }
     } catch (_) {
       // Ignore
     }
@@ -542,18 +653,20 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSavedLicenseBanner();
   }
 
-  function loadCachedQuoteFromSession() {
+  function loadCachedQuoteFromSession(sku) {
+    const targetSku = sku || currentCheckoutSku;
+    const key = getActiveQuoteStorageKey(targetSku);
     try {
-      const raw = sessionStorage.getItem(ACTIVE_QUOTE_STORAGE_KEY);
+      const raw = sessionStorage.getItem(key);
       if (!raw) return null;
       const quote = JSON.parse(raw);
-      if (!isValidQuote(quote)) {
-        sessionStorage.removeItem(ACTIVE_QUOTE_STORAGE_KEY);
+      if (!isValidQuote(quote, targetSku)) {
+        sessionStorage.removeItem(key);
         return null;
       }
       const expiresMs = Date.parse(quote.expires_at);
       if (expiresMs - Date.now() < 60000) {
-        sessionStorage.removeItem(ACTIVE_QUOTE_STORAGE_KEY);
+        sessionStorage.removeItem(key);
         return null;
       }
       return quote;
@@ -562,18 +675,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function saveQuoteToSession(quote) {
-    if (!isValidQuote(quote)) return;
+  function saveQuoteToSession(quote, sku) {
+    const targetSku = (quote && quote.sku) || sku || currentCheckoutSku;
+    if (!isValidQuote(quote, targetSku)) return;
     try {
-      sessionStorage.setItem(ACTIVE_QUOTE_STORAGE_KEY, JSON.stringify(quote));
+      sessionStorage.setItem(getActiveQuoteStorageKey(targetSku), JSON.stringify(quote));
     } catch (_) {
       // Ignore
     }
   }
 
-  function clearQuoteFromSession() {
+  function clearQuoteFromSession(sku) {
+    const targetSku = sku || currentCheckoutSku;
     try {
-      sessionStorage.removeItem(ACTIVE_QUOTE_STORAGE_KEY);
+      sessionStorage.removeItem(getActiveQuoteStorageKey(targetSku));
     } catch (_) {
       // Ignore
     }
@@ -581,7 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateSavedLicenseBanner() {
     if (!savedBanner) return;
-    const saved = loadSavedLicenses();
+    const saved = loadSavedLicenses(currentCheckoutSku);
     if (saved.length === 0) {
       savedBanner.setAttribute('hidden', '');
       return;
@@ -589,7 +704,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const latest = saved[0];
     savedBanner.removeAttribute('hidden');
     const shortCode = `${latest.license_code.slice(0, 12)}…${latest.license_code.slice(-6)}`;
-    savedSummary.textContent = `Order ${latest.order_id || '—'} · Code ${shortCode}`;
+    savedSummary.textContent = `${latest.name} · Order ${latest.order_id || '—'} · Code ${shortCode}`;
   }
 
   function formatCountdown(msRemaining) {
@@ -630,10 +745,34 @@ document.addEventListener('DOMContentLoaded', () => {
     quoteCountdownInterval = setInterval(tick, 1000);
   }
 
+  let quoteRequestSeq = 0;
+
+  function resetQuoteUiView() {
+    activeQuote = null;
+    stopQuoteTimer();
+    if (timerPill) timerPill.classList.remove('expired');
+    if (timerDisplay) timerDisplay.textContent = '15:00';
+    if (rateDisplay) rateDisplay.textContent = 'Fetching live SOL/USD rate…';
+    if (orderIdDisplay) orderIdDisplay.textContent = '—';
+    if (amountSolEl) amountSolEl.textContent = '—.————';
+    if (amountLamportsEl) amountLamportsEl.textContent = '(calculating lamports…)';
+    if (lamportTagEl) lamportTagEl.textContent = '————';
+    if (lamportTagInlineEl) lamportTagInlineEl.textContent = '————';
+    if (recipientWalletEl) recipientWalletEl.textContent = EXPECTED_TREASURY_WALLET;
+    if (memoEl) memoEl.textContent = 'WCL-————';
+    if (copyAmountBtn) copyAmountBtn.disabled = true;
+    if (copyMemoBtn) copyMemoBtn.disabled = true;
+    if (verifyBtn) verifyBtn.disabled = true;
+    if (solanaPayBtn) {
+      solanaPayBtn.removeAttribute('href');
+      solanaPayBtn.setAttribute('hidden', '');
+    }
+  }
+
   function renderQuoteIntoView(quote) {
-    if (!isValidQuote(quote)) {
+    if (!isValidQuote(quote, currentCheckoutSku)) {
       quoteStatusBar.classList.add('error');
-      quoteStatusText.textContent = 'Received invalid quote structure from server. Please refresh quote.';
+      quoteStatusText.textContent = 'Received invalid or mismatched quote structure from server. Please refresh quote.';
       return;
     }
 
@@ -684,22 +823,25 @@ document.addEventListener('DOMContentLoaded', () => {
     return { resp, data };
   }
 
-  async function fetchLiveQuote(forceRefresh = false, customBuyerWallet = '') {
+  async function fetchLiveQuote(forceRefresh = false, customBuyerWallet = '', skuOverride = '') {
+    const targetSku = CHECKOUT_SKUS[skuOverride] ? skuOverride : currentCheckoutSku;
+    const reqSeq = ++quoteRequestSeq;
     const trimmedWallet = (customBuyerWallet || '').trim();
     if (!forceRefresh && !trimmedWallet) {
-      const cached = loadCachedQuoteFromSession();
+      const cached = loadCachedQuoteFromSession(targetSku);
       if (cached) {
         renderQuoteIntoView(cached);
         return;
       }
     }
 
+    resetQuoteUiView();
     quoteStatusBar.classList.remove('error');
     quoteStatusText.textContent = 'Requesting live SOL quote from https://www.wattcoin.org/api/v1/agents/license/quote…';
     refreshQuoteBtn.disabled = true;
 
     try {
-      const payload = { sku: 'bot-skill-auditor' };
+      const payload = { sku: targetSku, source: 'coinloader' };
       if (trimmedWallet) payload.buyer_wallet = trimmedWallet;
 
       let { resp, data } = await requestQuoteOnce(payload);
@@ -710,21 +852,31 @@ document.addEventListener('DOMContentLoaded', () => {
         ({ resp, data } = await requestQuoteOnce(payload));
       }
 
-      if (!resp.ok || !data || !data.success || !isValidQuote(data)) {
+      if (reqSeq !== quoteRequestSeq || targetSku !== currentCheckoutSku) {
+        return;
+      }
+
+      if (!resp.ok || !data || !data.success || !isValidQuote(data, targetSku)) {
         const errMsg = (data && data.error) || `Failed to create quote (HTTP ${resp.status})`;
         quoteStatusBar.classList.add('error');
         quoteStatusText.textContent = `Quote Error: ${errMsg}`;
         return;
       }
 
-      saveQuoteToSession(data);
+      data.sku = data.sku || targetSku;
+      saveQuoteToSession(data, targetSku);
       renderQuoteIntoView(data);
       hideVerifyFeedback();
     } catch (_) {
+      if (reqSeq !== quoteRequestSeq || targetSku !== currentCheckoutSku) {
+        return;
+      }
       quoteStatusBar.classList.add('error');
       quoteStatusText.textContent = 'Network error reaching www.wattcoin.org. Check your connection and click Refresh Quote.';
     } finally {
-      refreshQuoteBtn.disabled = false;
+      if (reqSeq === quoteRequestSeq) {
+        refreshQuoteBtn.disabled = false;
+      }
     }
   }
 
@@ -766,6 +918,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const receipt = sanitizeReceipt(rawReceipt);
     if (!receipt) return;
 
+    applyCheckoutSkuLabels(receipt.sku);
     activeFulfilledReceipt = receipt;
     stopQuoteTimer();
     checkoutStepPay.setAttribute('hidden', '');
@@ -805,7 +958,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function verifyPaymentAndPurchase() {
     if (isVerifyingPayment) return;
-    if (!activeQuote || !isValidQuote(activeQuote)) {
+    if (!activeQuote || !isValidQuote(activeQuote, currentCheckoutSku)) {
       showVerifyFeedback('error', 'No active order quote. Click "Refresh Quote ↻" to generate an order.');
       return;
     }
@@ -825,12 +978,15 @@ document.addEventListener('DOMContentLoaded', () => {
     verifyBtn.textContent = 'Verifying On-Chain TX…';
     showVerifyFeedback('pending', 'Checking Solana RPC for confirmed transfer to WattCoin Treasury…');
 
+    const purchaseSku = activeQuote.sku || currentCheckoutSku || 'bot-skill-auditor';
+    const skuCfg = getCheckoutSkuConfig(purchaseSku);
+
     try {
       const resp = await fetch(`${WATTCOIN_API_BASE}/api/v1/agents/license/purchase`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          sku: 'bot-skill-auditor',
+          sku: purchaseSku,
           order_id: activeQuote.order_id,
           checkout_token: activeQuote.checkout_token,
           tx_signature: extractedSig
@@ -840,8 +996,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await resp.json().catch(() => ({}));
       if (resp.ok && data && data.success && data.license_code) {
         const cleanReceipt = savePurchasedLicense({
-          sku: data.sku || 'bot-skill-auditor',
-          name: data.name || 'Bot & Skill Security Auditor',
+          sku: data.sku || purchaseSku,
+          name: data.name || skuCfg.name,
           order_id: data.order_id || activeQuote.order_id,
           tx_signature: data.tx_signature || extractedSig,
           payer_wallet: data.payer_wallet || '',
@@ -888,7 +1044,7 @@ document.addEventListener('DOMContentLoaded', () => {
           'error',
           `Order binding mismatch: transaction must either include memo "${activeQuote.memo}" or send the exact quoted amount (${activeQuote.amount_sol} SOL) created for this order.`
         );
-      } else if (reason === 'tx_already_used' || reason === 'order_already_fulfilled') {
+      } else if (reason === 'tx_already_used' || reason === 'order_already_fulfilled' || reason === 'order_already_claimed') {
         showVerifyFeedback(
           'error',
           'This transaction signature or order has already been redeemed. If you redeemed it in this browser, click "View Saved License →" at the top of this window.'
@@ -915,6 +1071,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openCheckoutModal(sku, triggerEl) {
     if (!checkoutModal) return;
+    const nextSku = CHECKOUT_SKUS[sku] ? sku : 'bot-skill-auditor';
+    if (currentCheckoutSku !== nextSku) {
+      resetQuoteUiView();
+    }
+    currentCheckoutSku = nextSku;
+    applyCheckoutSkuLabels(currentCheckoutSku);
+
     lastFocusedTrigger = triggerEl || document.activeElement;
     updateSavedLicenseBanner();
     showCheckoutPayView(false);
@@ -926,7 +1089,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = 'hidden';
     if (checkoutCloseBtn) checkoutCloseBtn.focus();
 
-    fetchLiveQuote(false, buyerWalletInput ? buyerWalletInput.value : '');
+    fetchLiveQuote(false, buyerWalletInput ? buyerWalletInput.value : '', currentCheckoutSku);
   }
 
   function closeCheckoutModal() {
@@ -1010,7 +1173,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (viewSavedBtn) {
     viewSavedBtn.addEventListener('click', () => {
-      const saved = loadSavedLicenses();
+      const saved = loadSavedLicenses(currentCheckoutSku);
       if (saved.length > 0) {
         renderFulfilledReceipt(saved[0], true);
       }
@@ -1092,7 +1255,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `coinloader-license-${activeFulfilledReceipt.order_id || 'auditor'}.txt`;
+      a.download = `coinloader-license-${activeFulfilledReceipt.order_id || activeFulfilledReceipt.sku || currentCheckoutSku || 'receipt'}.txt`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);

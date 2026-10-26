@@ -35,7 +35,7 @@
           <span>WATTCOIN API SPEC: <strong>v1 (f1f4c9b)</strong></span>
         </span>
         <span>SOLANA TOKEN-2022 MINT: <code>Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump</code></span>
-        <span>LIVE TEMPLATES: <strong>2 AVAILABLE (FREE + $29 SOL)</strong></span>
+        <span>LIVE TEMPLATES: <strong>4 LIVE AGENTS (FREE + $19–$29 SOL)</strong></span>
       </div>
       <div class="ticker-links">
         <a href="https://www.wattcoin.org" target="_blank" rel="noopener">wattcoin.org ↗</a>
@@ -55,7 +55,7 @@
       </a>
       <nav class="nav-links" aria-label="Primary Navigation">
         <a href="#featured-bot">Free Launch Bot</a>
-        <a href="#catalog">Bot Catalog (2 Live)</a>
+        <a href="#catalog">Bot Catalog (4 Live)</a>
         <a href="#architecture">How It Works</a>
         <a href="#cold-storage">Cold Storage</a>
       </nav>
@@ -85,7 +85,7 @@
             Import pre-engineered Grok Bot templates in one click—settled once in SOL or free via the WattCoin Agent Registry. Every template runs inside your own isolated Grok Bot Linux environment with strict read-only and non-custodial guardrails.
           </p>
           <div class="hero-pillars">
-            <span class="pillar-chip"><span class="check">✓</span> 2 Templates Live Now (Free + $29 SOL)</span>
+            <span class="pillar-chip"><span class="check">✓</span> 4 Live Agents Now (Free + $19–$29 SOL)</span>
             <span class="pillar-chip"><span class="check">✓</span> No Monthly Subscriptions</span>
             <span class="pillar-chip"><span class="check">✓</span> Zero Custodial Private Keys</span>
             <span class="pillar-chip"><span class="check">✓</span> Local <code>/workspace</code> Execution (<code>0600</code>)</span>
@@ -272,7 +272,7 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
             <div class="section-kicker">VERIFIED GROK BOT SKILL CATALOG</div>
             <h2 class="section-title">Crypto, Solana &amp; Security Agent Templates</h2>
             <p class="section-subtitle">
-              2 live templates available now (1 free utility + 1 $29 SOL-licensed security auditor) and 3 planned Phase 2/3 specs. Every template ships with deterministic, fail-closed <code>SKILL.md</code> rules: read-only by default, zero seed-phrase prompts, and zero speculative investment or trading verdicts.
+              4 live agents available now (1 free utility, 1 $29 SOL security auditor, 1 $19 SOL wallet hygiene bot, and 1 $29 SOL token due-diligence bot) and 1 planned Phase 3 spec. Every template ships with deterministic, fail-closed <code>SKILL.md</code> rules: read-only by default, zero seed-phrase prompts, and zero speculative investment or trading verdicts.
             </p>
           </div>
 
@@ -282,7 +282,7 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
               All <span class="filter-count">(5)</span>
             </button>
             <button type="button" class="filter-pill" aria-pressed="false" data-filter="live">
-              Available Now <span class="filter-count">(2)</span>
+              Available Now <span class="filter-count">(4)</span>
             </button>
             <button type="button" class="filter-pill" aria-pressed="false" data-filter="solana">
               Solana On-Chain <span class="filter-count">(3)</span>
@@ -296,7 +296,8 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
           </div>
         </div>
 
-        <div class="catalog-grid" id="catalog-grid">
+        <h3 class="catalog-group-title" id="available-now">Available Now <span class="filter-count">(4)</span></h3>
+        <div class="catalog-grid bot-grid--live" id="catalog-grid">
           <!-- Card 1: Web & API Text Extractor (LIVE NOW — FREE) -->
           <article class="bot-card live-card" data-categories="live available solana">
             <div>
@@ -363,72 +364,126 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
             </div>
           </article>
 
-          <!-- Card 3: Solana Wallet Hygiene Bot ($19 SOL) -->
-          <article class="bot-card" data-categories="solana security">
+          <!-- Card 3: Solana Wallet Hygiene Bot (LIVE · $19 IN SOL) -->
+          <article class="bot-card bot-card--featured live-card" data-categories="live available solana security" id="card-solana-wallet-hygiene">
             <div>
               <div class="card-top-meta">
-                <span class="phase-badge phase2">IN DEVELOPMENT · PHASE 2 SPEC</span>
+                <span class="phase-badge live">● LIVE · $19 IN SOL</span>
                 <span class="skill-slug">solana-wallet-hygiene</span>
               </div>
               <div class="card-title-row">
                 <h3 class="card-title">Solana Wallet Hygiene Bot</h3>
-                <div class="card-price"><small>Planned:</small> $19 <small>in SOL</small></div>
+                <div class="card-price free">$19 <small>in SOL · One-Time</small></div>
               </div>
               <p class="card-summary">
-                Audits Solana wallets for reclaimable rent (≥0.002039 SOL floor per standard 165-byte empty account; higher for Token-2022 accounts with extensions) and stale SPL / Token-2022 delegations, staging unsigned base64 transactions locally.
+                <strong>Find the rent locked in your empty token accounts and the stale delegations still attached to your wallet—then reclaim it yourself, non-custodially.</strong> Each empty standard SPL account holds exactly <code>0.00203928 SOL</code> (<code>2,039,280 lamports</code>) of reclaimable rent.
               </p>
               <ul class="spec-highlights">
                 <li><strong>Dual Program Scan:</strong> Queries <code>getParsedTokenAccountsByOwner</code> for both legacy SPL (<code>Tokenkeg...</code>) and Token-2022 (<code>TokenzQd...</code>).</li>
-                <li><strong>3-Bucket Classifier:</strong> Strictly separates <code>SAFE TO CLOSE</code>, <code>NEEDS YOUR CONFIRMATION</code> (one-by-one), and <code>DO NOT TOUCH</code>.</li>
-                <li><strong>Withheld-Fee Safe:</strong> Checks Token-2022 <code>transferFeeAmount.withheldAmount == "0"</code> and flags unidentified delegates explicitly.</li>
+                <li><strong>3-Bucket Report:</strong> Strictly separates <code>SAFE_TO_RECLAIM</code>, <code>NEEDS_CONFIRMATION</code> (active delegates), and <code>DO_NOT_TOUCH</code> (active balances).</li>
+                <li><strong>You Sign, We Never Do:</strong> Outputs Phantom / Solflare steps and <code>spl-token</code> CLI commands—never asks for a seed phrase or private key.</li>
               </ul>
+              <details class="sample-audit-preview">
+                <summary>Preview sample Wallet Hygiene Report</summary>
+                <pre class="modal-sample-audit"># Solana Wallet Hygiene Report
+- Wallet (public address only): &lt;WALLET_ADDRESS&gt;
+- Programs Scanned: Tokenkeg (legacy SPL), TokenzQd (Token-2022)
+- Token Accounts Found: 7 (3 empty · 1 delegated · 3 active)
+- Rent per empty standard SPL account: 0.00203928 SOL (2,039,280 lamports)
+
+## SAFE_TO_RECLAIM (3 empty accounts — 0.00611784 SOL / 6,117,840 lamports)
+- &lt;TOKEN_ACCOUNT_1&gt; (mint &lt;MINT_A&gt;) — balance 0, no delegate, not frozen — 0.00203928 SOL
+- &lt;TOKEN_ACCOUNT_2&gt; (mint &lt;MINT_B&gt;) — balance 0, no delegate, not frozen — 0.00203928 SOL
+- &lt;TOKEN_ACCOUNT_3&gt; (mint &lt;MINT_C&gt;) — balance 0, no delegate, not frozen — 0.00203928 SOL
+
+## NEEDS_CONFIRMATION (1 account)
+- &lt;TOKEN_ACCOUNT_4&gt; (mint &lt;MINT_D&gt;) — ACTIVE DELEGATE &lt;DELEGATE_ADDRESS&gt; with remaining allowance 500,000,000 base units.
+  Unrecognized delegate. Confirm you intended this approval before revoking.
+
+## DO_NOT_TOUCH (3 accounts)
+- &lt;TOKEN_ACCOUNT_5&gt; — active balance (USDC)
+- &lt;TOKEN_ACCOUNT_6&gt; — active balance (JitoSOL)
+- &lt;TOKEN_ACCOUNT_7&gt; — active balance (Token-2022 mint)
+
+## Non-Custodial Reclaim Commands (you sign every transaction)
+- Phantom / Solflare: Settings -&gt; Manage Token Accounts -&gt; select each SAFE_TO_RECLAIM account -&gt; Close Account.
+- spl-token CLI (legacy SPL):  spl-token close-account &lt;TOKEN_ACCOUNT_1&gt;
+- spl-token CLI (Token-2022):  spl-token close-account --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb &lt;TOKEN_ACCOUNT&gt;
+- Revoke a delegate (after you confirm):  spl-token revoke &lt;TOKEN_ACCOUNT_4&gt;</pre>
+              </details>
               <div class="guardrail-strip">
                 <strong>Guardrail:</strong> Read-only audit first, always. Never asks for seed phrases, never holds keys, and never signs or broadcasts transactions.
               </div>
             </div>
             <div class="card-actions">
-              <button type="button" class="btn btn-secondary btn-sm" data-open-spec="solana-wallet-hygiene">
-                Inspect Full Spec
-              </button>
-              <span class="btn btn-secondary btn-sm" style="opacity: 0.55; cursor: not-allowed;" aria-disabled="true">
-                Not Yet Available
-              </span>
+              <button type="button" class="btn btn--primary" data-open-checkout="solana-wallet-hygiene">Buy License &mdash; $19 in SOL</button>
+              <button type="button" class="btn btn--ghost" data-open-spec="solana-wallet-hygiene">View Full Spec</button>
             </div>
           </article>
 
-          <!-- Card 4: Retail Token Due-Diligence Bot ($29 SOL) -->
-          <article class="bot-card" data-categories="solana">
+          <!-- Card 4: Retail Token Due-Diligence Bot (LIVE · $29 IN SOL) -->
+          <article class="bot-card bot-card--featured live-card" data-categories="live available solana" id="card-solana-token-scanner">
             <div>
               <div class="card-top-meta">
-                <span class="phase-badge phase2">IN DEVELOPMENT · PHASE 2 SPEC</span>
-                <span class="skill-slug">solana-token-dd</span>
+                <span class="phase-badge live">● LIVE · $29 IN SOL</span>
+                <span class="skill-slug">solana-token-scanner</span>
               </div>
               <div class="card-title-row">
                 <h3 class="card-title">Retail Token Due-Diligence Bot</h3>
-                <div class="card-price"><small>Planned:</small> $29 <small>in SOL</small></div>
+                <div class="card-price free">$29 <small>in SOL · One-Time</small></div>
               </div>
               <p class="card-summary">
-                Reports verifiable, timestamped on-chain facts for any Solana mint—authorities, Token-2022 extensions, holder concentration, and LP lock status.
+                <strong>Verifiable, timestamped on-chain facts for any Solana mint—mechanics, not motives.</strong> A 5-section report covering identity, authorities, holder concentration, DEX liquidity, and a mandatory non-advice scope note.
               </p>
               <ul class="spec-highlights">
-                <li><strong>Authorities &amp; Supply:</strong> Mint, freeze, and update authorities (present vs. revoked), supply changes, and mint age.</li>
-                <li><strong>Token-2022 Extensions:</strong> Inspects <code>PermanentDelegate</code>, <code>TransferFeeConfig</code>, <code>TransferHook</code>, and <code>DefaultAccountState</code>.</li>
-                <li><strong>Holders &amp; LP Depth:</strong> Top-10 / Top-20 concentration (separating known pools/exchanges from individual wallets) and DexScreener liquidity.</li>
+                <li><strong>Authorities &amp; Token-2022 Extensions:</strong> Mint, freeze, and update authorities (present vs. revoked) plus <code>PermanentDelegate</code>, <code>TransferFeeConfig</code>, <code>TransferHook</code>, and <code>DefaultAccountState</code>.</li>
+                <li><strong>Top-20 Holder Concentration:</strong> Separates known pools/exchanges from individual wallets via <code>getTokenLargestAccounts</code>.</li>
+                <li><strong>DEX Liquidity Snapshot:</strong> Primary pairs, USD liquidity depth, and 24h volume from DexScreener.</li>
               </ul>
+              <details class="sample-audit-preview">
+                <summary>Preview sample Token Due-Diligence Report</summary>
+                <pre class="modal-sample-audit"># Solana Token Due-Diligence Report
+- Mint: &lt;MINT_ADDRESS&gt; (illustrative sample values)
+- Retrieved (UTC): 2026-10-25T14:05:00Z · RPC slot &lt;SLOT&gt;
+
+## Section 1 — Mint &amp; Program Identity
+- Owner Program: Token-2022 (TokenzQd...) · Decimals: 6 · Supply: 1,000,000,000
+- Metadata: name/symbol as recorded on-chain · Created: &lt;CREATION_SLOT&gt;
+
+## Section 2 — Authority &amp; Token-2022 Extension Controls
+- Mint authority: REVOKED (null)
+- Freeze authority: PRESENT (&lt;AUTHORITY_ADDRESS&gt;)
+- Metadata update authority: PRESENT (&lt;AUTHORITY_ADDRESS&gt;)
+- Extensions: TransferFeeConfig (100 bps, max fee 5,000 base units) · PermanentDelegate: none · TransferHook: none
+
+## Section 3 — Top-20 Holder Concentration
+- Top 10 holders: 41.2% of supply · Top 20 holders: 55.8% of supply
+- Identified pool/AMM vaults: 2 (28.4%) · Unidentified individual wallets: 18 (27.4%)
+- Source: getTokenLargestAccounts at slot &lt;SLOT&gt;
+
+## Section 4 — DEX Liquidity &amp; Pair Snapshot
+- Primary pair: &lt;TOKEN&gt;/SOL on Raydium · Liquidity: $182,400 · 24h volume: $96,150
+- LP lock/burn status: not observable from on-chain data retrieved
+- Source: DexScreener API (retrieved 2026-10-25T14:05:12Z)
+
+## Section 5 — Scope Note (Mandatory)
+This report lists observable on-chain facts at the time shown. It is not investment advice, makes no
+safe/unsafe, legitimacy, or scam determination, and assigns no score. It cannot see off-chain
+conduct, future authority changes, or liquidity changes after retrieval.</pre>
+              </details>
               <div class="guardrail-strip">
                 <strong>Guardrail:</strong> Mechanics, not motives. Never outputs "safe/unsafe" verdicts, "rug/scam" labels, or numerical safety scores.
               </div>
             </div>
             <div class="card-actions">
-              <button type="button" class="btn btn-secondary btn-sm" data-open-spec="solana-token-dd">
-                Inspect Full Spec
-              </button>
-              <span class="btn btn-secondary btn-sm" style="opacity: 0.55; cursor: not-allowed;" aria-disabled="true">
-                Not Yet Available
-              </span>
+              <button type="button" class="btn btn--primary" data-open-checkout="solana-token-scanner">Buy License &mdash; $29 in SOL</button>
+              <button type="button" class="btn btn--ghost" data-open-spec="solana-token-scanner">View Full Spec</button>
             </div>
           </article>
+        </div>
 
+        <h3 class="catalog-group-title" id="coming-next">Phase 3 &mdash; Coming Next <span class="filter-count">(1)</span></h3>
+        <div class="catalog-grid">
           <!-- Card 5: Hyperliquid & Perp Basis Monitor ($29 SOL) -->
           <article class="bot-card" data-categories="perps">
             <div>
@@ -674,7 +729,7 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
             <div class="checkout-quote-grid">
               <div class="quote-metric">
                 <span class="quote-label">License Price (One-Time)</span>
-                <div class="quote-val-primary">$29.00 <small>USD</small></div>
+                <div class="quote-val-primary" id="checkout-price-usd">$29.00 <small>USD</small></div>
                 <div class="quote-sub" id="checkout-rate-display">SOL/USD rate loading…</div>
               </div>
               <div class="quote-metric">
@@ -798,7 +853,7 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
               <span>STEP A · IMPORT UNLISTED GROK BOT TEMPLATE</span>
               <span>ONE CLICK</span>
             </div>
-            <p class="checkout-field-help" style="margin-bottom: 10px;">
+            <p class="checkout-field-help" style="margin-bottom: 10px;" id="fulfilled-step-a-desc">
               Click below to open the private <strong>Bot &amp; Skill Security Auditor</strong> template in Grok Bot and add it to your sidebar:
             </p>
             <div class="fulfilled-cta-row">
@@ -834,7 +889,7 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
               <span>STEP C · SEND THIS FIRST PROMPT IN GROK BOT</span>
               <span>TURN-1 AUTO-SETUP</span>
             </div>
-            <p class="checkout-field-help" style="margin-bottom: 8px;">
+            <p class="checkout-field-help" style="margin-bottom: 8px;" id="fulfilled-step-c-hint">
               Paste this prompt on Turn 1 (or together with any <code>SKILL.md</code> or GitHub repo URL you want inspected):
             </p>
             <div class="checkout-copy-box">
@@ -843,7 +898,7 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
                 Copy Prompt
               </button>
             </div>
-            <p class="checkout-field-help" style="margin-top: 8px;">
+            <p class="checkout-field-help" style="margin-top: 8px;" id="fulfilled-step-c-foot">
               On Turn 1, <code>auditor-setup</code> installs the read-only helpers (<code>.wattcoin_license_check.py</code> &amp; <code>.wattcoin_audit_prep.py</code> at <code>0500</code>), provisions <code>/workspace/.wattcoin_env</code> (<code>0600</code>), completes the 100 WATT starter activation, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.
             </p>
           </div>
@@ -895,6 +950,8 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
         <div class="footer-links-list">
           <a href="https://x.ai/bot/k1oyHmw4iS4VBW1U8_3Ol" target="_blank" rel="noopener">Web &amp; API Text Extractor (Free Bot) ↗</a>
           <a href="#card-bot-skill-auditor" data-open-checkout="bot-skill-auditor">Bot &amp; Skill Security Auditor ($29 SOL) →</a>
+          <a href="#card-solana-wallet-hygiene" data-open-checkout="solana-wallet-hygiene">Solana Wallet Hygiene Bot ($19 SOL) →</a>
+          <a href="#card-solana-token-scanner" data-open-checkout="solana-token-scanner">Retail Token Due-Diligence Bot ($29 SOL) →</a>
           <a href="https://www.wattcoin.org" target="_blank" rel="noopener">WattCoin.org ↗</a>
           <a href="https://www.wattcoin.org/llms.txt" target="_blank" rel="noopener">wattcoin.org/llms.txt ↗</a>
           <a href="https://botappstore.com" target="_blank" rel="noopener" title="Enterprise OSINT &amp; Physical Infrastructure Grok Bot Templates">BotAppStore.com (OSINT &amp; Enterprise Bots) ↗</a>
