@@ -82,6 +82,7 @@ code, pre, .mono {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
+  white-space: nowrap;
 }
 
 .status-cluster {
@@ -109,6 +110,12 @@ code, pre, .mono {
   transition: color 0.15s ease;
 }
 
+.status-cluster > span,
+.ticker-links a {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .ticker-links a:hover {
   color: var(--accent-solana);
 }
@@ -127,8 +134,10 @@ code, pre, .mono {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 68px;
-  gap: 20px;
+  min-height: 68px;
+  height: auto;
+  padding-block: 10px;
+  gap: 16px;
 }
 
 .brand-logo {
@@ -138,6 +147,8 @@ code, pre, .mono {
   font-weight: 700;
   font-size: 19px;
   letter-spacing: -0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .brand-mark {
@@ -169,6 +180,8 @@ code, pre, .mono {
   border: 1px solid rgba(20, 241, 149, 0.25);
   color: var(--accent-solana);
   font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-links {
@@ -178,6 +191,13 @@ code, pre, .mono {
   font-size: 14px;
   font-weight: 500;
   color: var(--text-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.nav-links a {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-links a:hover {
@@ -188,6 +208,25 @@ code, pre, .mono {
   display: flex;
   align-items: center;
   gap: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Never let nav labels or buttons stack word-by-word */
+.nav-bar a,
+.nav-bar button,
+.nav-bar .btn {
+  white-space: nowrap;
+}
+
+@media (max-width: 1120px) {
+  .nav-bar {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .brand-tag {
+    display: none;
+  }
 }
 
 /* Buttons */
