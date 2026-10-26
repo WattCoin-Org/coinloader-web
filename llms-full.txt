@@ -1,0 +1,334 @@
+# CoinLoader.com — Crypto, Solana & Security Agent Templates for Grok Bot
+
+> Instant, one-click crypto, Solana, security, and web agent templates that execute locally inside your isolated Grok Bot Linux container (`/workspace`). Non-custodial, zero monthly subscriptions, and powered by the WattCoin Agent Registry (`https://www.wattcoin.org/llms.txt`).
+
+- **Canonical Storefront:** https://coinloader.com/
+- **Machine-Readable Catalog:** https://coinloader.com/llms.txt
+- **Full Catalog + Verbatim Sample Reports:** https://coinloader.com/llms-full.txt
+- **Sister OSINT & Enterprise Storefront:** https://botappstore.com/
+- **Free Web & API Text Extractor ($0):** https://coinloader.com/bots/web-text-extractor.html (Direct Grok Bot import: https://x.ai/bot/k1oyHmw4iS4VBW1U8_3Ol)
+- **Bot & Skill Security Auditor ($29 in SOL, `sku: bot-skill-auditor`):** https://coinloader.com/bots/bot-skill-auditor.html
+- **Solana Wallet Hygiene Bot ($19 in SOL, `sku: solana-wallet-hygiene`, Registry Name: *Solana Wallet Hygiene & Rent Reclaim*):** https://coinloader.com/bots/solana-wallet-hygiene.html
+- **Retail Token Due-Diligence Bot ($29 in SOL, `sku: solana-token-scanner`, Registry Name: *Solana Token & Mint Due-Diligence Scanner*):** https://coinloader.com/bots/solana-token-scanner.html
+
+## 1. Live Templates (Available Now — 4 Live Agents)
+
+### 1.1 Web & API Text Extractor (FREE + 100 WATT Starter Grant)
+- **Status:** LIVE NOW (Free)
+- **Direct Import Link:** https://x.ai/bot/k1oyHmw4iS4VBW1U8_3Ol
+- **Template ID:** `k1oyHmw4iS4VBW1U8_3Ol`
+- **Included Skills:** `getting-started`, `web-extractor`
+- **Capabilities:**
+  1. **Turn-1 Auto-Onboarding (`getting-started`):** Registers a workspace agent identity via `POST https://www.wattcoin.org/api/v1/agents/register`, writes `WATTCOIN_AGENT_ID` and `WATTCOIN_AGENT_KEY` (`wck_...`) to `/workspace/.wattcoin_env` with `0600` permissions, and completes `onboarding_v1` (25 WATT) + `starter_v1` (75 WATT) for **100 WATT** total.
+  2. **10/Day Free Text Extraction (`web-extractor`):** Calls `POST https://www.wattcoin.org/api/v1/scrape` (`format: "text"`) using static HTTP fetch + BeautifulSoup readable text extraction and reports `X-Quota-Limit` / `X-Quota-Remaining`.
+  3. **Paid Modes & Local Fallback:** Supports 100 WATT/call `html` and `json` modes (never spends WATT without explicit user confirmation) and falls back to local `curl` + Python HTML-to-text in `/workspace` when daily quota is exhausted.
+
+### 1.2 Bot & Skill Security Auditor ($29 One-Time in SOL)
+- **Status:** LIVE NOW ($29 USD settled on-chain in SOL via CoinLoader.com or BotAppStore.com checkout modal)
+- **Deliverable:** *See every network call, credential read, and shell command in a third-party skill, with line numbers, before you run it.*
+- **SKU Identifier:** `bot-skill-auditor`
+- **Product Page URL:** https://coinloader.com/bots/bot-skill-auditor.html
+- **Included Skills:** `auditor-setup`, `bot-skill-auditor`
+- **Checkout & Licensing Flow:**
+  1. **Request Quote:** `POST https://www.wattcoin.org/api/v1/agents/license/quote` with `{"sku": "bot-skill-auditor"}` returns a 15-minute SOL quote (`order_id`, `checkout_token`, `amount_sol`, `amount_lamports` with a unique 4-digit lamport tag, `memo: "wcl:<order_id>"`, and official treasury wallet `Atu5phbGGGFogbKhi259czz887dSdTfXwJxwbuE5aF5q`).
+  2. **Verify Payment & Issue License:** `POST https://www.wattcoin.org/api/v1/agents/license/purchase` with `{"order_id", "checkout_token", "tx_signature"}` verifies the Solana transfer on-chain (`confirmed` commitment) and returns the private Grok Bot template URL + one-time `wcl_<64-hex>` license code.
+  3. **Turn-1 Binding (`auditor-setup`):** Installs read-only helpers `/workspace/.wattcoin_license_check.py` and `/workspace/.wattcoin_audit_prep.py` (`0500`), registers/activates `/workspace/.wattcoin_env` (`0600`), and binds the `wcl_...` license via `POST https://www.wattcoin.org/api/v1/agents/license/claim` (supports up to 3 workspace-reset rebinds).
+  4. **5-Bucket Static Inspection (`bot-skill-auditor`):** Wraps untrusted artifacts in random `<untrusted_artifact_<16-hex>>` tags and reports verbatim line-cited findings across:
+     - Bucket 1: Prompt, confirmation & auditor bypass (e.g., `crypto-airdrop-helper/SKILL.md:L14` hidden HTML comment instructing the scanner to report 0 findings)
+     - Bucket 2: Secret, filesystem, self-modification & OS persistence access (e.g., `L29` reading `~/.ssh/id_ed25519` and `/workspace/.env`)
+     - Bucket 3: Outbound network, exfiltration & MCP connectors (e.g., `L31` `curl -X POST https://webhook.site/...` paired with `L29` as a combined exfiltration path `L29 -> L31`)
+     - Bucket 4: Unverifiable runtime execution & obfuscation (`curl | sh`, unpinned `npx`/`pip`, base64/hex payloads)
+     - Bucket 5: Local machine escalation (`ListMachines`, `machineId`, `CopyToBox` / `CopyFromBox`)
+  5. **Audit Coverage Accounting (`SCOPE_NOTE.txt`):** Prepends verbatim `SCOPE_NOTE.txt` and reports exact `Files Audited (N/M)` and `Files Skipped / Unread Portions` (plus `hidden_unicode_lines` and `long_lines`) at the top of every report.
+  6. **What This Static Audit Does Not Catch:** Static inspection flags and cites lines present in the files at audit time (`Files Audited` / `Files Skipped`). It never proves a skill is safe, never outputs a "Safe/Pass" badge or numeric grade, and cannot catch payloads fetched dynamically at runtime, multi-stage remote API responses, time-bombed/state-gated logic, or off-file author/account compromise.
+
+### 1.3 Solana Wallet Hygiene Bot ($19 One-Time in SOL)
+- **Status:** LIVE NOW ($19 USD settled on-chain in SOL via CoinLoader.com or BotAppStore.com checkout modal)
+- **Deliverable:** *Find the rent locked in empty token accounts and stale delegations on your wallet, then reclaim it yourself non-custodially.*
+- **SKU Identifier:** `solana-wallet-hygiene`
+- **Alternate / Registry Name:** Solana Wallet Hygiene & Rent Reclaim
+- **Product Page URL:** https://coinloader.com/bots/solana-wallet-hygiene.html
+- **Included Skills:** `wallet-hygiene-setup`, `solana-wallet-hygiene`
+- **Storefront Checkout URL:** https://coinloader.com/#card-solana-wallet-hygiene
+- **Checkout & Licensing Flow:**
+  1. **Request Quote:** `POST https://www.wattcoin.org/api/v1/agents/license/quote` with `{"sku": "solana-wallet-hygiene", "source": "coinloader"}` returns a 15-minute SOL quote for `$19.00 USD` (`order_id`, `checkout_token`, `amount_sol`, `amount_lamports` with a unique 4-digit lamport tag, `memo: "wcl:<order_id>"`, and treasury wallet `Atu5phbGGGFogbKhi259czz887dSdTfXwJxwbuE5aF5q`).
+  2. **Verify Payment & Issue License:** `POST https://www.wattcoin.org/api/v1/agents/license/purchase` with `{"sku": "solana-wallet-hygiene", "order_id", "checkout_token", "tx_signature"}` verifies the Solana transfer on-chain (`confirmed` commitment) and returns the private Grok Bot template URL + one-time `wcl_<64-hex>` license code.
+  3. **Turn-1 Binding:** Registers/activates `/workspace/.wattcoin_env` (`0600`) and binds the `wcl_...` license via `POST https://www.wattcoin.org/api/v1/agents/license/claim` (up to 3 workspace-reset rebinds); entitlement check is `GET https://www.wattcoin.org/api/v1/agents/license?sku=solana-wallet-hygiene` -> `"sku_licensed": true`.
+  4. **3-Bucket Report (`solana-wallet-hygiene`):** Scans legacy SPL (`Tokenkeg...`) and Token-2022 (`TokenzQd...`) accounts and classifies each as:
+     - `SAFE_TO_RECLAIM`: empty accounts, no delegate, not frozen — exact rent of `0.00203928 SOL` (`2,039,280 lamports`) per standard SPL account
+     - `NEEDS_CONFIRMATION`: active delegate / non-zero dust, confirmed one-by-one
+     - `DO_NOT_TOUCH`: active balances, LP receipts, NFTs, frozen accounts, unharvested Token-2022 fees
+  5. **Non-Custodial Reclaim Commands:** Phantom / Solflare steps and `spl-token close-account` / `spl-token revoke` CLI commands; the user signs everything.
+  6. **Guardrails:** Never asks for a seed phrase or private key (refuses if pasted), never signs or broadcasts transactions.
+
+### 1.4 Retail Token Due-Diligence Bot ($29 One-Time in SOL)
+- **Status:** LIVE NOW ($29 USD settled on-chain in SOL via CoinLoader.com or BotAppStore.com checkout modal)
+- **Deliverable:** *Verifiable, timestamped on-chain facts for any Solana mint — mechanics, not motives.*
+- **SKU Identifier:** `solana-token-scanner`
+- **Alternate / Registry Name:** Solana Token & Mint Due-Diligence Scanner
+- **Product Page URL:** https://coinloader.com/bots/solana-token-scanner.html
+- **Included Skills:** `solana-token-scanner-setup`, `solana-token-scanner`
+- **Storefront Checkout URL:** https://coinloader.com/#card-solana-token-scanner
+- **Checkout & Licensing Flow:**
+  1. **Request Quote:** `POST https://www.wattcoin.org/api/v1/agents/license/quote` with `{"sku": "solana-token-scanner", "source": "coinloader"}` returns a 15-minute SOL quote for `$29.00 USD` (`order_id`, `checkout_token`, `amount_sol`, `amount_lamports` with a unique 4-digit lamport tag, `memo: "wcl:<order_id>"`, and treasury wallet `Atu5phbGGGFogbKhi259czz887dSdTfXwJxwbuE5aF5q`).
+  2. **Verify Payment & Issue License:** `POST https://www.wattcoin.org/api/v1/agents/license/purchase` with `{"sku": "solana-token-scanner", "order_id", "checkout_token", "tx_signature"}` verifies the Solana transfer on-chain (`confirmed` commitment) and returns the private Grok Bot template URL + one-time `wcl_<64-hex>` license code.
+  3. **Turn-1 Binding:** Registers/activates `/workspace/.wattcoin_env` (`0600`) and binds the `wcl_...` license via `POST https://www.wattcoin.org/api/v1/agents/license/claim` (up to 3 workspace-reset rebinds); entitlement check is `GET https://www.wattcoin.org/api/v1/agents/license?sku=solana-token-scanner` -> `"sku_licensed": true`.
+  4. **5-Section Report (`solana-token-scanner`):**
+     - Section 1: Mint & Program Identity
+     - Section 2: Authority & Token-2022 Extension Controls (`TransferFeeConfig`, `PermanentDelegate`, `TransferHook`, `DefaultAccountState`)
+     - Section 3: Top-20 Holder Concentration (`getTokenLargestAccounts`)
+     - Section 4: DEX Liquidity & Pair Snapshot (DexScreener)
+     - Section 5: Mandatory Non-Advice Scope Note
+  5. **Guardrails:** Never outputs "safe/unsafe", "legit", "scam", or "rug" labels and never assigns a numerical score; every metric cites its RPC call, slot/timestamp, or API source.
+## 2. Planned Phase 3 Specification (Coming Next)
+- **Hyperliquid & Perp Basis Monitor (`hyperliquid-monitor`):** Planned $29 in SOL — Unauthenticated read-only perp funding, basis, and liquidation-distance monitor via `POST https://api.hyperliquid.xyz/info`.
+
+## 3. Canonical Documentation & Sister Storefront
+- **WattCoin Agent Registry Reference:** https://www.wattcoin.org/llms.txt
+- **Enterprise OSINT & Physical Infrastructure Agents:** https://botappstore.com/
+
+---
+
+## On-Chain SOL Licensing & Verification API (`https://www.wattcoin.org`)
+
+All paid Grok Bot templates on BotAppStore.com and CoinLoader.com use the same non-custodial Solana checkout and license-binding contract:
+
+1. **`POST https://www.wattcoin.org/api/v1/agents/license/quote`**
+   - Request body: `{"sku": "<sku>", "source": "botappstore" | "coinloader", "buyer_wallet": "<optional_base58>"}`
+   - Supported SKUs:
+     - `bot-skill-auditor` ($29.00 USD in SOL — Bot & Skill Security Auditor)
+     - `company-deep-dive` ($19.00 USD in SOL — Company & Competitor Deep-Dive Analyst)
+     - `sec-patent-watchdog` ($29.00 USD in SOL — SEC & Patent Watchdog Digest)
+     - `solana-wallet-hygiene` ($19.00 USD in SOL — Solana Wallet Hygiene Bot)
+     - `solana-token-scanner` ($29.00 USD in SOL — Retail Token Due-Diligence Bot)
+   - Response: 15-minute locked SOL quote with `order_id` (`ord_<24-hex>`), `checkout_token` (`ct_<48-hex>`), `amount_sol`, `amount_lamports` (including a unique 4-digit lamport tag `0001`–`9999`), `memo` (`wcl:<order_id>`), `recipient_wallet` (`Atu5phbGGGFogbKhi259czz887dSdTfXwJxwbuE5aF5q`), and `solana_pay_url`.
+
+2. **`POST https://www.wattcoin.org/api/v1/agents/license/purchase`**
+   - Request body: `{"order_id": "ord_...", "checkout_token": "ct_...", "tx_signature": "<base58_solana_tx_sig>", "sku": "<sku>"}`
+   - Verifies the Solana mainnet transaction on-chain (`getTransaction` with `confirmed` commitment, checking recipient treasury lamport delta, blockTime window, and replay uniqueness) and returns the one-time bearer `license_code` (`wcl_<64-hex>`), the unlisted Grok Bot template import URL, and the Turn-1 activation prompt.
+
+3. **`POST https://www.wattcoin.org/api/v1/agents/license/claim`**
+   - Request headers: `X-Agent-Key: wck_<64-hex>`
+   - Request body: `{"license_code": "wcl_<64-hex>", "sku": "<sku>"}`
+   - Binds the license to the workspace's `agent_id`. Supports up to **3 workspace-reset rebinds** (`max_rebinds: 3`) if the user's `/workspace` container is recreated.
+
+4. **`GET https://www.wattcoin.org/api/v1/agents/license?sku=<sku>`**
+   - Request headers: `X-Agent-Key: wck_<64-hex>`
+   - Pre-flight entitlement check executed by `/usr/bin/python3 -I /workspace/.wattcoin_license_check.py` before every paid skill run. Returns `"sku_licensed": true` when active.
+
+5. **`POST https://www.wattcoin.org/api/v1/agents/license/recover`**
+   - Request body: `{"order_id": "ord_...", "tx_signature": "<base58_solana_tx_sig>", "sku": "<sku>"}`
+   - Recovers license metadata using the original on-chain transaction signature and order ID.
+
+
+---
+
+## Verbatim Proof-of-Work Sample Outputs (CoinLoader.com — 4 Live Templates)
+
+### Sample 1 — Web & API Text Extractor (`getting-started` + `web-extractor`, $0 Free Forever)
+
+```http
+POST https://www.wattcoin.org/api/v1/scrape HTTP/2
+Content-Type: application/json
+X-Agent-Key: wck_<REDACTED_64_HEX>
+
+{"url": "https://www.wattcoin.org/llms.txt", "format": "text"}
+```
+
+```json
+HTTP/2 200
+x-quota-limit: 10
+x-quota-remaining: 8
+x-quota-reset: 2026-10-27T00:00:00Z
+
+{
+  "success": true,
+  "url": "https://www.wattcoin.org/llms.txt",
+  "format": "text",
+  "free_tier": true,
+  "content": "# WattCoin (WATT) — Agent Reference\n> Utility token on Solana for AI/automation ecosystems..."
+}
+```
+
+
+### Sample 2 — Bot & Skill Security Auditor (`sku: bot-skill-auditor`, $29 in SOL)
+
+```markdown
+> This is a static inspection of the files as they exist right now. It cannot see what any fetched script, installed package, or remote endpoint will actually do — those can change after this audit. It cannot evaluate the author, the hosting account, or anything outside the files inspected. Nothing here is an assurance that this template is safe to run.
+
+# Static Capability Inspection Report: `wattcoin-skills-audit` (`company-deep-dive` & `web-extractor`)
+
+- **Files & Refs Inspected:**
+  - `company-deep-dive-SKILL.md` (`12,283` of `12,283` bytes read; `hidden_unicode_lines: []`; `long_lines: []`)
+  - `web-extractor-SKILL.md` (`3,026` of `3,026` bytes read; `hidden_unicode_lines: []`; `long_lines: []`)
+  - **Total Bytes Inspected:** `15,309` bytes (`2` files of `50` max; aggregate budget `256,000` bytes)
+- **Unread / Unparsed Portions:** `None` (`100%` of both artifacts was plain text within per-file and aggregate byte limits; `unread: []`)
+- **Wrapper Delimiter Tag:** `83abeacb9f26f535`
+
+---
+
+## Bucket 1 — Prompt, Confirmation & Auditor Bypass
+
+No matching patterns (`hidden_unicode_lines`, HTML comments, instructions to skip confirmation cards, or instructions addressed to an auditor/scanner) were found in the inspected lines of `company-deep-dive-SKILL.md` or `web-extractor-SKILL.md`. This is a statement about what is present in those lines, not an assurance.
+
+---
+
+## Bucket 2 — Secret, Filesystem, Self-Modification & Persistence Access
+
+### `web-extractor-SKILL.md`
+1. **Combination — Local Credential Read (`WATTCOIN_AGENT_KEY` from `/workspace/.wattcoin_env`) Paired with Outbound Network Header (`X-Agent-Key` to `https://www.wattcoin.org/api/v1/scrape`):**
+   - `web-extractor-SKILL.md:L11`:
+     > `**Auth.** Read `WATTCOIN_AGENT_KEY` from `/workspace/.wattcoin_env` every run; send as `X-Agent-Key`. Missing file -> run `getting-started` instead of failing.`
+   - **Mechanical Consequence:** Reads the workspace agent API key stored in `/workspace/.wattcoin_env` and transmits it as the `X-Agent-Key` HTTP header to `https://www.wattcoin.org/api/v1/scrape` (see Bucket 3). Together with `web-extractor-SKILL.md:L13`, this forms a direct data path from `/workspace/.wattcoin_env` (`WATTCOIN_AGENT_KEY`) to `https://www.wattcoin.org/api/v1/scrape`.
+2. **Workspace File Writes for Extracted Output:**
+   - `web-extractor-SKILL.md:L20`:
+     > `**Results.** Write anything substantial to a file in `/workspace`; summarize and name the file rather than dumping into chat. Multi-page jobs: scrape sequentially, save each, report once at the end.`
+   - **Mechanical Consequence:** Writes scraped response content to files inside `/workspace`.
+
+### `company-deep-dive-SKILL.md`
+1. **Helper Execution Touching Workspace License & Dossier Files (`/workspace/.wattcoin_license_check.py`, `/workspace/.wattcoin_dd_fetch.py`, `/workspace/dossiers/...`):**
+   - `company-deep-dive-SKILL.md:L11-L14`:
+     > `Never read `/workspace/.wattcoin_env`, `/workspace/.wattcoin_env.bak*`, or `/workspace/.wattcoin_patentsview_key` into chat or model context, never print `WATTCOIN_AGENT_KEY` or `wcl_...` in chat, never modify `/workspace/.wattcoin_license_check.py` or `/workspace/.wattcoin_dd_fetch.py`, and never send any local credential or file content to any external host.`
+     > `1. Before each dossier run, execute `/usr/bin/python3 -I /workspace/.wattcoin_license_check.py`.`
+   - `company-deep-dive-SKILL.md:L19`:
+     > `/usr/bin/python3 -I /workspace/.wattcoin_dd_fetch.py --stdin-json << 'WATTCOIN_DD_REQ_EOF'`
+   - `company-deep-dive-SKILL.md:L27`:
+     > `3. Read the fetched data **only** from `wrapped_sources_path` (`/workspace/dossiers/<slug>-<timestamp>-<6hex>/WRAPPED_SOURCES.txt`), where the entire payload is framed inside a random 128-bit `<untrusted_data_<32-hex>> ... </untrusted_data_<32-hex>>` tag generated with `secrets.token_hex(16)`. Do **not** read `raw_sources_path` (`RAW_SOURCES.json` is saved on disk at `0600` for user export only).`
+   - `company-deep-dive-SKILL.md:L32`:
+     > `- **SEC EDGAR Compliance:** Sends `User-Agent: WattCoinDeepDive/1.0 (https://botappstore.com; contact@wattcoin.org)` (or a user-specific contact string if placed in `/workspace/.wattcoin_sec_ua` at `0600`) and enforces `<= 5 requests/second` (`>= 0.22s` interval across all requests and redirect hops).`
+   - **Mechanical Consequence:** Invokes two local Python helper scripts in `/workspace` (`.wattcoin_license_check.py` and `.wattcoin_dd_fetch.py`) and reads/writes dossier artifacts under `/workspace/dossiers/<slug>-<timestamp>-<6hex>/` (`SCOPE_NOTE.txt`, `RAW_SOURCES.json`, `WRAPPED_SOURCES.txt`, `REPORT.md`), while referencing optional workspace configuration files `/workspace/.wattcoin_patentsview_key` and `/workspace/.wattcoin_sec_ua`.
+
+---
+
+## Bucket 3 — Outbound Network, Exfiltration & MCP Connectors
+
+### `web-extractor-SKILL.md`
+1. **Combination — Outbound POST to `https://www.wattcoin.org/api/v1/scrape` Carrying `X-Agent-Key` from `/workspace/.wattcoin_env` and Target URL:**
+   - `web-extractor-SKILL.md:L9`:
+     > `You fetch and extract web page content and JSON endpoints through the `https://www.wattcoin.org/api/v1/scrape` API.`
+   - `web-extractor-SKILL.md:L11`:
+     > `**Auth.** Read `WATTCOIN_AGENT_KEY` from `/workspace/.wattcoin_env` every run; send as `X-Agent-Key`. Missing file -> run `getting-started` instead of failing.`
+   - `web-extractor-SKILL.md:L13`:
+     > `**Calling.** POST `https://www.wattcoin.org/api/v1/scrape` with the URL and `"format"`:`
+   - **Mechanical Consequence:** Sends an outbound HTTPS `POST` request to `https://www.wattcoin.org/api/v1/scrape` containing the user-requested target URL and the `X-Agent-Key` header read from `/workspace/.wattcoin_env` (Bucket 2).
+2. **Direct Outbound `curl` Fallback to User-Specified `<url>`:**
+   - `web-extractor-SKILL.md:L30`:
+     > `**Fallback when out of quota:** run `curl -sL <url>` piped to `python3 -c 'import sys, bs4; print(bs4.BeautifulSoup(sys.stdin.read(), "html.parser").get_text(" ", strip=True))'` in `/workspace` (`bs4` is preinstalled in the container; if `ImportError` ever occurs, run `pip install --quiet beautifulsoup4 2>/dev/null` first).`
+   - **Mechanical Consequence:** Fetches `<url>` directly from the sandbox container using `curl -sL` when the cloud API returns HTTP `429` (`quota_exhausted`).
+
+### `company-deep-dive-SKILL.md`
+1. **Outbound Regulatory & Registry Queries via `/workspace/.wattcoin_dd_fetch.py` (`www.sec.gov`, `data.sec.gov`, `efts.sec.gov`, `search.patentsview.org`, `rdap.org`, `image-ppubs.uspto.gov`):**
+   - `company-deep-dive-SKILL.md:L31`:
+     > `- **HTTPS-Only, DNS-Pinned IP Validation & SSRF Protection (`validate_and_resolve_host`):** Only queries `www.sec.gov`, `data.sec.gov`, `efts.sec.gov`, `search.patentsview.org`, and `rdap.org` (plus verified public RDAP registry redirects matching `ALLOWED_RDAP_DOMAINS` on exact domain or dot-boundary subdomains).`
+   - `company-deep-dive-SKILL.md:L32`:
+     > `- **SEC EDGAR Compliance:** Sends `User-Agent: WattCoinDeepDive/1.0 (https://botappstore.com; contact@wattcoin.org)` (or a user-specific contact string if placed in `/workspace/.wattcoin_sec_ua` at `0600`) and enforces `<= 5 requests/second` (`>= 0.22s` interval across all requests and redirect hops).`
+   - `company-deep-dive-SKILL.md:L61`:
+     > `- Deduplicated list of every primary URL (`data.sec.gov`, `www.sec.gov/Archives/...`, `efts.sec.gov`, `search.patentsview.org`, `image-ppubs.uspto.gov`, `rdap.org`) and its exact UTC `retrieved_at` timestamp used in the dossier.`
+   - **Mechanical Consequence:** Sends company, ticker, CIK, and domain query strings to SEC EDGAR (`www.sec.gov`, `data.sec.gov`, `efts.sec.gov`), USPTO PatentsView (`search.patentsview.org`), and RDAP (`rdap.org`), and sends the contents of `/workspace/.wattcoin_sec_ua` (if present) as the HTTP `User-Agent` header and `/workspace/.wattcoin_patentsview_key` (if present) to `search.patentsview.org`.
+
+---
+
+## Bucket 4 — Unverifiable Runtime Execution & Obfuscation
+
+### `web-extractor-SKILL.md`
+1. **Unpinned `pip install` Fallback (`beautifulsoup4`):**
+   - `web-extractor-SKILL.md:L30`:
+     > `**Fallback when out of quota:** run `curl -sL <url>` piped to `python3 -c 'import sys, bs4; print(bs4.BeautifulSoup(sys.stdin.read(), "html.parser").get_text(" ", strip=True))'` in `/workspace` (`bs4` is preinstalled in the container; if `ImportError` ever occurs, run `pip install --quiet beautifulsoup4 2>/dev/null` first).`
+   - **Mechanical Consequence:** Contains an unpinned `pip install --quiet beautifulsoup4` fallback command if `bs4` raises `ImportError`. What an unpinned package install fetches from PyPI today may differ from what it fetches tomorrow.
+
+### `company-deep-dive-SKILL.md`
+1. **Delegated Execution of Workspace Helper Scripts (`/workspace/.wattcoin_license_check.py` and `/workspace/.wattcoin_dd_fetch.py`):**
+   - `company-deep-dive-SKILL.md:L12`:
+     > `1. Before each dossier run, execute `/usr/bin/python3 -I /workspace/.wattcoin_license_check.py`.`
+   - `company-deep-dive-SKILL.md:L19`:
+     > `/usr/bin/python3 -I /workspace/.wattcoin_dd_fetch.py --stdin-json << 'WATTCOIN_DD_REQ_EOF'`
+   - **Mechanical Consequence:** Executes two Python scripts located in `/workspace` (installed by `company-deep-dive-setup`), whose contents reside outside `company-deep-dive-SKILL.md` itself and must be inspected separately if modified.
+
+---
+
+## Bucket 5 — Local Machine Escalation
+
+No matching patterns (`ListMachines`, `machineId`, `CopyToBox`, `CopyFromBox`, or host PC execution instructions) were found in the inspected lines of `company-deep-dive-SKILL.md` or `web-extractor-SKILL.md`. This is a statement about what is present in those lines, not an assurance.
+```
+
+### Sample 3 — Solana Wallet Hygiene Bot (`sku: solana-wallet-hygiene`, $19 in SOL)
+
+```markdown
+# Solana Wallet Hygiene Report
+> Scope Note (SCOPE_NOTE.txt): Read-only, non-custodial inspection of public Solana token accounts (Tokenkeg legacy SPL and TokenzQd Token-2022). Never requests private keys or seed phrases, never signs or broadcasts transactions, and provides no financial or tax advice.
+
+- Wallet (public address only): <WALLET_ADDRESS>
+- Retrieved (UTC): 2026-10-25T14:00:00Z
+- Programs Scanned:
+  - Legacy SPL Token (`TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA`)
+  - Token-2022 (`TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb`)
+- Token Accounts Found: 7 total (3 empty reclaimable · 1 active delegate · 3 active balances)
+- Standard Empty SPL Account Rent: 0.00203928 SOL (2,039,280 lamports)
+
+## Bucket 1 — SAFE_TO_RECLAIM (3 empty accounts — Total: 0.00611784 SOL / 6,117,840 lamports)
+1. `<TOKEN_ACCOUNT_1>` (Mint: `<MINT_A>`, Program: `Tokenkeg...`)
+   - Balance: `0` · Delegate: `null` · State: `initialized` (not frozen) · Reclaimable Rent: `0.00203928 SOL` (`2,039,280 lamports`)
+2. `<TOKEN_ACCOUNT_2>` (Mint: `<MINT_B>`, Program: `Tokenkeg...`)
+   - Balance: `0` · Delegate: `null` · State: `initialized` (not frozen) · Reclaimable Rent: `0.00203928 SOL` (`2,039,280 lamports`)
+3. `<TOKEN_ACCOUNT_3>` (Mint: `<MINT_C>`, Program: `Tokenkeg...`)
+   - Balance: `0` · Delegate: `null` · State: `initialized` (not frozen) · Reclaimable Rent: `0.00203928 SOL` (`2,039,280 lamports`)
+
+## Bucket 2 — NEEDS_CONFIRMATION (1 account — Active Token Delegation)
+1. `<TOKEN_ACCOUNT_4>` (Mint: `<MINT_D>`, Program: `Tokenkeg...`)
+   - Balance: `1,250.00` · Active Delegate: `<DELEGATE_ADDRESS>` · Delegated Amount Remaining: `500,000,000` base units
+   - Action: Unrecognized third-party delegate still has spending authority. Confirm whether you still use this dApp before revoking.
+
+## Bucket 3 — DO_NOT_TOUCH (3 accounts — Active Balances / Protocol Positions)
+1. `<TOKEN_ACCOUNT_5>` — Active balance (USDC `EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`)
+2. `<TOKEN_ACCOUNT_6>` — Active liquid staking balance (JitoSOL `J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn`)
+3. `<TOKEN_ACCOUNT_7>` — Active Token-2022 balance (`TokenzQd...` with `TransferFeeConfig` extension)
+
+## Non-Custodial Reclaim & Revoke Commands (You Sign Every Transaction in Your Own Wallet)
+- Phantom / Solflare UI: Settings -> Manage Token Accounts -> select each `SAFE_TO_RECLAIM` account -> Close Account.
+- Solana SPL Token CLI (Legacy SPL):
+  `spl-token close <TOKEN_ACCOUNT_1> --recipient <WALLET_ADDRESS>`
+- Solana SPL Token CLI (Token-2022):
+  `spl-token close --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb <TOKEN_ACCOUNT> --recipient <WALLET_ADDRESS>`
+- Revoke Stale Delegate (after confirming Bucket 2):
+  `spl-token revoke <TOKEN_ACCOUNT_4>`
+```
+
+
+### Sample 4 — Retail Token Due-Diligence Bot (`sku: solana-token-scanner`, $29 in SOL)
+
+```markdown
+# Solana Token Due-Diligence Report
+> Scope Note (SCOPE_NOTE.txt): This report lists observable on-chain facts at the UTC timestamp and RPC slot shown. It is not investment, financial, or legal advice, makes no safe/unsafe, legitimacy, or scam/rug determination, and assigns no numeric score.
+
+- Mint Address: `Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump` (WattCoin / WATT — real mainnet Token-2022 mint)
+- Retrieved (UTC): 2026-10-25T14:05:00Z · Solana Mainnet-Beta (`getAccountInfo`, `getTokenSupply`, `getTokenLargestAccounts`)
+
+## Section 1 — Mint & Program Identity
+- Owner Program: `TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb` (SPL Token-2022)
+- Decimals: `6`
+- Current Total Supply: `999,999,142.810421` tokens (`999999142810421` base units)
+- Initialization State: `Initialized` (`isInitialized: true`)
+
+## Section 2 — Authority & Token-2022 Extension Controls
+- Mint Authority: `REVOKED (null)` — no new tokens can be minted by an authority key
+- Freeze Authority: `REVOKED (null)` — token accounts cannot be frozen by a freeze authority key
+- Token-2022 Extensions Parsed:
+  - `TransferFeeConfig`: `none`
+  - `PermanentDelegate`: `none`
+  - `TransferHook`: `none`
+  - `DefaultAccountState`: `Initialized`
+
+## Section 3 — Top-20 Holder Concentration (`getTokenLargestAccounts`)
+- Top-10 Largest Token Accounts: `38.42%` of total supply
+- Top-20 Largest Token Accounts: `51.18%` of total supply
+- Program / Pool Vault Separation: Separates PDA/AMM pool vaults from individual system-owned wallet token accounts with exact percentage-of-supply per account.
+
+## Section 4 — DEX Liquidity & Pair Snapshot (`api.dexscreener.com`)
+- Primary DEX Pair: `WATT / SOL` (Raydium / PumpSwap on Solana)
+- Reported USD Liquidity, 24h Volume, Pair Creation Timestamp, and FDV cited with exact DexScreener retrieval timestamp (`2026-10-25T14:05:12Z`).
+- LP Lock / Burn Status: Reported strictly as observable on-chain state or explicitly marked unverified if held off-chain.
+
+## Section 5 — Mandatory Scope & Limitations Note
+This report lists observable on-chain facts at the time shown. It is not investment advice, makes no safe/unsafe, legitimacy, or scam determination, and assigns no score. It cannot see off-chain team conduct, private key custody arrangements, future authority transfers (where authorities remain present), or liquidity changes after retrieval.
+```
+

@@ -2,6 +2,15 @@
 
 > Instant, one-click crypto, Solana, security, and web agent templates that execute locally inside your isolated Grok Bot Linux container (`/workspace`). Non-custodial, zero monthly subscriptions, and powered by the WattCoin Agent Registry (`https://www.wattcoin.org/llms.txt`).
 
+- **Canonical Storefront:** https://coinloader.com/
+- **Machine-Readable Catalog:** https://coinloader.com/llms.txt
+- **Full Catalog + Verbatim Sample Reports:** https://coinloader.com/llms-full.txt
+- **Sister OSINT & Enterprise Storefront:** https://botappstore.com/
+- **Free Web & API Text Extractor ($0):** https://coinloader.com/bots/web-text-extractor.html (Direct Grok Bot import: https://x.ai/bot/k1oyHmw4iS4VBW1U8_3Ol)
+- **Bot & Skill Security Auditor ($29 in SOL, `sku: bot-skill-auditor`):** https://coinloader.com/bots/bot-skill-auditor.html
+- **Solana Wallet Hygiene Bot ($19 in SOL, `sku: solana-wallet-hygiene`, Registry Name: *Solana Wallet Hygiene & Rent Reclaim*):** https://coinloader.com/bots/solana-wallet-hygiene.html
+- **Retail Token Due-Diligence Bot ($29 in SOL, `sku: solana-token-scanner`, Registry Name: *Solana Token & Mint Due-Diligence Scanner*):** https://coinloader.com/bots/solana-token-scanner.html
+
 ## 1. Live Templates (Available Now — 4 Live Agents)
 
 ### 1.1 Web & API Text Extractor (FREE + 100 WATT Starter Grant)
@@ -18,6 +27,7 @@
 - **Status:** LIVE NOW ($29 USD settled on-chain in SOL via CoinLoader.com or BotAppStore.com checkout modal)
 - **Deliverable:** *See every network call, credential read, and shell command in a third-party skill, with line numbers, before you run it.*
 - **SKU Identifier:** `bot-skill-auditor`
+- **Product Page URL:** https://coinloader.com/bots/bot-skill-auditor.html
 - **Included Skills:** `auditor-setup`, `bot-skill-auditor`
 - **Checkout & Licensing Flow:**
   1. **Request Quote:** `POST https://www.wattcoin.org/api/v1/agents/license/quote` with `{"sku": "bot-skill-auditor"}` returns a 15-minute SOL quote (`order_id`, `checkout_token`, `amount_sol`, `amount_lamports` with a unique 4-digit lamport tag, `memo: "wcl:<order_id>"`, and official treasury wallet `Atu5phbGGGFogbKhi259czz887dSdTfXwJxwbuE5aF5q`).
@@ -36,6 +46,8 @@
 - **Status:** LIVE NOW ($19 USD settled on-chain in SOL via CoinLoader.com or BotAppStore.com checkout modal)
 - **Deliverable:** *Find the rent locked in empty token accounts and stale delegations on your wallet, then reclaim it yourself non-custodially.*
 - **SKU Identifier:** `solana-wallet-hygiene`
+- **Alternate / Registry Name:** Solana Wallet Hygiene & Rent Reclaim
+- **Product Page URL:** https://coinloader.com/bots/solana-wallet-hygiene.html
 - **Included Skills:** `wallet-hygiene-setup`, `solana-wallet-hygiene`
 - **Storefront Checkout URL:** https://coinloader.com/#card-solana-wallet-hygiene
 - **Checkout & Licensing Flow:**
@@ -53,6 +65,8 @@
 - **Status:** LIVE NOW ($29 USD settled on-chain in SOL via CoinLoader.com or BotAppStore.com checkout modal)
 - **Deliverable:** *Verifiable, timestamped on-chain facts for any Solana mint — mechanics, not motives.*
 - **SKU Identifier:** `solana-token-scanner`
+- **Alternate / Registry Name:** Solana Token & Mint Due-Diligence Scanner
+- **Product Page URL:** https://coinloader.com/bots/solana-token-scanner.html
 - **Included Skills:** `solana-token-scanner-setup`, `solana-token-scanner`
 - **Storefront Checkout URL:** https://coinloader.com/#card-solana-token-scanner
 - **Checkout & Licensing Flow:**
