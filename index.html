@@ -63,7 +63,7 @@
       "@type": "ItemList",
       "@id": "https://coinloader.com/#catalog-list",
       "name": "CoinLoader Grok Bot Agent Catalog",
-      "numberOfItems": 5,
+      "numberOfItems": 6,
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -169,6 +169,28 @@
               "priceCurrency": "USD",
               "availability": "https://schema.org/PreOrder",
               "url": "https://coinloader.com/#coming-next"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "EVM Wallet Approval & Permit2 Risk Auditor",
+            "alternateName": "ERC-20 & Permit2 Allowance Revoke Auditor (Ethereum, Base, Arbitrum)",
+            "sku": "evm-approval-auditor",
+            "applicationCategory": "SecurityApplication",
+            "operatingSystem": "Grok Bot Linux Sandbox (/workspace)",
+            "url": "https://coinloader.com/bots/evm-approval-auditor.html",
+            "description": "Read-only EVM wallet approval and Permit2 risk auditor for Grok Bot ($19 SOL). Reads live ERC-20 allowances and Permit2 sub-allowances across Ethereum, Base, and Arbitrum, classifies every spender (EOA, unverified, unlabeled, or curated), and prints exact approve(spender, 0) revoke and Permit2 lockdown call-data that you submit yourself.",
+            "offers": {
+              "@type": "Offer",
+              "sku": "evm-approval-auditor",
+              "price": "19.00",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "url": "https://coinloader.com/bots/evm-approval-auditor.html"
             }
           }
         }
@@ -479,16 +501,16 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
           <!-- Interactive Category Filter Pills -->
           <div class="filter-bar" role="group" aria-label="Filter bot templates by category">
             <button type="button" class="filter-pill active" aria-pressed="true" data-filter="all">
-              All <span class="filter-count">(8)</span>
+              All <span class="filter-count">(9)</span>
             </button>
             <button type="button" class="filter-pill" aria-pressed="false" data-filter="live">
-              Available Now <span class="filter-count">(7)</span>
+              Available Now <span class="filter-count">(8)</span>
             </button>
             <button type="button" class="filter-pill" aria-pressed="false" data-filter="solana">
               Solana On-Chain <span class="filter-count">(5)</span>
             </button>
             <button type="button" class="filter-pill" aria-pressed="false" data-filter="security">
-              Security <span class="filter-count">(3)</span>
+              Security <span class="filter-count">(4)</span>
             </button>
             <button type="button" class="filter-pill" aria-pressed="false" data-filter="perps">
               Perps &amp; DeFi <span class="filter-count">(1)</span>
@@ -496,7 +518,7 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
           </div>
         </div>
 
-        <h3 class="catalog-group-title" id="available-now">Available Now <span class="filter-count">(7)</span></h3>
+        <h3 class="catalog-group-title" id="available-now">Available Now <span class="filter-count">(8)</span></h3>
         <div class="catalog-grid bot-grid--live" id="catalog-grid">
           <!-- Card 1: Web & API Text Extractor (LIVE NOW — FREE) -->
           <article class="bot-card live-card" data-categories="live available solana">
@@ -755,6 +777,29 @@ conduct, future authority changes, or liquidity changes after retrieval.</pre>
               <button type="button" class="btn btn-primary btn-sm" data-open-checkout="evm-contract-inspector">Buy License ($29 SOL) &rarr;</button>
               <button type="button" class="btn btn-secondary btn-sm" data-open-spec="evm-contract-inspector">Inspect SKILL.md Spec</button>
               <a href="/bots/evm-contract-inspector.html" class="btn btn-secondary btn-sm">Full Spec &amp; Sample Page &rarr;</a>
+            </div>
+          </article>
+          <article class="bot-card live-card" data-categories="live available security" id="card-evm-approval-auditor">
+            <div>
+              <div class="card-top-meta">
+                <span class="phase-badge live">&#9679; AVAILABLE NOW &middot; $19 in SOL</span>
+                <span class="skill-slug">evm-approval-auditor-setup + evm-approval-auditor</span>
+              </div>
+              <div class="card-title-row">
+                <h3 class="card-title"><a href="/bots/evm-approval-auditor.html" style="color:inherit;text-decoration:none;">EVM Wallet Approval &amp; Permit2 Risk Auditor</a></h3>
+                <div class="card-price free">$19 <small>in SOL &middot; 3 Rebinds</small></div>
+              </div>
+              <p class="card-summary"><strong>Find the unlimited approvals that can still pull your tokens.</strong> Audit any Ethereum, Base, or Arbitrum wallet you own: read the live ERC-20 <code>allowance()</code> and Permit2 sub-allowance for every curated and discovered token/spender pair, see the balance actually at risk behind each one, classify the spender (EOA, unverified contract, unlabeled contract, or curated protocol), and get exact <code>approve(spender, 0)</code> revoke and Permit2 <code>lockdown</code> call-data to sign in your own wallet.</p>
+              <ul class="spec-highlights">
+                <li>Live allowance reads across <strong>Ethereum (<code>eth</code>, 1)</strong>, <strong>Base (<code>base</code>, 8453)</strong>, and <strong>Arbitrum One (<code>arb</code>, 42161)</strong>: ERC-20 <code>allowance(owner, spender)</code> plus Permit2 <code>allowance(owner, token, spender)</code> (amount, expiration, nonce) over curated stablecoins, WETH, WBTC and LSTs, Blockscout-discovered holdings, and bounded <code>eth_getLogs</code> Approval-event discovery (<code>--lookback-blocks</code>, default 20000).</li>
+                <li>Spender classification with balance-at-risk per pair: <code>EOA_SPENDER</code> and unverified unlabeled contracts (<code>UNVERIFIED_SPENDER</code>) are CRITICAL, unlimited allowances to unlabeled verified contracts (<code>UNKNOWN_VERIFIED_SPENDER</code>) are HIGH, unlimited allowances to curated spenders (Uniswap Permit2 &amp; routers, 1inch, CoW Protocol, 0x, ParaSwap, Morpho Blue, Aave V3) are MEDIUM, plus <code>PERMIT2_ACTIVE_SUBALLOWANCE</code> / <code>PERMIT2_EXPIRED_SUBALLOWANCE</code>.</li>
+                <li>Non-custodial remediation call-data: exact <code>to</code> + <code>data</code> for <code>approve(spender, 0)</code> on each flagged token and a single batched Permit2 <code>lockdown((token, spender)[])</code> transaction, displayed for you to submit from your own wallet (Rabby, MetaMask, Safe, or hardware signer).</li>
+              </ul>
+            </div>
+            <div class="card-actions">
+              <button type="button" class="btn btn-primary btn-sm" data-open-checkout="evm-approval-auditor">Buy License ($19 SOL) &rarr;</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-open-spec="evm-approval-auditor">Inspect SKILL.md Spec</button>
+              <a href="/bots/evm-approval-auditor.html" class="btn btn-secondary btn-sm">Full Spec &amp; Sample Page &rarr;</a>
             </div>
           </article>
 

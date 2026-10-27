@@ -116,6 +116,25 @@ const CHECKOUT_SKUS = {
     stepCFootHtml:
       'On Turn 1, <code>evm-contract-inspector-setup</code> installs the read-only runtime (<code>bot_common.py</code> and <code>evm_contract_inspector.py</code> verified by SHA-256), provisions your workspace agent key, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
     defaultPrompt: (code) => `Activate my EVM Smart Contract & Proxy Inspector with license code ${code}`
+  },
+  'evm-approval-auditor': {
+    sku: 'evm-approval-auditor',
+    name: 'EVM Wallet Approval & Permit2 Risk Auditor',
+    title: 'EVM Wallet Approval & Permit2 Risk Auditor — $19 in SOL',
+    slugMeta: 'sku: evm-approval-auditor · Skills: evm-approval-auditor-setup + evm-approval-auditor · 3 Rebinds',
+    priceUsd: 19,
+    priceUsdHtml: '$19.00 <small>USD</small>',
+    statusFooterText: 'Status: LIVE · $19 One-Time in SOL (Non-Custodial)',
+    ctaButtonText: 'Buy License ($19 in SOL) →',
+    pageUrl: '/bots/evm-approval-auditor.html',
+    stepADescHtml:
+      'Click below to open the private <strong>EVM Wallet Approval &amp; Permit2 Risk Auditor</strong> template in Grok Bot and add it to your sidebar:',
+    stepABtnText: 'Open EVM Approval Auditor in Grok Bot ↗',
+    stepCHintHtml:
+      'Paste this prompt on Turn 1 (or together with the Ethereum, Base, or Arbitrum <code>0x...</code> wallet address you own and want audited):',
+    stepCFootHtml:
+      'On Turn 1, <code>evm-approval-auditor-setup</code> installs the read-only runtime (<code>bot_common.py</code> and <code>evm_approval_auditor.py</code> verified by SHA-256), provisions your workspace agent key, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
+    defaultPrompt: (code) => `Activate my EVM Wallet Approval & Permit2 Risk Auditor with license code ${code}`
   }
 };
 
@@ -332,6 +351,97 @@ const BOT_SPECS = {
       <h4>2. Hard Guardrails</h4>
       <ul>
         <li>Strictly read-only: never asks for private keys or seed phrases, and never builds or broadcasts transactions.</li>
+        <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>).</li>
+      </ul>
+    `
+  },
+  'evm-approval-auditor': {
+    title: 'EVM Wallet Approval & Permit2 Risk Auditor',
+    slug: 'evm-approval-auditor-setup + evm-approval-auditor',
+    badge: 'LIVE · $19 IN SOL',
+    badgeClass: 'live',
+    status: 'Available Now — $19 One-Time License (Paid in SOL)',
+    price: '$19 One-Time in SOL (Includes 3 Workspace-Reset Rebinds)',
+    ctaType: 'checkout',
+    sku: 'evm-approval-auditor',
+    pageUrl: '/bots/evm-approval-auditor.html',
+    bodyHtml: `
+      <p><strong>Deliverable:</strong> <em>Read-only EVM wallet approval and Permit2 risk auditor for Grok Bot ($19 SOL). Reads live ERC-20 allowances and Permit2 sub-allowances across Ethereum, Base, and Arbitrum, classifies every spender (EOA, unverified, unlabeled, or curated), and prints exact approve(spender, 0) revoke and Permit2 lockdown call-data that you submit yourself.</em></p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$19 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <h4>1. Allowance &amp; Permit2 Audit (<code>evm-approval-auditor-setup</code> + <code>evm-approval-auditor</code>)</h4>
+      <ul>
+        <li>Live allowance reads across <strong>Ethereum (<code>eth</code>, 1)</strong>, <strong>Base (<code>base</code>, 8453)</strong>, and <strong>Arbitrum One (<code>arb</code>, 42161)</strong>: ERC-20 <code>allowance(owner, spender)</code> plus Permit2 <code>allowance(owner, token, spender)</code> (amount, expiration, nonce) over curated stablecoins, WETH, WBTC and LSTs, Blockscout-discovered holdings, and bounded <code>eth_getLogs</code> Approval-event discovery (<code>--lookback-blocks</code>, default 20000).</li>
+        <li>Spender classification with balance-at-risk per pair: <code>EOA_SPENDER</code> and unverified unlabeled contracts (<code>UNVERIFIED_SPENDER</code>) are CRITICAL, unlimited allowances to unlabeled verified contracts (<code>UNKNOWN_VERIFIED_SPENDER</code>) are HIGH, unlimited allowances to curated spenders (Uniswap Permit2 &amp; routers, 1inch, CoW Protocol, 0x, ParaSwap, Morpho Blue, Aave V3) are MEDIUM, plus <code>PERMIT2_ACTIVE_SUBALLOWANCE</code> / <code>PERMIT2_EXPIRED_SUBALLOWANCE</code>.</li>
+        <li>Non-custodial remediation call-data: exact <code>to</code> + <code>data</code> for <code>approve(spender, 0)</code> on each flagged token and a single batched Permit2 <code>lockdown((token, spender)[])</code> transaction, displayed for you to submit from your own wallet (Rabby, MetaMask, Safe, or hardware signer).</li>
+        <li>Stateful delta monitor (<code>--state PATH --delta</code>): emits <code>NEW_APPROVAL</code>, <code>ALLOWANCE_INCREASED</code>, and <code>APPROVAL_REVOKED</code> events between runs, with <code>--json</code> output and exit codes 0 clean / 1 MEDIUM / 2 HIGH / 3 CRITICAL / 10 bad input / 11 degraded sources. 1,181 lines stdlib Python, 87 passing unit tests.</li>
+      </ul>
+      <h4>2. SKILL.md (pinned runtime)</h4>
+      <pre class="modal-sample-audit">---
+name: evm-approval-auditor
+description: Read-only ERC-20 + Permit2 allowance auditor for wallets the user owns on Ethereum, Base and Arbitrum One. Prints revoke / lockdown call-data; never signs or broadcasts.
+---
+# Runtime (pinned; setup refuses to install on mismatch)
+- https://coinloader.com/runtime/evm_approval_auditor.py
+  sha256: eab5dc79cb998a2ac39093748e6aba186f88a23e28f1155f807ade3a02eaa518
+- https://coinloader.com/runtime/bot_common.py
+  sha256: d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526
+
+# Usage
+python3 evm_approval_auditor.py OWNER [OWNER ...] [--chain eth|base|arb | --all-chains]
+    [--tokens ADDR,...] [--spenders ADDR,...] [--lookback-blocks N] [--include-zero]
+    [--json] [--state PATH --delta] [--fail-on medium|high|critical]
+exit: 0 clean · 1 MEDIUM · 2 HIGH · 3 CRITICAL · 10 bad input · 11 degraded sources</pre>
+      <h4>3. Live Sample Output (Ethereum Mainnet)</h4>
+      <pre class="modal-sample-audit">snapshot   2026-10-27 08:34:01 UTC | tool=evm-approval-auditor
+endpoints  https://ethereum-rpc.publicnode.com
+
+owner     eth:0x88298912d3281d57ca6b3a685ee0243776f3444b
+coverage  tokens=7 (blockscout 1, curated 6)  spenders=12 (curated 11, user 1)  erc20_pairs=84  permit2_pairs=7
+logs      full [26277876..26282875] 5000 block(s), 1 chunk(s)
+holdings  blockscout ok (1 token(s))
+approval  USDC    -&gt; 0xb300000b72deaeb607a12d5f54773d1c19c7028d [unlabeled]  allowance=UNLIMITED  balance=0  at_risk=0  HIGH/REVOKE
+spender   0xb300000b72deaeb607a12d5f54773d1c19c7028d [unlabeled] contract 180B verified=yes
+
+owner     eth:0xd8da6bf26964af9d7eed9e03e53415d37aa96045
+coverage  tokens=6 (curated 6)  spenders=12 (curated 11, user 1)  erc20_pairs=72  permit2_pairs=16
+logs      full [26277876..26282875] 5000 block(s), 1 chunk(s)
+holdings  blockscout unavailable (The read operation timed out)
+approval  DAI     -&gt; 0x000000000022d473030f116ddee9f6b43ac78ba3 [Uniswap Permit2 (canonical)]  allowance=UNLIMITED  balance=14.372082162212001768  at_risk=14.372082162212001768  MEDIUM/REDUCE
+approval  DAI     -&gt; 0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45 [Uniswap SwapRouter02]  allowance=UNLIMITED  balance=14.372082162212001768  at_risk=14.372082162212001768  MEDIUM/REDUCE
+approval  DAI     -&gt; 0xc92e8bdf79f0507f65a392b0ab4667716bfe0110 [CoW Protocol GPv2VaultRelayer]  allowance=UNLIMITED  balance=14.372082162212001768  at_risk=14.372082162212001768  MEDIUM/REDUCE
+approval  WETH    -&gt; 0xc92e8bdf79f0507f65a392b0ab4667716bfe0110 [CoW Protocol GPv2VaultRelayer]  allowance=UNLIMITED  balance=1.46652803708515807  at_risk=1.46652803708515807  MEDIUM/REDUCE
+approval  USDT    -&gt; 0xc92e8bdf79f0507f65a392b0ab4667716bfe0110 [CoW Protocol GPv2VaultRelayer]  allowance=UNLIMITED  balance=291.368219  at_risk=291.368219  MEDIUM/REDUCE
+spender   0x000000000022d473030f116ddee9f6b43ac78ba3 [Uniswap Permit2 (canonical)] contract 9152B verified=yes
+spender   0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45 [Uniswap SwapRouter02] contract 24497B verified=yes
+spender   0xc92e8bdf79f0507f65a392b0ab4667716bfe0110 [CoW Protocol GPv2VaultRelayer] contract 4590B verified=yes
+
+findings
+  [HIGH    ] UNKNOWN_VERIFIED_SPENDER: USDC allowance UNLIMITED to 0xb300000b72deaeb607a12d5f54773d1c19c7028d [unlabeled]; balance 0, at risk 0 USDC; unlabeled contract (180 bytes), source-verified as Diamond
+             action=REVOKE  to=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48  approve(0xb300000b72deaeb607a12d5f54773d1c19c7028d, 0)
+             data=0x095ea7b3000000000000000000000000b300000b72deaeb607a12d5f54773d1c19c7028d0000000000000000000000000000000000000000000000000000000000000000
+  [MEDIUM  ] UNLIMITED_KNOWN_SPENDER: DAI allowance UNLIMITED to 0x000000000022d473030f116ddee9f6b43ac78ba3 [Uniswap Permit2 (canonical)]; balance 14.372082162212001768, at risk 14.372082162212001768 DAI; curated spender; consider an exact-amount approval instead of unlimited
+             action=REDUCE  to=0x6b175474e89094c44da98b954eedeac495271d0f  approve(0x000000000022d473030f116ddee9f6b43ac78ba3, 0)
+             data=0x095ea7b3000000000000000000000000000000000022d473030f116ddee9f6b43ac78ba30000000000000000000000000000000000000000000000000000000000000000
+  [MEDIUM  ] UNLIMITED_KNOWN_SPENDER: DAI allowance UNLIMITED to 0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45 [Uniswap SwapRouter02]; balance 14.372082162212001768, at risk 14.372082162212001768 DAI; curated spender; consider an exact-amount approval instead of unlimited
+             action=REDUCE  to=0x6b175474e89094c44da98b954eedeac495271d0f  approve(0x68b3465833fb72a70ecdf485e0e4c7bd8665fc45, 0)
+             data=0x095ea7b300000000000000000000000068b3465833fb72a70ecdf485e0e4c7bd8665fc450000000000000000000000000000000000000000000000000000000000000000
+  [MEDIUM  ] UNLIMITED_KNOWN_SPENDER: DAI allowance UNLIMITED to 0xc92e8bdf79f0507f65a392b0ab4667716bfe0110 [CoW Protocol GPv2VaultRelayer]; balance 14.372082162212001768, at risk 14.372082162212001768 DAI; curated spender; consider an exact-amount approval instead of unlimited
+             action=REDUCE  to=0x6b175474e89094c44da98b954eedeac495271d0f  approve(0xc92e8bdf79f0507f65a392b0ab4667716bfe0110, 0)
+             data=0x095ea7b3000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe01100000000000000000000000000000000000000000000000000000000000000000
+  [MEDIUM  ] UNLIMITED_KNOWN_SPENDER: WETH allowance UNLIMITED to 0xc92e8bdf79f0507f65a392b0ab4667716bfe0110 [CoW Protocol GPv2VaultRelayer]; balance 1.46652803708515807, at risk 1.46652803708515807 WETH; curated spender; consider an exact-amount approval instead of unlimited
+             action=REDUCE  to=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2  approve(0xc92e8bdf79f0507f65a392b0ab4667716bfe0110, 0)
+             data=0x095ea7b3000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe01100000000000000000000000000000000000000000000000000000000000000000
+  [MEDIUM  ] UNLIMITED_KNOWN_SPENDER: USDT allowance UNLIMITED to 0xc92e8bdf79f0507f65a392b0ab4667716bfe0110 [CoW Protocol GPv2VaultRelayer]; balance 291.368219, at risk 291.368219 USDT; curated spender; consider an exact-amount approval instead of unlimited
+             action=REDUCE  to=0xdac17f958d2ee523a2206206994597c13d831ec7  approve(0xc92e8bdf79f0507f65a392b0ab4667716bfe0110, 0)
+             data=0x095ea7b3000000000000000000000000c92e8bdf79f0507f65a392b0ab4667716bfe01100000000000000000000000000000000000000000000000000000000000000000
+
+exit_code 2
+SCOPE_NOTE: Read-only: only eth_blockNumber, eth_call, eth_getCode, eth_getStorageAt and eth_getLogs, plus public Sourcify/Blockscout lookups. Never asks for private keys or seed phrases; no signing, no transaction is built for or broadcast by the tool; revoke (approve(spender, 0)) and Permit2 lockdown call-data is displayed for the owner to submit themselves. Reports current allowance state for the tokens and spenders it checked and states its coverage window; "no findings" never means "no approvals exist" (NFT setApprovalForAll and unlisted tokens/spenders are outside v1 unless supplied). Spender labels come from a curated list and Sourcify/Blockscout; an unlabeled spender is unknown, not malicious. No financial, legal or tax advice. Refuses: scanning to target third-party wallets for exploitation, ranking wallets by balance, or building phishing/drainer lists.</pre>
+      <h4>4. Hard Guardrails</h4>
+      <ul>
+        <li>Strictly read-only (<code>eth_blockNumber</code>, <code>eth_call</code>, <code>eth_getCode</code>, <code>eth_getStorageAt</code>, <code>eth_getLogs</code>): never asks for private keys or seed phrases, and never signs, builds for submission, or broadcasts a transaction.</li>
+        <li>&ldquo;No findings&rdquo; never means &ldquo;no approvals exist&rdquo;: coverage is the stated tokens, spenders, and log window. NFT <code>setApprovalForAll</code> and unlisted tokens/spenders are outside v1 unless supplied with <code>--tokens</code> / <code>--spenders</code>.</li>
+        <li>An unlabeled spender is unknown, not malicious; refuses to scan third-party wallets for exploitation, rank wallets by balance, or build phishing/drainer lists. Not financial, legal, or tax advice.</li>
         <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>).</li>
       </ul>
     `
