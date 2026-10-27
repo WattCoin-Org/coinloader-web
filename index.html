@@ -63,7 +63,7 @@
       "@type": "ItemList",
       "@id": "https://coinloader.com/#catalog-list",
       "name": "CoinLoader Grok Bot Agent Catalog",
-      "numberOfItems": 6,
+      "numberOfItems": 7,
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -191,6 +191,28 @@
               "priceCurrency": "USD",
               "availability": "https://schema.org/InStock",
               "url": "https://coinloader.com/bots/evm-approval-auditor.html"
+            }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor",
+            "alternateName": "Bitcoin UTXO Dust, Address-Reuse & Consolidation Fee Auditor",
+            "sku": "btc-utxo-hygiene",
+            "applicationCategory": ["SecurityApplication", "FinanceApplication"],
+            "operatingSystem": "Grok Bot Linux Sandbox (/workspace)",
+            "url": "https://coinloader.com/bots/btc-utxo-hygiene.html",
+            "description": "Read-only Bitcoin wallet and UTXO privacy/fee hygiene auditor for Grok Bot ($19 SOL). Reads address stats, UTXO sets, recent transactions and fee estimates from public Mempool.space / Blockstream Esplora endpoints, flags address reuse, dusting, fragmentation, stranded UTXOs, Ordinals inscriptions and common-input-ownership exposure, and prints coin-control and consolidation commands that you run yourself.",
+            "offers": {
+              "@type": "Offer",
+              "sku": "btc-utxo-hygiene",
+              "price": "19.00",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "url": "https://coinloader.com/bots/btc-utxo-hygiene.html"
             }
           }
         }
@@ -501,16 +523,16 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
           <!-- Interactive Category Filter Pills -->
           <div class="filter-bar" role="group" aria-label="Filter bot templates by category">
             <button type="button" class="filter-pill active" aria-pressed="true" data-filter="all">
-              All <span class="filter-count">(9)</span>
+              All <span class="filter-count">(10)</span>
             </button>
             <button type="button" class="filter-pill" aria-pressed="false" data-filter="live">
-              Available Now <span class="filter-count">(8)</span>
+              Available Now <span class="filter-count">(9)</span>
             </button>
             <button type="button" class="filter-pill" aria-pressed="false" data-filter="solana">
               Solana On-Chain <span class="filter-count">(5)</span>
             </button>
             <button type="button" class="filter-pill" aria-pressed="false" data-filter="security">
-              Security <span class="filter-count">(4)</span>
+              Security <span class="filter-count">(5)</span>
             </button>
             <button type="button" class="filter-pill" aria-pressed="false" data-filter="perps">
               Perps &amp; DeFi <span class="filter-count">(1)</span>
@@ -518,7 +540,7 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
           </div>
         </div>
 
-        <h3 class="catalog-group-title" id="available-now">Available Now <span class="filter-count">(8)</span></h3>
+        <h3 class="catalog-group-title" id="available-now">Available Now <span class="filter-count">(9)</span></h3>
         <div class="catalog-grid bot-grid--live" id="catalog-grid">
           <!-- Card 1: Web & API Text Extractor (LIVE NOW — FREE) -->
           <article class="bot-card live-card" data-categories="live available solana">
@@ -800,6 +822,29 @@ conduct, future authority changes, or liquidity changes after retrieval.</pre>
               <button type="button" class="btn btn-primary btn-sm" data-open-checkout="evm-approval-auditor">Buy License ($19 SOL) &rarr;</button>
               <button type="button" class="btn btn-secondary btn-sm" data-open-spec="evm-approval-auditor">Inspect SKILL.md Spec</button>
               <a href="/bots/evm-approval-auditor.html" class="btn btn-secondary btn-sm">Full Spec &amp; Sample Page &rarr;</a>
+            </div>
+          </article>
+          <article class="bot-card live-card" data-categories="live available security" id="card-btc-utxo-hygiene">
+            <div>
+              <div class="card-top-meta">
+                <span class="phase-badge live">&#9679; AVAILABLE NOW &middot; $19 in SOL</span>
+                <span class="skill-slug">btc-utxo-hygiene-setup + btc-utxo-hygiene</span>
+              </div>
+              <div class="card-title-row">
+                <h3 class="card-title"><a href="/bots/btc-utxo-hygiene.html" style="color:inherit;text-decoration:none;">Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor</a></h3>
+                <div class="card-price free">$19 <small>in SOL &middot; 3 Rebinds</small></div>
+              </div>
+              <p class="card-summary"><strong>Find the dust, address reuse and fee waste hiding in your UTXO set.</strong> Audit any Bitcoin address you own: bucket every UTXO, flag stranded inputs, address reuse, dusting attacks and Ordinals-inscription UTXOs, measure common-input-ownership privacy leaks, and get a consolidation cost-vs-savings matrix plus copy-paste <code>bitcoin-cli</code>, Sparrow and Electrum coin-control commands to run in your own wallet.</p>
+              <ul class="spec-highlights">
+                <li>Reads public state from <strong>Mempool.space</strong> (Blockstream Esplora fallback): address stats, full UTXO set, recent transactions, fee estimates and BTC/USD price for legacy P2PKH, nested SegWit, native SegWit and Taproot addresses.</li>
+                <li>Findings with a 0&ndash;100 hygiene score: <code>ADDRESS_REUSE</code>, <code>UTXO_FRAGMENTATION</code>, <code>STRANDED_UTXOS</code>, <code>DUSTING_ATTACK_SUSPECT</code>, <code>INSCRIPTION_PROTECTED</code>, <code>CIOH_COSPEND_EXPOSURE</code>, <code>ROUND_NUMBER_CHANGE_LEAK</code> and <code>CONSOLIDATION_WINDOW_OPEN</code>.</li>
+                <li>Non-custodial remediation: <code>bitcoin-cli lockunspent</code> freeze commands and an unsigned-PSBT <code>sendall</code> consolidation plan, displayed for you to run yourself. Strictly read-only: never accepts keys, seeds or PSBTs.</li>
+              </ul>
+            </div>
+            <div class="card-actions">
+              <button type="button" class="btn btn-primary btn-sm" data-open-checkout="btc-utxo-hygiene">Buy License ($19 SOL) &rarr;</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-open-spec="btc-utxo-hygiene">Inspect SKILL.md Spec</button>
+              <a href="/bots/btc-utxo-hygiene.html" class="btn btn-secondary btn-sm">Full Spec &amp; Sample Page &rarr;</a>
             </div>
           </article>
 

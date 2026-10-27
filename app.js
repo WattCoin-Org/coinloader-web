@@ -135,6 +135,25 @@ const CHECKOUT_SKUS = {
     stepCFootHtml:
       'On Turn 1, <code>evm-approval-auditor-setup</code> installs the read-only runtime (<code>bot_common.py</code> and <code>evm_approval_auditor.py</code> verified by SHA-256), provisions your workspace agent key, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
     defaultPrompt: (code) => `Activate my EVM Wallet Approval & Permit2 Risk Auditor with license code ${code}`
+  },
+  'btc-utxo-hygiene': {
+    sku: 'btc-utxo-hygiene',
+    name: 'Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor',
+    title: 'Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor — $19 in SOL',
+    slugMeta: 'sku: btc-utxo-hygiene · Skills: btc-utxo-hygiene-setup + btc-utxo-hygiene · 3 Rebinds',
+    priceUsd: 19,
+    priceUsdHtml: '$19.00 <small>USD</small>',
+    statusFooterText: 'Status: LIVE · $19 One-Time in SOL (Non-Custodial)',
+    ctaButtonText: 'Buy License ($19 in SOL) →',
+    pageUrl: '/bots/btc-utxo-hygiene.html',
+    stepADescHtml:
+      'Click below to open the private <strong>Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor</strong> template in Grok Bot and add it to your sidebar:',
+    stepABtnText: 'Open BTC UTXO Hygiene Auditor in Grok Bot ↗',
+    stepCHintHtml:
+      'Paste this prompt on Turn 1 (or together with the Bitcoin address(es) you own and want audited):',
+    stepCFootHtml:
+      'On Turn 1, <code>btc-utxo-hygiene-setup</code> installs the read-only runtime (<code>bot_common.py</code> and <code>btc_utxo_hygiene.py</code> verified by SHA-256), provisions your workspace agent key, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
+    defaultPrompt: (code) => `Activate my Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor with license code ${code}`
   }
 };
 
@@ -442,6 +461,106 @@ SCOPE_NOTE: Read-only: only eth_blockNumber, eth_call, eth_getCode, eth_getStora
         <li>Strictly read-only (<code>eth_blockNumber</code>, <code>eth_call</code>, <code>eth_getCode</code>, <code>eth_getStorageAt</code>, <code>eth_getLogs</code>): never asks for private keys or seed phrases, and never signs, builds for submission, or broadcasts a transaction.</li>
         <li>&ldquo;No findings&rdquo; never means &ldquo;no approvals exist&rdquo;: coverage is the stated tokens, spenders, and log window. NFT <code>setApprovalForAll</code> and unlisted tokens/spenders are outside v1 unless supplied with <code>--tokens</code> / <code>--spenders</code>.</li>
         <li>An unlabeled spender is unknown, not malicious; refuses to scan third-party wallets for exploitation, rank wallets by balance, or build phishing/drainer lists. Not financial, legal, or tax advice.</li>
+        <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>).</li>
+      </ul>
+    `
+  },
+  'btc-utxo-hygiene': {
+    title: 'Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor',
+    slug: 'btc-utxo-hygiene-setup + btc-utxo-hygiene',
+    badge: 'LIVE · $19 IN SOL',
+    badgeClass: 'live',
+    status: 'Available Now — $19 One-Time License (Paid in SOL)',
+    price: '$19 One-Time in SOL (Includes 3 Workspace-Reset Rebinds)',
+    ctaType: 'checkout',
+    sku: 'btc-utxo-hygiene',
+    pageUrl: '/bots/btc-utxo-hygiene.html',
+    bodyHtml: `
+      <p><strong>Deliverable:</strong> <em>Read-only Bitcoin wallet and UTXO privacy/fee hygiene auditor for Grok Bot ($19 SOL). Reads address stats, UTXO sets, recent transactions and fee estimates from public Mempool.space / Blockstream Esplora endpoints, flags address reuse, dusting, fragmentation, stranded UTXOs, Ordinals inscriptions and common-input-ownership exposure, and prints coin-control and consolidation commands that you run yourself.</em></p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$19 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <h4>1. UTXO &amp; Privacy Hygiene Audit (<code>btc-utxo-hygiene-setup</code> + <code>btc-utxo-hygiene</code>)</h4>
+      <ul>
+        <li>Validates Bitcoin mainnet addresses (Base58Check, Bech32, Bech32m) and reads address stats, the UTXO set, recent transactions, fee estimates and BTC/USD price from public Mempool.space with Blockstream Esplora fallback (or an <code>--offline</code> fixture).</li>
+        <li>UTXO hygiene: value buckets, <code>UTXO_FRAGMENTATION</code>, <code>STRANDED_UTXOS</code>, <code>LEGACY_SCRIPT_TYPE</code>, <code>DUSTING_ATTACK_SUSPECT</code>, and a creating-transaction witness scan that marks Ordinals-inscription UTXOs (<code>INSCRIPTION_PROTECTED</code>) so they are never swept.</li>
+        <li>Fee planning: consolidation plan and cost-vs-savings matrix for P2WPKH or P2TR outputs with break-even future fee rate and a <code>CONSOLIDATION_WINDOW_OPEN</code> signal.</li>
+        <li>Privacy exposure: <code>ADDRESS_REUSE</code>, <code>CIOH_COSPEND_EXPOSURE</code>, <code>CIOH_CROSS_ADDRESS_LINK</code>, <code>ROUND_NUMBER_CHANGE_LEAK</code>, <code>SCRIPT_TYPE_MISMATCH_CHANGE</code> and a 0–100 hygiene score.</li>
+        <li>Non-custodial coin control: <code>bitcoin-cli lockunspent</code> freeze commands, an unsigned-PSBT <code>bitcoin-cli sendall ... psbt=true</code> consolidation command and Sparrow / Electrum steps, displayed for you to run yourself.</li>
+        <li>Stateful delta monitor (<code>--state PATH --delta</code>): <code>NEW_DUST</code>, <code>UTXO_COUNT_CHANGED</code>, <code>CONSOLIDATION_WINDOW_OPEN</code> events, with <code>--format text|markdown|json</code> output and exit codes 0 clean / 1 MEDIUM / 2 HIGH / 3 CRITICAL / 10 bad input / 11 degraded sources. 1,242 lines stdlib Python, 157 passing unit tests.</li>
+      </ul>
+      <h4>2. SKILL.md (pinned runtime)</h4>
+      <pre class="modal-sample-audit">---
+name: btc-utxo-hygiene
+description: Read-only Bitcoin wallet and UTXO privacy/fee hygiene auditor for addresses the user owns. Prints coin-control commands; never signs or broadcasts.
+---
+# Runtime (pinned; setup refuses to install on mismatch)
+- https://coinloader.com/runtime/btc_utxo_hygiene.py
+  sha256: e3b8d9be91fb2ae75d272fea248d484a2c4076fd472e40eaef73ea903257d5ee
+- https://coinloader.com/runtime/bot_common.py
+  sha256: d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526
+
+# Usage
+python3 btc_utxo_hygiene.py ADDRESS [ADDRESS ...] [--format text|markdown|json | --json]
+    [--target-fee SAT_VB] [--protect TXID:VOUT,...] [--consolidate-to p2wpkh|p2tr]
+    [--state PATH --delta] [--fail-on medium|high|critical] [--offline FILE]
+exit: 0 clean · 1 MEDIUM · 2 HIGH · 3 CRITICAL · 10 bad input · 11 degraded sources</pre>
+      <h4>3. Live Sample Output (Bitcoin Mainnet)</h4>
+      <pre class="modal-sample-audit">snapshot   2026-10-27 10:00:58 UTC | tool=btc-utxo-hygiene
+endpoints  https://blockstream.info/api, https://mempool.space/api
+fallbacks  https://mempool.space/api failed -&gt; https://blockstream.info/api
+
+wallet    1 address(es)  utxos=134 (confirmed 134 / unconfirmed 0)  total=44,408,175 sats (0.44408175 BTC, $35,340.47)  hygiene_score=45/100
+address   12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S P2PKH       utxos=134 balance=44,408,175 funded_txo=134 spent_txo=0 tx_count=131 score=45
+fees      fastestFee=2 halfHourFee=1 hourFee=1 economyFee=1 minimumFee=1 sat/vB (mempool.space) | blockstream 504-block floor=0.113
+  bucket &lt;=546 (hard dust / inscription-suspect)    count=   26 sum=        13,651
+  bucket 547-1,000 (sub-1k micro)                   count=   29 sum=        21,587
+  bucket 1,001-5,000                                count=   18 sum=        29,863
+  bucket 5,001-100,000                              count=   54 sum=     1,483,555
+  bucket &gt;100,000                                   count=    7 sum=    42,859,519
+stranded  (strict: value &lt;= input_vB*rate; conservative: x3 margin)
+  fastestFee        2 sat/vB  strict=   1 (1 sats)  conservative=  46 (26,327 sats)
+  halfHourFee       1 sat/vB  strict=   1 (1 sats)  conservative=   1 (1 sats)
+  hourFee           1 sat/vB  strict=   1 (1 sats)  conservative=   1 (1 sats)
+  economyFee        1 sat/vB  strict=   1 (1 sats)  conservative=   1 (1 sats)
+  minimumFee        1 sat/vB  strict=   1 (1 sats)  conservative=   1 (1 sats)
+  ref 5             5 sat/vB  strict=  44 (24,677 sats)  conservative=  72 (62,521 sats)
+  ref 10           10 sat/vB  strict=  58 (39,139 sats)  conservative=  73 (65,101 sats)
+  ref 20           20 sat/vB  strict=  73 (65,101 sats)  conservative=  81 (112,673 sats)
+  ref 50           50 sat/vB  strict=  81 (112,673 sats)  conservative=  95 (284,500 sats)
+  ref 100         100 sat/vB  strict=  93 (245,591 sats)  conservative= 116 (772,545 sats)
+scan      creating-tx witness check on 60 txid(s) (UTXOs &lt;= 10,000 sats, cap 60): envelope_hits=10 lookup_failures=0 unchecked=24
+plan      consolidate 55 UTXO(s) -&gt; P2WPKH in 1 tx(s) at 1 sat/vB (economyFee): 8181.0 vB, fee 8,181 sats ($6.51), out 44,238,971 sats; protected/left untouched=79; break-even future rate=1.01 sat/vB  [WINDOW OPEN]
+  matrix  P2WPKH @ fastestFee      2 sat/vB  n=  55 vB=    8181.0 fee=   16,362 sats ($13.02)  net@50=387,238 net@100=790,838
+  matrix  P2WPKH @ economyFee      1 sat/vB  n=  55 vB=    8181.0 fee=    8,181 sats ($6.51)  net@50=395,419 net@100=799,019
+  matrix  P2WPKH @ window 1        1 sat/vB  n=  55 vB=    8181.0 fee=    8,181 sats ($6.51)  net@50=395,419 net@100=799,019
+  matrix  P2WPKH @ window 5        5 sat/vB  n=  47 vB=    6997.0 fee=   34,985 sats ($27.84)  net@50=309,415 net@100=653,815
+  matrix  P2WPKH @ window 10      10 sat/vB  n=  47 vB=    6997.0 fee=   69,970 sats ($55.68)  net@50=274,430 net@100=618,830
+  matrix  P2WPKH @ window 20      20 sat/vB  n=  47 vB=    6997.0 fee=  139,940 sats ($111.37)  net@50=204,460 net@100=548,860
+  matrix  P2TR   @ fastestFee      2 sat/vB  n=  55 vB=    8193.0 fee=   16,386 sats ($13.04)  net@50=387,739 net@100=791,864
+  matrix  P2TR   @ economyFee      1 sat/vB  n=  55 vB=    8193.0 fee=    8,193 sats ($6.52)  net@50=395,932 net@100=800,057
+  matrix  P2TR   @ window 1        1 sat/vB  n=  55 vB=    8193.0 fee=    8,193 sats ($6.52)  net@50=395,932 net@100=800,057
+  matrix  P2TR   @ window 5        5 sat/vB  n=  47 vB=    7009.0 fee=   35,045 sats ($27.89)  net@50=309,880 net@100=654,805
+  matrix  P2TR   @ window 10      10 sat/vB  n=  47 vB=    7009.0 fee=   70,090 sats ($55.78)  net@50=274,835 net@100=619,760
+  matrix  P2TR   @ window 20      20 sat/vB  n=  47 vB=    7009.0 fee=  140,180 sats ($111.56)  net@50=204,745 net@100=549,670
+privacy   12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S spend_txs=0 co_addresses=0 cospend_txs=0 round_change_txs=0 script_mismatch_txs=0
+coinctl   freeze=79 consolidate=55 leave=0 (use --format markdown for copy-paste commands)
+
+findings
+  [CRITICAL] ADDRESS_REUSE: 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S received 134 separate outputs (funded_txo=134, spent_txo=0): every receipt and spend is publicly linked to one address
+  [MEDIUM  ] DUSTING_ATTACK_SUSPECT: 45 tiny unsolicited UTXO(s) (&lt;= 1000 sats) sit beside a 44408175-sat wallet on 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S: freeze / do-not-spend them in Sparrow, Electrum or Bitcoin Core so they cannot link your main UTXOs
+  [MEDIUM  ] UTXO_FRAGMENTATION: 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S holds 134 UTXOs (44408175 sats): spending them costs far more than one consolidated input
+  [LOW     ] INSCRIPTION_CHECK_INCOMPLETE: 24 small UTXO(s) on 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S could not be checked for inscriptions (lookup failed or --max-lookups reached): excluded from consolidation
+  [LOW     ] LEGACY_SCRIPT_TYPE: 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S is legacy P2PKH: each input costs 148 vB vs 68 vB for P2WPKH and 57.5 vB for P2TR
+  [LOW     ] STRANDED_UTXOS: 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S has 1 UTXO(s) (1 sats) that cost more than their value to spend at 1.0 sat/vB (1 at the conservative 3x margin)
+  [INFO    ] CONSOLIDATION_WINDOW_OPEN: fees are low (1.0 sat/vB &lt;= 3.0): consolidating 55 UTXO(s) costs 8181 sats and breaks even above 1.01 sat/vB
+  [INFO    ] INSCRIPTION_PROTECTED: 10 UTXO(s) on 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S carry an Ordinals envelope in their creating tx: excluded from consolidation, do not spend from a regular wallet
+
+exit_code 3
+SCOPE_NOTE: Strictly read-only: only public Mempool.space / Blockstream Esplora REST GET endpoints (address stats, UTXO set, recent transactions, fee estimates, prices) or an --offline fixture. Never accepts or asks for private keys, WIF, xprv/yprv/zprv, seed phrases or PSBTs; no transaction is built, signed or broadcast by the tool; coin-control commands are displayed for the owner to run in their own wallet. Heuristics (CIOH, change detection, dusting, inscription envelopes) are probabilistic, cover only the recent transactions and small UTXOs it states it checked, and "no findings" never means "private" or "safe to sweep". P3... addresses are assumed to be nested SegWit (P2SH-P2WPKH). No financial, legal or tax advice. Refuses: targeting third-party wallets for exploitation or deanonymisation, ranking wallets by balance, or building dust-attack target lists.</pre>
+      <h4>4. Hard Guardrails</h4>
+      <ul>
+        <li>Strictly read-only (public Mempool.space / Blockstream Esplora <code>GET</code> endpoints): never accepts private keys, WIF, extended private keys, seed phrases or PSBTs, and never builds, signs or broadcasts a transaction.</li>
+        <li>Heuristics are probabilistic and cover only the transactions and small UTXOs the report states it checked; &ldquo;no findings&rdquo; never means &ldquo;private&rdquo; or &ldquo;safe to sweep&rdquo;.</li>
+        <li>Refuses to target third-party wallets for exploitation or deanonymisation, rank wallets by balance, or build dust-attack target lists. Not financial, legal, or tax advice.</li>
         <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>).</li>
       </ul>
     `

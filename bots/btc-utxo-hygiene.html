@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor ($19 SOL) | CoinLoader</title>
+  <meta name="description" content="Read-only Bitcoin wallet and UTXO privacy/fee hygiene auditor for Grok Bot ($19 SOL). Reads address stats, UTXO sets, recent transactions and fee estimates from public Mempool.space / Blockstream Esplora endpoints, flags address reuse, dusting, fragmentation, stranded UTXOs, Ordinals inscriptions and common-input-ownership exposure, and prints coin-control and consolidation commands that you run yourself." />
+  <link rel="canonical" href="https://coinloader.com/bots/btc-utxo-hygiene.html" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#090d16" />
+  <meta property="og:type" content="product" />
+  <meta property="og:site_name" content="CoinLoader.com" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor ($19 SOL) | CoinLoader" />
+  <meta property="og:description" content="Read-only Bitcoin wallet and UTXO privacy/fee hygiene auditor for Grok Bot ($19 SOL). Reads address stats, UTXO sets, recent transactions and fee estimates from public Mempool.space / Blockstream Esplora endpoints, flags address reuse, dusting, fragmentation, stranded UTXOs, Ordinals inscriptions and common-input-ownership exposure, and prints coin-control and consolidation commands that you run yourself." />
+  <meta property="og:url" content="https://coinloader.com/bots/btc-utxo-hygiene.html" />
+  <meta property="og:image" content="https://coinloader.com/og-card.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor on CoinLoader.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@WattCoin2026" />
+  <meta name="twitter:title" content="Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor ($19 SOL) | CoinLoader" />
+  <meta name="twitter:description" content="Read-only Bitcoin wallet and UTXO privacy/fee hygiene auditor for Grok Bot ($19 SOL). Reads address stats, UTXO sets, recent transactions and fee estimates from public Mempool.space / Blockstream Esplora endpoints, flags address reuse, dusting, fragmentation, stranded UTXOs, Ordinals inscriptions and common-input-ownership exposure, and prints coin-control and consolidation commands that you run yourself." />
+  <meta name="twitter:image" content="https://coinloader.com/og-card.png" />
+  <meta name="twitter:image:alt" content="Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor on CoinLoader.com" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Catalog Specification" />
+  <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM Full Catalog &amp; Sample Reports" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "CoinLoader.com",
+          "item": "https://coinloader.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Agent Catalog",
+          "item": "https://coinloader.com/#catalog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor",
+          "item": "https://coinloader.com/bots/btc-utxo-hygiene.html"
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://coinloader.com/bots/btc-utxo-hygiene.html#software",
+      "name": "Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor",
+      "applicationCategory": ["SecurityApplication", "FinanceApplication"],
+      "operatingSystem": "Grok Bot Linux Sandbox (/workspace)",
+      "url": "https://coinloader.com/bots/btc-utxo-hygiene.html",
+      "description": "Read-only Bitcoin wallet and UTXO privacy/fee hygiene auditor for Grok Bot ($19 SOL). Reads address stats, UTXO sets, recent transactions and fee estimates from public Mempool.space / Blockstream Esplora endpoints, flags address reuse, dusting, fragmentation, stranded UTXOs, Ordinals inscriptions and common-input-ownership exposure, and prints coin-control and consolidation commands that you run yourself.",
+      "sku": "btc-utxo-hygiene",
+      "offers": {
+        "@type": "Offer",
+        "price": "19.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://coinloader.com/bots/btc-utxo-hygiene.html",
+        "sku": "btc-utxo-hygiene"
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- Top Institutional Status Bar -->
+  <div class="top-ticker">
+    <div class="container top-ticker-inner">
+      <div class="status-cluster">
+        <span class="status-pill">
+          <span>WATTCOIN API SPEC: <strong>v1 (f1f4c9b)</strong></span>
+        </span>
+        <span>SOLANA TOKEN-2022 MINT: <code>Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump</code></span>
+        <span>LIVE TEMPLATES: <strong>4 LIVE AGENTS (FREE + $19–$29 SOL)</strong></span>
+      </div>
+      <div class="ticker-links">
+        <a href="https://www.wattcoin.org" target="_blank" rel="noopener">wattcoin.org ↗</a>
+        <a href="https://www.wattcoin.org/llms.txt" target="_blank" rel="noopener">llms.txt ↗</a>
+        <a href="https://x.ai/bot/k1oyHmw4iS4VBW1U8_3Ol" target="_blank" rel="noopener">Launch Free Bot ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Header -->
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a href="/" class="brand-logo">
+        <span class="brand-mark">CL</span>
+        <span>CoinLoader<span class="brand-domain">.com</span></span>
+        <span class="brand-tag">GROK BOT STORE</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="/#catalog">Bot Catalog (4 Live)</a>
+        <a href="/#architecture">How It Works</a>
+        <a href="/#cold-storage">Cold Storage</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/llms.txt">llms.txt</a>
+      </nav>
+      <div class="nav-cta-group">
+        <button type="button" class="btn btn-secondary btn-sm" data-open-checkout="solana-wallet-hygiene">
+          Buy Wallet Hygiene ($19 SOL)
+        </button>
+        <a href="https://x.ai/bot/k1oyHmw4iS4VBW1U8_3Ol" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+          Install Free Utility →
+        </a>
+      </div>
+    </div>
+  </header>
+
+  
+  <main>
+    <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a href="/">CoinLoader.com</a> &rarr; <a href="/#catalog">Agent Catalog</a> &rarr; <span>Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor</span>
+      </nav>
+      <section class="product-hero">
+        <div class="price-badge">&#9679; AVAILABLE NOW &middot; $19 in SOL (ONE-TIME &middot; 3 REBINDS)</div>
+        <h1>Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor &mdash; Find the dust, address reuse and fee waste hiding in your UTXO set.</h1>
+        <p class="product-lede">Audit any Bitcoin mainnet address you own (legacy P2PKH, nested SegWit, native SegWit, Taproot): count and bucket every UTXO, find stranded inputs that cost more to spend than they are worth, detect address reuse, dusting attacks and Ordinals-inscription UTXOs you must not sweep, measure common-input-ownership privacy leaks, and get a consolidation cost-vs-savings matrix plus copy-paste <code>bitcoin-cli</code> / Sparrow / Electrum coin-control commands to run in your own wallet.</p>
+        <p style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">
+          SKU: <code>btc-utxo-hygiene</code> &middot; Skills: <code>btc-utxo-hygiene-setup + btc-utxo-hygiene</code> &middot; Tested: 1,242 lines stdlib Python, 157 unit tests &middot; Category: Bitcoin / Wallet Hygiene
+        </p>
+        <div class="product-cta-row">
+          <button type="button" class="btn btn-primary btn--primary" data-open-checkout="btc-utxo-hygiene">Buy License ($19 in SOL) &rarr;</button>
+          <button type="button" class="btn btn-secondary btn--ghost" data-open-spec="btc-utxo-hygiene">Inspect SKILL.md Spec</button>
+          <a href="#sample-output" class="btn btn-secondary btn--ghost">See Real Sample Output</a>
+          <a href="/#card-btc-utxo-hygiene" class="btn btn-secondary btn--ghost">View in Homepage Catalog</a>
+        </div>
+      </section>
+      <section class="product-section" id="capabilities">
+        <h2>What It Does</h2>
+        <ul>
+          <li>Validates one or more Bitcoin mainnet addresses (Base58Check, Bech32 BIP-173, Bech32m BIP-350) and reads public state from the <strong>Mempool.space</strong> REST API with <strong>Blockstream Esplora</strong> fallback, or from an <code>--offline</code> fixture: address stats, the full UTXO set, recent transactions, fee estimates, mempool blocks and BTC/USD price.</li>
+          <li>UTXO hygiene: value buckets, <code>UTXO_FRAGMENTATION</code>, <code>STRANDED_UTXOS</code> (strict <code>value &le; input vB &times; rate</code> and a conservative margin via <code>--min-value-multiple</code>), <code>LEGACY_SCRIPT_TYPE</code>, <code>DUSTING_ATTACK_SUSPECT</code>, and a creating-transaction witness scan that marks Ordinals-inscription UTXOs as <code>INSCRIPTION_PROTECTED</code> so they are never swept.</li>
+          <li>Fee planning: a consolidation plan and cost-vs-savings matrix for P2WPKH or P2TR outputs (<code>--consolidate-to</code>) at current and window fee rates, with break-even future fee rate and a <code>CONSOLIDATION_WINDOW_OPEN</code> signal (<code>--window-rate</code>, <code>--target-fee</code>).</li>
+          <li>Privacy exposure from recent transactions: <code>ADDRESS_REUSE</code>, <code>CIOH_COSPEND_EXPOSURE</code>, <code>CIOH_CROSS_ADDRESS_LINK</code>, <code>ROUND_NUMBER_CHANGE_LEAK</code> and <code>SCRIPT_TYPE_MISMATCH_CHANGE</code>, plus a 0&ndash;100 hygiene score per address and per wallet.</li>
+          <li>Non-custodial coin control: freeze/do-not-spend outpoints (<code>bitcoin-cli lockunspent</code>, Sparrow &ldquo;Freeze UTXO&rdquo;, Electrum &ldquo;Freeze Coin&rdquo;) and an unsigned-PSBT <code>bitcoin-cli sendall ... psbt=true</code> consolidation command, displayed for you to run yourself.</li>
+          <li>Stateful delta monitor (<code>--state PATH --delta</code>): emits <code>NEW_DUST</code>, <code>UTXO_COUNT_CHANGED</code> and <code>CONSOLIDATION_WINDOW_OPEN</code> events between runs, with <code>--format text|markdown|json</code> output and exit codes 0 clean / 1 MEDIUM / 2 HIGH / 3 CRITICAL / 10 bad input / 11 degraded sources. 1,242 lines stdlib Python, 157 passing unit tests.</li>
+        </ul>
+      </section>
+      <section class="product-section" id="sample-output">
+        <h2>Live output (Bitcoin mainnet: one public legacy P2PKH address, 134 UTXOs)</h2>
+        <pre class="code-pre">snapshot   2026-10-27 10:00:58 UTC | tool=btc-utxo-hygiene
+endpoints  https://blockstream.info/api, https://mempool.space/api
+fallbacks  https://mempool.space/api failed -&gt; https://blockstream.info/api
+
+wallet    1 address(es)  utxos=134 (confirmed 134 / unconfirmed 0)  total=44,408,175 sats (0.44408175 BTC, $35,340.47)  hygiene_score=45/100
+address   12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S P2PKH       utxos=134 balance=44,408,175 funded_txo=134 spent_txo=0 tx_count=131 score=45
+fees      fastestFee=2 halfHourFee=1 hourFee=1 economyFee=1 minimumFee=1 sat/vB (mempool.space) | blockstream 504-block floor=0.113
+  bucket &lt;=546 (hard dust / inscription-suspect)    count=   26 sum=        13,651
+  bucket 547-1,000 (sub-1k micro)                   count=   29 sum=        21,587
+  bucket 1,001-5,000                                count=   18 sum=        29,863
+  bucket 5,001-100,000                              count=   54 sum=     1,483,555
+  bucket &gt;100,000                                   count=    7 sum=    42,859,519
+stranded  (strict: value &lt;= input_vB*rate; conservative: x3 margin)
+  fastestFee        2 sat/vB  strict=   1 (1 sats)  conservative=  46 (26,327 sats)
+  halfHourFee       1 sat/vB  strict=   1 (1 sats)  conservative=   1 (1 sats)
+  hourFee           1 sat/vB  strict=   1 (1 sats)  conservative=   1 (1 sats)
+  economyFee        1 sat/vB  strict=   1 (1 sats)  conservative=   1 (1 sats)
+  minimumFee        1 sat/vB  strict=   1 (1 sats)  conservative=   1 (1 sats)
+  ref 5             5 sat/vB  strict=  44 (24,677 sats)  conservative=  72 (62,521 sats)
+  ref 10           10 sat/vB  strict=  58 (39,139 sats)  conservative=  73 (65,101 sats)
+  ref 20           20 sat/vB  strict=  73 (65,101 sats)  conservative=  81 (112,673 sats)
+  ref 50           50 sat/vB  strict=  81 (112,673 sats)  conservative=  95 (284,500 sats)
+  ref 100         100 sat/vB  strict=  93 (245,591 sats)  conservative= 116 (772,545 sats)
+scan      creating-tx witness check on 60 txid(s) (UTXOs &lt;= 10,000 sats, cap 60): envelope_hits=10 lookup_failures=0 unchecked=24
+plan      consolidate 55 UTXO(s) -&gt; P2WPKH in 1 tx(s) at 1 sat/vB (economyFee): 8181.0 vB, fee 8,181 sats ($6.51), out 44,238,971 sats; protected/left untouched=79; break-even future rate=1.01 sat/vB  [WINDOW OPEN]
+  matrix  P2WPKH @ fastestFee      2 sat/vB  n=  55 vB=    8181.0 fee=   16,362 sats ($13.02)  net@50=387,238 net@100=790,838
+  matrix  P2WPKH @ economyFee      1 sat/vB  n=  55 vB=    8181.0 fee=    8,181 sats ($6.51)  net@50=395,419 net@100=799,019
+  matrix  P2WPKH @ window 1        1 sat/vB  n=  55 vB=    8181.0 fee=    8,181 sats ($6.51)  net@50=395,419 net@100=799,019
+  matrix  P2WPKH @ window 5        5 sat/vB  n=  47 vB=    6997.0 fee=   34,985 sats ($27.84)  net@50=309,415 net@100=653,815
+  matrix  P2WPKH @ window 10      10 sat/vB  n=  47 vB=    6997.0 fee=   69,970 sats ($55.68)  net@50=274,430 net@100=618,830
+  matrix  P2WPKH @ window 20      20 sat/vB  n=  47 vB=    6997.0 fee=  139,940 sats ($111.37)  net@50=204,460 net@100=548,860
+  matrix  P2TR   @ fastestFee      2 sat/vB  n=  55 vB=    8193.0 fee=   16,386 sats ($13.04)  net@50=387,739 net@100=791,864
+  matrix  P2TR   @ economyFee      1 sat/vB  n=  55 vB=    8193.0 fee=    8,193 sats ($6.52)  net@50=395,932 net@100=800,057
+  matrix  P2TR   @ window 1        1 sat/vB  n=  55 vB=    8193.0 fee=    8,193 sats ($6.52)  net@50=395,932 net@100=800,057
+  matrix  P2TR   @ window 5        5 sat/vB  n=  47 vB=    7009.0 fee=   35,045 sats ($27.89)  net@50=309,880 net@100=654,805
+  matrix  P2TR   @ window 10      10 sat/vB  n=  47 vB=    7009.0 fee=   70,090 sats ($55.78)  net@50=274,835 net@100=619,760
+  matrix  P2TR   @ window 20      20 sat/vB  n=  47 vB=    7009.0 fee=  140,180 sats ($111.56)  net@50=204,745 net@100=549,670
+privacy   12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S spend_txs=0 co_addresses=0 cospend_txs=0 round_change_txs=0 script_mismatch_txs=0
+coinctl   freeze=79 consolidate=55 leave=0 (use --format markdown for copy-paste commands)
+
+findings
+  [CRITICAL] ADDRESS_REUSE: 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S received 134 separate outputs (funded_txo=134, spent_txo=0): every receipt and spend is publicly linked to one address
+  [MEDIUM  ] DUSTING_ATTACK_SUSPECT: 45 tiny unsolicited UTXO(s) (&lt;= 1000 sats) sit beside a 44408175-sat wallet on 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S: freeze / do-not-spend them in Sparrow, Electrum or Bitcoin Core so they cannot link your main UTXOs
+  [MEDIUM  ] UTXO_FRAGMENTATION: 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S holds 134 UTXOs (44408175 sats): spending them costs far more than one consolidated input
+  [LOW     ] INSCRIPTION_CHECK_INCOMPLETE: 24 small UTXO(s) on 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S could not be checked for inscriptions (lookup failed or --max-lookups reached): excluded from consolidation
+  [LOW     ] LEGACY_SCRIPT_TYPE: 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S is legacy P2PKH: each input costs 148 vB vs 68 vB for P2WPKH and 57.5 vB for P2TR
+  [LOW     ] STRANDED_UTXOS: 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S has 1 UTXO(s) (1 sats) that cost more than their value to spend at 1.0 sat/vB (1 at the conservative 3x margin)
+  [INFO    ] CONSOLIDATION_WINDOW_OPEN: fees are low (1.0 sat/vB &lt;= 3.0): consolidating 55 UTXO(s) costs 8181 sats and breaks even above 1.01 sat/vB
+  [INFO    ] INSCRIPTION_PROTECTED: 10 UTXO(s) on 12cbQLTFMXRnSzktFkuoG3eHoMeFtpTu3S carry an Ordinals envelope in their creating tx: excluded from consolidation, do not spend from a regular wallet
+
+exit_code 3
+SCOPE_NOTE: Strictly read-only: only public Mempool.space / Blockstream Esplora REST GET endpoints (address stats, UTXO set, recent transactions, fee estimates, prices) or an --offline fixture. Never accepts or asks for private keys, WIF, xprv/yprv/zprv, seed phrases or PSBTs; no transaction is built, signed or broadcast by the tool; coin-control commands are displayed for the owner to run in their own wallet. Heuristics (CIOH, change detection, dusting, inscription envelopes) are probabilistic, cover only the recent transactions and small UTXOs it states it checked, and "no findings" never means "private" or "safe to sweep". P3... addresses are assumed to be nested SegWit (P2SH-P2WPKH). No financial, legal or tax advice. Refuses: targeting third-party wallets for exploitation or deanonymisation, ranking wallets by balance, or building dust-attack target lists.</pre>
+      </section>
+      <section class="product-section" id="refusal-boundaries">
+        <h2>What It Does Not Do</h2>
+        <ul>
+          <li>Strictly read-only (public Mempool.space / Blockstream Esplora <code>GET</code> endpoints only): never accepts or asks for private keys, WIF, <code>xprv</code>/<code>yprv</code>/<code>zprv</code>, seed phrases or PSBTs, and never builds, signs, or broadcasts a transaction. Coin-control commands are displayed for you to run in your own wallet.</li>
+          <li>Heuristics (CIOH, change detection, dusting, inscription envelopes) are probabilistic and cover only the recent transactions and small UTXOs it states it checked. &ldquo;No findings&rdquo; never means &ldquo;private&rdquo; or &ldquo;safe to sweep&rdquo;. Addresses starting with <code>3</code> are assumed to be nested SegWit (P2SH-P2WPKH).</li>
+          <li>Refuses to target third-party wallets for exploitation or deanonymisation, rank wallets by balance, or build dust-attack target lists. Not financial, legal, or tax advice.</li>
+        </ul>
+      </section>
+      <section class="product-section" id="runtime-integrity">
+        <h2>Pinned Runtime (SHA-256)</h2>
+        <ul>
+          <li><a href="/runtime/btc_utxo_hygiene.py"><code>/runtime/btc_utxo_hygiene.py</code></a> &mdash; SHA-256 <code>e3b8d9be91fb2ae75d272fea248d484a2c4076fd472e40eaef73ea903257d5ee</code></li>
+          <li><a href="/runtime/bot_common.py"><code>/runtime/bot_common.py</code></a> &mdash; SHA-256 <code>d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526</code></li>
+        </ul>
+        <p>The setup skill refuses to install either file if its SHA-256 does not match the pinned value above.</p>
+      </section>
+      <section class="product-section" id="licensing-flow">
+        <h2>Licensing &amp; Setup</h2>
+        <p>One-time license, up to 3 workspace-reset rebinds. On Turn 1 the <code>btc-utxo-hygiene-setup</code> skill verifies your agent key, binds your <code>wcl_...</code> code through the read-only license helper, and installs the SHA-256-pinned <code>bot_common.py</code> and <code>btc_utxo_hygiene.py</code> runtime. The license code is never printed in chat.</p>
+      </section>
+    </div>
+  </main>
+<!-- Spec Inspection Modal -->
+  <div class="modal-backdrop" id="spec-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <div>
+          <span class="phase-badge live" id="modal-badge">SPEC</span>
+          <h3 id="modal-title" style="margin-top: 6px; font-size: 19px;">Bot Specification</h3>
+          <div class="skill-slug" id="modal-slug" style="margin-top: 2px;"></div>
+        </div>
+        <button type="button" class="modal-close-btn" id="modal-close">ESC / Close ✕</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-footer" id="modal-footer" hidden></div>
+    </div>
+  </div>
+
+  <!-- On-Chain SOL Checkout Modal (#checkout-modal) -->
+  <div class="modal-backdrop" id="checkout-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="checkout-modal-title">
+    <div class="modal-panel checkout-modal-panel">
+      <div class="modal-header">
+        <div>
+          <span class="phase-badge live" id="checkout-modal-badge">● ON-CHAIN SOL CHECKOUT · NON-CUSTODIAL</span>
+          <h3 id="checkout-modal-title" style="margin-top: 6px; font-size: 19px;">Bot &amp; Skill Security Auditor — $29 in SOL</h3>
+          <div class="skill-slug" id="checkout-modal-slug" style="margin-top: 2px;">sku: bot-skill-auditor · One-Time License · 3 Workspace-Reset Rebinds</div>
+        </div>
+        <button type="button" class="modal-close-btn" id="checkout-modal-close">ESC / Close ✕</button>
+      </div>
+
+      <div class="modal-body checkout-modal-body">
+        <!-- Saved License Banner (shown if localStorage has a purchased license for this SKU) -->
+        <div class="saved-license-banner" id="checkout-saved-banner" hidden>
+          <div class="saved-license-info">
+            <strong>✓ Saved License Found in This Browser</strong>
+            <span id="checkout-saved-summary">Order ord_...</span>
+          </div>
+          <div class="saved-license-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="checkout-view-saved-btn">View Saved License →</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="checkout-back-to-quote-btn" hidden>New Purchase Quote</button>
+            <button type="button" class="mini-copy-btn danger-btn" id="checkout-clear-saved-btn" title="Remove saved license from this browser">Clear Saved</button>
+          </div>
+        </div>
+
+        <!-- VIEW 1: LIVE SOL QUOTE & PAYMENT VERIFICATION -->
+        <div id="checkout-step-pay">
+          <!-- Quote Status / Loading / Error Bar -->
+          <div class="checkout-status-bar" id="checkout-quote-status" role="status" aria-live="polite">
+            <span id="checkout-quote-status-text">Fetching live SOL/USD quote from WattCoin Registry…</span>
+            <button type="button" class="mini-copy-btn" id="checkout-refresh-btn">Refresh Quote ↻</button>
+          </div>
+
+          <!-- Step 1 Box: Send SOL -->
+          <div class="checkout-card-box">
+            <div class="checkout-step-header">
+              <span>STEP 1 · SEND EXACT SOL AMOUNT TO TREASURY</span>
+              <span id="checkout-timer-pill" class="timer-pill">TTL: <strong id="checkout-timer-display">--:--</strong></span>
+            </div>
+
+            <div class="checkout-quote-grid">
+              <div class="quote-metric">
+                <span class="quote-label">License Price (One-Time)</span>
+                <div class="quote-val-primary" id="checkout-price-usd">$29.00 <small>USD</small></div>
+                <div class="quote-sub" id="checkout-rate-display">SOL/USD rate loading…</div>
+              </div>
+              <div class="quote-metric">
+                <span class="quote-label">Order ID &amp; Slippage Tolerance</span>
+                <div class="quote-val-mono" id="checkout-order-id-display">—</div>
+                <div class="quote-sub">3% slippage with memo · Exact match without memo</div>
+              </div>
+            </div>
+
+            <!-- Exact SOL Amount Copy Field -->
+            <div class="checkout-field-group">
+              <div class="checkout-field-label">
+                <span>Exact Amount to Send (SOL)</span>
+                <span class="lamport-tag-hint">Unique 4-digit order tag: <code id="checkout-lamport-tag">----</code> lamports</span>
+              </div>
+              <div class="checkout-copy-box highlight">
+                <div>
+                  <code class="sol-amount-code" id="checkout-amount-sol">—</code>
+                  <span class="sol-unit">SOL</span>
+                  <span class="lamports-sub" id="checkout-amount-lamports"></span>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" id="checkout-copy-amount-btn" disabled>
+                  Copy Exact SOL Amount
+                </button>
+              </div>
+              <p class="checkout-field-help">
+                <strong>Why the exact 9 decimals matter:</strong> The last 4 digits (<code id="checkout-lamport-tag-inline">----</code> lamports, &lt;$0.001) uniquely identify your order on-chain so payment verification succeeds even if your wallet does not attach an SPL Memo.
+              </p>
+            </div>
+
+            <!-- Recipient Treasury Wallet Copy Field -->
+            <div class="checkout-field-group">
+              <div class="checkout-field-label">
+                <span>Recipient Treasury Wallet (Solana Mainnet)</span>
+                <span>Official WattCoin Treasury</span>
+              </div>
+              <div class="checkout-copy-box">
+                <code id="checkout-recipient-wallet">Atu5phbGGGFogbKhi259czz887dSdTfXwJxwbuE5aF5q</code>
+                <button type="button" class="mini-copy-btn" id="checkout-copy-wallet-btn">Copy Wallet</button>
+              </div>
+            </div>
+
+            <!-- Optional SPL Memo Copy Field -->
+            <div class="checkout-field-group">
+              <div class="checkout-field-label">
+                <span>SPL Memo (Optional if sending exact SOL amount above)</span>
+                <span>Enables 3% slippage tolerance</span>
+              </div>
+              <div class="checkout-copy-box">
+                <code id="checkout-memo">—</code>
+                <button type="button" class="mini-copy-btn" id="checkout-copy-memo-btn" disabled>Copy Memo</button>
+              </div>
+            </div>
+
+            <!-- Solana Pay URI + Optional Sender Wallet Binding -->
+            <div class="checkout-wallet-actions">
+              <a id="checkout-solana-pay-btn" class="btn btn-secondary btn-sm" hidden>
+                Open in Solana Wallet (solana: URI) ↗
+              </a>
+              <details class="checkout-optional-details">
+                <summary>Optional: Bind quote to your sender wallet address</summary>
+                <div class="optional-wallet-row">
+                  <input
+                    type="text"
+                    id="checkout-buyer-wallet-input"
+                    class="checkout-input"
+                    placeholder="Your sender Solana address (Base58, optional)"
+                    autocomplete="off"
+                    spellcheck="false"
+                  />
+                  <button type="button" class="btn btn-secondary btn-sm" id="checkout-bind-wallet-btn">
+                    Bind &amp; Refresh Quote
+                  </button>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- Step 2 Box: Verify Transaction Signature -->
+          <div class="checkout-card-box" style="margin-top: 16px;">
+            <div class="checkout-step-header">
+              <span>STEP 2 · VERIFY ON-CHAIN TRANSACTION &amp; ISSUE LICENSE</span>
+              <span>CONFIRMED COMMITMENT</span>
+            </div>
+
+            <p class="checkout-field-help" style="margin-bottom: 10px;">
+              After sending SOL from Phantom, Solflare, Backpack, Ledger, or CLI, paste your Solana <strong>Transaction Signature</strong> (or full Solscan / Explorer TX link) below:
+            </p>
+
+            <div class="tx-verify-row">
+              <input
+                type="text"
+                id="checkout-tx-input"
+                class="checkout-input mono"
+                placeholder="Paste 88-char Solana TX signature or https://solscan.io/tx/..."
+                aria-label="Solana Transaction Signature or Solscan URL"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button type="button" class="btn btn-primary" id="checkout-verify-btn" disabled>
+                Verify Payment &amp; Issue License →
+              </button>
+            </div>
+
+            <div class="checkout-feedback" id="checkout-verify-feedback" role="alert" aria-live="polite" hidden></div>
+          </div>
+        </div>
+
+        <!-- VIEW 2: FULFILLED LICENSE & TURN-1 ACTIVATION -->
+        <div id="checkout-step-fulfilled" hidden>
+          <div class="fulfilled-banner">
+            <div class="fulfilled-banner-title">✓ On-Chain SOL Payment Verified — License Issued</div>
+            <p>
+              <strong>Save your <code>wcl_...</code> license code now.</strong> It is a private bearer credential returned once at purchase and supports up to <strong>3 workspace-reset rebinds</strong>. We also saved a copy in this browser's local storage so you don't lose it if you close this tab.
+            </p>
+          </div>
+
+          <!-- Step A: Open Unlisted Grok Bot Template -->
+          <div class="checkout-card-box">
+            <div class="checkout-step-header">
+              <span>STEP A · IMPORT UNLISTED GROK BOT TEMPLATE</span>
+              <span>ONE CLICK</span>
+            </div>
+            <p class="checkout-field-help" style="margin-bottom: 10px;" id="fulfilled-step-a-desc">
+              Click below to open the private <strong>Bot &amp; Skill Security Auditor</strong> template in Grok Bot and add it to your sidebar:
+            </p>
+            <div class="fulfilled-cta-row">
+              <a target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="fulfilled-open-template-btn">
+                Open Security Auditor in Grok Bot ↗
+              </a>
+              <button type="button" class="btn btn-secondary btn-sm" id="fulfilled-copy-template-btn">
+                Copy Unlisted Template URL
+              </button>
+            </div>
+            <div class="checkout-copy-box" style="margin-top: 10px;">
+              <code id="fulfilled-template-url">—</code>
+            </div>
+          </div>
+
+          <!-- Step B: Copy Private wcl_ License Code -->
+          <div class="checkout-card-box" style="margin-top: 14px;">
+            <div class="checkout-step-header">
+              <span>STEP B · YOUR PRIVATE LICENSE CODE (wcl_64-hex)</span>
+              <span>UP TO 3 REBINDS</span>
+            </div>
+            <div class="checkout-copy-box highlight" style="margin-top: 6px;">
+              <code id="fulfilled-license-code" class="license-code-text">—</code>
+              <button type="button" class="btn btn-primary btn-sm" id="fulfilled-copy-code-btn">
+                Copy License Code
+              </button>
+            </div>
+          </div>
+
+          <!-- Step C: Paste Turn-1 Activation Prompt -->
+          <div class="checkout-card-box" style="margin-top: 14px;">
+            <div class="checkout-step-header">
+              <span>STEP C · SEND THIS FIRST PROMPT IN GROK BOT</span>
+              <span>TURN-1 AUTO-SETUP</span>
+            </div>
+            <p class="checkout-field-help" style="margin-bottom: 8px;" id="fulfilled-step-c-hint">
+              Paste this prompt on Turn 1 (or together with any <code>SKILL.md</code> or GitHub repo URL you want inspected):
+            </p>
+            <div class="checkout-copy-box">
+              <code id="fulfilled-activation-prompt">—</code>
+              <button type="button" class="mini-copy-btn" id="fulfilled-copy-prompt-btn">
+                Copy Prompt
+              </button>
+            </div>
+            <p class="checkout-field-help" style="margin-top: 8px;" id="fulfilled-step-c-foot">
+              On Turn 1, <code>auditor-setup</code> installs the read-only helpers (<code>.wattcoin_license_check.py</code> &amp; <code>.wattcoin_audit_prep.py</code> at <code>0500</code>), provisions <code>/workspace/.wattcoin_env</code> (<code>0600</code>), completes the 100 WATT starter activation, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.
+            </p>
+          </div>
+
+          <!-- Receipt Summary & Storage Controls -->
+          <div class="fulfilled-receipt-footer">
+            <div class="receipt-meta">
+              <span>Order: <code id="fulfilled-order-id">—</code></span>
+              <span>TX: <a target="_blank" rel="noopener noreferrer" id="fulfilled-solscan-link" style="color: var(--accent-cyan); text-decoration: underline;"><code id="fulfilled-tx-sig">—</code> ↗</a></span>
+            </div>
+            <div class="receipt-actions">
+              <button type="button" class="btn btn-secondary btn-sm" id="fulfilled-download-btn">
+                Download Receipt (.txt)
+              </button>
+              <button type="button" class="btn btn-secondary btn-sm" id="fulfilled-new-order-btn">
+                Buy Another License
+              </button>
+              <button type="button" class="mini-copy-btn danger-btn" id="fulfilled-clear-storage-btn">
+                Clear from Browser Storage
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="copy-toast" id="copy-toast" role="status" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="disclaimer-box">
+        <strong>Non-Custodial &amp; Non-Financial-Advice Disclaimer:</strong> CoinLoader templates execute locally in your Grok Bot environment and report factual on-chain and static code capabilities only. Nothing on CoinLoader.com constitutes financial, investment, legal, security-certification, or tax advice. Templates never request seed phrases, never take custody of keys, and never issue token safety scores, audit pass/fail badges, or trade recommendations.
+      </div>
+
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 8px;">
+            <span class="brand-mark">CL</span>
+            <span>CoinLoader<span class="brand-domain">.com</span></span>
+          </div>
+          <p style="max-width: 440px; color: var(--text-muted); font-size: 13px;">
+            Crypto, Solana &amp; Security Agent Templates for Grok Bot. Powered by the WattCoin (WATT) Agent Registry on Solana.
+          </p>
+        </div>
+
+        <div class="footer-links-list">
+          <a href="/bots/web-text-extractor.html">Web &amp; API Text Extractor (Free Bot) →</a>
+          <a href="/bots/solana-wallet-hygiene.html">Solana Wallet Hygiene Bot ($19 SOL) →</a>
+          <a href="/bots/solana-token-scanner.html">Retail Token Due-Diligence Bot ($29 SOL) →</a>
+          <a href="/bots/bot-skill-auditor.html">Bot &amp; Skill Security Auditor ($29 SOL) →</a>
+          <a href="/bots/evm-contract-inspector.html">EVM Smart Contract &amp; Proxy Inspector ($29 SOL) →</a>
+          <a href="/bots/evm-approval-auditor.html">EVM Wallet Approval &amp; Permit2 Risk Auditor ($19 SOL) →</a>
+          <a href="/bots/btc-utxo-hygiene.html">Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor ($19 SOL) →</a>
+          <a href="/#faq">FAQ</a>
+          <a href="/llms.txt">llms.txt ↗</a>
+          <a href="/llms-full.txt">llms-full.txt ↗</a>
+          <a href="/sitemap.xml">sitemap.xml ↗</a>
+          <a href="https://www.wattcoin.org/llms.txt" target="_blank" rel="noopener">wattcoin.org/llms.txt ↗</a>
+          <a href="https://botappstore.com" target="_blank" rel="noopener" title="Enterprise OSINT &amp; Physical Infrastructure Grok Bot Templates">BotAppStore.com (OSINT &amp; Enterprise Bots) ↗</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 CoinLoader.com · Built for Grok Bot</span>
+        <span>Zero Build Step Static Storefront · Ready for Cloudflare Pages / Vercel / GitHub Pages</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
+
