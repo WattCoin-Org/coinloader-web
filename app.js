@@ -1659,3 +1659,133 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// ---------------------------------------------------------------------------
+// Checkout card on-ramp helper + header Products dropdown (idempotent injectors)
+// ---------------------------------------------------------------------------
+(() => {
+  const NAV_MENU = {"trigger": "Products (9 Live) ▾", "label": "LIVE GROK BOT TEMPLATES (9)", "footer": "View All 9 Bots in Grid Catalog ↓", "items": [["web-text-extractor", "Web & API Text Extractor", "Web · Utility", "FREE"], ["solana-wallet-hygiene", "Solana Wallet Hygiene Bot", "Solana · Wallet", "$19 SOL"], ["evm-approval-auditor", "EVM Wallet Approval & Permit2 Auditor", "EVM · Wallet", "$19 SOL"], ["btc-utxo-hygiene", "Bitcoin Wallet & UTXO Hygiene Auditor", "Bitcoin · Wallet", "$19 SOL"], ["solana-token-scanner", "Retail Token Due-Diligence Bot", "Solana · Token", "$29 SOL"], ["bot-skill-auditor", "Bot & Skill Security Auditor", "Security · Audit", "$29 SOL"], ["pumpfun-coin-manager", "Pump.fun Coin & Community Manager", "Solana · Pump.fun", "$29 SOL"], ["evm-contract-inspector", "EVM Smart Contract & Proxy Inspector", "EVM · Contract", "$29 SOL"], ["token-launch-command-center", "Token Launch Command Center", "Solana · Launch", "$49 SOL"]]};
+
+  const ensureCardOnramp = () => {
+    document.querySelectorAll('#checkout-step-pay').forEach((pay) => {
+      if (pay.querySelector('.checkout-card-onramp-details')) return;
+      const actions = pay.querySelector('.checkout-wallet-actions');
+      if (!actions) return;
+      const details = document.createElement('details');
+      details.className = 'checkout-optional-details checkout-card-onramp-details';
+      details.innerHTML =
+        '<summary>\u{1F4B3} Need SOL? How to buy with a Credit Card or Apple Pay (~60 sec)</summary>' +
+        '<ol class="checkout-onramp-steps">' +
+        '<li><strong>Install or open Phantom or Solflare</strong> (browser extension or mobile app).</li>' +
+        '<li>Tap <strong>Buy \u2192 SOL</strong> inside your wallet and pay with <strong>Credit/Debit Card, Apple Pay, or Google Pay</strong> (via MoonPay, Stripe, Coinbase Pay, or Robinhood Connect).</li>' +
+        '<li><strong>Send the exact quoted SOL amount</strong> (including the 4-digit lamport tag) to the recipient treasury address above\u2014or click <strong>Open in Solana Wallet</strong>\u2014then click <strong>Verify Payment &amp; Issue License \u2192</strong>.</li>' +
+        '</ol>' +
+        '<p class="checkout-onramp-note">Non-custodial: the card purchase happens inside your own wallet. We never hold your funds or keys.</p>';
+      actions.insertAdjacentElement('afterend', details);
+    });
+  };
+
+  const buildNavDropdown = (navLinks) => {
+    const onIndex = !/^\/bots\//.test(window.location.pathname);
+    const wrap = document.createElement('div');
+    wrap.className = 'nav-dropdown';
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'nav-dropdown-trigger';
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.setAttribute('aria-haspopup', 'true');
+    trigger.textContent = NAV_MENU.trigger;
+    const menu = document.createElement('div');
+    menu.className = 'nav-dropdown-menu';
+    menu.setAttribute('role', 'menu');
+    const label = document.createElement('div');
+    label.className = 'nav-dropdown-label';
+    label.textContent = NAV_MENU.label;
+    menu.appendChild(label);
+    NAV_MENU.items.forEach(([slug, title, tag, price]) => {
+      const a = document.createElement('a');
+      a.className = 'nav-dropdown-item';
+      a.setAttribute('role', 'menuitem');
+      a.href = '/bots/' + slug + '.html';
+      const name = document.createElement('span');
+      name.className = 'nav-dropdown-name';
+      name.textContent = title;
+      if (tag) {
+        const t = document.createElement('span');
+        t.className = 'nav-dropdown-tag';
+        t.textContent = tag;
+        name.appendChild(t);
+      }
+      const badge = document.createElement('span');
+      badge.className = 'nav-dropdown-badge' + (price === 'FREE' ? ' nav-dropdown-badge-free' : '');
+      badge.textContent = price;
+      a.append(name, badge);
+      menu.appendChild(a);
+    });
+    const foot = document.createElement('a');
+    foot.className = 'nav-dropdown-footer';
+    foot.setAttribute('role', 'menuitem');
+    foot.href = onIndex ? '#catalog' : '/#catalog';
+    foot.textContent = NAV_MENU.footer;
+    menu.appendChild(foot);
+    wrap.append(trigger, menu);
+    navLinks.insertBefore(wrap, navLinks.firstChild);
+  };
+
+  const wireNavDropdown = (wrap) => {
+    if (wrap.dataset.dropdownWired) return;
+    wrap.dataset.dropdownWired = '1';
+    const trigger = wrap.querySelector('.nav-dropdown-trigger');
+    let closeTimer = null;
+    const canHover = () => window.matchMedia('(hover: hover) and (min-width: 681px)').matches;
+    const setOpen = (open) => {
+      clearTimeout(closeTimer);
+      wrap.classList.toggle('open', open);
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpen(!wrap.classList.contains('open'));
+    });
+    wrap.addEventListener('mouseenter', () => { if (canHover()) setOpen(true); });
+    wrap.addEventListener('mouseleave', () => {
+      if (!canHover()) return;
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(() => setOpen(false), 150);
+    });
+    document.addEventListener('click', (e) => {
+      if (!wrap.contains(e.target)) setOpen(false);
+    });
+    wrap.addEventListener('click', (e) => {
+      if (e.target.closest('.nav-dropdown-item, .nav-dropdown-footer')) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && wrap.classList.contains('open')) {
+        setOpen(false);
+        trigger.focus();
+      }
+    });
+    wrap.addEventListener('focusout', (e) => {
+      if (e.relatedTarget && !wrap.contains(e.relatedTarget)) setOpen(false);
+    });
+    const here = window.location.pathname.replace(/\/+$/, '');
+    wrap.querySelectorAll('.nav-dropdown-item').forEach((item) => {
+      const href = item.getAttribute('href').replace(/\.html$/, '');
+      if (here === href || here === href + '.html') item.setAttribute('aria-current', 'page');
+    });
+  };
+
+  const init = () => {
+    ensureCardOnramp();
+    const navLinks = document.querySelector('.site-header .nav-links');
+    if (!navLinks) return;
+    if (!navLinks.querySelector('.nav-dropdown')) buildNavDropdown(navLinks);
+    wireNavDropdown(navLinks.querySelector('.nav-dropdown'));
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
