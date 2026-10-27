@@ -688,6 +688,54 @@ conduct, future authority changes, or liquidity changes after retrieval.</pre>
               <a href="/bots/solana-token-scanner.html" class="btn btn-secondary btn-sm">Full Spec &amp; Sample Page →</a>
             </div>
           </article>
+          <article class="bot-card live-card" data-categories="live available solana" id="card-pumpfun-coin-manager">
+            <div>
+              <div class="card-top-meta">
+                <span class="phase-badge live">&#9679; AVAILABLE NOW &middot; $29 in SOL</span>
+                <span class="skill-slug">pumpfun-coin-manager-setup + pumpfun-coin-manager</span>
+              </div>
+              <div class="card-title-row">
+                <h3 class="card-title"><a href="/bots/pumpfun-coin-manager.html" style="color:inherit;text-decoration:none;">Pump.fun Coin &amp; Community Manager</a></h3>
+                <div class="card-price free">$29 <small>in SOL &middot; 3 Rebinds</small></div>
+              </div>
+              <p class="card-summary"><strong>Know what holders see before they ask.</strong> Audit your Pump.fun coin the way a skeptical holder would see it: which official links are missing from the immutable metadata, whether the creator profile and Callout tab point people to the right place, and whether DexScreener, GeckoTerminal and RugCheck agree.</p>
+              <ul class="spec-highlights">
+                <li>16-key delta monitor (<code>--state</code> + <code>--delta</code>): authority reinstated, metadata URI changed, supply increased, ban or hidden coin, new Callouts and replies, fee-sharing and creator-profile edits, large new holders, creator sells, liquidity drops, pair dormant/active, closed link gaps, new bot followers.</li>
+                <li>Point-in-time audit: missing website/Discord/Telegram in IPFS metadata, creator bio vs <code>--expected-website</code>, <code>--expected-discord</code>, <code>--expected-x</code>, empty Callout tab, GeckoTerminal link gaps, dormant DexScreener pairs, RugCheck risks.</li>
+                <li>IPFS metadata read through two hash-verified gateways; Token-2022 authorities and extensions read from public Solana RPC.</li>
+              </ul>
+            </div>
+            <div class="card-actions">
+              <button type="button" class="btn btn-primary btn--primary" data-open-checkout="pumpfun-coin-manager">Buy License ($29 in SOL) &rarr;</button>
+              <button type="button" class="btn btn-secondary btn--ghost" data-open-spec="pumpfun-coin-manager">Inspect SKILL.md</button>
+              <a href="/bots/pumpfun-coin-manager.html" class="btn btn-secondary btn--ghost">Full Spec &amp; Sample &rarr;</a>
+            </div>
+          </article>
+          <article class="bot-card live-card" data-categories="live available solana" id="card-token-launch-command-center">
+            <div>
+              <div class="card-top-meta">
+                <span class="phase-badge live">&#9679; AVAILABLE NOW &middot; $49 in SOL</span>
+                <span class="skill-slug">token-launch-command-center-setup + token-launch-command-center</span>
+              </div>
+              <div class="card-title-row">
+                <h3 class="card-title"><a href="/bots/token-launch-command-center.html" style="color:inherit;text-decoration:none;">Token Launch Command Center</a></h3>
+                <div class="card-price free">$49 <small>in SOL &middot; 3 Rebinds</small></div>
+              </div>
+              <p class="card-summary"><strong>Audit, draft, gate, send.</strong> One bundle for the launch week: audit the coin, turn the verified facts (authorities, supply, mint, your official links) into announcement drafts for four channels, lint them, sign them, and send only what you approve.</p>
+              <ul class="spec-highlights">
+                <li><code>command_center.py init</code> writes a config from <code>crypto_launch_preset.json</code> (banned-term list, link allowlist, X in free Web Intent mode).</li>
+                <li><code>command_center.py audit MINT --queue</code> runs the read-only audit and queues fact-only drafts; Gate 1 lint runs on each draft.</li>
+                <li>Gate 2 re-verifies an HMAC over the exact approved text, expiry and lint before any send; edited text is refused. Dispatcher is a dry run unless <code>--live</code>.</li>
+              </ul>
+            </div>
+            <div class="card-actions">
+              <button type="button" class="btn btn-primary btn--primary" data-open-checkout="token-launch-command-center">Buy License ($49 in SOL) &rarr;</button>
+              <button type="button" class="btn btn-secondary btn--ghost" data-open-spec="token-launch-command-center">Inspect SKILL.md</button>
+              <a href="/bots/token-launch-command-center.html" class="btn btn-secondary btn--ghost">Full Spec &amp; Sample &rarr;</a>
+            </div>
+          </article>
+
+
         </div>
 
         <h3 class="catalog-group-title" id="coming-next">Phase 3 &mdash; Coming Next <span class="filter-count">(1)</span></h3>
