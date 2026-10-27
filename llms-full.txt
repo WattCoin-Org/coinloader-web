@@ -332,3 +332,117 @@ No matching patterns (`ListMachines`, `machineId`, `CopyToBox`, `CopyFromBox`, o
 This report lists observable on-chain facts at the time shown. It is not investment advice, makes no safe/unsafe, legitimacy, or scam determination, and assigns no score. It cannot see off-chain team conduct, private key custody arrangements, future authority transfers (where authorities remain present), or liquidity changes after retrieval.
 ```
 
+---
+
+## Wave 2 - pumpfun-coin-manager ($29 in SOL, one-time; LIVE NOW, instant on-chain SOL checkout)
+- **SKU:** `pumpfun-coin-manager`
+- **Page:** https://coinloader.com/bots/pumpfun-coin-manager.html
+- **Skills:** `pumpfun-coin-manager-setup`, `pumpfun-coin-manager`
+- **Summary:** Read-only Pump.fun launch auditor and community-thread delta monitor for Grok Bot ($29 SOL). Finds missing links, creator bio/X gaps, empty Callouts and listing mismatches; drafts replies you review and post.
+- **Capabilities:**
+  - 16-key delta monitor (`--state` + `--delta`): authority reinstated, metadata URI changed, supply increased, ban or hidden coin, new Callouts and replies, fee-sharing and creator-profile edits, large new holders, creator sells, liquidity drops, pair dormant/active, closed link gaps, new bot followers.
+  - Point-in-time audit: missing website/Discord/Telegram in IPFS metadata, creator bio vs `--expected-website`, `--expected-discord`, `--expected-x`, empty Callout tab, GeckoTerminal link gaps, dormant DexScreener pairs, RugCheck risks.
+  - IPFS metadata read through two hash-verified gateways; Token-2022 authorities and extensions read from public Solana RPC.
+  - `--draft-replies` emits a bio, creator anchor Callout, on-chain transparency Callout and per-Callout reply drafts. Exit codes 0/1/2/3 (clean/MEDIUM/HIGH/CRITICAL), 11 when data sources are degraded.
+- **Boundaries:**
+  - Never posts, signs, or holds keys; every Callout, reply and bio is a draft for a human.
+  - Never suggests wash-trading to wake a dormant aggregator pair.
+  - Never DMs or tags underwater holders, and never makes price or return claims.
+  - Findings are heuristics with stated evidence, not verdicts.
+
+### Verbatim sample output
+```text
+endpoints  4everland.io, api.dexscreener.com, api.geckoterminal.com, api.mainnet-beta.solana.com, api.rugcheck.xyz, frontend-api-v3.pump.fun, pump.mypinata.cloud
+target     solana:Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump (WattCoin / WATT)
+program    TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb | supply=999,927,810.782386 (burned=72,189.217614 vs 1,000,000,000 initial)
+authority  mint=None freeze=None metadataUpdate=None
+ipfs       cid=bafkreibkpmj632bvslk4dt6fdm52sel26p7x6wx763yzx6clv3f5shuv7i gateways_ok=['pump.mypinata.cloud', '4everland.io'] digest_verified=[True, True] keys=['createdOn', 'description', 'image', 'name', 'showName', 'symbol', 'twitter']
+pump.coin  created=2026-01-31 03:15:56 UTC complete=True pool=8vtkM2FizcMmNxno28RbKpzaba8gT3bwQYqMv3XxzYNo
+pump.mkt   mcap=$3,368.84 ath=$66,298.19 (2026-02-08 10:05:17 UTC) liq=$4,936.19
+holders    total=66 top10=7.54% dev=1% snipers=0% bundlers=0%
+creator    6sdEkJ6xHx276B9wWYQp4TTSmTp8ZNvgobE6DBDnKckm username=@wattcoin x=None header=None followers=14 (organic=4 botlike=10) coinsCreated=1
+creatorBio "WattCoin creator. Utility only. ⚡"
+fees       totalFeesSol=16.848386559 distributedToCreator=9.053981 SOL (2 claims) unswept=0 admin_revoked=False
+community  legacy_reply_count=84 last_legacy_reply=2026-02-14 14:08:36 UTC | live_callouts=0 social_holders=5
+  holder_profile @wattcoin         wallet=6sdEkJ6x.. held= 10,000,303.63 cost=$ 104.15 pnl=  -7.2% callout=None
+  holder_profile @eurisx           wallet=K27kZNq1.. held=  5,062,102.50 cost=$ 107.10 pnl= -84.1% callout=None
+  holder_profile @pem51m           wallet=pEm51mXQ.. held=  5,017,324.89 cost=$ 114.68 pnl= -85.3% callout=None
+  holder_profile @28obdQ           wallet=28obdQci.. held=  1,266,266.08 cost=$  29.47 pnl= -85.5% callout=None
+  holder_profile @dynamicmanta082  wallet=8FXcMnqF.. held=     29,434.38 cost=$   1.67 pnl= -94.1% callout=None
+surfaces   dexscreener_orders=['tokenProfile:approved'] (active_pairs=False) | geckoterminal_score=44.7 websites=[] discord=None twitter=WattCoin2026 | rugcheck_norm_score=32 risks=['Copycat token', 'Low Liquidity'] lp_locked=0
+rugcheck   knownAccounts=['Printr Stake Pool', 'Pump Fun AMM'] graphInsidersDetected=0
+findings
+  [HIGH    ] CALLOUT_TAB_EMPTY: 0 live Callouts on GET /callout/coin/Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump (legacy reply_count=84, last 2026-02-14 14:08:36 UTC; the legacy /replies/{mint} thread is retired). The creator can post an anchor Callout from the coin page; ready-to-post drafts follow with --draft-replies.
+  [HIGH    ] CREATOR_BIO_INCOMPLETE: Creator bio (33 chars: 'WattCoin creator. Utility only. ⚡') is missing expected links: wattcoin.org, discord, x.
+  [HIGH    ] CREATOR_X_UNLINKED: Creator profile @wattcoin has x_username=null on Pump.fun; link X in the Pump.fun profile settings.
+  [HIGH    ] MISSING_IMMUTABLE_WEBSITE: 'website' link was omitted from the token metadata and is null on /coins-v3/Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump; must be compensated on mutable surfaces (creator bio, coin banner, pinned creator Callout, DexScreener/GeckoTerminal profile).
+  [MEDIUM  ] CREATOR_BANNER_MISSING: Creator profile @wattcoin has header_image_url=null; upload a header image in profile settings.
+  [MEDIUM  ] DEXSCREENER_PAIR_DORMANT: DexScreener order(s) tokenProfile:approved exist (tokenProfile paid 2026-02-10 02:31:34 UTC), but /latest/dex/tokens/Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump returns no pairs; DexScreener indexes pairs only with swap activity. Do not wash-trade to wake it.
+  [MEDIUM  ] GECKOTERMINAL_LINKS_MISSING: GeckoTerminal token info has no websites and no discord (gt_score=44.7).
+  [MEDIUM  ] MISSING_IMMUTABLE_DISCORD: 'discord' link was omitted from the token metadata and is null on /coins-v3/Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump; must be compensated on mutable surfaces (creator bio, coin banner, pinned creator Callout, DexScreener/GeckoTerminal profile).
+  [MEDIUM  ] MISSING_IMMUTABLE_TELEGRAM: 'telegram' link was omitted from the token metadata and is null on /coins-v3/Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump; must be compensated on mutable surfaces (creator bio, coin banner, pinned creator Callout, DexScreener/GeckoTerminal profile).
+  [MEDIUM  ] RUGCHECK_RISKS: RugCheck normalised score 32 with risks: Copycat token, Low Liquidity.
+  [MEDIUM  ] SOCIAL_HOLDERS_NO_CALLOUT: 5 Pump.fun social-profile holders are active and none has a Callout (4 besides the creator).
+  [LOW     ] BOT_FOLLOWERS: 10 of 14 creator followers match the pumppush* bot-name pattern (4 organic).
+  [LOW     ] COIN_BANNER_MISSING: Coin has no banner set (banner_uri empty); the creator can add one from the coin page.
+  [INFO    ] IMMUTABLE_METADATA: Mint, freeze, and Token-2022 metadata update authorities are all null (renounced); on-chain/IPFS metadata JSON cannot be modified.
+```
+
+---
+
+## Wave 2 - token-launch-command-center ($49 in SOL, one-time; LIVE NOW, instant on-chain SOL checkout)
+- **SKU:** `token-launch-command-center`
+- **Page:** https://coinloader.com/bots/token-launch-command-center.html
+- **Skills:** `token-launch-command-center-setup`, `token-launch-command-center`
+- **Summary:** Flagship Pump.fun launch bundle for Grok Bot ($49 SOL): coin audit and delta monitor plus a gated X / Discord / Telegram / Bluesky publisher with lint, HMAC approval and dry-run dispatch.
+- **Capabilities:**
+  - `command_center.py init` writes a config from `crypto_launch_preset.json` (banned-term list, link allowlist, X in free Web Intent mode).
+  - `command_center.py audit MINT --queue` runs the read-only audit and queues fact-only drafts; Gate 1 lint runs on each draft.
+  - Gate 2 re-verifies an HMAC over the exact approved text, expiry and lint before any send; edited text is refused. Dispatcher is a dry run unless `--live`.
+  - X: free 1-click Web Intents by default; paid API (2026 pay-per-use, $0.015 plain post, $0.20 with a link) only with explicit opt-in.
+  - Bundled modules are tested byte-identical to the standalone products.
+- **Boundaries:**
+  - No wallet keys, signing, or auto-posting; `--live` is explicit and per item.
+  - No price, return or 'next X' claims; no safe/scam/rug verdicts.
+  - No wash-trading advice, no unsolicited DMs or holder tags.
+  - An ambiguous send is marked unknown and never retried automatically.
+
+### Verbatim sample output
+```text
+# token-launch-command-center — live sample
+
+Real output, run against a public mint. Only the first audit run queues drafts; nothing is posted (dispatcher is a dry run).
+
+$ python3 command_center.py init --dir /tmp/lcs --site https://www.wattcoin.org --discord https://discord.gg/xVht9NsADd --x WattCoin2026
+/tmp/lcs/config.json
+[exit 0]
+
+$ python3 command_center.py audit Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump --config /tmp/lcs/config.json --queue
+snapshot   2026-10-27 04:47:39 UTC | tool=pumpfun_coin_manager v1.0
+endpoints  4everland.io, api.dexscreener.com, api.geckoterminal.com, api.mainnet-beta.solana.com, api.rugcheck.xyz, frontend-api-v3.pump.fun, pump.mypinata.cloud
+target     solana:Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump (WattCoin / WATT)
+program    TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb | supply=999,927,810.782386 (burned=72,189.217614 vs 1,000,000,000 initial)
+authority  mint=None freeze=None metadataUpdate=None
+ipfs       cid=bafkreibkpmj632bvslk4dt6fdm52sel26p7x6wx763yzx6clv3f5shuv7i gateways_ok=['pump.mypinata.cloud', '4everland.io'] digest_verified=[True, True] keys=['createdOn', 'description', 'image', 'name', 'showName', 'symbol', 'twitter']
+pump.coin  created=2026-01-31 03:15:56 UTC complete=True pool=8vtkM2FizcMmNxno28RbKpzaba8gT3bwQYqMv3XxzYNo
+pump.mkt   mcap=$3,368.84 ath=$66,298.19 (2026-02-08 10:05:17 UTC) liq=$4,936.19
+holders    total=66 top10=7.54% dev=1% snipers=0% bundlers=0%
+creator    6sdEkJ6xHx276B9wWYQp4TTSmTp8ZNvgobE6DBDnKckm username=@wattcoin x=None header=None followers=14 (organic=4 botlike=10) coinsCreated=1
+creatorBio "WattCoin creator. Utility only. ⚡"
+fees       totalFeesSol=16.848386559 distributedToCreator=9.053981 SOL (2 claims) unswept=0 admin_revoked=False
+community  legacy_reply_count=84 last_legacy_reply=2026-02-14 14:08:36 UTC | live_callouts=0 social_holders=5
+  holder_profile @wattcoin         wallet=6sdEkJ6x.. held= 10,000,303.63 cost=$ 104.15 pnl=  -7.2% callout=None
+  holder_profile @eurisx           wallet=K27kZNq1.. held=  5,062,102.50 cost=$ 107.10 pnl= -84.1% callout=None
+  holder_profile @pem51m           wallet=pEm51mXQ.. held=  5,017,324.89 cost=$ 114.68 pnl= -85.3% callout=None
+  holder_profile @28obdQ           wallet=28obdQci.. held=  1,266,266.08 cost=$  29.47 pnl= -85.5% callout=None
+  holder_profile @dynamicmanta082  wallet=8FXcMnqF.. held=     29,434.38 cost=$   1.67 pnl= -94.1% callout=None
+surfaces   dexscreener_orders=['tokenProfile:approved'] (active_pairs=False) | geckoterminal_score=44.7 websites=[] discord=None twitter=WattCoin2026 | rugcheck_norm_score=32 risks=['Copycat token', 'Low Liquidity'] lp_locked=0
+rugcheck   knownAccounts=['Printr Stake Pool', 'Pump Fun AMM'] graphInsidersDetected=0
+findings
+  [HIGH    ] CALLOUT_TAB_EMPTY: 0 live Callouts on GET /callout/coin/Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump (legacy reply_count=84, last 2026-02-14 14:08:36 UTC; the legacy /replies/{mint} thread is retired). The creator can post an anchor Callout from the coin page; ready-to-post drafts follow with --draft-replies.
+  [HIGH    ] CREATOR_BIO_INCOMPLETE: Creator bio (33 chars: 'WattCoin creator. Utility only. ⚡') is missing expected links: wattcoin.org, discord, x.
+  [HIGH    ] CREATOR_X_UNLINKED: Creator profile @wattcoin has x_username=null on Pump.fun; link X in the Pump.fun profile settings.
+  [HIGH    ] MISSING_IMMUTABLE_WEBSITE: 'website' link was omitted from the token metadata and is null on /coins-v3/Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump; must be compensated on mutable surfaces (creator bio, coin banner, pinned creator Callout, DexScreener/GeckoTerminal profile).
+  [MEDIUM  ] CREATOR_BANNER_MISSING: Creator profile @wattcoin has header_image_url=null; upload a header image in profile settings.
+  [MEDIUM  ] DEXSCREENER_PAIR_DO
+```

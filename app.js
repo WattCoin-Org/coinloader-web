@@ -62,6 +62,42 @@ const CHECKOUT_SKUS = {
     stepCFootHtml:
       'On Turn 1, <code>solana-token-scanner-setup</code> installs the read-only license helper (<code>.wattcoin_license_check.py</code> at <code>0500</code>), provisions <code>/workspace/.wattcoin_env</code> (<code>0600</code>), completes the 100 WATT starter activation, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
     defaultPrompt: (code) => `Activate my Retail Token Due-Diligence Bot with license code ${code}`
+  },
+  'pumpfun-coin-manager': {
+    sku: 'pumpfun-coin-manager',
+    name: 'Pump.fun Coin & Community Manager',
+    title: 'Pump.fun Coin & Community Manager — $29 in SOL',
+    slugMeta: 'sku: pumpfun-coin-manager · Skills: pumpfun-coin-manager-setup + pumpfun-coin-manager · 3 Rebinds',
+    priceUsd: 29,
+    priceUsdHtml: '$29.00 <small>USD</small>',
+    statusFooterText: 'Status: LIVE · $29 One-Time in SOL (Non-Custodial)',
+    ctaButtonText: 'Buy License ($29 in SOL) →',
+    stepADescHtml:
+      'Click below to open the private <strong>Pump.fun Coin &amp; Community Manager</strong> template in Grok Bot and add it to your sidebar:',
+    stepABtnText: 'Open Pump.fun Coin Manager in Grok Bot ↗',
+    stepCHintHtml:
+      'Paste this prompt on Turn 1 (or together with the Pump.fun / Solana mint address you want audited):',
+    stepCFootHtml:
+      'On Turn 1, <code>pumpfun-coin-manager-setup</code> installs the self-extracting runtime (<code>.wattcoin_license_check.py</code>, <code>bot_common.py</code>, and <code>pumpfun_coin_manager.py</code> at <code>0500</code>), provisions <code>/workspace/.wattcoin_env</code> (<code>0600</code>), completes the 100 WATT starter activation, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
+    defaultPrompt: (code) => `Activate my Pump.fun Coin & Community Manager with license code ${code}`
+  },
+  'token-launch-command-center': {
+    sku: 'token-launch-command-center',
+    name: 'Token Launch Command Center',
+    title: 'Token Launch Command Center — $49 in SOL',
+    slugMeta: 'sku: token-launch-command-center · Skills: token-launch-command-center-setup + token-launch-command-center · 3 Rebinds',
+    priceUsd: 49,
+    priceUsdHtml: '$49.00 <small>USD</small>',
+    statusFooterText: 'Status: LIVE · $49 One-Time Flagship Bundle in SOL (Non-Custodial)',
+    ctaButtonText: 'Buy Flagship Bundle ($49 in SOL) →',
+    stepADescHtml:
+      'Click below to open the private <strong>Token Launch Command Center</strong> template in Grok Bot and add it to your sidebar:',
+    stepABtnText: 'Open Token Launch Command Center in Grok Bot ↗',
+    stepCHintHtml:
+      'Paste this prompt on Turn 1 (or together with your Solana mint address and official website/Discord/X links):',
+    stepCFootHtml:
+      'On Turn 1, <code>token-launch-command-center-setup</code> installs the full self-extracting Command Center bundle (<code>command_center.py</code>, <code>pumpfun_coin_manager.py</code>, <code>social_hub.py</code>, <code>dispatcher.py</code>, and <code>crypto_launch_preset.json</code> at <code>0500</code>), provisions <code>/workspace/.wattcoin_env</code> (<code>0600</code>), completes the 100 WATT starter activation, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
+    defaultPrompt: (code) => `Activate my Token Launch Command Center with license code ${code}`
   }
 };
 
@@ -204,6 +240,56 @@ const BOT_SPECS = {
         <li>Never outputs "safe", "unsafe", "legit", "scam", or "rug", and never assigns a numerical safety score (e.g., <code>7/10</code>).</li>
         <li>Every metric cites its RPC call, slot/timestamp, or API source.</li>
         <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>) and verifies <code>GET /api/v1/agents/license?sku=solana-token-scanner</code> returns <code>"sku_licensed": true</code>.</li>
+      </ul>
+    `
+  },
+  'pumpfun-coin-manager': {
+    title: 'Pump.fun Coin & Community Manager',
+    slug: 'pumpfun-coin-manager-setup + pumpfun-coin-manager',
+    badge: 'LIVE · $29 IN SOL',
+    badgeClass: 'live',
+    status: 'Available Now — $29 One-Time License (Paid in SOL)',
+    price: '$29 One-Time in SOL (Includes 3 Workspace-Reset Rebinds)',
+    ctaType: 'checkout',
+    sku: 'pumpfun-coin-manager',
+    bodyHtml: `
+      <p><strong>Deliverable:</strong> <em>16-check Pump.fun v3, Token-2022/IPFS, DexScreener, GeckoTerminal, and RugCheck launch &amp; delta auditor plus copy-paste Callout, bio, and community reply drafts.</em></p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <h4>1. Audit &amp; 16-Key Delta Monitor (<code>pumpfun-coin-manager-setup</code> + <code>pumpfun-coin-manager</code>)</h4>
+      <ul>
+        <li><strong>Point-in-Time Launch Audit:</strong> Checks immutable IPFS metadata (dual hash-verified gateways), Token-2022 authorities and extensions, Pump.fun v3 creator profile &amp; Callouts tab, DexScreener pairs, GeckoTerminal social links, and RugCheck risk score.</li>
+        <li><strong>16-Key Stateful Delta Engine (<code>--state</code> + <code>--delta</code>):</strong> Flags authority changes, supply changes, creator sells, top-holder concentration shifts, liquidity drops, dormant pairs, and new community Callouts.</li>
+        <li><strong>Copy-Paste Drafts (<code>--draft-replies</code>):</strong> Generates cashtag-safe X bios, creator anchor Callouts, on-chain transparency Callouts, and community reply drafts.</li>
+      </ul>
+      <h4>2. Hard Guardrails</h4>
+      <ul>
+        <li>Strictly read-only: never asks for private keys, never signs transactions, and never auto-posts without human review.</li>
+        <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>).</li>
+      </ul>
+    `
+  },
+  'token-launch-command-center': {
+    title: 'Token Launch Command Center',
+    slug: 'token-launch-command-center-setup + token-launch-command-center',
+    badge: 'LIVE · $49 IN SOL · FLAGSHIP BUNDLE',
+    badgeClass: 'live',
+    status: 'Available Now — $49 One-Time Flagship Bundle (Paid in SOL)',
+    price: '$49 One-Time in SOL (Includes Both Standalone Engines + 3 Rebinds)',
+    ctaType: 'checkout',
+    sku: 'token-launch-command-center',
+    bodyHtml: `
+      <p><strong>Deliverable:</strong> <em>All-in-one Solana &amp; Pump.fun launch command center combining the 16-check Pump.fun Coin &amp; Community Manager with the Gate-1/Gate-2 HMAC-verified Multi-Channel Social Hub Publisher.</em></p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$49 USD</strong> settled on-chain in SOL (save $9 vs. buying both standalone bots). Issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <h4>1. End-to-End Launch Workflow (<code>token-launch-command-center-setup</code> + <code>token-launch-command-center</code>)</h4>
+      <ul>
+        <li><strong>Step 1 — Initialize:</strong> <code>command_center.py init</code> creates your multi-channel launch config from <code>crypto_launch_preset.json</code> (cashtag-collision protection, domain allowlist, X in free Web Intent mode by default).</li>
+        <li><strong>Step 2 — Audit &amp; Queue:</strong> <code>command_center.py audit &lt;MINT&gt; --queue</code> runs the full 16-check on-chain/listing audit and stages verified announcement drafts for X, Discord, Telegram, and Bluesky through the Gate-1 policy linter.</li>
+        <li><strong>Step 3 — Approve &amp; Dispatch:</strong> <code>approve</code> signs the exact text with HMAC-SHA256; Gate-2 re-verifies the signature and expiry before any send (dry-run by default unless <code>--live</code> is passed).</li>
+      </ul>
+      <h4>2. Hard Guardrails</h4>
+      <ul>
+        <li>Never holds wallet keys, never fabricates metrics, and refuses edited, expired, or unapproved drafts at Gate 2.</li>
+        <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>).</li>
       </ul>
     `
   },
