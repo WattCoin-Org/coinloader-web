@@ -643,3 +643,115 @@ findings
 exit_code 3
 SCOPE_NOTE: Strictly read-only: only public Mempool.space / Blockstream Esplora REST GET endpoints (address stats, UTXO set, recent transactions, fee estimates, prices) or an --offline fixture. Never accepts or asks for private keys, WIF, xprv/yprv/zprv, seed phrases or PSBTs; no transaction is built, signed or broadcast by the tool; coin-control commands are displayed for the owner to run in their own wallet. Heuristics (CIOH, change detection, dusting, inscription envelopes) are probabilistic, cover only the recent transactions and small UTXOs it states it checked, and "no findings" never means "private" or "safe to sweep". P3... addresses are assumed to be nested SegWit (P2SH-P2WPKH). No financial, legal or tax advice. Refuses: targeting third-party wallets for exploitation or deanonymisation, ranking wallets by balance, or building dust-attack target lists.
 ```
+
+---
+
+## Wave 3 - hyperliquid-monitor ($29 in SOL, one-time; LIVE NOW, instant on-chain SOL checkout)
+- **SKU:** `hyperliquid-monitor`
+- **Name:** Hyperliquid Perps, Funding & Liquidation Risk Monitor
+- **Page:** https://coinloader.com/bots/hyperliquid-monitor.html
+- **Skills:** `hyperliquid-monitor-setup`, `hyperliquid-monitor`
+- **Runtime:** https://coinloader.com/runtime/hyperliquid_monitor.py (SHA-256 `d9b8b58b9be66617177c238b195c3393ec817dfc591366797fa30f582db7f952`, 1,312 lines stdlib Python, 252 unit tests) + https://coinloader.com/runtime/bot_common.py (SHA-256 `d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`)
+- **Summary:** Read-only Hyperliquid perpetuals, funding rate APR, mark-oracle basis, HLP/vault exposure, and liquidation-distance risk monitor for Grok Bot ($29 SOL). Queries unauthenticated `POST https://api.hyperliquid.xyz/info` with zero private keys or signing.
+- **Capabilities:**
+  - Wallet & subaccount perp + HIP-1 spot risk audit (`--wallet 0x...`): `clearinghouseState`, `spotClearinghouseState`, and `frontendOpenOrders` for margin utilization (`accountValue`, `totalMarginUsed`, `withdrawable`), per-position liquidation price distance % (`CRITICAL` `<5%`, `HIGH` `<10%`, `MEDIUM` `<20%`), effective leverage, single-position concentration, adverse funding bleed (daily USD carry), and missing `reduceOnly` stop-loss (`UNPROTECTED_POSITION_NO_SL`) or non-reduce-only stop flip risk (`NON_REDUCE_ONLY_STOP`).
+  - Market-wide funding, open interest & cross-venue arbitrage scanner (`--markets`, `--coins BTC,ETH,SOL,HYPE`, `--top N`): joins `metaAndAssetCtxs` with `predictedFundings` (`HlPerp`, `BinPerp`, `BybitPerp`, normalized by each venue's `fundingIntervalHours`) to report 1h/8h/annualized APR, mark-vs-oracle basis (bps), 24h volume/OI turnover, and cross-venue divergence or funding sign flips.
+  - Vault & HLP posture inspection (`--vault 0x...` or `--hlp`): inspects `vaultDetails` + parent and child sub-vault `clearinghouseState` (including HLP's 7 child sub-vaults and 354+ open positions) for APR, TVL, leader skin-in-the-game, peak-to-current drawdown, and top open positions.
+  - Stateful delta monitor (`--state PATH --delta`): tracks `LIQ_DISTANCE_TIGHTENED`, `MARGIN_UTIL_SPIKE`, `POSITION_OPENED`, `POSITION_CLOSED`, `POSITION_FLIPPED`, `POSITION_SIZE_CHANGED`, `FUNDING_REGIME_SHIFT`, and `BASIS_DISLOCATED` events, with `--format text|markdown|json` and exit codes 0/1/2/3/10/11.
+- **Boundaries:**
+  - Strictly read-only (`POST https://api.hyperliquid.xyz/info`): never calls `/exchange`, never signs or places orders, and immediately refuses private keys, seed phrases, WIF/xprv, or API tokens with exit code 10 (`EXIT_USAGE`).
+  - Liquidation prices are point-in-time clearinghouse estimates that shift with mark price, funding payments, and cross-margin PnL. No financial, trading, or leverage advice.
+
+### Verbatim sample output
+```markdown
+# Hyperliquid Perps, Funding & Liquidation Risk Monitor
+
+```
+snapshot   2026-10-27 22:13:13 UTC | tool=hyperliquid-monitor
+endpoints  POST https://api.hyperliquid.xyz/info
+```
+
+## Market scan (requested coins)
+
+179 live perp markets; total open interest $11,532,157,112; 24h notional volume $3,751,436,856
+
+| coin | mark | oracle | 24h | funding 1h | 8h | APR | basis bps | mid bps | OI USD | 24h vol | vol/OI | Binance pred. | Bybit pred. |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| *BTC | 80,902.00 | 80,914.10 | +1.18% | +0.0013% | +0.0100% | +10.9% | -1.5 | -1.1 | $3,526,187,168 | $1,761,205,615 | 0.50 | +8.1% (+0.0074%/8h) | +10.9% (+0.0100%/8h) |
+| *ETH | 2,349.80 | 2,350.40 | +1.79% | +0.0013% | +0.0100% | +10.9% | -2.6 | -2.3 | $2,654,411,991 | $729,821,177 | 0.27 | +7.2% (+0.0066%/8h) | +10.9% (+0.0100%/8h) |
+| *SOL | 101.27 | 101.31 | +0.94% | +0.0013% | +0.0100% | +10.9% | -3.8 | -3.3 | $565,406,751 | $93,835,822 | 0.17 | +10.9% (+0.0100%/8h) | +9.4% (+0.0086%/8h) |
+| *HYPE | 81.0390 | 81.0520 | +4.53% | +0.0013% | +0.0100% | +10.9% | -1.6 | -0.7 | $1,678,914,753 | $312,484,121 | 0.19 | n/a | n/a |
+
+Funding extremes (OI >= $1,000,000):
+
+| coin | APR | funding 1h | basis bps | OI USD |
+|---|---|---|---|---|
+| REZ | -336.6% | -0.0384% | -50.1 | $1,921,547 |
+| ALT | -199.6% | -0.0228% | -30.7 | $1,145,723 |
+| BERA | -85.3% | -0.0097% | -25.9 | $1,441,150 |
+| NIL | -78.1% | -0.0089% | -24.2 | $3,083,068 |
+| XMR | +46.7% | +0.0053% | +13.5 | $115,404,536 |
+
+Predicted funding is per venue interval (Hyperliquid 1h, Binance / Bybit usually 4h or 8h) and annualised as rate / interval_hours * 8760.
+
+## Vault Hyperliquidity Provider (HLP)
+
+| field | value |
+|---|---|
+| address | 0xdfc24b077bc1425ad1dea75bcb6f8158e10df303 |
+| leader | 0x677d831aef5328190852e24f13c46cac05f984e7 |
+| type | protocol vault (parent of 7 child sub-vaults) |
+| APR | 3.78% |
+| TVL (vault + children account value) | $73,621,846.03 |
+| total notional | $7,760,734.93 |
+| open positions | 354 |
+| maxDistributable | $34,470,450.99 |
+| maxWithdrawable | $0.00 |
+| leader fraction | 0.208% |
+| leader commission | 0.00% |
+| allowDeposits / isClosed | True / False |
+| followers (as returned) | 100 |
+| month peak-to-current drawdown | 4.82% (peak $183,094,728, now $174,265,597, pnl $603,602) |
+| allTime peak-to-current drawdown | 71.14% (peak $603,904,920, now $174,265,597, pnl $138,941,176) |
+
+Drawdown is measured on account value and includes deposits / withdrawals.
+
+| account | role | account value | notional | margin util | leverage | positions |
+|---|---|---|---|---|---|---|
+| 0xdfc24b077bc1425ad1dea75bcb6f8158e10df303 | vault | $34,470,929 | $0 | 0.00% | 0.00x | 0 |
+| 0x010461c14e146ac35fe42271bdc1134ee31c703a | child | $3,098,256 | $3,860,085 | 6.23% | 1.25x | 177 |
+| 0x2e3d94f0562703b25c83308a05046ddaf9a8dd14 | child | $999,999 | $0 | 0.00% | 0.00x | 0 |
+| 0x2ed5c4484ea3ff8b57d5f2fb152a40d9f2b68308 | child | $1,000,000 | $0 | 0.00% | 0.00x | 0 |
+| 0x31ca8395cf837de08b24da3f660e77761dfb974b | child | $3,051,662 | $3,900,650 | 6.39% | 1.28x | 177 |
+| 0x469f690213c467c39a23efacfd2816896009d7d8 | child | $1,000 | $0 | 0.00% | 0.00x | 0 |
+| 0x5e177e5e39c0f4e421f5865a6d8beed8d921cb70 | child | $1,000,000 | $0 | 0.00% | 0.00x | 0 |
+| 0xb0a55f13d22f66e6d495ac98113841b2326e9540 | child | $30,000,000 | $0 | 0.00% | 0.00x | 0 |
+
+Top 15 open positions by notional (of 354):
+
+| account | coin | side | size | notional | entry | mark | uPnL | ROE | leverage | eff.lev | liq px | liq distance | funding since open | funding all-time |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 0x31ca..974b | kPEPE | LONG | 15,726,813 | $71,022 | 0.00440000 | 0.00451600 | $1,817 | +52.5% | cross 20x | 0.02x | n/a | n/a | $202.96 | -$62,097.00 |
+| 0x31ca..974b | PONS | LONG | 256,256 | $65,496 | 0.247888 | 0.255590 | $1,974 | +62.1% | cross 20x | 0.02x | n/a | n/a | $1,131.57 | $1,063.14 |
+| 0x0104..703a | PONS | SHORT | -252,690 | $64,585 | 0.245800 | 0.255590 | -$2,474 | -79.7% | cross 20x | 0.02x | 12.2440 | 4690.50% ($11.99) | -$1,131.96 | -$1,087.04 |
+| 0x0104..703a | kPEPE | SHORT | -14,046,849 | $63,436 | 0.00438800 | 0.00451600 | -$1,786 | -57.9% | cross 20x | 0.02x | 0.220177 | 4775.49% ($0.22) | -$173.16 | -$74,965.13 |
+| 0x0104..703a | MEGA | LONG | 1,262,896 | $62,641 | 0.046565 | 0.049601 | $3,833 | +130.4% | cross 20x | 0.02x | n/a | n/a | $1,431.21 | $1,229.63 |
+| 0x0104..703a | CELO | SHORT | -769,583 | $62,334 | 0.080066 | 0.080997 | -$716 | -23.2% | cross 20x | 0.02x | 4.0174 | 4859.89% ($3.94) | -$1,042.34 | -$5,218.21 |
+| 0x31ca..974b | MEGA | SHORT | -1,247,724 | $61,888 | 0.046705 | 0.049601 | -$3,613 | -124.0% | cross 20x | 0.02x | 2.4402 | 4819.69% ($2.39) | -$1,529.29 | -$1,559.63 |
+| 0x31ca..974b | *BTC | SHORT | -0.76208 | $61,654 | 80,248.50 | 80,902.00 | -$498 | -16.3% | cross 20x | 0.02x | 3,994,963.11 | 4838.03% ($3,914,061.11) | -$776.72 | $166,231.51 |
+| 0x31ca..974b | LDO | SHORT | -164,327.4 | $61,352 | 0.373710 | 0.373390 | $60 | +2.0% | cross 20x | 0.02x | 18.5251 | 4861.32% ($18.15) | -$1,502.35 | -$39,787.25 |
+| 0x0104..703a | *BTC | LONG | 0.74854 | $60,558 | 80,297.20 | 80,902.00 | $453 | +15.1% | cross 20x | 0.02x | n/a | n/a | $743.19 | -$612,254.62 |
+| 0x0104..703a | LDO | LONG | 160,311.5 | $59,852 | 0.373870 | 0.373390 | -$83 | -2.8% | cross 20x | 0.02x | n/a | n/a | $1,133.45 | -$55,694.66 |
+| 0x31ca..974b | CRV | SHORT | -176,209.2 | $59,383 | 0.340330 | 0.337030 | $588 | +19.6% | cross 20x | 0.02x | 17.2648 | 5022.62% ($16.93) | -$1,342.03 | $1,157.36 |
+| 0x31ca..974b | APEX | SHORT | -260,837 | $58,973 | 0.224169 | 0.226090 | -$501 | -17.1% | cross 20x | 0.02x | 11.6617 | 5057.99% ($11.44) | -$5,192.82 | -$2,788.50 |
+| 0x31ca..974b | CELO | LONG | 724,745 | $58,702 | 0.079908 | 0.080997 | $789 | +27.3% | cross 20x | 0.02x | n/a | n/a | $869.27 | $2,222.17 |
+| 0x0104..703a | CRV | LONG | 173,790.1 | $58,567 | 0.340160 | 0.337030 | -$549 | -18.6% | cross 20x | 0.02x | n/a | n/a | $1,190.28 | -$5,867.07 |
+
+## Findings
+
+(no findings)
+
+exit_code 0
+
+> SCOPE_NOTE: Strictly read-only, keyless and non-custodial: the only network call is the public, unauthenticated POST https://api.hyperliquid.xyz/info endpoint (metaAndAssetCtxs, predictedFundings, clearinghouseState, spotClearinghouseState, frontendOpenOrders, vaultDetails) or an --offline fixture. It never calls /exchange, never places, cancels or modifies orders, never signs or broadcasts orders, withdrawals or transfers, and never accepts private keys, API wallet keys, seed phrases, WIF/xprv or API tokens. Liquidation prices are point-in-time clearinghouse estimates that shift with mark price, funding payments and cross-margin PnL of other positions; funding, basis and predicted cross-venue rates change every hour and "no findings" never means "safe". No financial, trading, leverage or investment advice. Refuses: secret/key input, order placement or signing, and targeting third-party accounts for liquidation hunting or exploitation.
+```

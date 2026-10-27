@@ -154,6 +154,28 @@ const CHECKOUT_SKUS = {
     stepCFootHtml:
       'On Turn 1, <code>btc-utxo-hygiene-setup</code> installs the read-only runtime (<code>bot_common.py</code> and <code>btc_utxo_hygiene.py</code> verified by SHA-256), provisions your workspace agent key, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
     defaultPrompt: (code) => `Activate my Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor with license code ${code}`
+  },
+  'hyperliquid-monitor': {
+    sku: 'hyperliquid-monitor',
+    name: 'Hyperliquid Perps, Funding & Liquidation Risk Monitor',
+    title: 'Hyperliquid Perps, Funding & Liquidation Risk Monitor',
+    badge: 'AVAILABLE NOW · PERPS & FUNDING MONITOR',
+    slugMeta: 'sku: hyperliquid-monitor · Skills: hyperliquid-monitor-setup + hyperliquid-monitor · 3 Rebinds',
+    priceUsd: 29,
+    priceUsdHtml: '$29.00 <small>USD</small>',
+    statusFooterText: 'Status: LIVE · $29 One-Time in SOL (Non-Custodial)',
+    ctaButtonText: 'Buy License ($29 in SOL) →',
+    pageUrl: '/bots/hyperliquid-monitor.html',
+    runtimeUrl: '/runtime/hyperliquid_monitor.py',
+    runtimeSha256: 'd9b8b58b9be66617177c238b195c3393ec817dfc591366797fa30f582db7f952',
+    stepADescHtml:
+      'Click below to open the private <strong>Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor</strong> template in Grok Bot and add it to your sidebar:',
+    stepABtnText: 'Open Hyperliquid Monitor in Grok Bot ↗',
+    stepCHintHtml:
+      'Paste this prompt on Turn 1 (or together with the public Hyperliquid <code>0x...</code> wallet or subaccount address you own and want monitored):',
+    stepCFootHtml:
+      'On Turn 1, <code>hyperliquid-monitor-setup</code> installs the read-only runtime (<code>bot_common.py</code> and <code>hyperliquid_monitor.py</code> verified by SHA-256), provisions your workspace agent key, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
+    defaultPrompt: (code) => `Activate my Hyperliquid Perps, Funding & Liquidation Risk Monitor with license code ${code}`
   }
 };
 
@@ -566,23 +588,74 @@ SCOPE_NOTE: Strictly read-only: only public Mempool.space / Blockstream Esplora 
     `
   },
   'hyperliquid-monitor': {
-    title: 'Hyperliquid & Perp Basis Monitor',
-    slug: 'hyperliquid-monitor',
-    badge: 'PHASE 3 SPEC · $29 IN SOL',
-    badgeClass: 'phase3',
-    price: '$29 One-Time in SOL',
+    title: 'Hyperliquid Perps, Funding & Liquidation Risk Monitor',
+    slug: 'hyperliquid-monitor-setup + hyperliquid-monitor',
+    badge: 'LIVE · $29 IN SOL',
+    badgeClass: 'live',
+    status: 'live',
+    statusLabel: 'AVAILABLE NOW · LIVE ON COINLOADER',
+    price: '$29 One-Time in SOL (Includes 3 Workspace-Reset Rebinds)',
+    ctaType: 'checkout',
+    sku: 'hyperliquid-monitor',
+    pageUrl: '/bots/hyperliquid-monitor.html',
+    runtimeUrl: '/runtime/hyperliquid_monitor.py',
+    runtimeSha256: 'd9b8b58b9be66617177c238b195c3393ec817dfc591366797fa30f582db7f952',
     bodyHtml: `
-      <p><strong>Target Price:</strong> $29 one-time in SOL · <strong>Endpoint:</strong> Unauthenticated <code>POST https://api.hyperliquid.xyz/info</code>.</p>
-      <h4>1. Market &amp; Position Telemetry</h4>
+      <p><strong>Deliverable:</strong> <em>Read-only, keyless Hyperliquid perps, funding &amp; liquidation risk monitor for Grok Bot ($29 SOL). Uses only the public <code>POST https://api.hyperliquid.xyz/info</code> endpoint to measure liquidation distance, margin utilisation and stop-loss coverage for wallets you own, scan funding APR, basis and cross-venue predicted funding, and inspect HLP / vault exposure.</em></p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <h4>1. Capabilities (<code>hyperliquid-monitor-setup</code> + <code>hyperliquid-monitor</code>)</h4>
       <ul>
-        <li><strong>Funding &amp; Basis Snapshot:</strong> Calls <code>metaAndAssetCtxs</code> and <code>predictedFundings</code> to report hourly/annualized funding, sign flips, open interest, mark/oracle/mid prices, and perp-vs-spot basis bps.</li>
-        <li><strong>Clearinghouse State:</strong> Calls <code>clearinghouseState</code> and <code>spotClearinghouseState</code> for any public <code>0x...</code> address to report account value, margin used, unrealized PnL, funding paid/received, and exact distance from mark price to liquidation price ($ and %).</li>
-        <li><strong>Threshold Digest:</strong> Configurable alerts in <code>/workspace/hl_monitor_config.json</code> when liquidation distance drops below X% or annualized funding exceeds Y%.</li>
+        <li><strong>Wallet &amp; subaccount liquidation distance + TP/SL hygiene</strong> (<code>clearinghouseState</code>, <code>spotClearinghouseState</code>, <code>frontendOpenOrders</code>): <code>LIQ_DISTANCE_CRITICAL</code> / <code>HIGH</code> / <code>MEDIUM</code>, cross / isolated <code>MARGIN_UTIL_*</code>, <code>HIGH_EFFECTIVE_LEVERAGE</code>, <code>UNPROTECTED_POSITION_NO_SL</code>, <code>NON_REDUCE_ONLY_STOP</code>, <code>ADVERSE_FUNDING_BLEED</code> ($/day carry) and <code>SINGLE_POSITION_CONCENTRATION</code>.</li>
+        <li><strong>Market-wide funding APR &amp; cross-venue scanner</strong> (<code>metaAndAssetCtxs</code>, <code>predictedFundings</code>): mark / oracle / basis bps, 1h &amp; 8h funding, APR, OI and volume for every live perp, funding extremes, and Hyperliquid vs Binance / Bybit predicted funding (<code>CROSS_VENUE_FUNDING_DIVERGENCE</code>, <code>MARKET_EXTREME_FUNDING</code>, <code>MARKET_BASIS_DISLOCATION</code>).</li>
+        <li><strong>HLP &amp; child sub-vault posture</strong> (<code>vaultDetails</code>): APR, TVL, notional, withdrawable capacity, leader share, drawdown and top positions across 354+ open positions in 7 child sub-vaults.</li>
+        <li><strong>Stateful delta routine</strong> (<code>--state PATH --delta</code>): <code>LIQ_DISTANCE_TIGHTENED</code>, <code>MARGIN_UTIL_SPIKE</code>, <code>POSITION_FLIPPED</code>, <code>FUNDING_REGIME_SHIFT</code>, <code>BASIS_DISLOCATED</code>; exit codes 0 clean / 1 MEDIUM / 2 HIGH / 3 CRITICAL / 10 bad input / 11 degraded. 1,312 lines stdlib Python, 252 passing unit tests.</li>
       </ul>
-      <h4>2. Hard Guardrails</h4>
+      <h4>2. SKILL.md (pinned runtime)</h4>
+      <pre class="modal-sample-audit">---
+name: hyperliquid-monitor
+description: Read-only Hyperliquid perps, funding &amp; liquidation risk monitor for public 0x addresses the user owns. Never accepts keys; never calls /exchange.
+---
+# Runtime (pinned; setup refuses to install on mismatch)
+- https://coinloader.com/runtime/hyperliquid_monitor.py
+  sha256: d9b8b58b9be66617177c238b195c3393ec817dfc591366797fa30f582db7f952
+- https://coinloader.com/runtime/bot_common.py
+  sha256: d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526
+
+# Usage
+python3 hyperliquid_monitor.py [TARGET ...] [--wallet 0xADDR] [--vault 0xADDR|hlp] [--hlp]
+    [--markets] [--coins BTC,ETH,...] [--top N]
+    [--liq-crit-pct 5] [--liq-warn-pct 10] [--margin-util-warn 70] [--funding-apr-warn 50] [--basis-warn-bps 50]
+    [--state PATH --delta] [--format text|markdown|json | --json] [--out PATH]
+    [--fail-on critical|high|medium|low|info|none] [--timeout 15] [--offline FILE]
+exit: 0 clean · 1 MEDIUM · 2 HIGH · 3 CRITICAL · 10 bad input · 11 degraded sources</pre>
+      <h4>3. Live Sample Output (Hyperliquid Mainnet)</h4>
+      <pre class="modal-sample-audit">snapshot   2026-10-27 22:13:13 UTC | tool=hyperliquid-monitor
+endpoints  POST https://api.hyperliquid.xyz/info
+
+## Market scan (requested coins)
+
+179 live perp markets; total open interest $11,532,157,112; 24h notional volume $3,751,436,856
+
+| coin | mark | oracle | 24h | funding 1h | 8h | APR | basis bps | mid bps | OI USD | 24h vol | vol/OI | Binance pred. | Bybit pred. |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| *BTC | 80,902.00 | 80,914.10 | +1.18% | +0.0013% | +0.0100% | +10.9% | -1.5 | -1.1 | $3,526,187,168 | $1,761,205,615 | 0.50 | +8.1% (+0.0074%/8h) | +10.9% (+0.0100%/8h) |
+| *ETH | 2,349.80 | 2,350.40 | +1.79% | +0.0013% | +0.0100% | +10.9% | -2.6 | -2.3 | $2,654,411,991 | $729,821,177 | 0.27 | +7.2% (+0.0066%/8h) | +10.9% (+0.0100%/8h) |
+| *SOL | 101.27 | 101.31 | +0.94% | +0.0013% | +0.0100% | +10.9% | -3.8 | -3.3 | $565,406,751 | $93,835,822 | 0.17 | +10.9% (+0.0100%/8h) | +9.4% (+0.0086%/8h) |
+| *HYPE | 81.0390 | 81.0520 | +4.53% | +0.0013% | +0.0100% | +10.9% | -1.6 | -0.7 | $1,678,914,753 | $312,484,121 | 0.19 | n/a | n/a |
+
+## Findings
+
+(no findings)
+
+exit_code 0
+
+&gt; SCOPE_NOTE: Strictly read-only, keyless and non-custodial: the only network call is the public, unauthenticated POST https://api.hyperliquid.xyz/info endpoint (metaAndAssetCtxs, predictedFundings, clearinghouseState, spotClearinghouseState, frontendOpenOrders, vaultDetails) or an --offline fixture. It never calls /exchange, never places, cancels or modifies orders, never signs or broadcasts orders, withdrawals or transfers, and never accepts private keys, API wallet keys, seed phrases, WIF/xprv or API tokens. Liquidation prices are point-in-time clearinghouse estimates that shift with mark price, funding payments and cross-margin PnL of other positions; funding, basis and predicted cross-venue rates change every hour and "no findings" never means "safe". No financial, trading, leverage or investment advice. Refuses: secret/key input, order placement or signing, and targeting third-party accounts for liquidation hunting or exploitation.</pre>
+      <h4>4. Hard Guardrails</h4>
       <ul>
-        <li>Requires only a public 42-char <code>0x...</code> address; refuses API keys or private keys immediately.</li>
-        <li>Never calls <code>/exchange</code>, never places/cancels orders, and never advises on leverage or trade direction.</li>
+        <li>Strictly read-only and keyless: only the public, unauthenticated Info API. Never calls <code>/exchange</code>; never places, cancels or modifies orders; never signs orders, withdrawals or transfers.</li>
+        <li>Never accepts private keys, API wallet (agent) keys, seed phrases, WIF / <code>xprv</code> or API tokens: refused with exit <code>10</code>.</li>
+        <li>Liquidation prices are point-in-time estimates; &ldquo;no findings&rdquo; never means &ldquo;safe&rdquo;. Refuses liquidation hunting of third-party accounts. Not financial, trading or investment advice.</li>
+        <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>).</li>
       </ul>
     `
   }
@@ -1462,6 +1535,8 @@ document.addEventListener('DOMContentLoaded', () => {
       lastFocusedTrigger = null;
     }
   }
+
+  window.openCheckout = (sku) => openCheckoutModal(sku);
 
   document.querySelectorAll('[data-open-checkout]').forEach((btn) => {
     btn.addEventListener('click', (e) => {

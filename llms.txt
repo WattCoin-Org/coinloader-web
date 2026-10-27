@@ -15,8 +15,9 @@
 - **EVM Smart Contract & Proxy Inspector ($29 in SOL, `sku: evm-contract-inspector`, LIVE NOW - instant on-chain SOL checkout):** https://coinloader.com/bots/evm-contract-inspector.html
 - **EVM Wallet Approval & Permit2 Risk Auditor ($19 in SOL, `sku: evm-approval-auditor`, LIVE NOW - instant on-chain SOL checkout):** https://coinloader.com/bots/evm-approval-auditor.html (runtime: https://coinloader.com/runtime/evm_approval_auditor.py, SHA-256 `eab5dc79cb998a2ac39093748e6aba186f88a23e28f1155f807ade3a02eaa518`; https://coinloader.com/runtime/bot_common.py, SHA-256 `d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`; live Ethereum mainnet sample: https://coinloader.com/bots/evm-approval-auditor.html#sample-output and https://coinloader.com/llms-full.txt)
 - **Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor ($19 in SOL, `sku: btc-utxo-hygiene`, LIVE NOW - instant on-chain SOL checkout):** https://coinloader.com/bots/btc-utxo-hygiene.html (runtime: https://coinloader.com/runtime/btc_utxo_hygiene.py, SHA-256 `e3b8d9be91fb2ae75d272fea248d484a2c4076fd472e40eaef73ea903257d5ee`; https://coinloader.com/runtime/bot_common.py, SHA-256 `d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`; live Bitcoin mainnet sample: https://coinloader.com/bots/btc-utxo-hygiene.html#sample-output and https://coinloader.com/llms-full.txt)
+- **Hyperliquid Perps, Funding & Liquidation Risk Monitor ($29 in SOL, `sku: hyperliquid-monitor`, LIVE NOW - instant on-chain SOL checkout):** https://coinloader.com/bots/hyperliquid-monitor.html (runtime: https://coinloader.com/runtime/hyperliquid_monitor.py, SHA-256 `d9b8b58b9be66617177c238b195c3393ec817dfc591366797fa30f582db7f952`; https://coinloader.com/runtime/bot_common.py, SHA-256 `d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`; live Hyperliquid L1 sample: https://coinloader.com/bots/hyperliquid-monitor.html#sample-output and https://coinloader.com/llms-full.txt)
 
-## 1. Live Templates (Available Now — 9 Live Agents)
+## 1. Live Templates (Available Now — 10 Live Agents)
 
 ### 1.1 Web & API Text Extractor (FREE + 100 WATT Starter Grant)
 - **Status:** LIVE NOW (Free)
@@ -85,8 +86,14 @@
      - Section 4: DEX Liquidity & Pair Snapshot (DexScreener)
      - Section 5: Mandatory Non-Advice Scope Note
   5. **Guardrails:** Never outputs "safe/unsafe", "legit", "scam", or "rug" labels and never assigns a numerical score; every metric cites its RPC call, slot/timestamp, or API source.
-## 2. Planned Phase 3 Specification (Coming Next)
-- **Hyperliquid & Perp Basis Monitor (`hyperliquid-monitor`):** Planned $29 in SOL — Unauthenticated read-only perp funding, basis, and liquidation-distance monitor via `POST https://api.hyperliquid.xyz/info`.
+### 1.10 Hyperliquid Perps, Funding & Liquidation Risk Monitor ($29 One-Time in SOL)
+- **Status:** LIVE NOW ($29 USD settled on-chain in SOL via CoinLoader.com checkout modal)
+- **Deliverable:** *Audit Hyperliquid perpetual positions, exact liquidation distance %, TP/SL stop coverage, cross-venue predicted funding APR (Hyperliquid vs Binance/Bybit), mark-oracle basis, and HLP vault posture — 100% read-only with zero API or wallet keys.*
+- **SKU Identifier:** `hyperliquid-monitor`
+- **Product Page URL:** https://coinloader.com/bots/hyperliquid-monitor.html
+- **Runtime URL:** https://coinloader.com/runtime/hyperliquid_monitor.py (`SHA-256: d9b8b58b9be66617177c238b195c3393ec817dfc591366797fa30f582db7f952`, 1,312 lines Python 3 stdlib, 252 unit tests) + https://coinloader.com/runtime/bot_common.py (`SHA-256: d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`)
+- **Included Skills:** `hyperliquid-monitor-setup`, `hyperliquid-monitor`
+- **Storefront Checkout URL:** https://coinloader.com/#card-hyperliquid-monitor
 
 ## 3. Canonical Documentation & Sister Storefront
 - **WattCoin Agent Registry Reference:** https://www.wattcoin.org/llms.txt
