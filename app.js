@@ -98,6 +98,24 @@ const CHECKOUT_SKUS = {
     stepCFootHtml:
       'On Turn 1, <code>token-launch-command-center-setup</code> installs the full self-extracting Command Center bundle (<code>command_center.py</code>, <code>pumpfun_coin_manager.py</code>, <code>social_hub.py</code>, <code>dispatcher.py</code>, and <code>crypto_launch_preset.json</code> at <code>0500</code>), provisions <code>/workspace/.wattcoin_env</code> (<code>0600</code>), completes the 100 WATT starter activation, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
     defaultPrompt: (code) => `Activate my Token Launch Command Center with license code ${code}`
+  },
+  'evm-contract-inspector': {
+    sku: 'evm-contract-inspector',
+    name: 'EVM Smart Contract & Proxy Inspector',
+    title: 'EVM Smart Contract & Proxy Inspector — $29 in SOL',
+    slugMeta: 'sku: evm-contract-inspector · Skills: evm-contract-inspector-setup + evm-contract-inspector · 3 Rebinds',
+    priceUsd: 29,
+    priceUsdHtml: '$29.00 <small>USD</small>',
+    statusFooterText: 'Status: LIVE · $29 One-Time in SOL (Non-Custodial)',
+    ctaButtonText: 'Buy License ($29 in SOL) →',
+    stepADescHtml:
+      'Click below to open the private <strong>EVM Smart Contract &amp; Proxy Inspector</strong> template in Grok Bot and add it to your sidebar:',
+    stepABtnText: 'Open EVM Contract Inspector in Grok Bot ↗',
+    stepCHintHtml:
+      'Paste this prompt on Turn 1 (or together with the Ethereum, Base, or Arbitrum <code>0x...</code> contract address you want inspected):',
+    stepCFootHtml:
+      'On Turn 1, <code>evm-contract-inspector-setup</code> installs the read-only runtime (<code>bot_common.py</code> and <code>evm_contract_inspector.py</code> verified by SHA-256), provisions your workspace agent key, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
+    defaultPrompt: (code) => `Activate my EVM Smart Contract & Proxy Inspector with license code ${code}`
   }
 };
 
@@ -289,6 +307,31 @@ const BOT_SPECS = {
       <h4>2. Hard Guardrails</h4>
       <ul>
         <li>Never holds wallet keys, never fabricates metrics, and refuses edited, expired, or unapproved drafts at Gate 2.</li>
+        <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>).</li>
+      </ul>
+    `
+  },
+  'evm-contract-inspector': {
+    title: 'EVM Smart Contract & Proxy Inspector',
+    slug: 'evm-contract-inspector-setup + evm-contract-inspector',
+    badge: 'LIVE · $29 IN SOL',
+    badgeClass: 'live',
+    status: 'Available Now — $29 One-Time License (Paid in SOL)',
+    price: '$29 One-Time in SOL (Includes 3 Workspace-Reset Rebinds)',
+    ctaType: 'checkout',
+    sku: 'evm-contract-inspector',
+    bodyHtml: `
+      <p><strong>Deliverable:</strong> <em>Read-only Ethereum, Base, and Arbitrum proxy slot resolver (EIP-1967, EIP-1822, EIP-1167, ZeppelinOS), Safe/Timelock governance controller classifier, Sourcify v2 verifier, and bytecode opcode scanner with stateful delta monitoring.</em></p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <h4>1. Proxy &amp; Governance Inspection (<code>evm-contract-inspector-setup</code> + <code>evm-contract-inspector</code>)</h4>
+      <ul>
+        <li><strong>Multi-Standard Proxy Resolution:</strong> Reads EIP-1967 (<code>implementation</code>, <code>admin</code>, <code>beacon</code>), EIP-1822 UUPS, ZeppelinOS legacy (<code>0x7050c9e0...</code> / <code>0x10d6a54a...</code>), and EIP-1167 minimal proxy clones across Ethereum (<code>eth</code>), Base (<code>base</code>), and Arbitrum One (<code>arb</code>).</li>
+        <li><strong>Controller Chain Probing:</strong> Resolves <code>ProxyAdmin.owner()</code>, Safe multisigs (<code>getThreshold()</code> / <code>getOwners()</code>), and Timelocks (<code>getMinDelay()</code> / <code>delay()</code>), flagging single-EOA upgrade authority (<code>EOA_ADMIN</code>).</li>
+        <li><strong>Sourcify v2 &amp; Opcode Heuristics:</strong> Verifies source match on Sourcify v2 (with Blockscout v2 fallback), strips Solidity CBOR metadata, and scans opcodes for <code>SELFDESTRUCT</code> (<code>0xff</code>) and unexpected <code>DELEGATECALL</code> (<code>0xf4</code>).</li>
+      </ul>
+      <h4>2. Hard Guardrails</h4>
+      <ul>
+        <li>Strictly read-only: never asks for private keys or seed phrases, and never builds or broadcasts transactions.</li>
         <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>).</li>
       </ul>
     `

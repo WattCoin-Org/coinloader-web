@@ -32,6 +32,7 @@
 - **Pump.fun Coin & Community Manager ($29 in SOL, `sku: pumpfun-coin-manager`, LIVE NOW - instant on-chain SOL checkout):** https://coinloader.com/bots/pumpfun-coin-manager.html
 - **Included Skills:** `auditor-setup`, `bot-skill-auditor`
 - **Checkout & Licensing Flow:**
+- **EVM Smart Contract & Proxy Inspector ($29 in SOL, `sku: evm-contract-inspector`, LIVE NOW - instant on-chain SOL checkout):** https://coinloader.com/bots/evm-contract-inspector.html
   1. **Request Quote:** `POST https://www.wattcoin.org/api/v1/agents/license/quote` with `{"sku": "bot-skill-auditor"}` returns a 15-minute SOL quote (`order_id`, `checkout_token`, `amount_sol`, `amount_lamports` with a unique 4-digit lamport tag, `memo: "wcl:<order_id>"`, and official treasury wallet `Atu5phbGGGFogbKhi259czz887dSdTfXwJxwbuE5aF5q`).
   2. **Verify Payment & Issue License:** `POST https://www.wattcoin.org/api/v1/agents/license/purchase` with `{"order_id", "checkout_token", "tx_signature"}` verifies the Solana transfer on-chain (`confirmed` commitment) and returns the private Grok Bot template URL + one-time `wcl_<64-hex>` license code.
   3. **Turn-1 Binding (`auditor-setup`):** Installs read-only helpers `/workspace/.wattcoin_license_check.py` and `/workspace/.wattcoin_audit_prep.py` (`0500`), registers/activates `/workspace/.wattcoin_env` (`0600`), and binds the `wcl_...` license via `POST https://www.wattcoin.org/api/v1/agents/license/claim` (supports up to 3 workspace-reset rebinds).

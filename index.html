@@ -479,16 +479,16 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
           <!-- Interactive Category Filter Pills -->
           <div class="filter-bar" role="group" aria-label="Filter bot templates by category">
             <button type="button" class="filter-pill active" aria-pressed="true" data-filter="all">
-              All <span class="filter-count">(7)</span>
+              All <span class="filter-count">(8)</span>
             </button>
             <button type="button" class="filter-pill" aria-pressed="false" data-filter="live">
-              Available Now <span class="filter-count">(6)</span>
+              Available Now <span class="filter-count">(7)</span>
             </button>
             <button type="button" class="filter-pill" aria-pressed="false" data-filter="solana">
               Solana On-Chain <span class="filter-count">(5)</span>
             </button>
             <button type="button" class="filter-pill" aria-pressed="false" data-filter="security">
-              Security <span class="filter-count">(2)</span>
+              Security <span class="filter-count">(3)</span>
             </button>
             <button type="button" class="filter-pill" aria-pressed="false" data-filter="perps">
               Perps &amp; DeFi <span class="filter-count">(1)</span>
@@ -496,7 +496,7 @@ curl -s <span class="c-str">"https://www.wattcoin.org/api/v1/agents/license?sku=
           </div>
         </div>
 
-        <h3 class="catalog-group-title" id="available-now">Available Now <span class="filter-count">(6)</span></h3>
+        <h3 class="catalog-group-title" id="available-now">Available Now <span class="filter-count">(7)</span></h3>
         <div class="catalog-grid bot-grid--live" id="catalog-grid">
           <!-- Card 1: Web & API Text Extractor (LIVE NOW — FREE) -->
           <article class="bot-card live-card" data-categories="live available solana">
@@ -734,6 +734,30 @@ conduct, future authority changes, or liquidity changes after retrieval.</pre>
               <a href="/bots/token-launch-command-center.html" class="btn btn-secondary btn-sm">Full Spec &amp; Sample Page →</a>
             </div>
           </article>
+          <article class="bot-card live-card" data-categories="live available security" id="card-evm-contract-inspector">
+            <div>
+              <div class="card-top-meta">
+                <span class="phase-badge live">&#9679; AVAILABLE NOW &middot; $29 in SOL</span>
+                <span class="skill-slug">evm-contract-inspector-setup + evm-contract-inspector</span>
+              </div>
+              <div class="card-title-row">
+                <h3 class="card-title"><a href="/bots/evm-contract-inspector.html" style="color:inherit;text-decoration:none;">EVM Smart Contract &amp; Proxy Inspector</a></h3>
+                <div class="card-price free">$29 <small>in SOL &middot; 3 Rebinds</small></div>
+              </div>
+              <p class="card-summary"><strong>Know who can upgrade the contract before you deposit.</strong> Inspect any Ethereum, Base, or Arbitrum contract before you deposit or integrate: resolve EIP-1967, EIP-1822 UUPS, EIP-1167 clone, and ZeppelinOS legacy proxy storage slots in one batch, trace who actually controls upgrades (Safe M/N threshold &amp; owners, TimelockController delay, ProxyAdmin, or a single EOA), check Sourcify v2 source verification, and scan runtime bytecode for SELFDESTRUCT and DELEGATECALL.</p>
+              <ul class="spec-highlights">
+                <li>Batched JSON-RPC slot resolution across <strong>Ethereum (<code>eth</code>, 1)</strong>, <strong>Base (<code>base</code>, 8453)</strong>, and <strong>Arbitrum One (<code>arb</code>, 42161)</strong>: EIP-1967 (<code>implementation</code>, <code>admin</code>, <code>beacon</code>), EIP-1822 UUPS, ZeppelinOS legacy (<code>0x7050c9e0...</code> / <code>0x10d6a54a...</code>), and EIP-1167 minimal proxy clones.</li>
+                <li>Governance &amp; controller chain probing (<code>--deep</code>, <code>--max-depth 2</code>): classifies Safe multisigs (<code>getThreshold()</code> / <code>getOwners()</code>), Timelocks (<code>getMinDelay()</code> / <code>delay()</code>), ProxyAdmin contracts, or single-key EOAs (<code>EOA_ADMIN</code>).</li>
+                <li>Source verification via <strong>Sourcify v2</strong> (<code>fields=abi,proxyResolution,compilation</code>) with Blockscout v2 fallback, plus CBOR-stripped opcode scanning that skips <code>PUSH1..PUSH32</code> immediate bytes before flagging <code>SELFDESTRUCT</code> (<code>0xff</code>) or unexpected <code>DELEGATECALL</code> (<code>0xf4</code>).</li>
+              </ul>
+            </div>
+            <div class="card-actions">
+              <button type="button" class="btn btn-primary btn-sm" data-open-checkout="evm-contract-inspector">Buy License ($29 SOL) &rarr;</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-open-spec="evm-contract-inspector">Inspect SKILL.md Spec</button>
+              <a href="/bots/evm-contract-inspector.html" class="btn btn-secondary btn-sm">Full Spec &amp; Sample Page &rarr;</a>
+            </div>
+          </article>
+
 
 
         </div>

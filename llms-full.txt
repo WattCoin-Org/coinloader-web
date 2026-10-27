@@ -446,3 +446,55 @@ findings
   [MEDIUM  ] CREATOR_BANNER_MISSING: Creator profile @wattcoin has header_image_url=null; upload a header image in profile settings.
   [MEDIUM  ] DEXSCREENER_PAIR_DO
 ```
+
+---
+
+## Wave 3 - evm-contract-inspector ($29 in SOL, one-time; LIVE NOW, instant on-chain SOL checkout)
+- **SKU:** `evm-contract-inspector`
+- **Page:** https://coinloader.com/bots/evm-contract-inspector.html
+- **Skills:** `evm-contract-inspector-setup`, `evm-contract-inspector`
+- **Summary:** Read-only EVM smart contract and proxy upgradeability inspector for Grok Bot ($29 SOL). Resolves EIP-1967, EIP-1822, EIP-1167 and ZeppelinOS proxy slots, Safe multisig and Timelock controllers, Sourcify v2 source verification, and dangerous opcodes across Ethereum, Base, and Arbitrum.
+- **Capabilities:**
+  - Batched JSON-RPC slot resolution across `Ethereum (`eth`, 1)`, `Base (`base`, 8453)`, and `Arbitrum One (`arb`, 42161)`: EIP-1967 (`implementation`, `admin`, `beacon`), EIP-1822 UUPS, ZeppelinOS legacy (`0x7050c9e0...` / `0x10d6a54a...`), and EIP-1167 minimal proxy clones.
+  - Governance & controller chain probing (`--deep`, `--max-depth 2`): classifies Safe multisigs (`getThreshold()` / `getOwners()`), Timelocks (`getMinDelay()` / `delay()`), ProxyAdmin contracts, or single-key EOAs (`EOA_ADMIN`).
+  - Source verification via `Sourcify v2` (`fields=abi,proxyResolution,compilation`) with Blockscout v2 fallback, plus CBOR-stripped opcode scanning that skips `PUSH1..PUSH32` immediate bytes before flagging `SELFDESTRUCT` (`0xff`) or unexpected `DELEGATECALL` (`0xf4`).
+  - Stateful delta monitor (`--state PATH --delta`): emits `EVENT` / `NEW` / `CHANGED` / `RESOLVED` diffs whenever an implementation address, proxy admin, Safe threshold, or timelock delay changes. 100% Python stdlib, 55 unit tests.
+- **Boundaries:**
+  - Strictly read-only: never asks for private keys or seed phrases, and never builds, signs, or broadcasts transactions.
+  - Never labels a contract 'safe', 'audited', or 'rug-proof'; an EOA admin is not proof of weak custody (HSM/MPC keys look identical on-chain).
+  - Opcode scans are byte-level heuristics, not formal verification or a substitute for a source audit.
+
+### Verbatim sample output
+```text
+snapshot   2026-10-27 07:52:48 UTC | tool=evm-contract-inspector
+endpoints  https://ethereum-rpc.publicnode.com
+
+target    eth:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+bytecode  2186 bytes  keccak=0xd80d4b7c890cb9d6a4893e6b52bc34b56b25335cb13716e0d1d31383e6b41505
+proxy     ZeppelinOS legacy
+impl      0x43506849d7c04f9138d1a2050bbf3a0c054402dd (23464 bytes, verified=yes)
+admin     0x807a96288a1a408dbc13de2b1d087d10356395d2 [EOA]
+impl.own  0xfcb19e6a322b27c06842a71e8c725399f049ae3a [EOA]
+sourcify  verified (match)  name=FiatTokenProxy
+opcodes   target: SELFDESTRUCT=no DELEGATECALL=yes | impl: SELFDESTRUCT=no DELEGATECALL=yes
+
+target    eth:0xc3d688b66703497daa19211eedff47f25384cdc3
+bytecode  1878 bytes  keccak=0x64952234eab8f3aed74355c49119f627965640b1efeb6b28430b5a31b0d3b192
+proxy     EIP-1967
+impl      0x63e749153baf1838f63ca22c275370bd2b1ceb15 (18599 bytes, verified=yes)
+admin     0x1ec63b5883c3481134fd50d5daebc83ecd2e8779 [contract] -> owner 0x6d903f6003cca6255d85cca4d3b5e5146dc33925 [Timelock delay=172800s]
+sourcify  verified (exact_match)  name=TransparentUpgradeableProxy
+opcodes   target: SELFDESTRUCT=no DELEGATECALL=yes | impl: SELFDESTRUCT=no DELEGATECALL=yes
+
+findings
+  [HIGH    ] EOA_ADMIN: impl_owner 0xfcb19e6a322b27c06842a71e8c725399f049ae3a is a single EOA: one key controls upgrades/administration (custody such as HSM/MPC is not visible on-chain)
+  [HIGH    ] EOA_ADMIN: proxy_admin 0x807a96288a1a408dbc13de2b1d087d10356395d2 is a single EOA: one key controls upgrades/administration (custody such as HSM/MPC is not visible on-chain)
+  [MEDIUM  ] IMPL_HAS_DELEGATECALL: implementation 0x43506849d7c04f9138d1a2050bbf3a0c054402dd contains DELEGATECALL (heuristic)
+  [MEDIUM  ] IMPL_HAS_DELEGATECALL: implementation 0x63e749153baf1838f63ca22c275370bd2b1ceb15 contains DELEGATECALL (heuristic)
+  [INFO    ] PROXY_DELEGATECALL: DELEGATECALL in proxy code (expected for a proxy)
+  [INFO    ] PROXY_DELEGATECALL: DELEGATECALL in proxy code (expected for a proxy)
+  [INFO    ] TIMELOCK_ADMIN: proxy_admin.owner 0x6d903f6003cca6255d85cca4d3b5e5146dc33925 is a timelock with 172800 s delay
+
+exit_code 2
+SCOPE_NOTE: Read-only on-chain and public-API inspection. No private keys, seed phrases or signing; no transaction is built or broadcast. Findings are heuristics with stated evidence, not verdicts, and are not tax, legal or investment advice. An EOA admin is not proof of weak custody (HSM/MPC keys look identical on-chain). Opcode scans are byte-level heuristics.
+```
