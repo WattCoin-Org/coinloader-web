@@ -199,6 +199,7 @@
         <p style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">
           SKU: <code>hyperliquid-monitor</code> &middot; Skills: <code>hyperliquid-monitor-setup + hyperliquid-monitor</code> &middot; Tested: 1,312 lines stdlib Python, 252 unit tests &middot; Category: Perps &amp; DeFi / Risk Monitoring
         </p>
+        <div class="dual-runtime-pill">⚡ Works in Grok Bot + Cursor + Claude Code + Any Terminal (Zero-Dep Python 3 CLI Included)</div>
         <div class="product-cta-row">
           <button type="button" class="btn btn-primary btn--primary" data-open-checkout="hyperliquid-monitor">Buy License ($29 in SOL) &rarr;</button>
           <button type="button" class="btn btn-secondary btn--ghost" data-open-spec="hyperliquid-monitor">Inspect SKILL.md Spec</button>
@@ -361,6 +362,7 @@ exit codes
       <section class="product-section" id="licensing-flow">
         <h2>Licensing &amp; Setup</h2>
         <p>One-time $29 license paid in SOL, up to 3 workspace-reset rebinds. On Turn 1 the <code>hyperliquid-monitor-setup</code> skill verifies and activates your workspace agent key, binds your <code>wcl_...</code> code through the read-only license helper (<code>POST /api/v1/agents/license/claim</code>), installs the SHA-256-pinned <code>bot_common.py</code> and <code>hyperliquid_monitor.py</code> runtime, runs a public market smoke test and offers an optional watchlist routine. The license code is never printed in chat.</p>
+        <p class="dual-runtime-callout"><strong>One <code>wcl_...</code> key, two runtimes.</strong> Your license key works inside Grok Bot <em>and</em> from any local terminal or IDE agent (Cursor, Claude Code, Windsurf, CI/CD) via the standalone single-file Python 3 CLI (<code>/runtime/hyperliquid_monitor.py</code>) &mdash; Python 3.10+ standard library only, zero <code>pip install</code> dependencies, with <code>--json</code> / <code>--markdown</code> output.</p>
       </section>
       <section class="product-section" id="product-faq">
         <h2>Frequently Asked Questions &mdash; Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor</h2>
@@ -414,6 +416,10 @@ exit codes
       </div>
 
       <div class="modal-body checkout-modal-body">
+        <div class="dual-runtime-callout" id="checkout-deliverables-note">
+          <strong>You receive both:</strong> the 1-Click Grok Bot activation <em>plus</em> the Standalone Zero-Dep Python 3 CLI (<code>--json</code> / <code>--markdown</code>) for Cursor, Claude Code, Windsurf, CI/CD and any terminal. One <code>wcl_...</code> key unlocks both.
+        </div>
+
         <!-- Saved License Banner (shown if localStorage has a purchased license for this SKU) -->
         <div class="saved-license-banner" id="checkout-saved-banner" hidden>
           <div class="saved-license-info">

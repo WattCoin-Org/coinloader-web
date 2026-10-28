@@ -2,6 +2,8 @@
 
 > Instant, one-click crypto, Solana, security, and web agent templates that execute locally inside your isolated Grok Bot Linux container (`/workspace`). Non-custodial, zero monthly subscriptions, and powered by the WattCoin Agent Registry (`https://www.wattcoin.org/llms.txt`).
 
+> **Dual Runtime in Every Product:** every license key unlocks both (1) a 1-Click Grok Bot skill bundle (`https://x.ai/bot/...`) and (2) a standalone, deterministic, zero-dependency Python 3.10+ single-file CLI (`/runtime/*.py`, standard library only, no `pip install`, `--json` / `--markdown` output) that runs locally in Cursor, Claude Code, Windsurf, CI/CD pipelines (e.g. GitHub Actions), and any macOS/Linux/Windows terminal.
+
 - **Canonical Storefront:** https://coinloader.com/
 - **Machine-Readable Catalog:** https://coinloader.com/llms.txt
 - **Full Catalog + Verbatim Sample Reports:** https://coinloader.com/llms-full.txt
