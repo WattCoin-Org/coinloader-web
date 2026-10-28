@@ -216,6 +216,7 @@
 
       <section class="product-section" id="sample-output">
         <h2>Verbatim Sample Output (<code>/workspace</code> Proof-of-Work Preview)</h2>
+        <p class="sample-disclosure" style="margin-bottom: 12px;"><strong>Sample disclosure:</strong> this is a representative sample, not a customer report. It was produced against public or fictional test targets; wallet, account and credential values are placeholders or redacted (for example <code>wck_&lt;REDACTED&gt;</code>), and no private keys, seed phrases or secrets are ever shown. Your own report will differ in content and length.</p>
         <p style="margin-bottom: 12px;">
           Below is a representative output artifact generated inside <code>/workspace</code> with mandatory scope notes and source citations:
         </p>
@@ -223,29 +224,39 @@
 &gt; Scope Note (SCOPE_NOTE.txt): Read-only, non-custodial inspection of public Solana token accounts (Tokenkeg legacy SPL and TokenzQd Token-2022). Never requests private keys or seed phrases, never signs or broadcasts transactions, and provides no financial or tax advice.
 
 - Wallet (public address only): &lt;WALLET_ADDRESS&gt;
-- Programs Scanned: Tokenkeg (legacy SPL), TokenzQd (Token-2022)
-- Token Accounts Found: 7 (3 empty · 1 delegated · 3 active)
-- Rent per empty standard SPL account: 0.00203928 SOL (2,039,280 lamports)
+- Retrieved (UTC): 2026-10-25T14:00:00Z
+- Programs Scanned:
+  - Legacy SPL Token (`TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA`)
+  - Token-2022 (`TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb`)
+- Token Accounts Found: 7 total (3 empty reclaimable · 1 active delegate · 3 active balances)
+- Standard Empty SPL Account Rent: 0.00203928 SOL (2,039,280 lamports)
 
-## SAFE_TO_RECLAIM (3 empty accounts — 0.00611784 SOL / 6,117,840 lamports)
-- &lt;TOKEN_ACCOUNT_1&gt; (mint &lt;MINT_A&gt;) — balance 0, no delegate, not frozen — 0.00203928 SOL
-- &lt;TOKEN_ACCOUNT_2&gt; (mint &lt;MINT_B&gt;) — balance 0, no delegate, not frozen — 0.00203928 SOL
-- &lt;TOKEN_ACCOUNT_3&gt; (mint &lt;MINT_C&gt;) — balance 0, no delegate, not frozen — 0.00203928 SOL
+## Bucket 1 — SAFE_TO_RECLAIM (3 empty accounts — Total: 0.00611784 SOL / 6,117,840 lamports)
+1. `&lt;TOKEN_ACCOUNT_1&gt;` (Mint: `&lt;MINT_A&gt;`, Program: `Tokenkeg...`)
+   - Balance: `0` · Delegate: `null` · State: `initialized` (not frozen) · Reclaimable Rent: `0.00203928 SOL` (`2,039,280 lamports`)
+2. `&lt;TOKEN_ACCOUNT_2&gt;` (Mint: `&lt;MINT_B&gt;`, Program: `Tokenkeg...`)
+   - Balance: `0` · Delegate: `null` · State: `initialized` (not frozen) · Reclaimable Rent: `0.00203928 SOL` (`2,039,280 lamports`)
+3. `&lt;TOKEN_ACCOUNT_3&gt;` (Mint: `&lt;MINT_C&gt;`, Program: `Tokenkeg...`)
+   - Balance: `0` · Delegate: `null` · State: `initialized` (not frozen) · Reclaimable Rent: `0.00203928 SOL` (`2,039,280 lamports`)
 
-## NEEDS_CONFIRMATION (1 account)
-- &lt;TOKEN_ACCOUNT_4&gt; (mint &lt;MINT_D&gt;) — ACTIVE DELEGATE &lt;DELEGATE_ADDRESS&gt; with remaining allowance 500,000,000 base units.
-  Unrecognized delegate. Confirm you intended this approval before revoking.
+## Bucket 2 — NEEDS_CONFIRMATION (1 account — Active Token Delegation)
+1. `&lt;TOKEN_ACCOUNT_4&gt;` (Mint: `&lt;MINT_D&gt;`, Program: `Tokenkeg...`)
+   - Balance: `1,250.00` · Active Delegate: `&lt;DELEGATE_ADDRESS&gt;` · Delegated Amount Remaining: `500,000,000` base units
+   - Action: Unrecognized third-party delegate still has spending authority. Confirm whether you still use this dApp before revoking.
 
-## DO_NOT_TOUCH (3 accounts)
-- &lt;TOKEN_ACCOUNT_5&gt; — active balance (USDC)
-- &lt;TOKEN_ACCOUNT_6&gt; — active balance (JitoSOL)
-- &lt;TOKEN_ACCOUNT_7&gt; — active balance (Token-2022 mint)
+## Bucket 3 — DO_NOT_TOUCH (3 accounts — Active Balances / Protocol Positions)
+1. `&lt;TOKEN_ACCOUNT_5&gt;` — Active balance (USDC `EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`)
+2. `&lt;TOKEN_ACCOUNT_6&gt;` — Active liquid staking balance (JitoSOL `J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn`)
+3. `&lt;TOKEN_ACCOUNT_7&gt;` — Active Token-2022 balance (`TokenzQd...` with `TransferFeeConfig` extension)
 
-## Non-Custodial Reclaim Commands (you sign every transaction)
-- Phantom / Solflare: Settings -&gt; Manage Token Accounts -&gt; select each SAFE_TO_RECLAIM account -&gt; Close Account.
-- spl-token CLI (legacy SPL):  spl-token close &lt;TOKEN_ACCOUNT_1&gt;
-- spl-token CLI (Token-2022):  spl-token close --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb &lt;TOKEN_ACCOUNT&gt;
-- Revoke a delegate (after you confirm):  spl-token revoke &lt;TOKEN_ACCOUNT_4&gt;</pre>
+## Non-Custodial Reclaim &amp; Revoke Commands (You Sign Every Transaction in Your Own Wallet)
+- Phantom / Solflare UI: Settings -&gt; Manage Token Accounts -&gt; select each `SAFE_TO_RECLAIM` account -&gt; Close Account.
+- Solana SPL Token CLI (Legacy SPL):
+  `spl-token close &lt;TOKEN_ACCOUNT_1&gt; --recipient &lt;WALLET_ADDRESS&gt;`
+- Solana SPL Token CLI (Token-2022):
+  `spl-token close --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb &lt;TOKEN_ACCOUNT&gt; --recipient &lt;WALLET_ADDRESS&gt;`
+- Revoke Stale Delegate (after confirming Bucket 2):
+  `spl-token revoke &lt;TOKEN_ACCOUNT_4&gt;`</pre>
       </section>
 
       <section class="product-section" id="refusal-boundaries">

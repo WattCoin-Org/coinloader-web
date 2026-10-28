@@ -11,7 +11,7 @@
 - **Solana Wallet Hygiene Bot ($19 in SOL, `sku: solana-wallet-hygiene`, Registry Name: *Solana Wallet Hygiene & Rent Reclaim*):** https://coinloader.com/bots/solana-wallet-hygiene.html
 - **Retail Token Due-Diligence Bot ($29 in SOL, `sku: solana-token-scanner`, Registry Name: *Solana Token & Mint Due-Diligence Scanner*):** https://coinloader.com/bots/solana-token-scanner.html
 
-## 1. Live Templates (Available Now — 4 Live Agents)
+## 1. Live Templates (Available Now — 10 Live Agents)
 
 ### 1.1 Web & API Text Extractor (FREE + 100 WATT Starter Grant)
 - **Status:** LIVE NOW (Free)
@@ -80,10 +80,113 @@
      - Section 4: DEX Liquidity & Pair Snapshot (DexScreener)
      - Section 5: Mandatory Non-Advice Scope Note
   5. **Guardrails:** Never outputs "safe/unsafe", "legit", "scam", or "rug" labels and never assigns a numerical score; every metric cites its RPC call, slot/timestamp, or API source.
-## 2. Planned Phase 3 Specification (Coming Next)
-- **Hyperliquid & Perp Basis Monitor (`hyperliquid-monitor`):** Planned $29 in SOL — Unauthenticated read-only perp funding, basis, and liquidation-distance monitor via `POST https://api.hyperliquid.xyz/info`.
+### 1.5 Pump.fun Coin & Community Manager ($29 One-Time in SOL)
+- **Status:** LIVE NOW ($29 USD settled on-chain in SOL via CoinLoader.com checkout modal)
+- **SKU Identifier:** `pumpfun-coin-manager`
+- **Product Page URL:** https://coinloader.com/bots/pumpfun-coin-manager.html
+- **Included Skills:** `pumpfun-coin-manager-setup`, `pumpfun-coin-manager`
+- **Summary:** Read-only Pump.fun launch auditor and community-thread delta monitor for Grok Bot ($29 SOL). Finds missing links, creator bio/X gaps, empty Callouts and listing mismatches; drafts replies you review and post.
+- **Capabilities:**
+  - 16-key delta monitor (`--state` + `--delta`): authority reinstated, metadata URI changed, supply increased, ban or hidden coin, new Callouts and replies, fee-sharing and creator-profile edits, large new holders, creator sells, liquidity drops, pair dormant/active, closed link gaps, new bot followers.
+  - Point-in-time audit: missing website/Discord/Telegram in IPFS metadata, creator bio vs `--expected-website`, `--expected-discord`, `--expected-x`, empty Callout tab, GeckoTerminal link gaps, dormant DexScreener pairs, RugCheck risks.
+  - IPFS metadata read through two hash-verified gateways; Token-2022 authorities and extensions read from public Solana RPC.
+  - `--draft-replies` emits a bio, creator anchor Callout, on-chain transparency Callout and per-Callout reply drafts. Exit codes 0/1/2/3 (clean/MEDIUM/HIGH/CRITICAL), 11 when data sources are degraded.
+- **Boundaries:**
+  - Never posts, signs, or holds keys; every Callout, reply and bio is a draft for a human.
+  - Never suggests wash-trading to wake a dormant aggregator pair.
+  - Never DMs or tags underwater holders, and never makes price or return claims.
+  - Findings are heuristics with stated evidence, not verdicts.
+- **Storefront Checkout URL:** https://coinloader.com/#card-pumpfun-coin-manager
+- **Full Verbatim Sample:** https://coinloader.com/bots/pumpfun-coin-manager.html#sample-output and https://coinloader.com/llms-full.txt
 
-## 3. Canonical Documentation & Sister Storefront
+### 1.6 Token Launch Command Center ($49 One-Time in SOL)
+- **Status:** LIVE NOW ($49 USD settled on-chain in SOL via CoinLoader.com checkout modal)
+- **SKU Identifier:** `token-launch-command-center`
+- **Product Page URL:** https://coinloader.com/bots/token-launch-command-center.html
+- **Included Skills:** `token-launch-command-center-setup`, `token-launch-command-center`
+- **Summary:** Flagship Pump.fun launch bundle for Grok Bot ($49 SOL): coin audit and delta monitor plus a gated X / Discord / Telegram / Bluesky publisher with lint, HMAC approval and dry-run dispatch.
+- **Capabilities:**
+  - `command_center.py init` writes a config from `crypto_launch_preset.json` (banned-term list, link allowlist, X in free Web Intent mode).
+  - `command_center.py audit MINT --queue` runs the read-only audit and queues fact-only drafts; Gate 1 lint runs on each draft.
+  - Gate 2 re-verifies an HMAC over the exact approved text, expiry and lint before any send; edited text is refused. Dispatcher is a dry run unless `--live`.
+  - X: free 1-click Web Intents by default; paid API (2026 pay-per-use, $0.015 plain post, $0.20 with a link) only with explicit opt-in.
+  - Bundled modules are tested byte-identical to the standalone products.
+- **Boundaries:**
+  - No wallet keys, signing, or auto-posting; `--live` is explicit and per item.
+  - No price, return or 'next X' claims; no safe/scam/rug verdicts.
+  - No wash-trading advice, no unsolicited DMs or holder tags.
+  - An ambiguous send is marked unknown and never retried automatically.
+- **Storefront Checkout URL:** https://coinloader.com/#card-token-launch-command-center
+- **Full Verbatim Sample:** https://coinloader.com/bots/token-launch-command-center.html#sample-output and https://coinloader.com/llms-full.txt
+
+### 1.7 EVM Smart Contract & Proxy Inspector ($29 One-Time in SOL)
+- **Status:** LIVE NOW ($29 USD settled on-chain in SOL via CoinLoader.com checkout modal)
+- **SKU Identifier:** `evm-contract-inspector`
+- **Product Page URL:** https://coinloader.com/bots/evm-contract-inspector.html
+- **Included Skills:** `evm-contract-inspector-setup`, `evm-contract-inspector`
+- **Summary:** Read-only EVM smart contract and proxy upgradeability inspector for Grok Bot ($29 SOL). Resolves EIP-1967, EIP-1822, EIP-1167 and ZeppelinOS proxy slots, Safe multisig and Timelock controllers, Sourcify v2 source verification, and dangerous opcodes across Ethereum, Base, and Arbitrum.
+- **Capabilities:**
+  - Batched JSON-RPC slot resolution across `Ethereum (`eth`, 1)`, `Base (`base`, 8453)`, and `Arbitrum One (`arb`, 42161)`: EIP-1967 (`implementation`, `admin`, `beacon`), EIP-1822 UUPS, ZeppelinOS legacy (`0x7050c9e0...` / `0x10d6a54a...`), and EIP-1167 minimal proxy clones.
+  - Governance & controller chain probing (`--deep`, `--max-depth 2`): classifies Safe multisigs (`getThreshold()` / `getOwners()`), Timelocks (`getMinDelay()` / `delay()`), ProxyAdmin contracts, or single-key EOAs (`EOA_ADMIN`).
+  - Source verification via `Sourcify v2` (`fields=abi,proxyResolution,compilation`) with Blockscout v2 fallback, plus CBOR-stripped opcode scanning that skips `PUSH1..PUSH32` immediate bytes before flagging `SELFDESTRUCT` (`0xff`) or unexpected `DELEGATECALL` (`0xf4`).
+  - Stateful delta monitor (`--state PATH --delta`): emits `EVENT` / `NEW` / `CHANGED` / `RESOLVED` diffs whenever an implementation address, proxy admin, Safe threshold, or timelock delay changes. 100% Python stdlib, 55 unit tests.
+- **Boundaries:**
+  - Strictly read-only: never asks for private keys or seed phrases, and never builds, signs, or broadcasts transactions.
+  - Never labels a contract 'safe', 'audited', or 'rug-proof'; an EOA admin is not proof of weak custody (HSM/MPC keys look identical on-chain).
+  - Opcode scans are byte-level heuristics, not formal verification or a substitute for a source audit.
+- **Storefront Checkout URL:** https://coinloader.com/#card-evm-contract-inspector
+- **Full Verbatim Sample:** https://coinloader.com/bots/evm-contract-inspector.html#sample-output and https://coinloader.com/llms-full.txt
+
+### 1.8 EVM Wallet Approval & Permit2 Risk Auditor ($19 One-Time in SOL)
+- **Status:** LIVE NOW ($19 USD settled on-chain in SOL via CoinLoader.com checkout modal)
+- **SKU Identifier:** `evm-approval-auditor`
+- **Product Page URL:** https://coinloader.com/bots/evm-approval-auditor.html
+- **Included Skills:** `evm-approval-auditor-setup`, `evm-approval-auditor`
+- **Runtime URL:** https://coinloader.com/runtime/evm_approval_auditor.py (SHA-256 `eab5dc79cb998a2ac39093748e6aba186f88a23e28f1155f807ade3a02eaa518`) + https://coinloader.com/runtime/bot_common.py (SHA-256 `d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`)
+- **Summary:** Read-only EVM wallet approval and Permit2 risk auditor for Grok Bot ($19 SOL). Reads live ERC-20 allowances and Permit2 sub-allowances across Ethereum, Base, and Arbitrum, classifies every spender (EOA, unverified, unlabeled, or curated), and prints exact approve(spender, 0) revoke and Permit2 lockdown call-data that you submit yourself.
+- **Capabilities:**
+  - Live allowance reads across Ethereum (`eth`, 1), Base (`base`, 8453), and Arbitrum One (`arb`, 42161): ERC-20 `allowance(owner, spender)` plus Permit2 `allowance(owner, token, spender)` (amount, expiration, nonce) over curated stablecoins, WETH, WBTC and LSTs, Blockscout-discovered holdings, and bounded `eth_getLogs` Approval-event discovery (`--lookback-blocks`, default 20000).
+  - Spender classification with balance-at-risk per pair: `EOA_SPENDER` and unverified unlabeled contracts (`UNVERIFIED_SPENDER`) are CRITICAL, unlimited allowances to unlabeled verified contracts (`UNKNOWN_VERIFIED_SPENDER`) are HIGH, unlimited allowances to curated spenders (Uniswap Permit2 & routers, 1inch, CoW Protocol, 0x, ParaSwap, Morpho Blue, Aave V3) are MEDIUM, plus `PERMIT2_ACTIVE_SUBALLOWANCE` / `PERMIT2_EXPIRED_SUBALLOWANCE`.
+  - Non-custodial remediation call-data: exact `to` + `data` for `approve(spender, 0)` on each flagged token and a single batched Permit2 `lockdown((token, spender)[])` transaction, displayed for you to submit from your own wallet (Rabby, MetaMask, Safe, or hardware signer).
+  - Stateful delta monitor (`--state PATH --delta`): emits `NEW_APPROVAL`, `ALLOWANCE_INCREASED`, and `APPROVAL_REVOKED` events between runs, with `--json` output and exit codes 0 clean / 1 MEDIUM / 2 HIGH / 3 CRITICAL / 10 bad input / 11 degraded sources. 1,181 lines stdlib Python, 87 passing unit tests.
+- **Boundaries:**
+  - Strictly read-only (`eth_blockNumber`, `eth_call`, `eth_getCode`, `eth_getStorageAt`, `eth_getLogs`): never asks for private keys or seed phrases, and never signs, builds for submission, or broadcasts a transaction.
+  - “No findings” never means “no approvals exist”: coverage is the stated tokens, spenders, and log window. NFT `setApprovalForAll` and unlisted tokens/spenders are outside v1 unless supplied with `--tokens` / `--spenders`.
+  - An unlabeled spender is unknown, not malicious; refuses to scan third-party wallets for exploitation, rank wallets by balance, or build phishing/drainer lists. Not financial, legal, or tax advice.
+- **Storefront Checkout URL:** https://coinloader.com/#card-evm-approval-auditor
+- **Full Verbatim Sample:** https://coinloader.com/bots/evm-approval-auditor.html#sample-output and https://coinloader.com/llms-full.txt
+
+### 1.9 Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor ($19 One-Time in SOL)
+- **Status:** LIVE NOW ($19 USD settled on-chain in SOL via CoinLoader.com checkout modal)
+- **SKU Identifier:** `btc-utxo-hygiene`
+- **Product Page URL:** https://coinloader.com/bots/btc-utxo-hygiene.html
+- **Included Skills:** `btc-utxo-hygiene-setup`, `btc-utxo-hygiene`
+- **Runtime URL:** https://coinloader.com/runtime/btc_utxo_hygiene.py (SHA-256 `e3b8d9be91fb2ae75d272fea248d484a2c4076fd472e40eaef73ea903257d5ee`) + https://coinloader.com/runtime/bot_common.py (SHA-256 `d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`)
+- **Summary:** Read-only Bitcoin wallet and UTXO privacy/fee hygiene auditor for Grok Bot ($19 SOL). Reads address stats, UTXO sets, recent transactions and fee estimates from public Mempool.space / Blockstream Esplora endpoints, flags address reuse, dusting, fragmentation, stranded UTXOs, Ordinals inscriptions and common-input-ownership exposure, and prints coin-control and consolidation commands that you run yourself.
+- **Capabilities:**
+  - Validates Bitcoin mainnet addresses (Base58Check, Bech32, Bech32m) and reads address stats, the UTXO set, recent transactions, fee estimates and BTC/USD price from public Mempool.space with Blockstream Esplora fallback (or an `--offline` fixture).
+  - UTXO hygiene: value buckets, `UTXO_FRAGMENTATION`, `STRANDED_UTXOS`, `LEGACY_SCRIPT_TYPE`, `DUSTING_ATTACK_SUSPECT`, and a creating-transaction witness scan that marks Ordinals-inscription UTXOs (`INSCRIPTION_PROTECTED`) so they are never swept.
+  - Fee planning: consolidation plan and cost-vs-savings matrix for P2WPKH or P2TR outputs with break-even future fee rate and a `CONSOLIDATION_WINDOW_OPEN` signal.
+  - Privacy exposure: `ADDRESS_REUSE`, `CIOH_COSPEND_EXPOSURE`, `CIOH_CROSS_ADDRESS_LINK`, `ROUND_NUMBER_CHANGE_LEAK`, `SCRIPT_TYPE_MISMATCH_CHANGE` and a 0-100 hygiene score.
+  - Non-custodial coin control: `bitcoin-cli lockunspent` freeze commands, an unsigned-PSBT `bitcoin-cli sendall ... psbt=true` consolidation command and Sparrow / Electrum steps, displayed for you to run yourself.
+  - Stateful delta monitor (`--state PATH --delta`): `NEW_DUST`, `UTXO_COUNT_CHANGED`, `CONSOLIDATION_WINDOW_OPEN` events, with `--format text|markdown|json` output and exit codes 0 clean / 1 MEDIUM / 2 HIGH / 3 CRITICAL / 10 bad input / 11 degraded sources. 1,242 lines stdlib Python, 157 passing unit tests.
+- **Boundaries:**
+  - Strictly read-only (public Mempool.space / Blockstream Esplora GET endpoints): never accepts private keys, WIF, extended private keys, seed phrases or PSBTs, and never builds, signs or broadcasts a transaction.
+  - Heuristics are probabilistic and cover only the transactions and small UTXOs the report states it checked; "no findings" never means "private" or "safe to sweep".
+  - Refuses to target third-party wallets for exploitation or deanonymisation, rank wallets by balance, or build dust-attack target lists. Not financial, legal, or tax advice.
+- **Storefront Checkout URL:** https://coinloader.com/#card-btc-utxo-hygiene
+- **Full Verbatim Sample:** https://coinloader.com/bots/btc-utxo-hygiene.html#sample-output and https://coinloader.com/llms-full.txt
+
+### 1.10 Hyperliquid Perps, Funding & Liquidation Risk Monitor ($29 One-Time in SOL)
+- **Status:** LIVE NOW ($29 USD settled on-chain in SOL via CoinLoader.com checkout modal)
+- **Deliverable:** *Audit Hyperliquid perpetual positions, exact liquidation distance %, TP/SL stop coverage, cross-venue predicted funding APR (Hyperliquid vs Binance/Bybit), mark-oracle basis, and HLP vault posture — 100% read-only with zero API or wallet keys.*
+- **SKU Identifier:** `hyperliquid-monitor`
+- **Product Page URL:** https://coinloader.com/bots/hyperliquid-monitor.html
+- **Runtime URL:** https://coinloader.com/runtime/hyperliquid_monitor.py (`SHA-256: d9b8b58b9be66617177c238b195c3393ec817dfc591366797fa30f582db7f952`, 1,312 lines Python 3 stdlib, 252 unit tests) + https://coinloader.com/runtime/bot_common.py (`SHA-256: d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`)
+- **Included Skills:** `hyperliquid-monitor-setup`, `hyperliquid-monitor`
+- **Storefront Checkout URL:** https://coinloader.com/#card-hyperliquid-monitor
+
+## 2. Canonical Documentation & Sister Storefront
 - **WattCoin Agent Registry Reference:** https://www.wattcoin.org/llms.txt
 - **Enterprise OSINT & Physical Infrastructure Agents:** https://botappstore.com/
 
@@ -123,9 +226,18 @@ All paid Grok Bot templates on BotAppStore.com and CoinLoader.com use the same n
 
 ---
 
-## Verbatim Proof-of-Work Sample Outputs (CoinLoader.com — 4 Live Templates)
+## Verbatim Proof-of-Work Sample Outputs (CoinLoader.com — 10 Live Templates)
 
 ### Sample 1 — Web & API Text Extractor (`getting-started` + `web-extractor`, $0 Free Forever)
+
+```text
+# Turn 1 - getting-started (auto-onboarding in /workspace)
+[1/4] Registered workspace agent: WATTCOIN_AGENT_ID=agent_<REDACTED>
+[2/4] Wrote /workspace/.wattcoin_env (chmod 600, -rw-------): WATTCOIN_AGENT_KEY=wck_<REDACTED>
+[3/4] onboarding_v1 complete: +25 WATT
+[4/4] starter_v1 complete: +75 WATT
+Grant total: +100 WATT. The agent key is never printed in chat.
+```
 
 ```http
 POST https://www.wattcoin.org/api/v1/scrape HTTP/2
@@ -149,6 +261,9 @@ x-quota-reset: 2026-10-27T00:00:00Z
   "content": "# WattCoin (WATT) — Agent Reference\n> Utility token on Solana for AI/automation ecosystems..."
 }
 ```
+
+Scope Note: static HTTP fetch + BeautifulSoup readable-text extraction (15 s timeout, 2 MB cap); no headless-browser or client-side JavaScript SPA rendering. `html` and `json` modes cost 100 WATT/call and run only after explicit per-call confirmation.
+Sample disclosure: representative sample against public/fictional targets; credentials are redacted and no secrets are shown.
 
 
 ### Sample 2 — Bot & Skill Security Auditor (`sku: bot-skill-auditor`, $29 in SOL)

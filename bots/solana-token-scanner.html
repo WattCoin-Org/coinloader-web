@@ -216,32 +216,43 @@
 
       <section class="product-section" id="sample-output">
         <h2>Verbatim Sample Output (<code>/workspace</code> Proof-of-Work Preview)</h2>
+        <p class="sample-disclosure" style="margin-bottom: 12px;"><strong>Sample disclosure:</strong> this is a representative sample, not a customer report. It was produced against public or fictional test targets; wallet, account and credential values are placeholders or redacted (for example <code>wck_&lt;REDACTED&gt;</code>), and no private keys, seed phrases or secrets are ever shown. Your own report will differ in content and length.</p>
         <p style="margin-bottom: 12px;">
           Below is a representative output artifact generated inside <code>/workspace</code> with mandatory scope notes and source citations:
         </p>
         <pre class="code-pre"># Solana Token Due-Diligence Report
-&gt; Scope Note (SCOPE_NOTE.txt): This report lists observable on-chain facts at the time shown. It is not investment advice, makes no safe/unsafe, legitimacy, or scam determination, and assigns no score.
+&gt; Scope Note (SCOPE_NOTE.txt): This report lists observable on-chain facts at the UTC timestamp and RPC slot shown. It is not investment, financial, or legal advice, makes no safe/unsafe, legitimacy, or scam/rug determination, and assigns no numeric score.
 
-- Mint: Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump (WattCoin / WATT — real mainnet Token-2022 mint)
-- Retrieved (UTC): 2026-10-25T14:05:00Z · Solana Mainnet-Beta
+- Mint Address: `Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump` (WattCoin / WATT — real mainnet Token-2022 mint)
+- Retrieved (UTC): 2026-10-25T14:05:00Z · Solana Mainnet-Beta (`getAccountInfo`, `getTokenSupply`, `getTokenLargestAccounts`)
 
 ## Section 1 — Mint &amp; Program Identity
-- Owner Program: Token-2022 (TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb) · Decimals: 6 · Supply: 999,999,142.810421
+- Owner Program: `TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb` (SPL Token-2022)
+- Decimals: `6`
+- Current Total Supply: `999,999,142.810421` tokens (`999999142810421` base units)
+- Initialization State: `Initialized` (`isInitialized: true`)
 
 ## Section 2 — Authority &amp; Token-2022 Extension Controls
-- Mint authority: REVOKED (null)
-- Freeze authority: REVOKED (null)
-- Extensions: TransferFeeConfig: none · PermanentDelegate: none · TransferHook: none · DefaultAccountState: Initialized
+- Mint Authority: `REVOKED (null)` — no new tokens can be minted by an authority key
+- Freeze Authority: `REVOKED (null)` — token accounts cannot be frozen by a freeze authority key
+- Token-2022 Extensions Parsed:
+  - `TransferFeeConfig`: `none`
+  - `PermanentDelegate`: `none`
+  - `TransferHook`: `none`
+  - `DefaultAccountState`: `Initialized`
 
-## Section 3 — Top-20 Holder Concentration
-- Top 10 holders: 38.42% of supply · Top 20 holders: 51.18% of supply
-- Separates PDA/AMM pool vaults from individual system-owned wallet token accounts via getTokenLargestAccounts.
+## Section 3 — Top-20 Holder Concentration (`getTokenLargestAccounts`)
+- Top-10 Largest Token Accounts: `38.42%` of total supply
+- Top-20 Largest Token Accounts: `51.18%` of total supply
+- Program / Pool Vault Separation: Separates PDA/AMM pool vaults from individual system-owned wallet token accounts with exact percentage-of-supply per account.
 
-## Section 4 — DEX Liquidity &amp; Pair Snapshot
-- Primary pair: WATT/SOL on Raydium / PumpSwap · Source: DexScreener API (retrieved 2026-10-25T14:05:12Z)
+## Section 4 — DEX Liquidity &amp; Pair Snapshot (`api.dexscreener.com`)
+- Primary DEX Pair: `WATT / SOL` (Raydium / PumpSwap on Solana)
+- Reported USD Liquidity, 24h Volume, Pair Creation Timestamp, and FDV cited with exact DexScreener retrieval timestamp (`2026-10-25T14:05:12Z`).
+- LP Lock / Burn Status: Reported strictly as observable on-chain state or explicitly marked unverified if held off-chain.
 
-## Section 5 — Scope Note (Mandatory)
-This report lists observable on-chain facts at the time shown. It is not investment advice, makes no safe/unsafe, legitimacy, or scam determination, and assigns no score. It cannot see off-chain conduct, future authority changes, or liquidity changes after retrieval.</pre>
+## Section 5 — Mandatory Scope &amp; Limitations Note
+This report lists observable on-chain facts at the time shown. It is not investment advice, makes no safe/unsafe, legitimacy, or scam determination, and assigns no score. It cannot see off-chain team conduct, private key custody arrangements, future authority transfers (where authorities remain present), or liquidity changes after retrieval.</pre>
       </section>
 
       <section class="product-section" id="refusal-boundaries">
