@@ -19,8 +19,9 @@
 - **EVM Wallet Approval & Permit2 Risk Auditor ($19 in SOL, `sku: evm-approval-auditor`, LIVE NOW - instant on-chain SOL checkout):** https://coinloader.com/bots/evm-approval-auditor.html (runtime: https://coinloader.com/runtime/evm_approval_auditor.py, SHA-256 `eab5dc79cb998a2ac39093748e6aba186f88a23e28f1155f807ade3a02eaa518`; https://coinloader.com/runtime/bot_common.py, SHA-256 `d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`; live Ethereum mainnet sample: https://coinloader.com/bots/evm-approval-auditor.html#sample-output and https://coinloader.com/llms-full.txt)
 - **Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor ($19 in SOL, `sku: btc-utxo-hygiene`, LIVE NOW - instant on-chain SOL checkout):** https://coinloader.com/bots/btc-utxo-hygiene.html (runtime: https://coinloader.com/runtime/btc_utxo_hygiene.py, SHA-256 `e3b8d9be91fb2ae75d272fea248d484a2c4076fd472e40eaef73ea903257d5ee`; https://coinloader.com/runtime/bot_common.py, SHA-256 `d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`; live Bitcoin mainnet sample: https://coinloader.com/bots/btc-utxo-hygiene.html#sample-output and https://coinloader.com/llms-full.txt)
 - **Hyperliquid Perps, Funding & Liquidation Risk Monitor ($29 in SOL, `sku: hyperliquid-monitor`, LIVE NOW - instant on-chain SOL checkout):** https://coinloader.com/bots/hyperliquid-monitor.html (runtime: https://coinloader.com/runtime/hyperliquid_monitor.py, SHA-256 `d9b8b58b9be66617177c238b195c3393ec817dfc591366797fa30f582db7f952`; https://coinloader.com/runtime/bot_common.py, SHA-256 `d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`; live Hyperliquid L1 sample: https://coinloader.com/bots/hyperliquid-monitor.html#sample-output and https://coinloader.com/llms-full.txt)
+- **Cross-Chain Token RugScore & Honeypot Scanner ($29 in SOL, `sku: token-rugscore`, LIVE NOW - instant on-chain SOL checkout):** https://coinloader.com/bots/token-rugscore.html (runtime: https://coinloader.com/runtime/token_rugscore.py; rule IDs `RS-SOL-01..05`, `RS-EVM-01..04`; also included in `defi-wallet-security-pack` and `pro-trader-perps-suite`)
 
-## 1. Live Templates (Available Now — 10 Live Agents)
+## 1. Live Templates (Available Now — 11 Live Agents)
 
 ### 1.1 Web & API Text Extractor (FREE + 100 WATT Starter Grant)
 - **Status:** LIVE NOW (Free)
@@ -195,28 +196,42 @@
 - **Included Skills:** `hyperliquid-monitor-setup`, `hyperliquid-monitor`
 - **Storefront Checkout URL:** https://coinloader.com/#card-hyperliquid-monitor
 
+### 1.11 Cross-Chain Token RugScore & Honeypot Scanner ($29 One-Time in SOL)
+- **Status:** LIVE NOW ($29 USD in SOL, settled on-chain via CoinLoader.com checkout modal; also included at no extra cost in `defi-wallet-security-pack` ($59) and `pro-trader-perps-suite` ($69))
+- **Deliverable:** *Read-only, deterministic 0-100 RugScore with risk tier and `audit_sha256` for Solana SPL / Token-2022 mints and Ethereum, Base & Arbitrum token contracts: mint/freeze authority, Token-2022 extension traps, holder concentration, proxy admins, opcode traps, source verification and liquidity.*
+- **SKU Identifier:** `token-rugscore`
+- **Product Page URL:** https://coinloader.com/bots/token-rugscore.html
+- **Runtime URL:** https://coinloader.com/runtime/token_rugscore.py (standalone zero-dependency Python 3.10+ CLI, `--json` / `--markdown` output, 1200x675 PNG audit receipts) + https://coinloader.com/runtime/bot_common.py
+- **Included Skills:** `token-rugscore-setup`, `token-rugscore`
+- **Rule IDs:** Solana `RS-SOL-01..05` (mint authority, freeze authority, Token-2022 extensions, holder concentration, liquidity depth); EVM `RS-EVM-01..04` (proxy admin, opcode traps, source verification, liquidity)
+- **Risk tiers:** 0-24 LOW, 25-49 MODERATE, 50-74 HIGH, 75-100 CRITICAL
+- **Boundaries:** strictly read-only; never asks for private keys or seed phrases; never builds, signs or broadcasts a transaction; never labels a token "safe", "audited" or "rug-proof"; not financial advice.
+- **Storefront Checkout URL:** https://coinloader.com/#card-token-rugscore
+
 ## Value Bundles — Multi-Bot Packs (3 Live Bundle SKUs; One License Key Unlocks All Included Bots)
 
 Bundle SKUs are priced in USD and paid in SOL via the same non-custodial checkout (`POST https://www.wattcoin.org/api/v1/agents/license/quote` with `sku: <bundle-sku>`, `source: "coinloader"`). A single bundle purchase returns **one** `wcl_<64-hex>` bearer license code that unlocks **every** member bot in the pack (up to 3 workspace-reset rebinds). The `/api/v1/agents/license/purchase` response also includes `included_skus` (member SKU list) and `bundle_templates` (an array of `{sku, name, template_url}` with one unlisted `https://x.ai/bot/<id>` Grok Bot template per member) so you can import every bot in the pack. Activate each imported bot on its Turn 1 with the same `wcl_...` code. Storefront section: https://coinloader.com/#bundles
 
-### DeFi & Multi-Chain Wallet Security Pack ($59 in SOL, `sku: defi-wallet-security-pack`, 4-Bot Bundle — Save $37 vs $96 list)
-- **Bundle Price:** $59.00 USD, paid in SOL at the live USD/SOL rate (individual list total: $96).
-- **Included member SKUs (`included_skus`):** `solana-wallet-hygiene`, `solana-token-scanner`, `evm-approval-auditor`, `evm-contract-inspector`
+### DeFi & Multi-Chain Wallet Security Pack ($59 in SOL, `sku: defi-wallet-security-pack`, 5-Bot Bundle — Save $66 vs $125 list)
+- **Bundle Price:** $59.00 USD, paid in SOL at the live USD/SOL rate (individual list total: $125).
+- **Included member SKUs (`included_skus`):** `solana-wallet-hygiene`, `solana-token-scanner`, `evm-approval-auditor`, `evm-contract-inspector`, `token-rugscore`
 - **Members:**
   - Solana Wallet Hygiene Bot (`solana-wallet-hygiene`, $19 list): https://coinloader.com/bots/solana-wallet-hygiene.html
   - Retail Token Due-Diligence Bot (`solana-token-scanner`, $29 list): https://coinloader.com/bots/solana-token-scanner.html
   - EVM Wallet Approval & Permit2 Risk Auditor (`evm-approval-auditor`, $19 list): https://coinloader.com/bots/evm-approval-auditor.html
   - EVM Smart Contract & Proxy Inspector (`evm-contract-inspector`, $29 list): https://coinloader.com/bots/evm-contract-inspector.html
+  - Cross-Chain Token RugScore & Honeypot Scanner (`token-rugscore`, $29 list, included at no extra cost): https://coinloader.com/bots/token-rugscore.html
 - **License:** one `wcl_...` code unlocks all member bots in this bundle; the purchase response returns `bundle_templates` with a per-bot unlisted template URL.
 
-### Pro Trader & Perps Risk Suite ($69 in SOL, `sku: pro-trader-perps-suite`, 4-Bot Bundle — Save $27 vs $96 list)
-- **Bundle Price:** $69.00 USD, paid in SOL at the live USD/SOL rate (individual list total: $96).
-- **Included member SKUs (`included_skus`):** `hyperliquid-monitor`, `solana-token-scanner`, `btc-utxo-hygiene`, `solana-wallet-hygiene`
+### Pro Trader & Perps Risk Suite ($69 in SOL, `sku: pro-trader-perps-suite`, 5-Bot Bundle — Save $56 vs $125 list)
+- **Bundle Price:** $69.00 USD, paid in SOL at the live USD/SOL rate (individual list total: $125).
+- **Included member SKUs (`included_skus`):** `hyperliquid-monitor`, `solana-token-scanner`, `btc-utxo-hygiene`, `solana-wallet-hygiene`, `token-rugscore`
 - **Members:**
   - Hyperliquid Perps, Funding & Liquidation Risk Monitor (`hyperliquid-monitor`, $29 list): https://coinloader.com/bots/hyperliquid-monitor.html
   - Retail Token Due-Diligence Bot (`solana-token-scanner`, $29 list): https://coinloader.com/bots/solana-token-scanner.html
   - Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor (`btc-utxo-hygiene`, $19 list): https://coinloader.com/bots/btc-utxo-hygiene.html
   - Solana Wallet Hygiene Bot (`solana-wallet-hygiene`, $19 list): https://coinloader.com/bots/solana-wallet-hygiene.html
+  - Cross-Chain Token RugScore & Honeypot Scanner (`token-rugscore`, $29 list, included at no extra cost): https://coinloader.com/bots/token-rugscore.html
 - **License:** one `wcl_...` code unlocks all member bots in this bundle; the purchase response returns `bundle_templates` with a per-bot unlisted template URL.
 
 ### Token Launch Command Center ($49 in SOL, `sku: token-launch-command-center`, Flagship Launch Bundle)

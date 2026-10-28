@@ -177,45 +177,66 @@ const CHECKOUT_SKUS = {
       'On Turn 1, <code>hyperliquid-monitor-setup</code> installs the read-only runtime (<code>bot_common.py</code> and <code>hyperliquid_monitor.py</code> verified by SHA-256), provisions your workspace agent key, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
     defaultPrompt: (code) => `Activate my Hyperliquid Perps, Funding & Liquidation Risk Monitor with license code ${code}`
   },
+  'token-rugscore': {
+    sku: 'token-rugscore',
+    name: 'Cross-Chain Token RugScore & Honeypot Scanner',
+    title: 'Cross-Chain Token RugScore & Honeypot Scanner',
+    badge: 'AVAILABLE NOW · TOKEN RUGSCORE',
+    slugMeta: 'sku: token-rugscore · Skills: token-rugscore-setup + token-rugscore · 3 Rebinds',
+    priceUsd: 29,
+    priceUsdHtml: '$29.00 <small>USD</small>',
+    statusFooterText: 'Status: LIVE · $29 One-Time in SOL (Non-Custodial)',
+    ctaButtonText: 'Buy License ($29 in SOL) →',
+    pageUrl: '/bots/token-rugscore.html',
+    runtimeUrl: '/runtime/token_rugscore.py',
+    stepADescHtml:
+      'Click below to open the private <strong>Cross-Chain Token RugScore &amp; Honeypot Scanner</strong> template in Grok Bot and add it to your sidebar:',
+    stepABtnText: 'Open Token RugScore in Grok Bot ↗',
+    stepCHintHtml:
+      'Paste this prompt on Turn 1 (or together with the Solana mint address or the Ethereum, Base, or Arbitrum <code>0x...</code> token contract you want scored):',
+    stepCFootHtml:
+      'On Turn 1, <code>token-rugscore-setup</code> installs the read-only runtime (<code>bot_common.py</code> and <code>token_rugscore.py</code> verified by SHA-256), provisions your workspace agent key, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
+    defaultPrompt: (code) => `Activate my Cross-Chain Token RugScore & Honeypot Scanner with license code ${code}`
+  },
   'defi-wallet-security-pack': {
     sku: 'defi-wallet-security-pack',
-    name: 'DeFi & Multi-Chain Wallet Security Pack (4-Bot Bundle)',
-    title: 'DeFi & Multi-Chain Wallet Security Pack (4-Bot Bundle) — $59 in SOL',
-    slugMeta: 'sku: defi-wallet-security-pack · 4 bots · one wcl_... license unlocks all · 3 Rebinds',
+    name: 'DeFi & Multi-Chain Wallet Security Pack (5-Bot Bundle)',
+    title: 'DeFi & Multi-Chain Wallet Security Pack (5-Bot Bundle) — $59 in SOL',
+    slugMeta: 'sku: defi-wallet-security-pack · 5 bots · one wcl_... license unlocks all · 3 Rebinds',
     priceUsd: 59,
     priceUsdHtml: '$59.00 <small>USD</small>',
-    statusFooterText: 'Status: LIVE · $59 One-Time 4-Bot Bundle in SOL (Non-Custodial)',
+    statusFooterText: 'Status: LIVE · $59 One-Time 5-Bot Bundle in SOL (Non-Custodial)',
     ctaButtonText: 'Unlock Bundle ($59 in SOL) →',
     shortName: 'DeFi & Wallet Security Pack',
-    includedSkus: ['solana-wallet-hygiene', 'solana-token-scanner', 'evm-approval-auditor', 'evm-contract-inspector'],
+    includedSkus: ['solana-wallet-hygiene', 'solana-token-scanner', 'evm-approval-auditor', 'evm-contract-inspector', 'token-rugscore'],
     stepADescHtml:
-      'Click each button below to open the private Grok Bot template for <strong>every bot in the DeFi &amp; Wallet Security Pack</strong> and add them to your sidebar. <strong>One <code>wcl_...</code> license code unlocks all 4 included bots.</strong>',
+      'Click each button below to open the private Grok Bot template for <strong>every bot in the DeFi &amp; Wallet Security Pack</strong> and add them to your sidebar. <strong>One <code>wcl_...</code> license code unlocks all 5 included bots.</strong>',
     stepABtnText: 'Open Bundle Primary Bot in Grok Bot ↗',
     stepCHintHtml:
       'Paste this prompt on Turn 1 in <strong>each</strong> included bot (same license code; add a public wallet address and/or EVM address you want scanned):',
     stepCFootHtml:
       'On Turn 1, each bot\'s <code>-setup</code> skill installs its read-only runtime, provisions <code>/workspace/.wattcoin_env</code> (<code>0600</code>), completes the 100 WATT starter activation, and binds your single bundle <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>. The same code unlocks every bot in the pack.',
-    defaultPrompt: (code) => `Activate my DeFi & Multi-Chain Wallet Security Pack (4-Bot Bundle) with license code ${code}`
+    defaultPrompt: (code) => `Activate my DeFi & Multi-Chain Wallet Security Pack (5-Bot Bundle) with license code ${code}`
   },
   'pro-trader-perps-suite': {
     sku: 'pro-trader-perps-suite',
-    name: 'Pro Trader & Perps Risk Suite (4-Bot Bundle)',
-    title: 'Pro Trader & Perps Risk Suite (4-Bot Bundle) — $69 in SOL',
-    slugMeta: 'sku: pro-trader-perps-suite · 4 bots · one wcl_... license unlocks all · 3 Rebinds',
+    name: 'Pro Trader & Perps Risk Suite (5-Bot Bundle)',
+    title: 'Pro Trader & Perps Risk Suite (5-Bot Bundle) — $69 in SOL',
+    slugMeta: 'sku: pro-trader-perps-suite · 5 bots · one wcl_... license unlocks all · 3 Rebinds',
     priceUsd: 69,
     priceUsdHtml: '$69.00 <small>USD</small>',
-    statusFooterText: 'Status: LIVE · $69 One-Time 4-Bot Bundle in SOL (Non-Custodial)',
+    statusFooterText: 'Status: LIVE · $69 One-Time 5-Bot Bundle in SOL (Non-Custodial)',
     ctaButtonText: 'Unlock Bundle ($69 in SOL) →',
     shortName: 'Pro Trader & Perps Suite',
-    includedSkus: ['hyperliquid-monitor', 'solana-token-scanner', 'btc-utxo-hygiene', 'solana-wallet-hygiene'],
+    includedSkus: ['hyperliquid-monitor', 'solana-token-scanner', 'btc-utxo-hygiene', 'solana-wallet-hygiene', 'token-rugscore'],
     stepADescHtml:
-      'Click each button below to open the private Grok Bot template for <strong>every bot in the Pro Trader &amp; Perps Suite</strong> and add them to your sidebar. <strong>One <code>wcl_...</code> license code unlocks all 4 included bots.</strong>',
+      'Click each button below to open the private Grok Bot template for <strong>every bot in the Pro Trader &amp; Perps Suite</strong> and add them to your sidebar. <strong>One <code>wcl_...</code> license code unlocks all 5 included bots.</strong>',
     stepABtnText: 'Open Bundle Primary Bot in Grok Bot ↗',
     stepCHintHtml:
       'Paste this prompt on Turn 1 in <strong>each</strong> included bot (same license code; add a public wallet address, token mint, or Hyperliquid address you want checked):',
     stepCFootHtml:
       'On Turn 1, each bot\'s <code>-setup</code> skill installs its read-only runtime, provisions <code>/workspace/.wattcoin_env</code> (<code>0600</code>), completes the 100 WATT starter activation, and binds your single bundle <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>. The same code unlocks every bot in the pack.',
-    defaultPrompt: (code) => `Activate my Pro Trader & Perps Risk Suite (4-Bot Bundle) with license code ${code}`
+    defaultPrompt: (code) => `Activate my Pro Trader & Perps Risk Suite (5-Bot Bundle) with license code ${code}`
   }
 };
 
@@ -695,6 +716,36 @@ exit_code 0
         <li>Strictly read-only and keyless: only the public, unauthenticated Info API. Never calls <code>/exchange</code>; never places, cancels or modifies orders; never signs orders, withdrawals or transfers.</li>
         <li>Never accepts private keys, API wallet (agent) keys, seed phrases, WIF / <code>xprv</code> or API tokens: refused with exit <code>10</code>.</li>
         <li>Liquidation prices are point-in-time estimates; &ldquo;no findings&rdquo; never means &ldquo;safe&rdquo;. Refuses liquidation hunting of third-party accounts. Not financial, trading or investment advice.</li>
+        <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>).</li>
+      </ul>
+    `
+  },
+  'token-rugscore': {
+    title: 'Cross-Chain Token RugScore & Honeypot Scanner',
+    slug: 'token-rugscore-setup + token-rugscore',
+    badge: 'LIVE · $29 IN SOL',
+    badgeClass: 'live',
+    status: 'live',
+    statusLabel: 'AVAILABLE NOW · LIVE ON COINLOADER',
+    price: '$29 One-Time in SOL (Includes 3 Workspace-Reset Rebinds)',
+    ctaType: 'checkout',
+    sku: 'token-rugscore',
+    pageUrl: '/bots/token-rugscore.html',
+    runtimeUrl: '/runtime/token_rugscore.py',
+    bodyHtml: `
+      <p><strong>Deliverable:</strong> <em>Read-only, deterministic 0&ndash;100 RugScore for Solana SPL / Token-2022 mints and Ethereum, Base &amp; Arbitrum token contracts, with a risk tier, per-rule evidence and a reproducible <code>audit_sha256</code>.</em></p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> settled on-chain in SOL. Also included in the DeFi &amp; Multi-Chain Wallet Security Pack ($59) and Pro Trader &amp; Perps Risk Suite ($69) at no extra cost. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code.</p>
+      <h4>1. Capabilities (<code>token-rugscore-setup</code> + <code>token-rugscore</code>)</h4>
+      <ul>
+        <li><strong>Solana rules <code>RS-SOL-01..05</code>:</strong> mint authority, freeze authority, Token-2022 extension traps (permanent delegate, transfer hook, transfer fee), top-holder concentration and DEX liquidity depth.</li>
+        <li><strong>EVM rules <code>RS-EVM-01..04</code>:</strong> upgradeable-proxy admin, honeypot-style opcode traps, unverified source and thin liquidity on <code>eth</code>, <code>base</code> and <code>arb</code>.</li>
+        <li><strong>Deterministic output:</strong> same input and same chain data give the same score; every run ends with an <code>audit_sha256</code>. Exit codes and <code>--json</code> / <code>--markdown</code> output for CI/CD.</li>
+        <li><strong>Dual runtime:</strong> Grok Bot plus the zero-dependency <code>token_rugscore.py</code> CLI for Cursor, Claude Code and any terminal; optional 1200x675 PNG audit receipts.</li>
+      </ul>
+      <h4>2. Hard Guardrails</h4>
+      <ul>
+        <li>Strictly read-only: never asks for private keys or seed phrases and never builds, signs or broadcasts a transaction.</li>
+        <li>A low RugScore never means &ldquo;safe&rdquo;; the scanner never labels a token &ldquo;safe&rdquo;, &ldquo;audited&rdquo; or &ldquo;rug-proof&rdquo;. Not financial advice.</li>
         <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>).</li>
       </ul>
     `
@@ -1878,7 +1929,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Checkout card on-ramp helper + header Products dropdown (idempotent injectors)
 // ---------------------------------------------------------------------------
 (() => {
-  const NAV_MENU = {"trigger": "Products (9 Live) ▾", "label": "LIVE GROK BOT TEMPLATES (9)", "footer": "View All 9 Bots in Grid Catalog ↓", "items": [["web-text-extractor", "Web & API Text Extractor", "Web · Utility", "FREE"], ["solana-wallet-hygiene", "Solana Wallet Hygiene Bot", "Solana · Wallet", "$19 SOL"], ["evm-approval-auditor", "EVM Wallet Approval & Permit2 Auditor", "EVM · Wallet", "$19 SOL"], ["btc-utxo-hygiene", "Bitcoin Wallet & UTXO Hygiene Auditor", "Bitcoin · Wallet", "$19 SOL"], ["solana-token-scanner", "Retail Token Due-Diligence Bot", "Solana · Token", "$29 SOL"], ["bot-skill-auditor", "Bot & Skill Security Auditor", "Security · Audit", "$29 SOL"], ["pumpfun-coin-manager", "Pump.fun Coin & Community Manager", "Solana · Pump.fun", "$29 SOL"], ["evm-contract-inspector", "EVM Smart Contract & Proxy Inspector", "EVM · Contract", "$29 SOL"], ["token-launch-command-center", "Token Launch Command Center", "Solana · Launch", "$49 SOL"]]};
+  const NAV_MENU = {"trigger": "Products (11 Live) ▾", "label": "LIVE GROK BOT TEMPLATES (11)", "footer": "View All 11 Bots in Grid Catalog ↓", "items": [["web-text-extractor", "Web & API Text Extractor", "Web · Utility", "FREE"], ["solana-wallet-hygiene", "Solana Wallet Hygiene Bot", "Solana · Wallet", "$19 SOL"], ["evm-approval-auditor", "EVM Wallet Approval & Permit2 Auditor", "EVM · Wallet", "$19 SOL"], ["btc-utxo-hygiene", "Bitcoin Wallet & UTXO Hygiene Auditor", "Bitcoin · Wallet", "$19 SOL"], ["solana-token-scanner", "Retail Token Due-Diligence Bot", "Solana · Token", "$29 SOL"], ["bot-skill-auditor", "Bot & Skill Security Auditor", "Security · Audit", "$29 SOL"], ["pumpfun-coin-manager", "Pump.fun Coin & Community Manager", "Solana · Pump.fun", "$29 SOL"], ["evm-contract-inspector", "EVM Smart Contract & Proxy Inspector", "EVM · Contract", "$29 SOL"], ["hyperliquid-monitor", "Hyperliquid Risk Monitor", "Perps · Funding", "$29 SOL"], ["token-rugscore", "Cross-Chain Token RugScore & Honeypot Scanner", "Token · RugScore", "$29 SOL"], ["token-launch-command-center", "Token Launch Command Center", "Solana · Launch", "$49 SOL"]]};
 
   const ensureCardOnramp = () => {
     document.querySelectorAll('#checkout-step-pay').forEach((pay) => {

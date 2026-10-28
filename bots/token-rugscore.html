@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cross-Chain Token RugScore Scanner ($29 SOL) | CoinLoader</title>
+  <meta name="description" content="Audit Solana SPL/Token-2022 mints and Ethereum, Base &amp; Arbitrum contracts with a deterministic 0-100 RugScore, proxy checks, and DEX liquidity depth." />
+  <link rel="canonical" href="https://coinloader.com/bots/token-rugscore.html" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#090d16" />
+  <meta property="og:type" content="product" />
+  <meta property="og:site_name" content="CoinLoader.com" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Cross-Chain Token RugScore &amp; Honeypot Scanner ($29 SOL) | CoinLoader" />
+  <meta property="og:description" content="Audit Solana SPL/Token-2022 mints and Ethereum, Base &amp; Arbitrum contracts with a deterministic 0-100 RugScore, proxy checks, and DEX liquidity depth." />
+  <meta property="og:url" content="https://coinloader.com/bots/token-rugscore.html" />
+  <meta property="og:image" content="https://coinloader.com/og-card.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Cross-Chain Token RugScore &amp; Honeypot Scanner on CoinLoader.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@WattCoin2026" />
+  <meta name="twitter:title" content="Cross-Chain Token RugScore &amp; Honeypot Scanner ($29 SOL) | CoinLoader" />
+  <meta name="twitter:description" content="Audit Solana SPL/Token-2022 mints and Ethereum, Base &amp; Arbitrum contracts with a deterministic 0-100 RugScore, proxy checks, and DEX liquidity depth." />
+  <meta name="twitter:image" content="https://coinloader.com/og-card.png" />
+  <meta name="twitter:image:alt" content="Cross-Chain Token RugScore &amp; Honeypot Scanner on CoinLoader.com" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Catalog Specification" />
+  <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM Full Catalog &amp; Sample Reports" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "CoinLoader.com",
+          "item": "https://coinloader.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Agent Catalog",
+          "item": "https://coinloader.com/#catalog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Cross-Chain Token RugScore & Honeypot Scanner",
+          "item": "https://coinloader.com/bots/token-rugscore.html"
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://coinloader.com/bots/token-rugscore.html#software",
+      "name": "Cross-Chain Token RugScore & Honeypot Scanner",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Grok Bot Linux Sandbox (/workspace)",
+      "url": "https://coinloader.com/bots/token-rugscore.html",
+      "description": "Audit Solana SPL/Token-2022 mints and Ethereum, Base & Arbitrum contracts with a deterministic 0-100 RugScore. Check mint/freeze authority, proxies & liquidity.",
+      "sku": "token-rugscore",
+      "offers": {
+        "@type": "Offer",
+        "price": "29.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://coinloader.com/bots/token-rugscore.html",
+        "sku": "token-rugscore"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://coinloader.com/bots/token-rugscore.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does the Cross-Chain Token RugScore calculate a 0–100 risk score for Solana and EVM tokens?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each rule is a fixed-weight check, and the weights of the rules that fire are summed and capped at 100. Solana mints are scored by RS-SOL-01..05 (active mint authority, active freeze authority, dangerous Token-2022 extensions, top-holder concentration, DEX liquidity depth); Ethereum, Base and Arbitrum contracts by RS-EVM-01..04 (upgradeable-proxy admin, honeypot-style opcode traps, unverified source, liquidity). The score maps to a risk tier (0–24 LOW, 25–49 MODERATE, 50–74 HIGH, 75–100 CRITICAL). There is no model and no randomness: the same input and the same chain data produce the same score and the same audit_sha256, so you can re-run an audit and compare."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which Solana Token-2022 extensions and EVM proxy or opcode traps does RugScore flag?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On Solana it reads the mint account and flags an active mint authority and freeze authority, plus the Token-2022 extensions that let an issuer move or tax your balance: PermanentDelegate, TransferHook, TransferFeeConfig, DefaultAccountState (frozen) and a mutable metadata pointer. On Ethereum, Base and Arbitrum it resolves EIP-1967, EIP-1822 UUPS and EIP-1167 proxy slots, reports whether the upgrade admin is a single EOA, and scans runtime bytecode (CBOR metadata stripped, PUSH immediates skipped) for SELFDESTRUCT and unexpected DELEGATECALL, then checks Sourcify for verified source. These are byte-level and account-level heuristics with cited evidence, not a formal audit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I run token_rugscore.py locally in Cursor, Claude Code, or CI/CD and generate 1200x675 PNG audit receipts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. One wcl_... license unlocks both the 1-Click Grok Bot and the standalone single-file token_rugscore.py CLI from /runtime/token_rugscore.py. It needs Python 3.10+ and the standard library only, with no pip install, and it runs in Cursor, Claude Code, Windsurf, any terminal or a CI/CD job. It emits text, --json or --markdown, returns a non-zero exit code by risk tier so a pipeline can gate on it, and can render a 1200x675 PNG audit receipt showing the score, tier, fired rule IDs and audit_sha256."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What safety and refusal boundaries does the Cross-Chain Token RugScore scanner enforce?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is strictly read-only: it never asks for private keys or seed phrases and never builds, signs or broadcasts a transaction. It never labels a token 'safe', 'audited' or 'rug-proof', because a low RugScore only means none of the listed rules fired, not that the token is trustworthy. It does not predict price, give buy or sell advice, or certify a contract; output is factual, with evidence for every rule, and is not financial or security-certification advice."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+
+  <!-- Top Institutional Status Bar -->
+  <div class="top-ticker">
+    <div class="container top-ticker-inner">
+      <div class="status-cluster">
+        <span class="status-pill">
+          <span>WATTCOIN API SPEC: <strong>v1 (f1f4c9b)</strong></span>
+        </span>
+        <span>SOLANA TOKEN-2022 MINT: <code>Gpmbh4PoQnL1kNgpMYDED3iv4fczcr7d3qNBLf8rpump</code></span>
+        <span>LIVE TEMPLATES: <strong>11 LIVE AGENTS (FREE + $19–$49 SOL)</strong></span>
+      </div>
+      <div class="ticker-links">
+        <a href="https://www.wattcoin.org" target="_blank" rel="noopener">wattcoin.org ↗</a>
+        <a href="https://www.wattcoin.org/llms.txt" target="_blank" rel="noopener">llms.txt ↗</a>
+        <a href="https://x.ai/bot/k1oyHmw4iS4VBW1U8_3Ol" target="_blank" rel="noopener">Launch Free Bot ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Header -->
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a href="/" class="brand-logo">
+        <span class="brand-mark">CL</span>
+        <span>CoinLoader<span class="brand-domain">.com</span></span>
+        <span class="brand-tag">GROK BOT STORE</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <div class="nav-dropdown">
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">Products (11 Live) ▾</button>
+          <div class="nav-dropdown-menu" role="menu">
+            <div class="nav-dropdown-label">LIVE GROK BOT TEMPLATES (11)</div>
+            <a class="nav-dropdown-item" role="menuitem" href="/bots/web-text-extractor.html"><span class="nav-dropdown-name">Web &amp; API Text Extractor <span class="nav-dropdown-tag">Web · Utility</span></span><span class="nav-dropdown-badge nav-dropdown-badge-free">FREE</span></a>
+            <a class="nav-dropdown-item" role="menuitem" href="/bots/solana-wallet-hygiene.html"><span class="nav-dropdown-name">Solana Wallet Hygiene Bot <span class="nav-dropdown-tag">Solana · Wallet</span></span><span class="nav-dropdown-badge">$19 SOL</span></a>
+            <a class="nav-dropdown-item" role="menuitem" href="/bots/evm-approval-auditor.html"><span class="nav-dropdown-name">EVM Wallet Approval &amp; Permit2 Auditor <span class="nav-dropdown-tag">EVM · Wallet</span></span><span class="nav-dropdown-badge">$19 SOL</span></a>
+            <a class="nav-dropdown-item" role="menuitem" href="/bots/btc-utxo-hygiene.html"><span class="nav-dropdown-name">Bitcoin Wallet &amp; UTXO Hygiene Auditor <span class="nav-dropdown-tag">Bitcoin · Wallet</span></span><span class="nav-dropdown-badge">$19 SOL</span></a>
+            <a class="nav-dropdown-item" role="menuitem" href="/bots/solana-token-scanner.html"><span class="nav-dropdown-name">Retail Token Due-Diligence Bot <span class="nav-dropdown-tag">Solana · Token</span></span><span class="nav-dropdown-badge">$29 SOL</span></a>
+            <a class="nav-dropdown-item" role="menuitem" href="/bots/bot-skill-auditor.html"><span class="nav-dropdown-name">Bot &amp; Skill Security Auditor <span class="nav-dropdown-tag">Security · Audit</span></span><span class="nav-dropdown-badge">$29 SOL</span></a>
+            <a class="nav-dropdown-item" role="menuitem" href="/bots/pumpfun-coin-manager.html"><span class="nav-dropdown-name">Pump.fun Coin &amp; Community Manager <span class="nav-dropdown-tag">Solana · Pump.fun</span></span><span class="nav-dropdown-badge">$29 SOL</span></a>
+            <a class="nav-dropdown-item" role="menuitem" href="/bots/evm-contract-inspector.html"><span class="nav-dropdown-name">EVM Smart Contract &amp; Proxy Inspector <span class="nav-dropdown-tag">EVM · Contract</span></span><span class="nav-dropdown-badge">$29 SOL</span></a>
+            <a class="nav-dropdown-item" role="menuitem" href="/bots/hyperliquid-monitor.html"><span class="nav-dropdown-name">Hyperliquid Risk Monitor <span class="nav-dropdown-tag">Perps · Funding</span></span><span class="nav-dropdown-badge">$29 SOL</span></a>
+            <a class="nav-dropdown-item" role="menuitem" href="/bots/token-rugscore.html"><span class="nav-dropdown-name">Cross-Chain Token RugScore &amp; Honeypot Scanner <span class="nav-dropdown-tag">Token · RugScore</span></span><span class="nav-dropdown-badge">$29 SOL</span></a>
+            <a class="nav-dropdown-item" role="menuitem" href="/bots/token-launch-command-center.html"><span class="nav-dropdown-name">Token Launch Command Center <span class="nav-dropdown-tag">Solana · Launch</span></span><span class="nav-dropdown-badge">$49 SOL</span></a>
+            <a class="nav-dropdown-footer" role="menuitem" href="/#catalog">View All 11 Bots in Grid Catalog ↓</a>
+          </div>
+        </div>
+        <a href="/#catalog">Bot Catalog (11 Live)</a>
+        <a href="/#architecture">How It Works</a>
+        <a href="/#cold-storage">Cold Storage</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/llms.txt">llms.txt</a>
+      </nav>
+      <div class="nav-cta-group">
+        <button type="button" class="btn btn-secondary btn-sm" data-open-checkout="solana-wallet-hygiene">
+          Buy Wallet Hygiene ($19 SOL)
+        </button>
+        <a href="https://x.ai/bot/k1oyHmw4iS4VBW1U8_3Ol" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+          Install Free Utility →
+        </a>
+      </div>
+    </div>
+  </header>
+
+  
+  <main>
+    <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a href="/">CoinLoader.com</a> &rarr; <a href="/#catalog">Agent Catalog</a> &rarr; <span>Cross-Chain Token RugScore &amp; Honeypot Scanner</span>
+      </nav>
+      <section class="product-hero">
+        <div class="price-badge">&#9679; AVAILABLE NOW &middot; $29 in SOL (ONE-TIME &middot; 3 REBINDS)</div>
+        <h1>Cross-Chain Token RugScore &amp; Honeypot Scanner &mdash; One 0&ndash;100 number before you buy the token.</h1>
+        <p class="product-lede">Audit any Solana SPL / Token-2022 mint or Ethereum, Base, or Arbitrum token contract and get a deterministic RugScore from 0 to 100 with a risk tier and the exact rules that fired: mint and freeze authority, dangerous Token-2022 extensions, holder concentration, upgradeable-proxy admins, SELFDESTRUCT and DELEGATECALL opcode traps, source verification and DEX liquidity depth. Every run ends with an <code>audit_sha256</code> so you can re-run and compare.</p>
+        <p style="font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">
+          SKU: <code>token-rugscore</code> &middot; Skills: <code>token-rugscore-setup + token-rugscore</code> &middot; Runtime: <code>/runtime/token_rugscore.py</code> &middot; Also included in <code>defi-wallet-security-pack</code> ($59) and <code>pro-trader-perps-suite</code> ($69)
+        </p>
+        <div class="dual-runtime-pill">⚡ Works in Grok Bot + Cursor + Claude Code + Any Terminal (Zero-Dep Python 3 CLI Included)</div>
+        <div class="product-cta-row">
+          <button type="button" class="btn btn-primary btn--primary" data-open-checkout="token-rugscore">Buy License ($29 in SOL) &rarr;</button>
+          <a href="#sample-output" class="btn btn-secondary btn--ghost">See Sample Output</a>
+          <a href="/#card-token-rugscore" class="btn btn-secondary btn--ghost">View in Homepage Catalog</a>
+        </div>
+      </section>
+      <section class="product-section" id="capabilities">
+        <h2>What It Does</h2>
+        <ul>
+          <li><strong>Solana rules <code>RS-SOL-01..05</code>:</strong> active mint authority (<code>RS-SOL-01</code>), active freeze authority (<code>RS-SOL-02</code>), Token-2022 extension traps such as <code>PermanentDelegate</code>, <code>TransferHook</code>, <code>TransferFeeConfig</code> and frozen <code>DefaultAccountState</code> (<code>RS-SOL-03</code>), top-holder concentration (<code>RS-SOL-04</code>) and DEX liquidity depth and pair age (<code>RS-SOL-05</code>).</li>
+          <li><strong>EVM rules <code>RS-EVM-01..04</code> on Ethereum (<code>eth</code>), Base (<code>base</code>) and Arbitrum One (<code>arb</code>):</strong> upgradeable-proxy admin and EOA control over EIP-1967 / EIP-1822 / EIP-1167 slots (<code>RS-EVM-01</code>), <code>SELFDESTRUCT</code> and unexpected <code>DELEGATECALL</code> opcode traps (<code>RS-EVM-02</code>), unverified source via Sourcify (<code>RS-EVM-03</code>) and thin liquidity (<code>RS-EVM-04</code>).</li>
+          <li><strong>Deterministic scoring:</strong> fixed rule weights are summed and capped at 100, then mapped to <code>LOW</code> / <code>MODERATE</code> / <code>HIGH</code> / <code>CRITICAL</code>. Same input and same chain data give the same score and the same <code>audit_sha256</code>.</li>
+          <li><strong>Built for pipelines:</strong> <code>--json</code> / <code>--markdown</code> output, risk-tier exit codes for CI/CD gating, and 1200x675 PNG audit receipts. 100% Python stdlib.</li>
+        </ul>
+      </section>
+      <section class="product-section" id="sample-output">
+        <h2>Live output (<code>token_rugscore.py</code>: Solana Token-2022 mint + Base contract)</h2>
+        <p class="sample-disclosure" style="margin-bottom: 12px;"><strong>Sample disclosure:</strong> this is a representative sample, not a customer report. It was produced against fictional test targets; addresses, balances and hashes are illustrative placeholders, and no private keys, seed phrases or secrets are ever shown. Your own report will differ in content and length.</p>
+        <pre class="code-pre">snapshot   2026-10-28 09:14:22 UTC | tool=token_rugscore v1.0 | sample=fictional
+
+target    sol:RugDemo7Qk2mVxN4pLwT8cYhB5eJ3aRsZf9uXoGd1HtKq  (fictional test mint)
+program   Token-2022 (TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb)
+supply    1,000,000,000.000000  decimals=6
+mint.auth   Fz3p...Q8xA [ACTIVE]
+freeze.auth none [REVOKED]
+extensions  TransferHook(program=Hk4m...n2Wd) TransferFeeConfig(250 bps) MetadataPointer
+holders     top1=18.4% top10=62.7% top20=74.1% (excl. LP/burn)
+liquidity   $8,420 (Raydium CPMM, 24h vol $1,930) pair_age=3d
+rules
+  [HIGH    ] RS-SOL-01 +25  MINT_AUTHORITY_ACTIVE: issuer can mint unlimited supply
+  [INFO    ] RS-SOL-02  +0  FREEZE_AUTHORITY_REVOKED
+  [MEDIUM  ] RS-SOL-03 +20  TOKEN2022_TRANSFER_HOOK: custom program runs on every transfer (sellability not provable from account data)
+  [MEDIUM  ] RS-SOL-04 +15  HOLDER_CONCENTRATION: top10 hold 62.7% of circulating supply
+  [MEDIUM  ] RS-SOL-05 +12  THIN_LIQUIDITY: $8,420 pool depth, pair younger than 7d
+RugScore  72/100  tier=HIGH  rules_fired=4/5
+
+target    base:0x4fA1c9e07B2d83Ae5C6f10D9b3E7a42c88D5e0b1  (fictional test contract)
+bytecode  2411 bytes  proxy=EIP-1967
+impl      0x9Be3d1A06c47F2e85a0b3C1D7e49fA82b6D0c5E3 (11874 bytes, verified=yes, Sourcify exact_match)
+admin     0x2c7D...91aF [EOA]
+opcodes   impl: SELFDESTRUCT=yes DELEGATECALL=no
+liquidity $412,880 (Uniswap v3 WETH/TKN 0.3%)
+rules
+  [HIGH    ] RS-EVM-01 +20  PROXY_EOA_ADMIN: one key can replace the implementation
+  [MEDIUM  ] RS-EVM-02 +10  OPCODE_SELFDESTRUCT: implementation contains SELFDESTRUCT (heuristic)
+  [INFO    ] RS-EVM-03  +0  SOURCE_VERIFIED
+  [INFO    ] RS-EVM-04  +0  LIQUIDITY_ADEQUATE
+RugScore  30/100  tier=MODERATE  rules_fired=2/4
+
+audit_sha256 272f48c9ed521065954a0aba7759ef54a6489bb86008a6400bd4197469d2c39a
+exit_code 2
+SCOPE_NOTE: Read-only on-chain and public-API inspection. No private keys, seed phrases or signing; no transaction is built or broadcast. A RugScore is a deterministic sum of fixed rules, not a verdict: a low score does not mean a token is safe, and a high score is not proof of fraud. Not financial, investment or security-certification advice.</pre>
+      </section>
+      <section class="product-section" id="refusal-boundaries">
+        <h2>What It Does Not Do</h2>
+        <ul>
+          <li>Strictly read-only: never asks for private keys or seed phrases, and never builds, signs, or broadcasts transactions.</li>
+          <li>Never labels a token 'safe', 'audited', or 'rug-proof'; a low RugScore only means none of the listed rules fired.</li>
+          <li>No price prediction and no buy or sell advice. Opcode and extension checks are heuristics, not formal verification or a substitute for a source audit.</li>
+        </ul>
+      </section>
+      <section class="product-section" id="licensing-flow">
+        <h2>Licensing &amp; Setup</h2>
+        <p>One-time license, up to 3 workspace-reset rebinds. On Turn 1 the <code>token-rugscore-setup</code> skill verifies your agent key, binds your <code>wcl_...</code> code through the read-only license helper, and confirms the bot files are installed. The license code is never printed in chat. Also included at no extra cost in the <a href="/#bundle-defi-wallet-security-pack">DeFi &amp; Multi-Chain Wallet Security Pack</a> ($59) and the <a href="/#bundle-pro-trader-perps-suite">Pro Trader &amp; Perps Risk Suite</a> ($69).</p>
+        <p class="dual-runtime-callout"><strong>One <code>wcl_...</code> key, two runtimes.</strong> Your license key works inside Grok Bot <em>and</em> from any local terminal or IDE agent (Cursor, Claude Code, Windsurf, CI/CD) via the standalone single-file Python 3 CLI (standalone <code>/runtime/&lt;script&gt;.py</code> CLI) &mdash; Python 3.10+ standard library only, zero <code>pip install</code> dependencies, with <code>--json</code> / <code>--markdown</code> output.</p>
+      </section>
+      <section class="product-section" id="product-faq">
+        <h2>Frequently Asked Questions &mdash; Cross-Chain Token RugScore &amp; Honeypot Scanner</h2>
+        <div class="faq-grid">
+          <details class="faq-item" open>
+            <summary>How does the Cross-Chain Token RugScore calculate a 0–100 risk score for Solana and EVM tokens?</summary>
+            <div class="faq-answer">Each rule is a fixed-weight check, and the weights of the rules that fire are summed and capped at 100. Solana mints are scored by RS-SOL-01..05 (active mint authority, active freeze authority, dangerous Token-2022 extensions, top-holder concentration, DEX liquidity depth); Ethereum, Base and Arbitrum contracts by RS-EVM-01..04 (upgradeable-proxy admin, honeypot-style opcode traps, unverified source, liquidity). The score maps to a risk tier (0–24 LOW, 25–49 MODERATE, 50–74 HIGH, 75–100 CRITICAL). There is no model and no randomness: the same input and the same chain data produce the same score and the same audit_sha256, so you can re-run an audit and compare.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Which Solana Token-2022 extensions and EVM proxy or opcode traps does RugScore flag?</summary>
+            <div class="faq-answer">On Solana it reads the mint account and flags an active mint authority and freeze authority, plus the Token-2022 extensions that let an issuer move or tax your balance: PermanentDelegate, TransferHook, TransferFeeConfig, DefaultAccountState (frozen) and a mutable metadata pointer. On Ethereum, Base and Arbitrum it resolves EIP-1967, EIP-1822 UUPS and EIP-1167 proxy slots, reports whether the upgrade admin is a single EOA, and scans runtime bytecode (CBOR metadata stripped, PUSH immediates skipped) for SELFDESTRUCT and unexpected DELEGATECALL, then checks Sourcify for verified source. These are byte-level and account-level heuristics with cited evidence, not a formal audit.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Can I run token_rugscore.py locally in Cursor, Claude Code, or CI/CD and generate 1200x675 PNG audit receipts?</summary>
+            <div class="faq-answer">Yes. One wcl_... license unlocks both the 1-Click Grok Bot and the standalone single-file token_rugscore.py CLI from /runtime/token_rugscore.py. It needs Python 3.10+ and the standard library only, with no pip install, and it runs in Cursor, Claude Code, Windsurf, any terminal or a CI/CD job. It emits text, --json or --markdown, returns a non-zero exit code by risk tier so a pipeline can gate on it, and can render a 1200x675 PNG audit receipt showing the score, tier, fired rule IDs and audit_sha256.</div>
+          </details>
+          <details class="faq-item">
+            <summary>What safety and refusal boundaries does the Cross-Chain Token RugScore scanner enforce?</summary>
+            <div class="faq-answer">It is strictly read-only: it never asks for private keys or seed phrases and never builds, signs or broadcasts a transaction. It never labels a token &#x27;safe&#x27;, &#x27;audited&#x27; or &#x27;rug-proof&#x27;, because a low RugScore only means none of the listed rules fired, not that the token is trustworthy. It does not predict price, give buy or sell advice, or certify a contract; output is factual, with evidence for every rule, and is not financial or security-certification advice.</div>
+          </details>
+        </div>
+      </section>
+    </div>
+  </main>
+<!-- Spec Inspection Modal -->
+  <div class="modal-backdrop" id="spec-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <div>
+          <span class="phase-badge live" id="modal-badge">SPEC</span>
+          <h3 id="modal-title" style="margin-top: 6px; font-size: 19px;">Bot Specification</h3>
+          <div class="skill-slug" id="modal-slug" style="margin-top: 2px;"></div>
+        </div>
+        <button type="button" class="modal-close-btn" id="modal-close">ESC / Close ✕</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-footer" id="modal-footer" hidden></div>
+    </div>
+  </div>
+
+  <!-- On-Chain SOL Checkout Modal (#checkout-modal) -->
+  <div class="modal-backdrop" id="checkout-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="checkout-modal-title">
+    <div class="modal-panel checkout-modal-panel">
+      <div class="modal-header">
+        <div>
+          <span class="phase-badge live" id="checkout-modal-badge">● ON-CHAIN SOL CHECKOUT · NON-CUSTODIAL</span>
+          <h3 id="checkout-modal-title" style="margin-top: 6px; font-size: 19px;">Bot &amp; Skill Security Auditor — $29 in SOL</h3>
+          <div class="skill-slug" id="checkout-modal-slug" style="margin-top: 2px;">sku: bot-skill-auditor · One-Time License · 3 Workspace-Reset Rebinds</div>
+        </div>
+        <button type="button" class="modal-close-btn" id="checkout-modal-close">ESC / Close ✕</button>
+      </div>
+
+      <div class="modal-body checkout-modal-body">
+        <div class="dual-runtime-callout" id="checkout-deliverables-note">
+          <strong>You receive both:</strong> the 1-Click Grok Bot activation <em>plus</em> the Standalone Zero-Dep Python 3 CLI (<code>--json</code> / <code>--markdown</code>) for Cursor, Claude Code, Windsurf, CI/CD and any terminal. One <code>wcl_...</code> key unlocks both.
+        </div>
+
+        <!-- Saved License Banner (shown if localStorage has a purchased license for this SKU) -->
+        <div class="saved-license-banner" id="checkout-saved-banner" hidden>
+          <div class="saved-license-info">
+            <strong>✓ Saved License Found in This Browser</strong>
+            <span id="checkout-saved-summary">Order ord_...</span>
+          </div>
+          <div class="saved-license-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="checkout-view-saved-btn">View Saved License →</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="checkout-back-to-quote-btn" hidden>New Purchase Quote</button>
+            <button type="button" class="mini-copy-btn danger-btn" id="checkout-clear-saved-btn" title="Remove saved license from this browser">Clear Saved</button>
+          </div>
+        </div>
+
+        <!-- VIEW 1: LIVE SOL QUOTE & PAYMENT VERIFICATION -->
+        <div id="checkout-step-pay">
+          <!-- Quote Status / Loading / Error Bar -->
+          <div class="checkout-status-bar" id="checkout-quote-status" role="status" aria-live="polite">
+            <span id="checkout-quote-status-text">Fetching live SOL/USD quote from WattCoin Registry…</span>
+            <button type="button" class="mini-copy-btn" id="checkout-refresh-btn">Refresh Quote ↻</button>
+          </div>
+
+          <!-- Step 1 Box: Send SOL -->
+          <div class="checkout-card-box">
+            <div class="checkout-step-header">
+              <span>STEP 1 · SEND EXACT SOL AMOUNT TO TREASURY</span>
+              <span id="checkout-timer-pill" class="timer-pill">TTL: <strong id="checkout-timer-display">--:--</strong></span>
+            </div>
+
+            <div class="checkout-quote-grid">
+              <div class="quote-metric">
+                <span class="quote-label">License Price (One-Time)</span>
+                <div class="quote-val-primary" id="checkout-price-usd">$29.00 <small>USD</small></div>
+                <div class="quote-sub" id="checkout-rate-display">SOL/USD rate loading…</div>
+              </div>
+              <div class="quote-metric">
+                <span class="quote-label">Order ID &amp; Slippage Tolerance</span>
+                <div class="quote-val-mono" id="checkout-order-id-display">—</div>
+                <div class="quote-sub">3% slippage with memo · Exact match without memo</div>
+              </div>
+            </div>
+
+            <!-- Exact SOL Amount Copy Field -->
+            <div class="checkout-field-group">
+              <div class="checkout-field-label">
+                <span>Exact Amount to Send (SOL)</span>
+                <span class="lamport-tag-hint">Unique 4-digit order tag: <code id="checkout-lamport-tag">----</code> lamports</span>
+              </div>
+              <div class="checkout-copy-box highlight">
+                <div>
+                  <code class="sol-amount-code" id="checkout-amount-sol">—</code>
+                  <span class="sol-unit">SOL</span>
+                  <span class="lamports-sub" id="checkout-amount-lamports"></span>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" id="checkout-copy-amount-btn" disabled>
+                  Copy Exact SOL Amount
+                </button>
+              </div>
+              <p class="checkout-field-help">
+                <strong>Why the exact 9 decimals matter:</strong> The last 4 digits (<code id="checkout-lamport-tag-inline">----</code> lamports, &lt;$0.001) uniquely identify your order on-chain so payment verification succeeds even if your wallet does not attach an SPL Memo.
+              </p>
+            </div>
+
+            <!-- Recipient Treasury Wallet Copy Field -->
+            <div class="checkout-field-group">
+              <div class="checkout-field-label">
+                <span>Recipient Treasury Wallet (Solana Mainnet)</span>
+                <span>Official WattCoin Treasury</span>
+              </div>
+              <div class="checkout-copy-box">
+                <code id="checkout-recipient-wallet">Atu5phbGGGFogbKhi259czz887dSdTfXwJxwbuE5aF5q</code>
+                <button type="button" class="mini-copy-btn" id="checkout-copy-wallet-btn">Copy Wallet</button>
+              </div>
+            </div>
+
+            <!-- Optional SPL Memo Copy Field -->
+            <div class="checkout-field-group">
+              <div class="checkout-field-label">
+                <span>SPL Memo (Optional if sending exact SOL amount above)</span>
+                <span>Enables 3% slippage tolerance</span>
+              </div>
+              <div class="checkout-copy-box">
+                <code id="checkout-memo">—</code>
+                <button type="button" class="mini-copy-btn" id="checkout-copy-memo-btn" disabled>Copy Memo</button>
+              </div>
+            </div>
+
+            <!-- Solana Pay URI + Optional Sender Wallet Binding -->
+            <div class="checkout-wallet-actions">
+              <a id="checkout-solana-pay-btn" class="btn btn-secondary btn-sm" hidden>
+                Open in Solana Wallet (solana: URI) ↗
+              </a>
+              <details class="checkout-optional-details">
+                <summary>Optional: Bind quote to your sender wallet address</summary>
+                <div class="optional-wallet-row">
+                  <input
+                    type="text"
+                    id="checkout-buyer-wallet-input"
+                    class="checkout-input"
+                    placeholder="Your sender Solana address (Base58, optional)"
+                    autocomplete="off"
+                    spellcheck="false"
+                  />
+                  <button type="button" class="btn btn-secondary btn-sm" id="checkout-bind-wallet-btn">
+                    Bind &amp; Refresh Quote
+                  </button>
+                </div>
+              </details>
+            </div>
+
+            <details class="checkout-optional-details checkout-card-onramp-details">
+              <summary>💳 Need SOL? How to buy with a Credit Card or Apple Pay (~60 sec)</summary>
+              <ol class="checkout-onramp-steps">
+                <li><strong>Install or open Phantom or Solflare</strong> (browser extension or mobile app).</li>
+                <li>Tap <strong>Buy → SOL</strong> inside your wallet and pay with <strong>Credit/Debit Card, Apple Pay, or Google Pay</strong> (via MoonPay, Stripe, Coinbase Pay, or Robinhood Connect).</li>
+                <li><strong>Send the exact quoted SOL amount</strong> (including the 4-digit lamport tag) to the recipient treasury address above&mdash;or click <strong>Open in Solana Wallet</strong>&mdash;then click <strong>Verify Payment &amp; Issue License &rarr;</strong>.</li>
+              </ol>
+              <p class="checkout-onramp-note">Non-custodial: the card purchase happens inside your own wallet. We never hold your funds or keys.</p>
+            </details>
+          </div>
+
+          <!-- Step 2 Box: Verify Transaction Signature -->
+          <div class="checkout-card-box" style="margin-top: 16px;">
+            <div class="checkout-step-header">
+              <span>STEP 2 · VERIFY ON-CHAIN TRANSACTION &amp; ISSUE LICENSE</span>
+              <span>CONFIRMED COMMITMENT</span>
+            </div>
+
+            <p class="checkout-field-help" style="margin-bottom: 10px;">
+              After sending SOL from Phantom, Solflare, Backpack, Ledger, or CLI, paste your Solana <strong>Transaction Signature</strong> (or full Solscan / Explorer TX link) below:
+            </p>
+
+            <div class="tx-verify-row">
+              <input
+                type="text"
+                id="checkout-tx-input"
+                class="checkout-input mono"
+                placeholder="Paste 88-char Solana TX signature or https://solscan.io/tx/..."
+                aria-label="Solana Transaction Signature or Solscan URL"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button type="button" class="btn btn-primary" id="checkout-verify-btn" disabled>
+                Verify Payment &amp; Issue License →
+              </button>
+            </div>
+
+            <div class="checkout-feedback" id="checkout-verify-feedback" role="alert" aria-live="polite" hidden></div>
+          </div>
+        </div>
+
+        <!-- VIEW 2: FULFILLED LICENSE & TURN-1 ACTIVATION -->
+        <div id="checkout-step-fulfilled" hidden>
+          <div class="fulfilled-banner">
+            <div class="fulfilled-banner-title">✓ On-Chain SOL Payment Verified — License Issued</div>
+            <p>
+              <strong>Save your <code>wcl_...</code> license code now.</strong> It is a private bearer credential returned once at purchase and supports up to <strong>3 workspace-reset rebinds</strong>. We also saved a copy in this browser's local storage so you don't lose it if you close this tab.
+            </p>
+          </div>
+
+          <!-- Step A: Open Unlisted Grok Bot Template -->
+          <div class="checkout-card-box">
+            <div class="checkout-step-header">
+              <span>STEP A · IMPORT UNLISTED GROK BOT TEMPLATE</span>
+              <span>ONE CLICK</span>
+            </div>
+            <p class="checkout-field-help" style="margin-bottom: 10px;" id="fulfilled-step-a-desc">
+              Click below to open the private <strong>Bot &amp; Skill Security Auditor</strong> template in Grok Bot and add it to your sidebar:
+            </p>
+            <div class="fulfilled-cta-row">
+              <a target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="fulfilled-open-template-btn">
+                Open Security Auditor in Grok Bot ↗
+              </a>
+              <button type="button" class="btn btn-secondary btn-sm" id="fulfilled-copy-template-btn">
+                Copy Unlisted Template URL
+              </button>
+            </div>
+            <div class="checkout-copy-box" style="margin-top: 10px;">
+              <code id="fulfilled-template-url">—</code>
+            </div>
+          </div>
+
+          <!-- Step B: Copy Private wcl_ License Code -->
+          <div class="checkout-card-box" style="margin-top: 14px;">
+            <div class="checkout-step-header">
+              <span>STEP B · YOUR PRIVATE LICENSE CODE (wcl_64-hex)</span>
+              <span>UP TO 3 REBINDS</span>
+            </div>
+            <div class="checkout-copy-box highlight" style="margin-top: 6px;">
+              <code id="fulfilled-license-code" class="license-code-text">—</code>
+              <button type="button" class="btn btn-primary btn-sm" id="fulfilled-copy-code-btn">
+                Copy License Code
+              </button>
+            </div>
+          </div>
+
+          <!-- Step C: Paste Turn-1 Activation Prompt -->
+          <div class="checkout-card-box" style="margin-top: 14px;">
+            <div class="checkout-step-header">
+              <span>STEP C · SEND THIS FIRST PROMPT IN GROK BOT</span>
+              <span>TURN-1 AUTO-SETUP</span>
+            </div>
+            <p class="checkout-field-help" style="margin-bottom: 8px;" id="fulfilled-step-c-hint">
+              Paste this prompt on Turn 1 (or together with any <code>SKILL.md</code> or GitHub repo URL you want inspected):
+            </p>
+            <div class="checkout-copy-box">
+              <code id="fulfilled-activation-prompt">—</code>
+              <button type="button" class="mini-copy-btn" id="fulfilled-copy-prompt-btn">
+                Copy Prompt
+              </button>
+            </div>
+            <p class="checkout-field-help" style="margin-top: 8px;" id="fulfilled-step-c-foot">
+              On Turn 1, <code>auditor-setup</code> installs the read-only helpers (<code>.wattcoin_license_check.py</code> &amp; <code>.wattcoin_audit_prep.py</code> at <code>0500</code>), provisions <code>/workspace/.wattcoin_env</code> (<code>0600</code>), completes the 100 WATT starter activation, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.
+            </p>
+          </div>
+
+          <!-- Receipt Summary & Storage Controls -->
+          <div class="fulfilled-receipt-footer">
+            <div class="receipt-meta">
+              <span>Order: <code id="fulfilled-order-id">—</code></span>
+              <span>TX: <a target="_blank" rel="noopener noreferrer" id="fulfilled-solscan-link" style="color: var(--accent-cyan); text-decoration: underline;"><code id="fulfilled-tx-sig">—</code> ↗</a></span>
+            </div>
+            <div class="receipt-actions">
+              <button type="button" class="btn btn-secondary btn-sm" id="fulfilled-download-btn">
+                Download Receipt (.txt)
+              </button>
+              <button type="button" class="btn btn-secondary btn-sm" id="fulfilled-new-order-btn">
+                Buy Another License
+              </button>
+              <button type="button" class="mini-copy-btn danger-btn" id="fulfilled-clear-storage-btn">
+                Clear from Browser Storage
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="copy-toast" id="copy-toast" role="status" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="disclaimer-box">
+        <strong>Non-Custodial &amp; Non-Financial-Advice Disclaimer:</strong> CoinLoader templates execute locally in your Grok Bot environment and report factual on-chain and static code capabilities only. Nothing on CoinLoader.com constitutes financial, investment, legal, security-certification, or tax advice. Templates never request seed phrases, never take custody of keys, and never issue token safety scores, audit pass/fail badges, or trade recommendations.
+      </div>
+
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 8px;">
+            <span class="brand-mark">CL</span>
+            <span>CoinLoader<span class="brand-domain">.com</span></span>
+          </div>
+          <p style="max-width: 440px; color: var(--text-muted); font-size: 13px;">
+            Crypto, Solana &amp; Security Agent Templates for Grok Bot. Powered by the WattCoin (WATT) Agent Registry on Solana.
+          </p>
+        </div>
+
+        <div class="footer-links-list">
+          <a href="/bots/web-text-extractor.html">Web &amp; API Text Extractor (Free Bot) →</a>
+          <a href="/bots/solana-wallet-hygiene.html">Solana Wallet Hygiene Bot ($19 SOL) →</a>
+          <a href="/bots/solana-token-scanner.html">Retail Token Due-Diligence Bot ($29 SOL) →</a>
+          <a href="/bots/bot-skill-auditor.html">Bot &amp; Skill Security Auditor ($29 SOL) →</a>
+          <a href="/bots/hyperliquid-monitor.html">Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor ($29 SOL) →</a>
+          <a href="/bots/token-rugscore.html">Cross-Chain Token RugScore &amp; Honeypot Scanner ($29 SOL) →</a>
+          <a href="/#bundles">Save with Multi-Bot Value Bundles &rarr;</a>
+          <a href="/#faq">FAQ</a>
+          <a href="/llms.txt">llms.txt ↗</a>
+          <a href="/llms-full.txt">llms-full.txt ↗</a>
+          <a href="/sitemap.xml">sitemap.xml ↗</a>
+          <a href="https://www.wattcoin.org/llms.txt" target="_blank" rel="noopener">wattcoin.org/llms.txt ↗</a>
+          <a href="https://botappstore.com" target="_blank" rel="noopener" title="Enterprise OSINT &amp; Physical Infrastructure Grok Bot Templates">BotAppStore.com (OSINT &amp; Enterprise Bots) ↗</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 CoinLoader.com · Built for Grok Bot</span>
+        <span>Zero Build Step Static Storefront · Ready for Cloudflare Pages / Vercel / GitHub Pages</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
+

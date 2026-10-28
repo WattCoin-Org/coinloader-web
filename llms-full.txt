@@ -14,7 +14,7 @@
 - **Solana Wallet Hygiene Bot ($19 in SOL, `sku: solana-wallet-hygiene`, Registry Name: *Solana Wallet Hygiene & Rent Reclaim*):** https://coinloader.com/bots/solana-wallet-hygiene.html
 - **Retail Token Due-Diligence Bot ($29 in SOL, `sku: solana-token-scanner`, Registry Name: *Solana Token & Mint Due-Diligence Scanner*):** https://coinloader.com/bots/solana-token-scanner.html
 
-## 1. Live Templates (Available Now — 10 Live Agents)
+## 1. Live Templates (Available Now — 11 Live Agents)
 
 ### 1.1 Web & API Text Extractor (FREE + 100 WATT Starter Grant)
 - **Status:** LIVE NOW (Free)
@@ -190,28 +190,42 @@
 - **Included Skills:** `hyperliquid-monitor-setup`, `hyperliquid-monitor`
 - **Storefront Checkout URL:** https://coinloader.com/#card-hyperliquid-monitor
 
+### 1.11 Cross-Chain Token RugScore & Honeypot Scanner ($29 One-Time in SOL)
+- **Status:** LIVE NOW ($29 USD in SOL, settled on-chain via CoinLoader.com checkout modal; also included at no extra cost in `defi-wallet-security-pack` ($59) and `pro-trader-perps-suite` ($69))
+- **Deliverable:** *Read-only, deterministic 0-100 RugScore with risk tier and `audit_sha256` for Solana SPL / Token-2022 mints and Ethereum, Base & Arbitrum token contracts: mint/freeze authority, Token-2022 extension traps, holder concentration, proxy admins, opcode traps, source verification and liquidity.*
+- **SKU Identifier:** `token-rugscore`
+- **Product Page URL:** https://coinloader.com/bots/token-rugscore.html
+- **Runtime URL:** https://coinloader.com/runtime/token_rugscore.py (standalone zero-dependency Python 3.10+ CLI, `--json` / `--markdown` output, 1200x675 PNG audit receipts) + https://coinloader.com/runtime/bot_common.py
+- **Included Skills:** `token-rugscore-setup`, `token-rugscore`
+- **Rule IDs:** Solana `RS-SOL-01..05` (mint authority, freeze authority, Token-2022 extensions, holder concentration, liquidity depth); EVM `RS-EVM-01..04` (proxy admin, opcode traps, source verification, liquidity)
+- **Risk tiers:** 0-24 LOW, 25-49 MODERATE, 50-74 HIGH, 75-100 CRITICAL
+- **Boundaries:** strictly read-only; never asks for private keys or seed phrases; never builds, signs or broadcasts a transaction; never labels a token "safe", "audited" or "rug-proof"; not financial advice.
+- **Storefront Checkout URL:** https://coinloader.com/#card-token-rugscore
+
 ## Value Bundles — Multi-Bot Packs (3 Live Bundle SKUs; One License Key Unlocks All Included Bots)
 
 Bundle SKUs are priced in USD and paid in SOL via the same non-custodial checkout (`POST https://www.wattcoin.org/api/v1/agents/license/quote` with `sku: <bundle-sku>`, `source: "coinloader"`). A single bundle purchase returns **one** `wcl_<64-hex>` bearer license code that unlocks **every** member bot in the pack (up to 3 workspace-reset rebinds). The `/api/v1/agents/license/purchase` response also includes `included_skus` (member SKU list) and `bundle_templates` (an array of `{sku, name, template_url}` with one unlisted `https://x.ai/bot/<id>` Grok Bot template per member) so you can import every bot in the pack. Activate each imported bot on its Turn 1 with the same `wcl_...` code. Storefront section: https://coinloader.com/#bundles
 
-### DeFi & Multi-Chain Wallet Security Pack ($59 in SOL, `sku: defi-wallet-security-pack`, 4-Bot Bundle — Save $37 vs $96 list)
-- **Bundle Price:** $59.00 USD, paid in SOL at the live USD/SOL rate (individual list total: $96).
-- **Included member SKUs (`included_skus`):** `solana-wallet-hygiene`, `solana-token-scanner`, `evm-approval-auditor`, `evm-contract-inspector`
+### DeFi & Multi-Chain Wallet Security Pack ($59 in SOL, `sku: defi-wallet-security-pack`, 5-Bot Bundle — Save $66 vs $125 list)
+- **Bundle Price:** $59.00 USD, paid in SOL at the live USD/SOL rate (individual list total: $125).
+- **Included member SKUs (`included_skus`):** `solana-wallet-hygiene`, `solana-token-scanner`, `evm-approval-auditor`, `evm-contract-inspector`, `token-rugscore`
 - **Members:**
   - Solana Wallet Hygiene Bot (`solana-wallet-hygiene`, $19 list): https://coinloader.com/bots/solana-wallet-hygiene.html
   - Retail Token Due-Diligence Bot (`solana-token-scanner`, $29 list): https://coinloader.com/bots/solana-token-scanner.html
   - EVM Wallet Approval & Permit2 Risk Auditor (`evm-approval-auditor`, $19 list): https://coinloader.com/bots/evm-approval-auditor.html
   - EVM Smart Contract & Proxy Inspector (`evm-contract-inspector`, $29 list): https://coinloader.com/bots/evm-contract-inspector.html
+  - Cross-Chain Token RugScore & Honeypot Scanner (`token-rugscore`, $29 list, included at no extra cost): https://coinloader.com/bots/token-rugscore.html
 - **License:** one `wcl_...` code unlocks all member bots in this bundle; the purchase response returns `bundle_templates` with a per-bot unlisted template URL.
 
-### Pro Trader & Perps Risk Suite ($69 in SOL, `sku: pro-trader-perps-suite`, 4-Bot Bundle — Save $27 vs $96 list)
-- **Bundle Price:** $69.00 USD, paid in SOL at the live USD/SOL rate (individual list total: $96).
-- **Included member SKUs (`included_skus`):** `hyperliquid-monitor`, `solana-token-scanner`, `btc-utxo-hygiene`, `solana-wallet-hygiene`
+### Pro Trader & Perps Risk Suite ($69 in SOL, `sku: pro-trader-perps-suite`, 5-Bot Bundle — Save $56 vs $125 list)
+- **Bundle Price:** $69.00 USD, paid in SOL at the live USD/SOL rate (individual list total: $125).
+- **Included member SKUs (`included_skus`):** `hyperliquid-monitor`, `solana-token-scanner`, `btc-utxo-hygiene`, `solana-wallet-hygiene`, `token-rugscore`
 - **Members:**
   - Hyperliquid Perps, Funding & Liquidation Risk Monitor (`hyperliquid-monitor`, $29 list): https://coinloader.com/bots/hyperliquid-monitor.html
   - Retail Token Due-Diligence Bot (`solana-token-scanner`, $29 list): https://coinloader.com/bots/solana-token-scanner.html
   - Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor (`btc-utxo-hygiene`, $19 list): https://coinloader.com/bots/btc-utxo-hygiene.html
   - Solana Wallet Hygiene Bot (`solana-wallet-hygiene`, $19 list): https://coinloader.com/bots/solana-wallet-hygiene.html
+  - Cross-Chain Token RugScore & Honeypot Scanner (`token-rugscore`, $29 list, included at no extra cost): https://coinloader.com/bots/token-rugscore.html
 - **License:** one `wcl_...` code unlocks all member bots in this bundle; the purchase response returns `bundle_templates` with a per-bot unlisted template URL.
 
 ### Token Launch Command Center ($49 in SOL, `sku: token-launch-command-center`, Flagship Launch Bundle)
@@ -264,7 +278,7 @@ All paid Grok Bot templates on BotAppStore.com and CoinLoader.com use the same n
 
 ---
 
-## Verbatim Proof-of-Work Sample Outputs (CoinLoader.com — 10 Live Templates)
+## Verbatim Proof-of-Work Sample Outputs (CoinLoader.com — 11 Live Templates)
 
 ### Sample 1 — Web & API Text Extractor (`getting-started` + `web-extractor`, $0 Free Forever)
 
@@ -907,4 +921,59 @@ Top 15 open positions by notional (of 354):
 exit_code 0
 
 > SCOPE_NOTE: Strictly read-only, keyless and non-custodial: the only network call is the public, unauthenticated POST https://api.hyperliquid.xyz/info endpoint (metaAndAssetCtxs, predictedFundings, clearinghouseState, spotClearinghouseState, frontendOpenOrders, vaultDetails) or an --offline fixture. It never calls /exchange, never places, cancels or modifies orders, never signs or broadcasts orders, withdrawals or transfers, and never accepts private keys, API wallet keys, seed phrases, WIF/xprv or API tokens. Liquidation prices are point-in-time clearinghouse estimates that shift with mark price, funding payments and cross-margin PnL of other positions; funding, basis and predicted cross-venue rates change every hour and "no findings" never means "safe". No financial, trading, leverage or investment advice. Refuses: secret/key input, order placement or signing, and targeting third-party accounts for liquidation hunting or exploitation.
+```
+
+## Wave 3 - token-rugscore ($29 in SOL, one-time; LIVE NOW, instant on-chain SOL checkout)
+- **SKU:** `token-rugscore`
+- **Name:** Cross-Chain Token RugScore & Honeypot Scanner
+- **Page:** https://coinloader.com/bots/token-rugscore.html
+- **Skills:** `token-rugscore-setup`, `token-rugscore`
+- **Runtime:** https://coinloader.com/runtime/token_rugscore.py (standalone zero-dependency Python 3.10+ CLI) + https://coinloader.com/runtime/bot_common.py
+- **Bundles:** also included at no extra cost in `defi-wallet-security-pack` ($59) and `pro-trader-perps-suite` ($69)
+- **Summary:** Audit Solana SPL/Token-2022 mints and Ethereum, Base & Arbitrum contracts with a deterministic 0-100 RugScore. Check mint/freeze authority, proxies & liquidity.
+- **Capabilities:**
+  - Solana rules `RS-SOL-01..05`: active mint authority, active freeze authority, Token-2022 extension traps (`PermanentDelegate`, `TransferHook`, `TransferFeeConfig`, frozen `DefaultAccountState`), top-holder concentration, DEX liquidity depth and pair age.
+  - EVM rules `RS-EVM-01..04` (`eth`, `base`, `arb`): EIP-1967 / EIP-1822 / EIP-1167 proxy admin and EOA control, `SELFDESTRUCT` / unexpected `DELEGATECALL` opcode traps, Sourcify source verification, liquidity.
+  - Deterministic scoring: fixed weights summed and capped at 100; same input and chain data produce the same score and `audit_sha256`.
+  - CI/CD friendly: `--json` / `--markdown`, risk-tier exit codes, 1200x675 PNG audit receipts.
+- **Boundaries:**
+  - Strictly read-only: never asks for private keys or seed phrases; never builds, signs or broadcasts a transaction.
+  - Never labels a token "safe", "audited" or "rug-proof"; a low RugScore only means no listed rule fired. Not financial or security-certification advice.
+
+### Verbatim sample output
+```
+snapshot   2026-10-28 09:14:22 UTC | tool=token_rugscore v1.0 | sample=fictional
+
+target    sol:RugDemo7Qk2mVxN4pLwT8cYhB5eJ3aRsZf9uXoGd1HtKq  (fictional test mint)
+program   Token-2022 (TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb)
+supply    1,000,000,000.000000  decimals=6
+mint.auth   Fz3p...Q8xA [ACTIVE]
+freeze.auth none [REVOKED]
+extensions  TransferHook(program=Hk4m...n2Wd) TransferFeeConfig(250 bps) MetadataPointer
+holders     top1=18.4% top10=62.7% top20=74.1% (excl. LP/burn)
+liquidity   $8,420 (Raydium CPMM, 24h vol $1,930) pair_age=3d
+rules
+  [HIGH    ] RS-SOL-01 +25  MINT_AUTHORITY_ACTIVE: issuer can mint unlimited supply
+  [INFO    ] RS-SOL-02  +0  FREEZE_AUTHORITY_REVOKED
+  [MEDIUM  ] RS-SOL-03 +20  TOKEN2022_TRANSFER_HOOK: custom program runs on every transfer (sellability not provable from account data)
+  [MEDIUM  ] RS-SOL-04 +15  HOLDER_CONCENTRATION: top10 hold 62.7% of circulating supply
+  [MEDIUM  ] RS-SOL-05 +12  THIN_LIQUIDITY: $8,420 pool depth, pair younger than 7d
+RugScore  72/100  tier=HIGH  rules_fired=4/5
+
+target    base:0x4fA1c9e07B2d83Ae5C6f10D9b3E7a42c88D5e0b1  (fictional test contract)
+bytecode  2411 bytes  proxy=EIP-1967
+impl      0x9Be3d1A06c47F2e85a0b3C1D7e49fA82b6D0c5E3 (11874 bytes, verified=yes, Sourcify exact_match)
+admin     0x2c7D...91aF [EOA]
+opcodes   impl: SELFDESTRUCT=yes DELEGATECALL=no
+liquidity $412,880 (Uniswap v3 WETH/TKN 0.3%)
+rules
+  [HIGH    ] RS-EVM-01 +20  PROXY_EOA_ADMIN: one key can replace the implementation
+  [MEDIUM  ] RS-EVM-02 +10  OPCODE_SELFDESTRUCT: implementation contains SELFDESTRUCT (heuristic)
+  [INFO    ] RS-EVM-03  +0  SOURCE_VERIFIED
+  [INFO    ] RS-EVM-04  +0  LIQUIDITY_ADEQUATE
+RugScore  30/100  tier=MODERATE  rules_fired=2/4
+
+audit_sha256 272f48c9ed521065954a0aba7759ef54a6489bb86008a6400bd4197469d2c39a
+exit_code 2
+SCOPE_NOTE: Read-only on-chain and public-API inspection. No private keys, seed phrases or signing; no transaction is built or broadcast. A RugScore is a deterministic sum of fixed rules, not a verdict: a low score does not mean a token is safe, and a high score is not proof of fraud. Not financial, investment or security-certification advice.
 ```
