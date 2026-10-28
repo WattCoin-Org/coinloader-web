@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor &mdash; Grok Bot Template | CoinLoader</title>
-  <meta name="description" content="Read-only, keyless Hyperliquid perps monitor for Grok Bot ($29 SOL). Uses only the public Hyperliquid Info API to measure liquidation distance, cross/isolated margin utilisation and TP/SL stop-loss coverage for wallets and subaccounts you own, scan funding APR, mark-oracle basis and Hyperliquid vs Binance/Bybit predicted funding, inspect HLP and child sub-vault exposure, and alert on deltas. Never accepts keys and never places orders." />
+  <title>Hyperliquid Perps Liquidation &amp; Funding Monitor ($29 SOL) | CoinLoader</title>
+  <meta name="description" content="Keyless Hyperliquid perps monitor for Grok Bot ($29 SOL). Tracks liquidation price distance, margin utilisation, stop-loss coverage and funding drag with alerts." />
   <link rel="canonical" href="https://coinloader.com/bots/hyperliquid-monitor.html" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#090d16" />
   <meta property="og:type" content="product" />
   <meta property="og:site_name" content="CoinLoader.com" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor &mdash; Grok Bot Template | CoinLoader" />
-  <meta property="og:description" content="Read-only, keyless Hyperliquid perps monitor for Grok Bot ($29 SOL). Uses only the public Hyperliquid Info API to measure liquidation distance, cross/isolated margin utilisation and TP/SL stop-loss coverage for wallets and subaccounts you own, scan funding APR, mark-oracle basis and Hyperliquid vs Binance/Bybit predicted funding, inspect HLP and child sub-vault exposure, and alert on deltas. Never accepts keys and never places orders." />
+  <meta property="og:title" content="Hyperliquid Perps Liquidation &amp; Funding Monitor ($29 SOL) | CoinLoader" />
+  <meta property="og:description" content="Keyless Hyperliquid perps monitor for Grok Bot ($29 SOL). Tracks liquidation price distance, margin utilisation, stop-loss coverage and funding drag with alerts." />
   <meta property="og:url" content="https://coinloader.com/bots/hyperliquid-monitor.html" />
   <meta property="og:image" content="https://coinloader.com/og-card.png" />
   <meta property="og:image:width" content="1200" />
@@ -20,8 +20,8 @@
   <meta property="og:image:alt" content="Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor on CoinLoader.com" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@WattCoin2026" />
-  <meta name="twitter:title" content="Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor &mdash; Grok Bot Template | CoinLoader" />
-  <meta name="twitter:description" content="Read-only, keyless Hyperliquid perps monitor for Grok Bot ($29 SOL). Uses only the public Hyperliquid Info API to measure liquidation distance, cross/isolated margin utilisation and TP/SL stop-loss coverage for wallets and subaccounts you own, scan funding APR, mark-oracle basis and Hyperliquid vs Binance/Bybit predicted funding, inspect HLP and child sub-vault exposure, and alert on deltas. Never accepts keys and never places orders." />
+  <meta name="twitter:title" content="Hyperliquid Perps Liquidation &amp; Funding Monitor ($29 SOL) | CoinLoader" />
+  <meta name="twitter:description" content="Keyless Hyperliquid perps monitor for Grok Bot ($29 SOL). Tracks liquidation price distance, margin utilisation, stop-loss coverage and funding drag with alerts." />
   <meta name="twitter:image" content="https://coinloader.com/og-card.png" />
   <meta name="twitter:image:alt" content="Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor on CoinLoader.com" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -64,10 +64,13 @@
       "@type": "SoftwareApplication",
       "@id": "https://coinloader.com/bots/hyperliquid-monitor.html#software",
       "name": "Hyperliquid Perps, Funding & Liquidation Risk Monitor",
-      "applicationCategory": ["FinanceApplication", "SecurityApplication"],
+      "applicationCategory": [
+        "FinanceApplication",
+        "SecurityApplication"
+      ],
       "operatingSystem": "Grok Bot Linux Sandbox (/workspace)",
       "url": "https://coinloader.com/bots/hyperliquid-monitor.html",
-      "description": "Read-only, keyless Hyperliquid perps monitor for Grok Bot ($29 SOL). Uses only the public Hyperliquid Info API to measure liquidation distance, cross/isolated margin utilisation and TP/SL stop-loss coverage for wallets and subaccounts you own, scan funding APR, mark-oracle basis and Hyperliquid vs Binance/Bybit predicted funding, inspect HLP and child sub-vault exposure, and alert on deltas. Never accepts keys and never places orders.",
+      "description": "Keyless Hyperliquid perps monitor for Grok Bot ($29 SOL). Tracks liquidation price distance, margin utilisation, stop-loss coverage and funding drag with alerts.",
       "sku": "hyperliquid-monitor",
       "offers": {
         "@type": "Offer",
@@ -77,6 +80,44 @@
         "url": "https://coinloader.com/bots/hyperliquid-monitor.html",
         "sku": "hyperliquid-monitor"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://coinloader.com/bots/hyperliquid-monitor.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I monitor my Hyperliquid perpetual liquidation price distance, isolated margin buffer, and hourly funding rate drag?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pass your public 0x wallet or subaccount address. For every position the monitor reports mark vs liquidation price in percent and dollars (LIQ_DISTANCE_CRITICAL / HIGH / MEDIUM at 5% / 10% / 20% by default), cross or isolated margin utilisation, effective leverage, and ADVERSE_FUNDING_BLEED, the estimated dollars per day you pay in funding. The market scan also lists 1h and 8h funding and APR for every live perp."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the monitor audit Hyperliquid sub-accounts, HLP vaults, and mark-oracle basis bps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sub-accounts are audited by passing each subaccount's 0x address with --wallet (repeatable), and the monitor can also expand HLP and its child sub-vaults. Alongside position liquidation distance, it calculates live mark-oracle basis spreads in bps and flags BASIS_DISLOCATED when perpetual mark prices diverge sharply from oracle spot."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do scheduled delta alerts work for Hyperliquid liquidation and funding rate spikes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Run it as a routine with --state PATH --delta. The first run saves a snapshot and later runs print only what changed: LIQ_DISTANCE_TIGHTENED, MARGIN_UTIL_SPIKE, POSITION_OPENED / CLOSED / FLIPPED / SIZE_CHANGED, FUNDING_REGIME_SHIFT and BASIS_DISLOCATED. Exit codes 0 / 1 / 2 / 3 map to clean / MEDIUM / HIGH / CRITICAL, so a quiet run stays quiet."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the Hyperliquid Perps Monitor require API keys, private keys, or trading permissions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It is keyless and read-only: the only network call is the public, unauthenticated POST https://api.hyperliquid.xyz/info. It never calls /exchange, never places, cancels or modifies orders, and refuses private keys, API wallet keys, seed phrases and flags such as --private-key or --order with exit code 10. Liquidation prices are point-in-time estimates, not trading advice."
+          }
+        }
+      ]
     }
   ]
 }
@@ -320,6 +361,27 @@ exit codes
       <section class="product-section" id="licensing-flow">
         <h2>Licensing &amp; Setup</h2>
         <p>One-time $29 license paid in SOL, up to 3 workspace-reset rebinds. On Turn 1 the <code>hyperliquid-monitor-setup</code> skill verifies and activates your workspace agent key, binds your <code>wcl_...</code> code through the read-only license helper (<code>POST /api/v1/agents/license/claim</code>), installs the SHA-256-pinned <code>bot_common.py</code> and <code>hyperliquid_monitor.py</code> runtime, runs a public market smoke test and offers an optional watchlist routine. The license code is never printed in chat.</p>
+      </section>
+      <section class="product-section" id="product-faq">
+        <h2>Frequently Asked Questions &mdash; Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor</h2>
+        <div class="faq-grid">
+          <details class="faq-item" open>
+            <summary>How do I monitor my Hyperliquid perpetual liquidation price distance, isolated margin buffer, and hourly funding rate drag?</summary>
+            <div class="faq-answer">Pass your public 0x wallet or subaccount address. For every position the monitor reports mark vs liquidation price in percent and dollars (LIQ_DISTANCE_CRITICAL / HIGH / MEDIUM at 5% / 10% / 20% by default), cross or isolated margin utilisation, effective leverage, and ADVERSE_FUNDING_BLEED, the estimated dollars per day you pay in funding. The market scan also lists 1h and 8h funding and APR for every live perp.</div>
+          </details>
+          <details class="faq-item">
+            <summary>How does the monitor audit Hyperliquid sub-accounts, HLP vaults, and mark-oracle basis bps?</summary>
+            <div class="faq-answer">Sub-accounts are audited by passing each subaccount&#x27;s 0x address with --wallet (repeatable), and the monitor can also expand HLP and its child sub-vaults. Alongside position liquidation distance, it calculates live mark-oracle basis spreads in bps and flags BASIS_DISLOCATED when perpetual mark prices diverge sharply from oracle spot.</div>
+          </details>
+          <details class="faq-item">
+            <summary>How do scheduled delta alerts work for Hyperliquid liquidation and funding rate spikes?</summary>
+            <div class="faq-answer">Run it as a routine with --state PATH --delta. The first run saves a snapshot and later runs print only what changed: LIQ_DISTANCE_TIGHTENED, MARGIN_UTIL_SPIKE, POSITION_OPENED / CLOSED / FLIPPED / SIZE_CHANGED, FUNDING_REGIME_SHIFT and BASIS_DISLOCATED. Exit codes 0 / 1 / 2 / 3 map to clean / MEDIUM / HIGH / CRITICAL, so a quiet run stays quiet.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Does the Hyperliquid Perps Monitor require API keys, private keys, or trading permissions?</summary>
+            <div class="faq-answer">No. It is keyless and read-only: the only network call is the public, unauthenticated POST https://api.hyperliquid.xyz/info. It never calls /exchange, never places, cancels or modifies orders, and refuses private keys, API wallet keys, seed phrases and flags such as --private-key or --order with exit code 10. Liquidation prices are point-in-time estimates, not trading advice.</div>
+          </details>
+        </div>
       </section>
     </div>
   </main>
@@ -620,6 +682,7 @@ exit codes
           <a href="/bots/evm-approval-auditor.html">EVM Wallet Approval &amp; Permit2 Risk Auditor ($19 SOL) →</a>
           <a href="/bots/btc-utxo-hygiene.html">Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor ($19 SOL) →</a>
           <a href="/bots/hyperliquid-monitor.html">Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor ($29 SOL) →</a>
+          <a href="/#bundles">Save with Multi-Bot Value Bundles &rarr;</a>
           <a href="/#faq">FAQ</a>
           <a href="/llms.txt">llms.txt ↗</a>
           <a href="/llms-full.txt">llms-full.txt ↗</a>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pump.fun Coin &amp; Community Manager ($29 SOL) | CoinLoader</title>
-  <meta name="description" content="Read-only Pump.fun launch auditor and community-thread delta monitor for Grok Bot ($29 SOL). Finds missing links, creator bio/X gaps, empty Callouts and listing mismatches; drafts replies you review and post." />
+  <meta name="description" content="Read-only Pump.fun launch auditor for Grok Bot ($29 SOL). Finds missing links, creator gaps and holder shifts, and drafts Callout replies you review and post." />
   <link rel="canonical" href="https://coinloader.com/bots/pumpfun-coin-manager.html" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#090d16" />
@@ -12,7 +12,7 @@
   <meta property="og:site_name" content="CoinLoader.com" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:title" content="Pump.fun Coin &amp; Community Manager ($29 SOL) | CoinLoader" />
-  <meta property="og:description" content="Read-only Pump.fun launch auditor and community-thread delta monitor for Grok Bot ($29 SOL). Finds missing links, creator bio/X gaps, empty Callouts and listing mismatches; drafts replies you review and post." />
+  <meta property="og:description" content="Read-only Pump.fun launch auditor for Grok Bot ($29 SOL). Finds missing links, creator gaps and holder shifts, and drafts Callout replies you review and post." />
   <meta property="og:url" content="https://coinloader.com/bots/pumpfun-coin-manager.html" />
   <meta property="og:image" content="https://coinloader.com/og-card.png" />
   <meta property="og:image:width" content="1200" />
@@ -21,7 +21,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@WattCoin2026" />
   <meta name="twitter:title" content="Pump.fun Coin &amp; Community Manager ($29 SOL) | CoinLoader" />
-  <meta name="twitter:description" content="Read-only Pump.fun launch auditor and community-thread delta monitor for Grok Bot ($29 SOL). Finds missing links, creator bio/X gaps, empty Callouts and listing mismatches; drafts replies you review and post." />
+  <meta name="twitter:description" content="Read-only Pump.fun launch auditor for Grok Bot ($29 SOL). Finds missing links, creator gaps and holder shifts, and drafts Callout replies you review and post." />
   <meta name="twitter:image" content="https://coinloader.com/og-card.png" />
   <meta name="twitter:image:alt" content="Pump.fun Coin &amp; Community Manager on CoinLoader.com" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -67,7 +67,7 @@
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Grok Bot Linux Sandbox (/workspace)",
       "url": "https://coinloader.com/bots/pumpfun-coin-manager.html",
-      "description": "Read-only Pump.fun launch auditor and community-thread delta monitor for Grok Bot ($29 SOL). Finds missing links, creator bio/X gaps, empty Callouts and listing mismatches; drafts replies you review and post.",
+      "description": "Read-only Pump.fun launch auditor for Grok Bot ($29 SOL). Finds missing links, creator gaps and holder shifts, and drafts Callout replies you review and post.",
       "sku": "pumpfun-coin-manager",
       "offers": {
         "@type": "Offer",
@@ -77,6 +77,44 @@
         "url": "https://coinloader.com/bots/pumpfun-coin-manager.html",
         "sku": "pumpfun-coin-manager"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://coinloader.com/bots/pumpfun-coin-manager.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I audit a Pump.fun token launch for bonding-curve graduation progress, creator supply concentration, and missing social links?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Run the manager on the mint address. It reads Pump.fun and public Solana RPC data to report Token-2022 authorities and extensions, the creator's holdings share, top holders, and whether the coin trades on its bonding curve or a DEX pair (DexScreener, GeckoTerminal and RugCheck are cross-checked). It also lists missing website, Discord and Telegram links in the IPFS metadata and gaps between the creator bio and your --expected-website, --expected-discord and --expected-x values."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does scheduled delta monitoring track bonding-curve progress and top-holder shifts on Pump.fun?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "With --state PATH --delta the 16-key monitor compares each run to the last snapshot and reports only changes: authority reinstated, metadata URI changed, supply increased, large new holders, creator sells, liquidity drops, pair dormant or active, new Callouts and replies, and closed link gaps. Exit codes 0 / 1 / 2 / 3 map to clean / MEDIUM / HIGH / CRITICAL, and 11 means a data source was degraded."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the Pump.fun Coin & Community Manager draft launch checklist items and community status updates?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. --draft-replies emits a creator bio, a creator anchor Callout, an on-chain transparency Callout and per-Callout reply drafts built from verified facts such as supply, authorities and your official links. Every draft is for a human to review and post; the bot never posts for you."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What refusal boundaries does the Pump.fun Coin & Community Manager enforce (no volume bots, wash trading, or private keys)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is strictly read-only: no wallet, no keys, no signing and nothing posted on your behalf. It never suggests wash trading to wake a dormant aggregator pair, never DMs or tags underwater holders, and never makes price or return claims. Findings are heuristics with stated evidence, not verdicts."
+          }
+        }
+      ]
     }
   ]
 }
@@ -223,6 +261,27 @@ findings
       <section class="product-section" id="licensing-flow">
         <h2>Licensing &amp; Setup</h2>
         <p>One-time license, up to 3 workspace-reset rebinds. On Turn 1 the <code>pumpfun-coin-manager-setup</code> skill verifies your agent key, binds your <code>wcl_...</code> code through the read-only license helper, and confirms the bot files are installed. The license code is never printed in chat.</p>
+      </section>
+      <section class="product-section" id="product-faq">
+        <h2>Frequently Asked Questions &mdash; Pump.fun Coin &amp; Community Manager</h2>
+        <div class="faq-grid">
+          <details class="faq-item" open>
+            <summary>How do I audit a Pump.fun token launch for bonding-curve graduation progress, creator supply concentration, and missing social links?</summary>
+            <div class="faq-answer">Run the manager on the mint address. It reads Pump.fun and public Solana RPC data to report Token-2022 authorities and extensions, the creator&#x27;s holdings share, top holders, and whether the coin trades on its bonding curve or a DEX pair (DexScreener, GeckoTerminal and RugCheck are cross-checked). It also lists missing website, Discord and Telegram links in the IPFS metadata and gaps between the creator bio and your --expected-website, --expected-discord and --expected-x values.</div>
+          </details>
+          <details class="faq-item">
+            <summary>How does scheduled delta monitoring track bonding-curve progress and top-holder shifts on Pump.fun?</summary>
+            <div class="faq-answer">With --state PATH --delta the 16-key monitor compares each run to the last snapshot and reports only changes: authority reinstated, metadata URI changed, supply increased, large new holders, creator sells, liquidity drops, pair dormant or active, new Callouts and replies, and closed link gaps. Exit codes 0 / 1 / 2 / 3 map to clean / MEDIUM / HIGH / CRITICAL, and 11 means a data source was degraded.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Can the Pump.fun Coin &amp; Community Manager draft launch checklist items and community status updates?</summary>
+            <div class="faq-answer">Yes. --draft-replies emits a creator bio, a creator anchor Callout, an on-chain transparency Callout and per-Callout reply drafts built from verified facts such as supply, authorities and your official links. Every draft is for a human to review and post; the bot never posts for you.</div>
+          </details>
+          <details class="faq-item">
+            <summary>What refusal boundaries does the Pump.fun Coin &amp; Community Manager enforce (no volume bots, wash trading, or private keys)?</summary>
+            <div class="faq-answer">It is strictly read-only: no wallet, no keys, no signing and nothing posted on your behalf. It never suggests wash trading to wake a dormant aggregator pair, never DMs or tags underwater holders, and never makes price or return claims. Findings are heuristics with stated evidence, not verdicts.</div>
+          </details>
+        </div>
       </section>
     </div>
   </main>
@@ -520,6 +579,7 @@ findings
           <a href="/bots/solana-token-scanner.html">Retail Token Due-Diligence Bot ($29 SOL) →</a>
           <a href="/bots/bot-skill-auditor.html">Bot &amp; Skill Security Auditor ($29 SOL) →</a>
           <a href="/bots/hyperliquid-monitor.html">Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor ($29 SOL) →</a>
+          <a href="/#bundles">Save with Multi-Bot Value Bundles &rarr;</a>
           <a href="/#faq">FAQ</a>
           <a href="/llms.txt">llms.txt ↗</a>
           <a href="/llms-full.txt">llms-full.txt ↗</a>

@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor ($19 SOL) | CoinLoader</title>
-  <meta name="description" content="Read-only Bitcoin wallet and UTXO privacy/fee hygiene auditor for Grok Bot ($19 SOL). Reads address stats, UTXO sets, recent transactions and fee estimates from public Mempool.space / Blockstream Esplora endpoints, flags address reuse, dusting, fragmentation, stranded UTXOs, Ordinals inscriptions and common-input-ownership exposure, and prints coin-control and consolidation commands that you run yourself." />
+  <title>Bitcoin UTXO Consolidation &amp; Privacy Auditor ($19 SOL) | CoinLoader</title>
+  <meta name="description" content="Read-only Bitcoin UTXO auditor for Grok Bot ($19 SOL). Flags address reuse, dust and stranded UTXOs, protects Ordinals, and plans consolidation by sats/vB fee." />
   <link rel="canonical" href="https://coinloader.com/bots/btc-utxo-hygiene.html" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#090d16" />
   <meta property="og:type" content="product" />
   <meta property="og:site_name" content="CoinLoader.com" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor ($19 SOL) | CoinLoader" />
-  <meta property="og:description" content="Read-only Bitcoin wallet and UTXO privacy/fee hygiene auditor for Grok Bot ($19 SOL). Reads address stats, UTXO sets, recent transactions and fee estimates from public Mempool.space / Blockstream Esplora endpoints, flags address reuse, dusting, fragmentation, stranded UTXOs, Ordinals inscriptions and common-input-ownership exposure, and prints coin-control and consolidation commands that you run yourself." />
+  <meta property="og:title" content="Bitcoin UTXO Consolidation &amp; Privacy Auditor ($19 SOL) | CoinLoader" />
+  <meta property="og:description" content="Read-only Bitcoin UTXO auditor for Grok Bot ($19 SOL). Flags address reuse, dust and stranded UTXOs, protects Ordinals, and plans consolidation by sats/vB fee." />
   <meta property="og:url" content="https://coinloader.com/bots/btc-utxo-hygiene.html" />
   <meta property="og:image" content="https://coinloader.com/og-card.png" />
   <meta property="og:image:width" content="1200" />
@@ -20,8 +20,8 @@
   <meta property="og:image:alt" content="Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor on CoinLoader.com" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@WattCoin2026" />
-  <meta name="twitter:title" content="Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor ($19 SOL) | CoinLoader" />
-  <meta name="twitter:description" content="Read-only Bitcoin wallet and UTXO privacy/fee hygiene auditor for Grok Bot ($19 SOL). Reads address stats, UTXO sets, recent transactions and fee estimates from public Mempool.space / Blockstream Esplora endpoints, flags address reuse, dusting, fragmentation, stranded UTXOs, Ordinals inscriptions and common-input-ownership exposure, and prints coin-control and consolidation commands that you run yourself." />
+  <meta name="twitter:title" content="Bitcoin UTXO Consolidation &amp; Privacy Auditor ($19 SOL) | CoinLoader" />
+  <meta name="twitter:description" content="Read-only Bitcoin UTXO auditor for Grok Bot ($19 SOL). Flags address reuse, dust and stranded UTXOs, protects Ordinals, and plans consolidation by sats/vB fee." />
   <meta name="twitter:image" content="https://coinloader.com/og-card.png" />
   <meta name="twitter:image:alt" content="Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor on CoinLoader.com" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -64,10 +64,13 @@
       "@type": "SoftwareApplication",
       "@id": "https://coinloader.com/bots/btc-utxo-hygiene.html#software",
       "name": "Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor",
-      "applicationCategory": ["SecurityApplication", "FinanceApplication"],
+      "applicationCategory": [
+        "SecurityApplication",
+        "FinanceApplication"
+      ],
       "operatingSystem": "Grok Bot Linux Sandbox (/workspace)",
       "url": "https://coinloader.com/bots/btc-utxo-hygiene.html",
-      "description": "Read-only Bitcoin wallet and UTXO privacy/fee hygiene auditor for Grok Bot ($19 SOL). Reads address stats, UTXO sets, recent transactions and fee estimates from public Mempool.space / Blockstream Esplora endpoints, flags address reuse, dusting, fragmentation, stranded UTXOs, Ordinals inscriptions and common-input-ownership exposure, and prints coin-control and consolidation commands that you run yourself.",
+      "description": "Read-only Bitcoin UTXO auditor for Grok Bot ($19 SOL). Flags address reuse, dust and stranded UTXOs, protects Ordinals, and plans consolidation by sats/vB fee.",
       "sku": "btc-utxo-hygiene",
       "offers": {
         "@type": "Offer",
@@ -77,6 +80,44 @@
         "url": "https://coinloader.com/bots/btc-utxo-hygiene.html",
         "sku": "btc-utxo-hygiene"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://coinloader.com/bots/btc-utxo-hygiene.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "When and how should I consolidate fragmented Bitcoin UTXOs without overpaying in sats/vB fees?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Run the auditor on an address you own. It buckets your UTXO set, flags UTXO_FRAGMENTATION and STRANDED_UTXOS (inputs that cost more to spend than they are worth at the current sats/vB rate), and builds a cost-vs-savings matrix for consolidating into P2WPKH or P2TR outputs at current and window fee rates. It shows the break-even future fee rate and raises CONSOLIDATION_WINDOW_OPEN when fees fall below your --window-rate, then prints an unsigned-PSBT bitcoin-cli sendall command for you to run yourself."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the auditor protect Ordinals inscriptions and Runes dust outputs from accidental spend during UTXO consolidation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It scans the creating transaction's witness data and marks Ordinals-inscription UTXOs as INSCRIPTION_PROTECTED so they are excluded from consolidation, and it prints freeze commands (bitcoin-cli lockunspent, Sparrow Freeze UTXO, Electrum Freeze Coin) for outpoints you want to keep untouched. v1 does not decode Runes balances, so freeze any small output you know carries Runes before sweeping; 'no findings' never means 'safe to sweep'."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Bitcoin address reuse privacy risk scored across a wallet or UTXO set?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "From recent transactions it flags ADDRESS_REUSE, CIOH_COSPEND_EXPOSURE and CIOH_CROSS_ADDRESS_LINK (common-input-ownership links), ROUND_NUMBER_CHANGE_LEAK and SCRIPT_TYPE_MISMATCH_CHANGE, plus DUSTING_ATTACK_SUSPECT for small unsolicited outputs. These roll up into a 0-100 hygiene score per address and per wallet. The heuristics are probabilistic and cover only the recent transactions the report states it checked."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the Bitcoin UTXO auditor ever ask for xpubs, seed phrases, or private keys?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It takes plain Bitcoin addresses only and reads public Mempool.space or Blockstream Esplora GET endpoints. It never accepts or asks for private keys, WIF, xprv/yprv/zprv, seed phrases or PSBTs, and it never builds, signs or broadcasts a transaction. It also refuses to target third-party wallets for exploitation or deanonymisation."
+          }
+        }
+      ]
     }
   ]
 }
@@ -251,6 +292,27 @@ SCOPE_NOTE: Strictly read-only: only public Mempool.space / Blockstream Esplora 
       <section class="product-section" id="licensing-flow">
         <h2>Licensing &amp; Setup</h2>
         <p>One-time license, up to 3 workspace-reset rebinds. On Turn 1 the <code>btc-utxo-hygiene-setup</code> skill verifies your agent key, binds your <code>wcl_...</code> code through the read-only license helper, and installs the SHA-256-pinned <code>bot_common.py</code> and <code>btc_utxo_hygiene.py</code> runtime. The license code is never printed in chat.</p>
+      </section>
+      <section class="product-section" id="product-faq">
+        <h2>Frequently Asked Questions &mdash; Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor</h2>
+        <div class="faq-grid">
+          <details class="faq-item" open>
+            <summary>When and how should I consolidate fragmented Bitcoin UTXOs without overpaying in sats/vB fees?</summary>
+            <div class="faq-answer">Run the auditor on an address you own. It buckets your UTXO set, flags UTXO_FRAGMENTATION and STRANDED_UTXOS (inputs that cost more to spend than they are worth at the current sats/vB rate), and builds a cost-vs-savings matrix for consolidating into P2WPKH or P2TR outputs at current and window fee rates. It shows the break-even future fee rate and raises CONSOLIDATION_WINDOW_OPEN when fees fall below your --window-rate, then prints an unsigned-PSBT bitcoin-cli sendall command for you to run yourself.</div>
+          </details>
+          <details class="faq-item">
+            <summary>How does the auditor protect Ordinals inscriptions and Runes dust outputs from accidental spend during UTXO consolidation?</summary>
+            <div class="faq-answer">It scans the creating transaction&#x27;s witness data and marks Ordinals-inscription UTXOs as INSCRIPTION_PROTECTED so they are excluded from consolidation, and it prints freeze commands (bitcoin-cli lockunspent, Sparrow Freeze UTXO, Electrum Freeze Coin) for outpoints you want to keep untouched. v1 does not decode Runes balances, so freeze any small output you know carries Runes before sweeping; &#x27;no findings&#x27; never means &#x27;safe to sweep&#x27;.</div>
+          </details>
+          <details class="faq-item">
+            <summary>How is Bitcoin address reuse privacy risk scored across a wallet or UTXO set?</summary>
+            <div class="faq-answer">From recent transactions it flags ADDRESS_REUSE, CIOH_COSPEND_EXPOSURE and CIOH_CROSS_ADDRESS_LINK (common-input-ownership links), ROUND_NUMBER_CHANGE_LEAK and SCRIPT_TYPE_MISMATCH_CHANGE, plus DUSTING_ATTACK_SUSPECT for small unsolicited outputs. These roll up into a 0-100 hygiene score per address and per wallet. The heuristics are probabilistic and cover only the recent transactions the report states it checked.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Does the Bitcoin UTXO auditor ever ask for xpubs, seed phrases, or private keys?</summary>
+            <div class="faq-answer">No. It takes plain Bitcoin addresses only and reads public Mempool.space or Blockstream Esplora GET endpoints. It never accepts or asks for private keys, WIF, xprv/yprv/zprv, seed phrases or PSBTs, and it never builds, signs or broadcasts a transaction. It also refuses to target third-party wallets for exploitation or deanonymisation.</div>
+          </details>
+        </div>
       </section>
     </div>
   </main>
@@ -551,6 +613,7 @@ SCOPE_NOTE: Strictly read-only: only public Mempool.space / Blockstream Esplora 
           <a href="/bots/evm-approval-auditor.html">EVM Wallet Approval &amp; Permit2 Risk Auditor ($19 SOL) →</a>
           <a href="/bots/btc-utxo-hygiene.html">Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor ($19 SOL) →</a>
           <a href="/bots/hyperliquid-monitor.html">Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor ($29 SOL) →</a>
+          <a href="/#bundles">Save with Multi-Bot Value Bundles &rarr;</a>
           <a href="/#faq">FAQ</a>
           <a href="/llms.txt">llms.txt ↗</a>
           <a href="/llms-full.txt">llms-full.txt ↗</a>

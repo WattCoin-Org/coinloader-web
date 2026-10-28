@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EVM Smart Contract &amp; Proxy Inspector ($29 SOL) | CoinLoader</title>
-  <meta name="description" content="Read-only EVM smart contract and proxy upgradeability inspector for Grok Bot ($29 SOL). Resolves EIP-1967, EIP-1822, EIP-1167 and ZeppelinOS proxy slots, Safe multisig and Timelock controllers, Sourcify v2 source verification, and dangerous opcodes across Ethereum, Base, and Arbitrum." />
+  <meta name="description" content="Read-only EVM proxy inspector for Grok Bot ($29 SOL). Resolves EIP-1967/UUPS proxy admins on Ethereum, Base &amp; Arbitrum, flags EOA admins and checks Sourcify." />
   <link rel="canonical" href="https://coinloader.com/bots/evm-contract-inspector.html" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#090d16" />
@@ -12,7 +12,7 @@
   <meta property="og:site_name" content="CoinLoader.com" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:title" content="EVM Smart Contract &amp; Proxy Inspector ($29 SOL) | CoinLoader" />
-  <meta property="og:description" content="Read-only EVM smart contract and proxy upgradeability inspector for Grok Bot ($29 SOL). Resolves EIP-1967, EIP-1822, EIP-1167 and ZeppelinOS proxy slots, Safe multisig and Timelock controllers, Sourcify v2 source verification, and dangerous opcodes across Ethereum, Base, and Arbitrum." />
+  <meta property="og:description" content="Read-only EVM proxy inspector for Grok Bot ($29 SOL). Resolves EIP-1967/UUPS proxy admins on Ethereum, Base &amp; Arbitrum, flags EOA admins and checks Sourcify." />
   <meta property="og:url" content="https://coinloader.com/bots/evm-contract-inspector.html" />
   <meta property="og:image" content="https://coinloader.com/og-card.png" />
   <meta property="og:image:width" content="1200" />
@@ -21,7 +21,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@WattCoin2026" />
   <meta name="twitter:title" content="EVM Smart Contract &amp; Proxy Inspector ($29 SOL) | CoinLoader" />
-  <meta name="twitter:description" content="Read-only EVM smart contract and proxy upgradeability inspector for Grok Bot ($29 SOL). Resolves EIP-1967, EIP-1822, EIP-1167 and ZeppelinOS proxy slots, Safe multisig and Timelock controllers, Sourcify v2 source verification, and dangerous opcodes across Ethereum, Base, and Arbitrum." />
+  <meta name="twitter:description" content="Read-only EVM proxy inspector for Grok Bot ($29 SOL). Resolves EIP-1967/UUPS proxy admins on Ethereum, Base &amp; Arbitrum, flags EOA admins and checks Sourcify." />
   <meta name="twitter:image" content="https://coinloader.com/og-card.png" />
   <meta name="twitter:image:alt" content="EVM Smart Contract &amp; Proxy Inspector on CoinLoader.com" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -67,7 +67,7 @@
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Grok Bot Linux Sandbox (/workspace)",
       "url": "https://coinloader.com/bots/evm-contract-inspector.html",
-      "description": "Read-only EVM smart contract and proxy upgradeability inspector for Grok Bot ($29 SOL). Resolves EIP-1967, EIP-1822, EIP-1167 and ZeppelinOS proxy slots, Safe multisig and Timelock controllers, Sourcify v2 source verification, and dangerous opcodes across Ethereum, Base, and Arbitrum.",
+      "description": "Read-only EVM proxy inspector for Grok Bot ($29 SOL). Resolves EIP-1967/UUPS proxy admins on Ethereum, Base & Arbitrum, flags EOA admins and checks Sourcify.",
       "sku": "evm-contract-inspector",
       "offers": {
         "@type": "Offer",
@@ -77,6 +77,44 @@
         "url": "https://coinloader.com/bots/evm-contract-inspector.html",
         "sku": "evm-contract-inspector"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://coinloader.com/bots/evm-contract-inspector.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I check if an Ethereum, Base, or Arbitrum contract is an upgradeable proxy with an EOA admin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pass the contract address and chain (eth, base, or arb) to the inspector. It batches JSON-RPC reads of the EIP-1967, EIP-1822 UUPS, EIP-1167 and ZeppelinOS storage slots, then with --deep follows the admin or owner chain up to --max-depth 2. If the upgrade controller is a plain externally owned account it reports EOA_ADMIN; Safe multisigs (threshold and owners), TimelockControllers (minimum delay) and ProxyAdmin contracts are classified separately. An EOA admin is a fact about the chain, not proof of weak custody, because HSM or MPC keys look identical on-chain."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the inspector check EIP-1967, Beacon, and ZeppelinOS proxy slots and Sourcify v2 source verification?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It reads the EIP-1967 implementation, admin and beacon slots, the EIP-1822 proxiable slot, the legacy ZeppelinOS slots (0x7050c9e0... and 0x10d6a54a...) and EIP-1167 minimal-proxy bytecode in one batched call. Source verification comes from Sourcify v2 (fields=abi,proxyResolution,compilation) with a Blockscout v2 fallback, and runtime bytecode is scanned with CBOR metadata stripped and PUSH immediates skipped before flagging SELFDESTRUCT (0xff) or unexpected DELEGATECALL (0xf4)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need an Etherscan API key or wallet connection to inspect an EVM smart contract?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The inspector is read-only and needs no wallet connection and no Etherscan key. It talks to public JSON-RPC endpoints for Ethereum, Base and Arbitrum One plus the public Sourcify and Blockscout APIs. Your only credential is the wcl_... license code, which is bound once through the read-only license helper and never printed in chat."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What safety and refusal boundaries does the EVM Smart Contract & Proxy Inspector enforce?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is strictly read-only: it never asks for private keys or seed phrases and never builds, signs or broadcasts a transaction. It never labels a contract 'safe', 'audited' or 'rug-proof', and its opcode scans are byte-level heuristics, not formal verification or a substitute for a source audit. Output is factual and is not financial or security-certification advice."
+          }
+        }
+      ]
     }
   ]
 }
@@ -219,6 +257,27 @@ SCOPE_NOTE: Read-only on-chain and public-API inspection. No private keys, seed 
       <section class="product-section" id="licensing-flow">
         <h2>Licensing &amp; Setup</h2>
         <p>One-time license, up to 3 workspace-reset rebinds. On Turn 1 the <code>evm-contract-inspector-setup</code> skill verifies your agent key, binds your <code>wcl_...</code> code through the read-only license helper, and confirms the bot files are installed. The license code is never printed in chat.</p>
+      </section>
+      <section class="product-section" id="product-faq">
+        <h2>Frequently Asked Questions &mdash; EVM Smart Contract &amp; Proxy Inspector</h2>
+        <div class="faq-grid">
+          <details class="faq-item" open>
+            <summary>How do I check if an Ethereum, Base, or Arbitrum contract is an upgradeable proxy with an EOA admin?</summary>
+            <div class="faq-answer">Pass the contract address and chain (eth, base, or arb) to the inspector. It batches JSON-RPC reads of the EIP-1967, EIP-1822 UUPS, EIP-1167 and ZeppelinOS storage slots, then with --deep follows the admin or owner chain up to --max-depth 2. If the upgrade controller is a plain externally owned account it reports EOA_ADMIN; Safe multisigs (threshold and owners), TimelockControllers (minimum delay) and ProxyAdmin contracts are classified separately. An EOA admin is a fact about the chain, not proof of weak custody, because HSM or MPC keys look identical on-chain.</div>
+          </details>
+          <details class="faq-item">
+            <summary>How does the inspector check EIP-1967, Beacon, and ZeppelinOS proxy slots and Sourcify v2 source verification?</summary>
+            <div class="faq-answer">It reads the EIP-1967 implementation, admin and beacon slots, the EIP-1822 proxiable slot, the legacy ZeppelinOS slots (0x7050c9e0... and 0x10d6a54a...) and EIP-1167 minimal-proxy bytecode in one batched call. Source verification comes from Sourcify v2 (fields=abi,proxyResolution,compilation) with a Blockscout v2 fallback, and runtime bytecode is scanned with CBOR metadata stripped and PUSH immediates skipped before flagging SELFDESTRUCT (0xff) or unexpected DELEGATECALL (0xf4).</div>
+          </details>
+          <details class="faq-item">
+            <summary>Do I need an Etherscan API key or wallet connection to inspect an EVM smart contract?</summary>
+            <div class="faq-answer">No. The inspector is read-only and needs no wallet connection and no Etherscan key. It talks to public JSON-RPC endpoints for Ethereum, Base and Arbitrum One plus the public Sourcify and Blockscout APIs. Your only credential is the wcl_... license code, which is bound once through the read-only license helper and never printed in chat.</div>
+          </details>
+          <details class="faq-item">
+            <summary>What safety and refusal boundaries does the EVM Smart Contract &amp; Proxy Inspector enforce?</summary>
+            <div class="faq-answer">It is strictly read-only: it never asks for private keys or seed phrases and never builds, signs or broadcasts a transaction. It never labels a contract &#x27;safe&#x27;, &#x27;audited&#x27; or &#x27;rug-proof&#x27;, and its opcode scans are byte-level heuristics, not formal verification or a substitute for a source audit. Output is factual and is not financial or security-certification advice.</div>
+          </details>
+        </div>
       </section>
     </div>
   </main>
@@ -516,6 +575,7 @@ SCOPE_NOTE: Read-only on-chain and public-API inspection. No private keys, seed 
           <a href="/bots/solana-token-scanner.html">Retail Token Due-Diligence Bot ($29 SOL) →</a>
           <a href="/bots/bot-skill-auditor.html">Bot &amp; Skill Security Auditor ($29 SOL) →</a>
           <a href="/bots/hyperliquid-monitor.html">Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor ($29 SOL) →</a>
+          <a href="/#bundles">Save with Multi-Bot Value Bundles &rarr;</a>
           <a href="/#faq">FAQ</a>
           <a href="/llms.txt">llms.txt ↗</a>
           <a href="/llms-full.txt">llms-full.txt ↗</a>

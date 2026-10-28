@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Token Launch Command Center ($49 SOL) | CoinLoader</title>
-  <meta name="description" content="Flagship Pump.fun launch bundle for Grok Bot ($49 SOL): coin audit and delta monitor plus a gated X / Discord / Telegram / Bluesky publisher with lint, HMAC approval and dry-run dispatch." />
+  <title>Pump.fun Token Launch Command Center ($49 SOL) | CoinLoader</title>
+  <meta name="description" content="Pump.fun launch bundle for Grok Bot ($49 SOL): coin audit and delta monitor plus a gated X, Discord, Telegram &amp; Bluesky publisher with lint and HMAC approval." />
   <link rel="canonical" href="https://coinloader.com/bots/token-launch-command-center.html" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#090d16" />
   <meta property="og:type" content="product" />
   <meta property="og:site_name" content="CoinLoader.com" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="Token Launch Command Center ($49 SOL) | CoinLoader" />
-  <meta property="og:description" content="Flagship Pump.fun launch bundle for Grok Bot ($49 SOL): coin audit and delta monitor plus a gated X / Discord / Telegram / Bluesky publisher with lint, HMAC approval and dry-run dispatch." />
+  <meta property="og:title" content="Pump.fun Token Launch Command Center ($49 SOL) | CoinLoader" />
+  <meta property="og:description" content="Pump.fun launch bundle for Grok Bot ($49 SOL): coin audit and delta monitor plus a gated X, Discord, Telegram &amp; Bluesky publisher with lint and HMAC approval." />
   <meta property="og:url" content="https://coinloader.com/bots/token-launch-command-center.html" />
   <meta property="og:image" content="https://coinloader.com/og-card.png" />
   <meta property="og:image:width" content="1200" />
@@ -20,8 +20,8 @@
   <meta property="og:image:alt" content="Token Launch Command Center on CoinLoader.com" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@WattCoin2026" />
-  <meta name="twitter:title" content="Token Launch Command Center ($49 SOL) | CoinLoader" />
-  <meta name="twitter:description" content="Flagship Pump.fun launch bundle for Grok Bot ($49 SOL): coin audit and delta monitor plus a gated X / Discord / Telegram / Bluesky publisher with lint, HMAC approval and dry-run dispatch." />
+  <meta name="twitter:title" content="Pump.fun Token Launch Command Center ($49 SOL) | CoinLoader" />
+  <meta name="twitter:description" content="Pump.fun launch bundle for Grok Bot ($49 SOL): coin audit and delta monitor plus a gated X, Discord, Telegram &amp; Bluesky publisher with lint and HMAC approval." />
   <meta name="twitter:image" content="https://coinloader.com/og-card.png" />
   <meta name="twitter:image:alt" content="Token Launch Command Center on CoinLoader.com" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -67,7 +67,7 @@
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Grok Bot Linux Sandbox (/workspace)",
       "url": "https://coinloader.com/bots/token-launch-command-center.html",
-      "description": "Flagship Pump.fun launch bundle for Grok Bot ($49 SOL): coin audit and delta monitor plus a gated X / Discord / Telegram / Bluesky publisher with lint, HMAC approval and dry-run dispatch.",
+      "description": "Pump.fun launch bundle for Grok Bot ($49 SOL): coin audit and delta monitor plus a gated X, Discord, Telegram & Bluesky publisher with lint and HMAC approval.",
       "sku": "token-launch-command-center",
       "offers": {
         "@type": "Offer",
@@ -77,6 +77,44 @@
         "url": "https://coinloader.com/bots/token-launch-command-center.html",
         "sku": "token-launch-command-center"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://coinloader.com/bots/token-launch-command-center.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is included in the Token Launch Command Center bundle for Pump.fun and Solana launches?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "One license covers the Pump.fun Coin & Community Manager, the Social Hub Publisher engine (with its dispatcher) and a crypto launch preset containing a banned-term list and a link allowlist. Together they audit your coin, turn verified facts into drafts for X, Discord, Telegram and Bluesky, lint and sign them, and send only what you approve."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the 4-stage Pump.fun audit, Token-2022 authority check, and Social Hub launch workflow operate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "command_center.py init writes a config from the preset, then command_center.py audit MINT --queue runs the read-only coin audit (including Token-2022 authority and extension reads) and queues fact-only drafts. Gate 1 lints each draft, Gate 2 re-verifies an HMAC over the exact approved text, expiry and lint before sending, and the dispatcher is a dry run unless --live is passed per item."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does one wcl_... bundle license key unlock all included bot templates and runtimes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On Turn 1 the token-launch-command-center-setup skill verifies your agent key and binds your wcl_... code through the read-only license helper. That single code covers every included module, with up to 3 workspace-reset rebinds, and the license code is never printed in chat. The bundled modules are tested byte-identical to the standalone products."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What pre-flight linting and refusal guardrails protect token launches from fake claims or private-key exposure?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gate 1 lint rejects banned terms and links outside the allowlist, and Gate 2 refuses any text that was edited after approval. There are no wallet keys, no signing and no auto-posting, no price, return or 'next X' claims, no safe, scam or rug verdicts, no wash-trading advice and no unsolicited DMs or holder tags. An ambiguous send is marked unknown and never retried automatically."
+          }
+        }
+      ]
     }
   ]
 }
@@ -226,6 +264,27 @@ findings
       <section class="product-section" id="licensing-flow">
         <h2>Licensing &amp; Setup</h2>
         <p>One-time license, up to 3 workspace-reset rebinds. On Turn 1 the <code>token-launch-command-center-setup</code> skill verifies your agent key, binds your <code>wcl_...</code> code through the read-only license helper, and confirms the bot files are installed. The license code is never printed in chat.</p>
+      </section>
+      <section class="product-section" id="product-faq">
+        <h2>Frequently Asked Questions &mdash; Token Launch Command Center</h2>
+        <div class="faq-grid">
+          <details class="faq-item" open>
+            <summary>What is included in the Token Launch Command Center bundle for Pump.fun and Solana launches?</summary>
+            <div class="faq-answer">One license covers the Pump.fun Coin &amp; Community Manager, the Social Hub Publisher engine (with its dispatcher) and a crypto launch preset containing a banned-term list and a link allowlist. Together they audit your coin, turn verified facts into drafts for X, Discord, Telegram and Bluesky, lint and sign them, and send only what you approve.</div>
+          </details>
+          <details class="faq-item">
+            <summary>How does the 4-stage Pump.fun audit, Token-2022 authority check, and Social Hub launch workflow operate?</summary>
+            <div class="faq-answer">command_center.py init writes a config from the preset, then command_center.py audit MINT --queue runs the read-only coin audit (including Token-2022 authority and extension reads) and queues fact-only drafts. Gate 1 lints each draft, Gate 2 re-verifies an HMAC over the exact approved text, expiry and lint before sending, and the dispatcher is a dry run unless --live is passed per item.</div>
+          </details>
+          <details class="faq-item">
+            <summary>How does one wcl_... bundle license key unlock all included bot templates and runtimes?</summary>
+            <div class="faq-answer">On Turn 1 the token-launch-command-center-setup skill verifies your agent key and binds your wcl_... code through the read-only license helper. That single code covers every included module, with up to 3 workspace-reset rebinds, and the license code is never printed in chat. The bundled modules are tested byte-identical to the standalone products.</div>
+          </details>
+          <details class="faq-item">
+            <summary>What pre-flight linting and refusal guardrails protect token launches from fake claims or private-key exposure?</summary>
+            <div class="faq-answer">Gate 1 lint rejects banned terms and links outside the allowlist, and Gate 2 refuses any text that was edited after approval. There are no wallet keys, no signing and no auto-posting, no price, return or &#x27;next X&#x27; claims, no safe, scam or rug verdicts, no wash-trading advice and no unsolicited DMs or holder tags. An ambiguous send is marked unknown and never retried automatically.</div>
+          </details>
+        </div>
       </section>
     </div>
   </main>
@@ -523,6 +582,7 @@ findings
           <a href="/bots/solana-token-scanner.html">Retail Token Due-Diligence Bot ($29 SOL) →</a>
           <a href="/bots/bot-skill-auditor.html">Bot &amp; Skill Security Auditor ($29 SOL) →</a>
           <a href="/bots/hyperliquid-monitor.html">Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor ($29 SOL) →</a>
+          <a href="/#bundles">Save with Multi-Bot Value Bundles &rarr;</a>
           <a href="/#faq">FAQ</a>
           <a href="/llms.txt">llms.txt ↗</a>
           <a href="/llms-full.txt">llms-full.txt ↗</a>

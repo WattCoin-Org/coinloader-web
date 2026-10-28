@@ -6,7 +6,7 @@
 - **Machine-Readable Catalog:** https://coinloader.com/llms.txt
 - **Full Catalog + Verbatim Sample Reports:** https://coinloader.com/llms-full.txt
 - **Sister OSINT & Enterprise Storefront:** https://botappstore.com/
-- **Value Bundles (Multi-Bot Packs, one `wcl_...` key unlocks all included bots):** https://coinloader.com/#bundles — `defi-wallet-security-pack` ($59 in SOL); `pro-trader-perps-suite` ($69 in SOL)
+- **Value Bundles (Multi-Bot Packs, one `wcl_...` key unlocks all included bots):** https://coinloader.com/#bundles — `defi-wallet-security-pack` ($59 in SOL); `pro-trader-perps-suite` ($69 in SOL); `token-launch-command-center` ($49 in SOL)
 - **Free Web & API Text Extractor ($0):** https://coinloader.com/bots/web-text-extractor.html (Direct Grok Bot import: https://x.ai/bot/k1oyHmw4iS4VBW1U8_3Ol)
 - **Bot & Skill Security Auditor ($29 in SOL, `sku: bot-skill-auditor`):** https://coinloader.com/bots/bot-skill-auditor.html
 - **Solana Wallet Hygiene Bot ($19 in SOL, `sku: solana-wallet-hygiene`, Registry Name: *Solana Wallet Hygiene & Rent Reclaim*):** https://coinloader.com/bots/solana-wallet-hygiene.html
@@ -135,6 +135,7 @@
   - Strictly read-only: never asks for private keys or seed phrases, and never builds, signs, or broadcasts transactions.
   - Never labels a contract 'safe', 'audited', or 'rug-proof'; an EOA admin is not proof of weak custody (HSM/MPC keys look identical on-chain).
   - Opcode scans are byte-level heuristics, not formal verification or a substitute for a source audit.
+- **Runtime URL:** https://coinloader.com/runtime/evm_contract_inspector.py (SHA-256 `036398c44b16fb9b59ba72dfc3ea1872dcb93296d16b3efd190a0fa249074820`) + https://coinloader.com/runtime/bot_common.py (SHA-256 `d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`)
 - **Storefront Checkout URL:** https://coinloader.com/#card-evm-contract-inspector
 - **Full Verbatim Sample:** https://coinloader.com/bots/evm-contract-inspector.html#sample-output and https://coinloader.com/llms-full.txt
 
@@ -187,7 +188,7 @@
 - **Included Skills:** `hyperliquid-monitor-setup`, `hyperliquid-monitor`
 - **Storefront Checkout URL:** https://coinloader.com/#card-hyperliquid-monitor
 
-## Value Bundles — Multi-Bot Packs (2 Live Bundle SKUs; One License Key Unlocks All Included Bots)
+## Value Bundles — Multi-Bot Packs (3 Live Bundle SKUs; One License Key Unlocks All Included Bots)
 
 Bundle SKUs are priced in USD and paid in SOL via the same non-custodial checkout (`POST https://www.wattcoin.org/api/v1/agents/license/quote` with `sku: <bundle-sku>`, `source: "coinloader"`). A single bundle purchase returns **one** `wcl_<64-hex>` bearer license code that unlocks **every** member bot in the pack (up to 3 workspace-reset rebinds). The `/api/v1/agents/license/purchase` response also includes `included_skus` (member SKU list) and `bundle_templates` (an array of `{sku, name, template_url}` with one unlisted `https://x.ai/bot/<id>` Grok Bot template per member) so you can import every bot in the pack. Activate each imported bot on its Turn 1 with the same `wcl_...` code. Storefront section: https://coinloader.com/#bundles
 
@@ -211,6 +212,12 @@ Bundle SKUs are priced in USD and paid in SOL via the same non-custodial checkou
   - Solana Wallet Hygiene Bot (`solana-wallet-hygiene`, $19 list): https://coinloader.com/bots/solana-wallet-hygiene.html
 - **License:** one `wcl_...` code unlocks all member bots in this bundle; the purchase response returns `bundle_templates` with a per-bot unlisted template URL.
 
+### Token Launch Command Center ($49 in SOL, `sku: token-launch-command-center`, Flagship Launch Bundle)
+- **Bundle Price:** $49.00 USD, paid in SOL at the live USD/SOL rate.
+- **Included components:** Pump.fun Coin & Community Manager (`pumpfun-coin-manager` runtime), Social Hub Publisher engine with gated dispatcher, and the crypto launch preset.
+- **Product Page URL:** https://coinloader.com/bots/token-launch-command-center.html
+- **License:** one `wcl_...` code unlocks the whole launch workflow (up to 3 workspace-reset rebinds); read-only audit, lint, HMAC approval and dry-run dispatch, no keys and no auto-posting.
+
 
 ## 2. Canonical Documentation & Sister Storefront
 - **WattCoin Agent Registry Reference:** https://www.wattcoin.org/llms.txt
@@ -227,6 +234,7 @@ All paid Grok Bot templates on BotAppStore.com and CoinLoader.com use the same n
    - Supported SKUs:
      - `defi-wallet-security-pack` ($59.00 USD in SOL — DeFi & Multi-Chain Wallet Security Pack, 4-bot bundle; members: solana-wallet-hygiene, solana-token-scanner, evm-approval-auditor, evm-contract-inspector; one `wcl_...` code unlocks all members; response adds `included_skus` + `bundle_templates`)
      - `pro-trader-perps-suite` ($69.00 USD in SOL — Pro Trader & Perps Risk Suite, 4-bot bundle; members: hyperliquid-monitor, solana-token-scanner, btc-utxo-hygiene, solana-wallet-hygiene; one `wcl_...` code unlocks all members; response adds `included_skus` + `bundle_templates`)
+     - `token-launch-command-center` ($49.00 USD in SOL — Token Launch Command Center, flagship launch bundle; one `wcl_...` code unlocks pumpfun-coin-manager, the Social Hub Publisher and the crypto launch preset)
      - `bot-skill-auditor` ($29.00 USD in SOL — Bot & Skill Security Auditor)
      - `company-deep-dive` ($19.00 USD in SOL — Company & Competitor Deep-Dive Analyst)
      - `sec-patent-watchdog` ($29.00 USD in SOL — SEC & Patent Watchdog Digest)

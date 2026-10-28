@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EVM Wallet Approval &amp; Permit2 Risk Auditor ($19 SOL) | CoinLoader</title>
-  <meta name="description" content="Read-only EVM wallet approval and Permit2 risk auditor for Grok Bot ($19 SOL). Reads live ERC-20 allowances and Permit2 sub-allowances across Ethereum, Base, and Arbitrum, classifies every spender (EOA, unverified, unlabeled, or curated), and prints exact approve(spender, 0) revoke and Permit2 lockdown call-data that you submit yourself." />
+  <meta name="description" content="Read-only EVM approval auditor for Grok Bot ($19 SOL). Finds unlimited ERC-20 and Permit2 allowances on Ethereum, Base &amp; Arbitrum and prints revoke call-data." />
   <link rel="canonical" href="https://coinloader.com/bots/evm-approval-auditor.html" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#090d16" />
@@ -12,7 +12,7 @@
   <meta property="og:site_name" content="CoinLoader.com" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:title" content="EVM Wallet Approval &amp; Permit2 Risk Auditor ($19 SOL) | CoinLoader" />
-  <meta property="og:description" content="Read-only EVM wallet approval and Permit2 risk auditor for Grok Bot ($19 SOL). Reads live ERC-20 allowances and Permit2 sub-allowances across Ethereum, Base, and Arbitrum, classifies every spender (EOA, unverified, unlabeled, or curated), and prints exact approve(spender, 0) revoke and Permit2 lockdown call-data that you submit yourself." />
+  <meta property="og:description" content="Read-only EVM approval auditor for Grok Bot ($19 SOL). Finds unlimited ERC-20 and Permit2 allowances on Ethereum, Base &amp; Arbitrum and prints revoke call-data." />
   <meta property="og:url" content="https://coinloader.com/bots/evm-approval-auditor.html" />
   <meta property="og:image" content="https://coinloader.com/og-card.png" />
   <meta property="og:image:width" content="1200" />
@@ -21,7 +21,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@WattCoin2026" />
   <meta name="twitter:title" content="EVM Wallet Approval &amp; Permit2 Risk Auditor ($19 SOL) | CoinLoader" />
-  <meta name="twitter:description" content="Read-only EVM wallet approval and Permit2 risk auditor for Grok Bot ($19 SOL). Reads live ERC-20 allowances and Permit2 sub-allowances across Ethereum, Base, and Arbitrum, classifies every spender (EOA, unverified, unlabeled, or curated), and prints exact approve(spender, 0) revoke and Permit2 lockdown call-data that you submit yourself." />
+  <meta name="twitter:description" content="Read-only EVM approval auditor for Grok Bot ($19 SOL). Finds unlimited ERC-20 and Permit2 allowances on Ethereum, Base &amp; Arbitrum and prints revoke call-data." />
   <meta name="twitter:image" content="https://coinloader.com/og-card.png" />
   <meta name="twitter:image:alt" content="EVM Wallet Approval &amp; Permit2 Risk Auditor on CoinLoader.com" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -67,7 +67,7 @@
       "applicationCategory": "SecurityApplication",
       "operatingSystem": "Grok Bot Linux Sandbox (/workspace)",
       "url": "https://coinloader.com/bots/evm-approval-auditor.html",
-      "description": "Read-only EVM wallet approval and Permit2 risk auditor for Grok Bot ($19 SOL). Reads live ERC-20 allowances and Permit2 sub-allowances across Ethereum, Base, and Arbitrum, classifies every spender (EOA, unverified, unlabeled, or curated), and prints exact approve(spender, 0) revoke and Permit2 lockdown call-data that you submit yourself.",
+      "description": "Read-only EVM approval auditor for Grok Bot ($19 SOL). Finds unlimited ERC-20 and Permit2 allowances on Ethereum, Base & Arbitrum and prints revoke call-data.",
       "sku": "evm-approval-auditor",
       "offers": {
         "@type": "Offer",
@@ -77,6 +77,44 @@
         "url": "https://coinloader.com/bots/evm-approval-auditor.html",
         "sku": "evm-approval-auditor"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://coinloader.com/bots/evm-approval-auditor.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I audit and revoke unlimited ERC-20 token approvals and Uniswap Permit2 sub-allowances to prevent wallet drainer risk?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Give the auditor a wallet address you own. It reads live ERC-20 allowance(owner, spender) and Permit2 allowance(owner, token, spender) values (amount, expiration, nonce), shows the balance actually at risk behind each pair, and classifies each spender as EOA, unverified contract, unlabeled contract or curated protocol. For every flagged token it prints exact approve(spender, 0) revoke call-data and a batched Permit2 lockdown call that you review and submit yourself from your own wallet."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which EVM chains are supported for ERC-20 allowance and Permit2 expiration auditing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ethereum (eth, chain 1), Base (base, 8453) and Arbitrum One (arb, 42161). Coverage is the curated stablecoins, WETH, WBTC and LSTs, Blockscout-discovered holdings and a bounded eth_getLogs Approval-event window (--lookback-blocks, default 20000). Permit2 sub-allowances are reported as active or expired using their expiration timestamps."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the auditor inspect spender risk without connecting a wallet or signing transactions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It needs only your public 0x address. All calls are read-only (eth_blockNumber, eth_call, eth_getCode, eth_getStorageAt, eth_getLogs), and eth_getCode tells it whether a spender is an EOA or a contract. Unlimited allowances to EOAs or unverified contracts rank CRITICAL, unlabeled verified contracts HIGH and curated spenders MEDIUM. Remediation call-data is displayed for you, never signed or broadcast by the bot."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What safety and refusal boundaries does the EVM Wallet Approval & Permit2 Risk Auditor enforce?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It never asks for private keys or seed phrases and never signs or broadcasts a transaction. 'No findings' never means 'no approvals exist', since coverage is limited to the stated tokens, spenders and log window, and an unlabeled spender is unknown, not malicious. It refuses to scan third-party wallets for exploitation, rank wallets by balance or build phishing or drainer lists. It is not financial, legal or tax advice."
+          }
+        }
+      ]
     }
   ]
 }
@@ -242,6 +280,27 @@ SCOPE_NOTE: Read-only: only eth_blockNumber, eth_call, eth_getCode, eth_getStora
       <section class="product-section" id="licensing-flow">
         <h2>Licensing &amp; Setup</h2>
         <p>One-time license, up to 3 workspace-reset rebinds. On Turn 1 the <code>evm-approval-auditor-setup</code> skill verifies your agent key, binds your <code>wcl_...</code> code through the read-only license helper, and installs the SHA-256-pinned <code>bot_common.py</code> and <code>evm_approval_auditor.py</code> runtime. The license code is never printed in chat.</p>
+      </section>
+      <section class="product-section" id="product-faq">
+        <h2>Frequently Asked Questions &mdash; EVM Wallet Approval &amp; Permit2 Risk Auditor</h2>
+        <div class="faq-grid">
+          <details class="faq-item" open>
+            <summary>How do I audit and revoke unlimited ERC-20 token approvals and Uniswap Permit2 sub-allowances to prevent wallet drainer risk?</summary>
+            <div class="faq-answer">Give the auditor a wallet address you own. It reads live ERC-20 allowance(owner, spender) and Permit2 allowance(owner, token, spender) values (amount, expiration, nonce), shows the balance actually at risk behind each pair, and classifies each spender as EOA, unverified contract, unlabeled contract or curated protocol. For every flagged token it prints exact approve(spender, 0) revoke call-data and a batched Permit2 lockdown call that you review and submit yourself from your own wallet.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Which EVM chains are supported for ERC-20 allowance and Permit2 expiration auditing?</summary>
+            <div class="faq-answer">Ethereum (eth, chain 1), Base (base, 8453) and Arbitrum One (arb, 42161). Coverage is the curated stablecoins, WETH, WBTC and LSTs, Blockscout-discovered holdings and a bounded eth_getLogs Approval-event window (--lookback-blocks, default 20000). Permit2 sub-allowances are reported as active or expired using their expiration timestamps.</div>
+          </details>
+          <details class="faq-item">
+            <summary>How does the auditor inspect spender risk without connecting a wallet or signing transactions?</summary>
+            <div class="faq-answer">It needs only your public 0x address. All calls are read-only (eth_blockNumber, eth_call, eth_getCode, eth_getStorageAt, eth_getLogs), and eth_getCode tells it whether a spender is an EOA or a contract. Unlimited allowances to EOAs or unverified contracts rank CRITICAL, unlabeled verified contracts HIGH and curated spenders MEDIUM. Remediation call-data is displayed for you, never signed or broadcast by the bot.</div>
+          </details>
+          <details class="faq-item">
+            <summary>What safety and refusal boundaries does the EVM Wallet Approval &amp; Permit2 Risk Auditor enforce?</summary>
+            <div class="faq-answer">It never asks for private keys or seed phrases and never signs or broadcasts a transaction. &#x27;No findings&#x27; never means &#x27;no approvals exist&#x27;, since coverage is limited to the stated tokens, spenders and log window, and an unlabeled spender is unknown, not malicious. It refuses to scan third-party wallets for exploitation, rank wallets by balance or build phishing or drainer lists. It is not financial, legal or tax advice.</div>
+          </details>
+        </div>
       </section>
     </div>
   </main>
@@ -541,6 +600,7 @@ SCOPE_NOTE: Read-only: only eth_blockNumber, eth_call, eth_getCode, eth_getStora
           <a href="/bots/evm-contract-inspector.html">EVM Smart Contract &amp; Proxy Inspector ($29 SOL) →</a>
           <a href="/bots/evm-approval-auditor.html">EVM Wallet Approval &amp; Permit2 Risk Auditor ($19 SOL) →</a>
           <a href="/bots/hyperliquid-monitor.html">Hyperliquid Perps, Funding &amp; Liquidation Risk Monitor ($29 SOL) →</a>
+          <a href="/#bundles">Save with Multi-Bot Value Bundles &rarr;</a>
           <a href="/#faq">FAQ</a>
           <a href="/llms.txt">llms.txt ↗</a>
           <a href="/llms-full.txt">llms-full.txt ↗</a>
