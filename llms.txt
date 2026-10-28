@@ -6,6 +6,7 @@
 - **Machine-Readable Catalog:** https://coinloader.com/llms.txt
 - **Full Catalog + Verbatim Sample Reports:** https://coinloader.com/llms-full.txt
 - **Sister OSINT & Enterprise Storefront:** https://botappstore.com/
+- **Value Bundles (Multi-Bot Packs, one `wcl_...` key unlocks all included bots):** https://coinloader.com/#bundles — `defi-wallet-security-pack` ($59 in SOL); `pro-trader-perps-suite` ($69 in SOL)
 - **Free Web & API Text Extractor ($0):** https://coinloader.com/bots/web-text-extractor.html (Direct Grok Bot import: https://x.ai/bot/k1oyHmw4iS4VBW1U8_3Ol)
 - **Bot & Skill Security Auditor ($29 in SOL, `sku: bot-skill-auditor`):** https://coinloader.com/bots/bot-skill-auditor.html
 - **Solana Wallet Hygiene Bot ($19 in SOL, `sku: solana-wallet-hygiene`, Registry Name: *Solana Wallet Hygiene & Rent Reclaim*):** https://coinloader.com/bots/solana-wallet-hygiene.html
@@ -191,6 +192,31 @@
 - **Runtime URL:** https://coinloader.com/runtime/hyperliquid_monitor.py (`SHA-256: d9b8b58b9be66617177c238b195c3393ec817dfc591366797fa30f582db7f952`, 1,312 lines Python 3 stdlib, 252 unit tests) + https://coinloader.com/runtime/bot_common.py (`SHA-256: d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`)
 - **Included Skills:** `hyperliquid-monitor-setup`, `hyperliquid-monitor`
 - **Storefront Checkout URL:** https://coinloader.com/#card-hyperliquid-monitor
+
+## Value Bundles — Multi-Bot Packs (2 Live Bundle SKUs; One License Key Unlocks All Included Bots)
+
+Bundle SKUs are priced in USD and paid in SOL via the same non-custodial checkout (`POST https://www.wattcoin.org/api/v1/agents/license/quote` with `sku: <bundle-sku>`, `source: "coinloader"`). A single bundle purchase returns **one** `wcl_<64-hex>` bearer license code that unlocks **every** member bot in the pack (up to 3 workspace-reset rebinds). The `/api/v1/agents/license/purchase` response also includes `included_skus` (member SKU list) and `bundle_templates` (an array of `{sku, name, template_url}` with one unlisted `https://x.ai/bot/<id>` Grok Bot template per member) so you can import every bot in the pack. Activate each imported bot on its Turn 1 with the same `wcl_...` code. Storefront section: https://coinloader.com/#bundles
+
+### DeFi & Multi-Chain Wallet Security Pack ($59 in SOL, `sku: defi-wallet-security-pack`, 4-Bot Bundle — Save $37 vs $96 list)
+- **Bundle Price:** $59.00 USD, paid in SOL at the live USD/SOL rate (individual list total: $96).
+- **Included member SKUs (`included_skus`):** `solana-wallet-hygiene`, `solana-token-scanner`, `evm-approval-auditor`, `evm-contract-inspector`
+- **Members:**
+  - Solana Wallet Hygiene Bot (`solana-wallet-hygiene`, $19 list): https://coinloader.com/bots/solana-wallet-hygiene.html
+  - Retail Token Due-Diligence Bot (`solana-token-scanner`, $29 list): https://coinloader.com/bots/solana-token-scanner.html
+  - EVM Wallet Approval & Permit2 Risk Auditor (`evm-approval-auditor`, $19 list): https://coinloader.com/bots/evm-approval-auditor.html
+  - EVM Smart Contract & Proxy Inspector (`evm-contract-inspector`, $29 list): https://coinloader.com/bots/evm-contract-inspector.html
+- **License:** one `wcl_...` code unlocks all member bots in this bundle; the purchase response returns `bundle_templates` with a per-bot unlisted template URL.
+
+### Pro Trader & Perps Risk Suite ($69 in SOL, `sku: pro-trader-perps-suite`, 4-Bot Bundle — Save $27 vs $96 list)
+- **Bundle Price:** $69.00 USD, paid in SOL at the live USD/SOL rate (individual list total: $96).
+- **Included member SKUs (`included_skus`):** `hyperliquid-monitor`, `solana-token-scanner`, `btc-utxo-hygiene`, `solana-wallet-hygiene`
+- **Members:**
+  - Hyperliquid Perps, Funding & Liquidation Risk Monitor (`hyperliquid-monitor`, $29 list): https://coinloader.com/bots/hyperliquid-monitor.html
+  - Retail Token Due-Diligence Bot (`solana-token-scanner`, $29 list): https://coinloader.com/bots/solana-token-scanner.html
+  - Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor (`btc-utxo-hygiene`, $19 list): https://coinloader.com/bots/btc-utxo-hygiene.html
+  - Solana Wallet Hygiene Bot (`solana-wallet-hygiene`, $19 list): https://coinloader.com/bots/solana-wallet-hygiene.html
+- **License:** one `wcl_...` code unlocks all member bots in this bundle; the purchase response returns `bundle_templates` with a per-bot unlisted template URL.
+
 
 ## 2. Canonical Documentation & Sister Storefront
 - **WattCoin Agent Registry Reference:** https://www.wattcoin.org/llms.txt

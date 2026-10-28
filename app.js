@@ -176,6 +176,46 @@ const CHECKOUT_SKUS = {
     stepCFootHtml:
       'On Turn 1, <code>hyperliquid-monitor-setup</code> installs the read-only runtime (<code>bot_common.py</code> and <code>hyperliquid_monitor.py</code> verified by SHA-256), provisions your workspace agent key, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
     defaultPrompt: (code) => `Activate my Hyperliquid Perps, Funding & Liquidation Risk Monitor with license code ${code}`
+  },
+  'defi-wallet-security-pack': {
+    sku: 'defi-wallet-security-pack',
+    name: 'DeFi & Multi-Chain Wallet Security Pack (4-Bot Bundle)',
+    title: 'DeFi & Multi-Chain Wallet Security Pack (4-Bot Bundle) — $59 in SOL',
+    slugMeta: 'sku: defi-wallet-security-pack · 4 bots · one wcl_... license unlocks all · 3 Rebinds',
+    priceUsd: 59,
+    priceUsdHtml: '$59.00 <small>USD</small>',
+    statusFooterText: 'Status: LIVE · $59 One-Time 4-Bot Bundle in SOL (Non-Custodial)',
+    ctaButtonText: 'Unlock Bundle ($59 in SOL) →',
+    shortName: 'DeFi & Wallet Security Pack',
+    includedSkus: ['solana-wallet-hygiene', 'solana-token-scanner', 'evm-approval-auditor', 'evm-contract-inspector'],
+    stepADescHtml:
+      'Click each button below to open the private Grok Bot template for <strong>every bot in the DeFi &amp; Wallet Security Pack</strong> and add them to your sidebar. <strong>One <code>wcl_...</code> license code unlocks all 4 included bots.</strong>',
+    stepABtnText: 'Open Bundle Primary Bot in Grok Bot ↗',
+    stepCHintHtml:
+      'Paste this prompt on Turn 1 in <strong>each</strong> included bot (same license code; add a public wallet address and/or EVM address you want scanned):',
+    stepCFootHtml:
+      'On Turn 1, each bot\'s <code>-setup</code> skill installs its read-only runtime, provisions <code>/workspace/.wattcoin_env</code> (<code>0600</code>), completes the 100 WATT starter activation, and binds your single bundle <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>. The same code unlocks every bot in the pack.',
+    defaultPrompt: (code) => `Activate my DeFi & Multi-Chain Wallet Security Pack (4-Bot Bundle) with license code ${code}`
+  },
+  'pro-trader-perps-suite': {
+    sku: 'pro-trader-perps-suite',
+    name: 'Pro Trader & Perps Risk Suite (4-Bot Bundle)',
+    title: 'Pro Trader & Perps Risk Suite (4-Bot Bundle) — $69 in SOL',
+    slugMeta: 'sku: pro-trader-perps-suite · 4 bots · one wcl_... license unlocks all · 3 Rebinds',
+    priceUsd: 69,
+    priceUsdHtml: '$69.00 <small>USD</small>',
+    statusFooterText: 'Status: LIVE · $69 One-Time 4-Bot Bundle in SOL (Non-Custodial)',
+    ctaButtonText: 'Unlock Bundle ($69 in SOL) →',
+    shortName: 'Pro Trader & Perps Suite',
+    includedSkus: ['hyperliquid-monitor', 'solana-token-scanner', 'btc-utxo-hygiene', 'solana-wallet-hygiene'],
+    stepADescHtml:
+      'Click each button below to open the private Grok Bot template for <strong>every bot in the Pro Trader &amp; Perps Suite</strong> and add them to your sidebar. <strong>One <code>wcl_...</code> license code unlocks all 4 included bots.</strong>',
+    stepABtnText: 'Open Bundle Primary Bot in Grok Bot ↗',
+    stepCHintHtml:
+      'Paste this prompt on Turn 1 in <strong>each</strong> included bot (same license code; add a public wallet address, token mint, or Hyperliquid address you want checked):',
+    stepCFootHtml:
+      'On Turn 1, each bot\'s <code>-setup</code> skill installs its read-only runtime, provisions <code>/workspace/.wattcoin_env</code> (<code>0600</code>), completes the 100 WATT starter activation, and binds your single bundle <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>. The same code unlocks every bot in the pack.',
+    defaultPrompt: (code) => `Activate my Pro Trader & Perps Risk Suite (4-Bot Bundle) with license code ${code}`
   }
 };
 
@@ -946,6 +986,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const fulfilledOpenTemplateBtn = document.getElementById('fulfilled-open-template-btn');
   const fulfilledCopyTemplateBtn = document.getElementById('fulfilled-copy-template-btn');
   const fulfilledTemplateUrlEl = document.getElementById('fulfilled-template-url');
+  const fulfilledBundleTemplatesEl = document.getElementById('fulfilled-bundle-templates');
   const fulfilledLicenseCodeEl = document.getElementById('fulfilled-license-code');
   const fulfilledCopyCodeBtn = document.getElementById('fulfilled-copy-code-btn');
   const fulfilledStepCHint = document.getElementById('fulfilled-step-c-hint');
@@ -998,6 +1039,31 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   }
 
+  function sanitizeBundleTemplates(rawList) {
+    if (!Array.isArray(rawList)) return [];
+    const seen = new Set();
+    const out = [];
+    rawList.forEach((item) => {
+      if (!item || typeof item !== 'object') return;
+      const sku = typeof item.sku === 'string' && /^[a-z0-9-]{1,64}$/.test(item.sku) ? item.sku : '';
+      const url =
+        typeof item.template_url === 'string' && /^https:\/\/x\.ai\/bot\/[A-Za-z0-9_-]+$/.test(item.template_url)
+          ? item.template_url
+          : '';
+      if (!sku || !url || seen.has(sku)) return;
+      seen.add(sku);
+      const known = CHECKOUT_SKUS[sku] ? CHECKOUT_SKUS[sku].name : '';
+      const name = typeof item.name === 'string' && item.name.trim() ? item.name.trim().slice(0, 120) : known || sku;
+      out.push({ sku, name, template_url: url });
+    });
+    return out.slice(0, 12);
+  }
+
+  function sanitizeIncludedSkus(rawList, fallbackList) {
+    const src = Array.isArray(rawList) ? rawList : fallbackList || [];
+    return src.filter((v, i) => typeof v === 'string' && /^[a-z0-9-]{1,64}$/.test(v) && src.indexOf(v) === i).slice(0, 12);
+  }
+
   function sanitizeReceipt(raw) {
     if (!raw || typeof raw !== 'object') return null;
     const licenseCode =
@@ -1014,6 +1080,14 @@ document.addEventListener('DOMContentLoaded', () => {
       typeof raw.template_url === 'string' && /^https:\/\/x\.ai\/bot\/[A-Za-z0-9_-]+$/.test(raw.template_url)
         ? raw.template_url
         : '';
+
+    // Bundle receipts: keep per-bot templates when the API returned them; otherwise only the
+    // primary template_url is known (member URLs are not derivable client-side).
+    const bundleTemplates = sanitizeBundleTemplates(raw.bundle_templates);
+    const includedSkus = sanitizeIncludedSkus(
+      raw.included_skus,
+      bundleTemplates.length ? bundleTemplates.map((t) => t.sku) : skuCfg.includedSkus
+    );
 
     const orderId =
       typeof raw.order_id === 'string' && /^ord_[a-f0-9]{24}$/.test(raw.order_id) ? raw.order_id : '';
@@ -1032,6 +1106,8 @@ document.addEventListener('DOMContentLoaded', () => {
       amount_lamports: typeof raw.amount_lamports === 'number' ? raw.amount_lamports : 0,
       license_code: licenseCode,
       template_url: templateUrl,
+      included_skus: includedSkus,
+      bundle_templates: bundleTemplates,
       activation_prompt:
         typeof raw.activation_prompt === 'string' && raw.activation_prompt.includes(licenseCode)
           ? raw.activation_prompt
@@ -1345,6 +1421,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function renderBundleTemplates(receipt) {
+    const isBundle = receipt.bundle_templates.length >= 2;
+    const singleRows = [fulfilledOpenTemplateBtn, fulfilledTemplateUrlEl].map((el) =>
+      el ? el.closest('.fulfilled-cta-row, .checkout-copy-box') : null
+    );
+    singleRows.forEach((row) => {
+      if (row) row.hidden = isBundle;
+    });
+    if (!fulfilledBundleTemplatesEl) return;
+    fulfilledBundleTemplatesEl.textContent = '';
+    if (!isBundle) {
+      fulfilledBundleTemplatesEl.setAttribute('hidden', '');
+      return;
+    }
+
+    const note = document.createElement('p');
+    note.className = 'checkout-field-help fulfilled-bundle-note';
+    const strong = document.createElement('strong');
+    strong.textContent = `One wcl_... license code unlocks all ${receipt.bundle_templates.length} bots in this pack.`;
+    note.appendChild(strong);
+    note.appendChild(
+      document.createTextNode(' Open each bot below, add it to your sidebar, then send the same Turn-1 activation prompt in each.')
+    );
+    fulfilledBundleTemplatesEl.appendChild(note);
+
+    receipt.bundle_templates.forEach((t) => {
+      const row = document.createElement('div');
+      row.className = 'fulfilled-bundle-row';
+      const open = document.createElement('a');
+      open.className = 'btn btn-primary btn-sm';
+      open.href = t.template_url;
+      open.target = '_blank';
+      open.rel = 'noopener noreferrer';
+      open.textContent = `Open ${t.name} in Grok Bot →`;
+      const copy = document.createElement('button');
+      copy.type = 'button';
+      copy.className = 'mini-copy-btn';
+      copy.textContent = 'Copy URL';
+      copy.addEventListener('click', () => copyToClipboard(t.template_url, copy, '✓ Copied Template URL!'));
+      const url = document.createElement('code');
+      url.className = 'fulfilled-bundle-url';
+      url.textContent = t.template_url;
+      row.appendChild(open);
+      row.appendChild(copy);
+      row.appendChild(url);
+      fulfilledBundleTemplatesEl.appendChild(row);
+    });
+    fulfilledBundleTemplatesEl.removeAttribute('hidden');
+  }
+
   function renderFulfilledReceipt(rawReceipt, moveFocus = false) {
     const receipt = sanitizeReceipt(rawReceipt);
     if (!receipt) return;
@@ -1369,6 +1495,8 @@ document.addEventListener('DOMContentLoaded', () => {
       fulfilledCopyTemplateBtn.disabled = true;
       fulfilledTemplateUrlEl.textContent = 'Template URL unavailable';
     }
+
+    renderBundleTemplates(receipt);
 
     fulfilledLicenseCodeEl.textContent = receipt.license_code;
     fulfilledActivationPromptEl.textContent = receipt.activation_prompt;
@@ -1435,6 +1563,8 @@ document.addEventListener('DOMContentLoaded', () => {
           amount_lamports: data.amount_lamports || activeQuote.amount_lamports,
           license_code: data.license_code,
           template_url: data.template_url || '',
+          included_skus: data.included_skus,
+          bundle_templates: data.bundle_templates,
           activation_prompt: data.activation_prompt || '',
           purchased_at: new Date().toISOString()
         });
@@ -1673,8 +1803,17 @@ document.addEventListener('DOMContentLoaded', () => {
         `Solana TX:         ${activeFulfilledReceipt.tx_signature || '—'}`,
         `Purchased At:      ${activeFulfilledReceipt.purchased_at}`,
         '',
-        '1. Unlisted Grok Bot Template URL:',
-        `   ${activeFulfilledReceipt.template_url || 'Unavailable'}`,
+        ...(activeFulfilledReceipt.bundle_templates.length >= 2
+          ? [
+              '1. Unlisted Grok Bot Template URLs (one per bot in this bundle):',
+              ...activeFulfilledReceipt.bundle_templates.map((t) => `   - ${t.name} (${t.sku}): ${t.template_url}`),
+              `   Included SKUs: ${activeFulfilledReceipt.included_skus.join(', ')}`,
+              '   One wcl_... license code unlocks every bot in this bundle.'
+            ]
+          : [
+              '1. Unlisted Grok Bot Template URL:',
+              `   ${activeFulfilledReceipt.template_url || 'Unavailable'}`
+            ]),
         '',
         '2. Private Bearer License Code (Keep Secret · Up to 3 Rebinds):',
         `   ${activeFulfilledReceipt.license_code}`,
