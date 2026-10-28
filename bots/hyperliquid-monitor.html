@@ -358,7 +358,7 @@ exit codes
           <li><a href="/runtime/hyperliquid_monitor.py"><code>/runtime/hyperliquid_monitor.py</code></a> &mdash; SHA-256 <code>d9b8b58b9be66617177c238b195c3393ec817dfc591366797fa30f582db7f952</code> (1,312 lines, 252 unit tests)</li>
           <li><a href="/runtime/bot_common.py"><code>/runtime/bot_common.py</code></a> &mdash; SHA-256 <code>d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526</code> (274 lines)</li>
         </ul>
-        <p>The setup skill refuses to install either file if its SHA-256 does not match the pinned value above. Verify yourself: <code>curl -fsSL https://coinloader.com/runtime/hyperliquid_monitor.py | sha256sum</code>.</p>
+        <p>The setup skill refuses to install either file if its SHA-256 does not match the pinned value above. Runtime files are license-gated: send your license key in an <code>X-License-Key</code> header (read it from a file or env var, never paste it into a shared shell history). The served copy carries a 5-line per-license watermark; strip it, then verify: <code>curl -fsSL -H "X-License-Key: $WATTCOIN_LICENSE_KEY" https://coinloader.com/runtime/hyperliquid_monitor.py | sed '/^# === WATTCOIN LICENSE WATERMARK/,/^# =\+$/d' | sha256sum</code>.</p>
       </section>
       <section class="product-section" id="licensing-flow">
         <h2>Licensing &amp; Setup</h2>
