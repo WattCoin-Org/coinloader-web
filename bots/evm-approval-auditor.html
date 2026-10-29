@@ -277,7 +277,7 @@ SCOPE_NOTE: Read-only: only eth_blockNumber, eth_call, eth_getCode, eth_getStora
           <li><a href="/runtime/evm_approval_auditor.py"><code>/runtime/evm_approval_auditor.py</code></a> &mdash; SHA-256 <code>eab5dc79cb998a2ac39093748e6aba186f88a23e28f1155f807ade3a02eaa518</code></li>
           <li><a href="/runtime/bot_common.py"><code>/runtime/bot_common.py</code></a> &mdash; SHA-256 <code>d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526</code></li>
         </ul>
-        <p>The setup skill refuses to install either file if its SHA-256 does not match the pinned value above.</p>
+        <p>The setup skill refuses to install either file if its SHA-256 does not match the pinned value above. Runtime URLs are license-gated: send <code>X-License-Key: wcl_...</code> or <code>X-Agent-Key: wck_...</code> (unauthenticated requests get 401). The served file carries a per-license watermark block (5 lines), so compare the <code>X-Canonical-SHA256</code> response header (or the SHA-256 after stripping the block) against the pin. The recommended path is the setup skill installer.</p>
       </section>
       <section class="product-section" id="licensing-flow">
         <h2>Licensing &amp; Setup</h2>

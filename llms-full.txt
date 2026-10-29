@@ -14,6 +14,8 @@
 - **Solana Wallet Hygiene Bot ($19 in SOL, `sku: solana-wallet-hygiene`, Registry Name: *Solana Wallet Hygiene & Rent Reclaim*):** https://coinloader.com/bots/solana-wallet-hygiene.html
 - **Retail Token Due-Diligence Bot ($29 in SOL, `sku: solana-token-scanner`, Registry Name: *Solana Token & Mint Due-Diligence Scanner*):** https://coinloader.com/bots/solana-token-scanner.html
 
+- **Runtime downloads are license-gated:** `/runtime/` URLs need `X-License-Key: wcl_...` or `X-Agent-Key: wck_...` (unauthenticated requests get `401`). The served file carries a per-license watermark block (5 lines), so compare the `X-Canonical-SHA256` response header (or the SHA-256 after stripping the block) against the pins listed here. Recommended: the setup skill installer (`/workspace/.wattcoin_license_check.py --sku <sku> --install-runtime ... --expected-sha256 <pin>`). `bot_common.py` has two pinned variants chosen by SKU: `d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526` (legacy; served for the older SKUs such as `evm-contract-inspector`, `evm-approval-auditor`, `btc-utxo-hygiene`, `hyperliquid-monitor`, `pumpfun-coin-manager`, `token-launch-command-center`) and `dbbd8521357fedc348cf7dc102435d4412ea26487e08bf067038ba8c66c9bcd1` (current; `token-rugscore`, `cost-basis-ledger`).
+
 ## 1. Live Templates (Available Now — 12 Live Agents)
 
 ### 1.1 Web & API Text Extractor (FREE + 100 WATT Starter Grant)
@@ -195,7 +197,7 @@
 - **Deliverable:** *Read-only, deterministic 0-100 RugScore with risk tier and `audit_sha256` for Solana SPL / Token-2022 mints and Ethereum, Base & Arbitrum token contracts: mint/freeze authority, Token-2022 extension traps, holder concentration, proxy admins, opcode traps, source verification and liquidity.*
 - **SKU Identifier:** `token-rugscore`
 - **Product Page URL:** https://coinloader.com/bots/token-rugscore.html
-- **Runtime URL:** https://coinloader.com/runtime/token_rugscore.py (standalone zero-dependency Python 3.10+ CLI, `--json` / `--markdown` output, 1200x675 PNG audit receipts) + https://coinloader.com/runtime/bot_common.py
+- **Runtime URL:** https://coinloader.com/runtime/token_rugscore.py (SHA-256 `2f8190fa27904d2ebd67606bea6290f39048c7ab77a6557440fc8ff67a1d363f`; standalone zero-dependency Python 3.10+ CLI, `--json` / `--markdown` output, 1200x675 PNG audit receipts) + https://coinloader.com/runtime/bot_common.py (SHA-256 `dbbd8521357fedc348cf7dc102435d4412ea26487e08bf067038ba8c66c9bcd1`)
 - **Included Skills:** `token-rugscore-setup`, `token-rugscore`
 - **Rule IDs:** Solana `RS-SOL-01..05` (mint authority, freeze authority, Token-2022 extensions, holder concentration, liquidity depth); EVM `RS-EVM-01..04` (proxy admin, opcode traps, source verification, liquidity)
 - **Risk tiers:** 0-24 LOW, 25-49 MODERATE, 50-74 HIGH, 75-100 CRITICAL
@@ -207,7 +209,7 @@
 - **Deliverable:** *Read-only, deterministic FIFO / LIFO / HIFO cost-basis audit with IRS Form 8949 / Schedule D compatible rows, short-term (< 365 days) vs long-term (>= 365 days) gains, wash-sale risk flags and an `audit_sha256`, from a normalized .json/.csv transaction export or a Solana, EVM or Bitcoin wallet address.*
 - **SKU Identifier:** `cost-basis-ledger`
 - **Product Page URL:** https://coinloader.com/bots/cost-basis-ledger.html
-- **Runtime URL:** https://coinloader.com/runtime/cost_basis_ledger.py (standalone zero-dependency Python 3 CLI, `--json` / `--markdown` / `--csv-out` output, 1200x675 PNG audit receipts) + https://coinloader.com/runtime/bot_common.py
+- **Runtime URL:** https://coinloader.com/runtime/cost_basis_ledger.py (SHA-256 `87c41f7e0b287d9ea64765e1fe6872ab72950474e156673fa0752ff4031a4824`; standalone zero-dependency Python 3 CLI, `--json` / `--markdown` / `--csv-out` output, 1200x675 PNG audit receipts) + https://coinloader.com/runtime/bot_common.py (SHA-256 `dbbd8521357fedc348cf7dc102435d4412ea26487e08bf067038ba8c66c9bcd1`)
 - **Included Skills:** `cost-basis-ledger-setup`, `cost-basis-ledger`
 - **Rule IDs:** `CB-WASH-01` (wash-sale 30-day rebuy), `CB-FEE-01` (unclaimed gas/network fees), `CB-LOT-01` (missing / zero cost basis), `CB-HIFO-01` (accounting-method tax delta), `CB-STLT-01` (330-364 day holding-period alert)
 - **Risk tiers:** 0-24 LOW, 25-49 MEDIUM, 50-74 HIGH, 75-100 CRITICAL
@@ -940,7 +942,7 @@ exit_code 0
 - **Name:** Cross-Chain Token RugScore & Honeypot Scanner
 - **Page:** https://coinloader.com/bots/token-rugscore.html
 - **Skills:** `token-rugscore-setup`, `token-rugscore`
-- **Runtime:** https://coinloader.com/runtime/token_rugscore.py (standalone zero-dependency Python 3.10+ CLI) + https://coinloader.com/runtime/bot_common.py
+- **Runtime:** https://coinloader.com/runtime/token_rugscore.py (SHA-256 `2f8190fa27904d2ebd67606bea6290f39048c7ab77a6557440fc8ff67a1d363f`; standalone zero-dependency Python 3.10+ CLI) + https://coinloader.com/runtime/bot_common.py (SHA-256 `dbbd8521357fedc348cf7dc102435d4412ea26487e08bf067038ba8c66c9bcd1`)
 - **Bundles:** also included at no extra cost in `defi-wallet-security-pack` ($59) and `pro-trader-perps-suite` ($69)
 - **Summary:** Audit Solana SPL/Token-2022 mints and Ethereum, Base & Arbitrum contracts with a deterministic 0-100 RugScore. Check mint/freeze authority, proxies & liquidity.
 - **Capabilities:**
@@ -995,7 +997,7 @@ SCOPE_NOTE: Read-only on-chain and public-API inspection. No private keys, seed 
 - **Name:** Multi-Chain Cost-Basis, Wash-Sale & Tax Lot Auditor
 - **Page:** https://coinloader.com/bots/cost-basis-ledger.html
 - **Skills:** `cost-basis-ledger-setup`, `cost-basis-ledger`
-- **Runtime:** https://coinloader.com/runtime/cost_basis_ledger.py (standalone zero-dependency Python 3 CLI) + https://coinloader.com/runtime/bot_common.py
+- **Runtime:** https://coinloader.com/runtime/cost_basis_ledger.py (SHA-256 `87c41f7e0b287d9ea64765e1fe6872ab72950474e156673fa0752ff4031a4824`; standalone zero-dependency Python 3 CLI) + https://coinloader.com/runtime/bot_common.py (SHA-256 `dbbd8521357fedc348cf7dc102435d4412ea26487e08bf067038ba8c66c9bcd1`)
 - **Summary:** FIFO, LIFO & HIFO crypto cost-basis across Solana, EVM and Bitcoin: Form 8949 / Schedule D rows, short- vs long-term gains, wash-sale risk, fee basis adjustments and a deterministic audit_sha256.
 - **Capabilities:**
   - Lot matching `--method fifo|lifo|hifo`; short-term (< 365 days) vs long-term (>= 365 days) gains per `--tax-year`.

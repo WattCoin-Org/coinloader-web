@@ -289,7 +289,7 @@ SCOPE_NOTE: Strictly read-only: only public Mempool.space / Blockstream Esplora 
           <li><a href="/runtime/btc_utxo_hygiene.py"><code>/runtime/btc_utxo_hygiene.py</code></a> &mdash; SHA-256 <code>e3b8d9be91fb2ae75d272fea248d484a2c4076fd472e40eaef73ea903257d5ee</code></li>
           <li><a href="/runtime/bot_common.py"><code>/runtime/bot_common.py</code></a> &mdash; SHA-256 <code>d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526</code></li>
         </ul>
-        <p>The setup skill refuses to install either file if its SHA-256 does not match the pinned value above.</p>
+        <p>The setup skill refuses to install either file if its SHA-256 does not match the pinned value above. Runtime URLs are license-gated: send <code>X-License-Key: wcl_...</code> or <code>X-Agent-Key: wck_...</code> (unauthenticated requests get 401). The served file carries a per-license watermark block (5 lines), so compare the <code>X-Canonical-SHA256</code> response header (or the SHA-256 after stripping the block) against the pin. The recommended path is the setup skill installer.</p>
       </section>
       <section class="product-section" id="licensing-flow">
         <h2>Licensing &amp; Setup</h2>

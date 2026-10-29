@@ -762,6 +762,7 @@ exit_code 0
         <li><strong>EVM rules <code>RS-EVM-01..04</code>:</strong> upgradeable-proxy admin, honeypot-style opcode traps, unverified source and thin liquidity on <code>eth</code>, <code>base</code> and <code>arb</code>.</li>
         <li><strong>Deterministic output:</strong> same input and same chain data give the same score; every run ends with an <code>audit_sha256</code>. Exit codes and <code>--json</code> / <code>--markdown</code> output for CI/CD.</li>
         <li><strong>Dual runtime:</strong> Grok Bot plus the zero-dependency <code>token_rugscore.py</code> CLI for Cursor, Claude Code and any terminal; optional 1200x675 PNG audit receipts.</li>
+        <li><strong>Pinned runtime (SHA-256):</strong> <code>token_rugscore.py</code> <code>2f8190fa27904d2ebd67606bea6290f39048c7ab77a6557440fc8ff67a1d363f</code> and <code>bot_common.py</code> (current variant) <code>dbbd8521357fedc348cf7dc102435d4412ea26487e08bf067038ba8c66c9bcd1</code>. Runtime URLs are license-gated (<code>X-License-Key: wcl_...</code> or <code>X-Agent-Key: wck_...</code>; unauthenticated = 401); the served file carries a per-license watermark block (5 lines), so compare the <code>X-Canonical-SHA256</code> response header against the pin. Recommended: the setup skill installer.</li>
       </ul>
       <h4>2. Hard Guardrails</h4>
       <ul>
@@ -792,6 +793,7 @@ exit_code 0
         <li><strong>Rules <code>CB-WASH-01</code>, <code>CB-FEE-01</code>, <code>CB-LOT-01</code>, <code>CB-HIFO-01</code>, <code>CB-STLT-01</code>:</strong> wash-sale 30-day rebuy risk, unclaimed gas/network fees, missing or zero cost basis, method tax delta and 330&ndash;364 day holding-period alerts.</li>
         <li><strong>Form 8949 rows:</strong> asset, dates, proceeds, basis, fee adjustment, gain/loss, term, wash-sale flag and lot ID; <code>--csv-out</code> exports them.</li>
         <li><strong>Dual runtime:</strong> Grok Bot plus the zero-dependency <code>cost_basis_ledger.py</code> CLI for Cursor, Claude Code and any terminal; optional 1200x675 PNG audit receipts.</li>
+        <li><strong>Pinned runtime (SHA-256):</strong> <code>cost_basis_ledger.py</code> <code>87c41f7e0b287d9ea64765e1fe6872ab72950474e156673fa0752ff4031a4824</code> and <code>bot_common.py</code> (current variant) <code>dbbd8521357fedc348cf7dc102435d4412ea26487e08bf067038ba8c66c9bcd1</code>. Runtime URLs are license-gated (<code>X-License-Key: wcl_...</code> or <code>X-Agent-Key: wck_...</code>; unauthenticated = 401); the served file carries a per-license watermark block (5 lines), so compare the <code>X-Canonical-SHA256</code> response header against the pin. Recommended: the setup skill installer.</li>
       </ul>
       <h4>2. Hard Guardrails</h4>
       <ul>
