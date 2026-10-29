@@ -20,8 +20,9 @@
 - **Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor ($19 in SOL, `sku: btc-utxo-hygiene`, LIVE NOW - instant on-chain SOL checkout):** https://coinloader.com/bots/btc-utxo-hygiene.html (runtime: https://coinloader.com/runtime/btc_utxo_hygiene.py, SHA-256 `e3b8d9be91fb2ae75d272fea248d484a2c4076fd472e40eaef73ea903257d5ee`; https://coinloader.com/runtime/bot_common.py, SHA-256 `d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`; live Bitcoin mainnet sample: https://coinloader.com/bots/btc-utxo-hygiene.html#sample-output and https://coinloader.com/llms-full.txt)
 - **Hyperliquid Perps, Funding & Liquidation Risk Monitor ($29 in SOL, `sku: hyperliquid-monitor`, LIVE NOW - instant on-chain SOL checkout):** https://coinloader.com/bots/hyperliquid-monitor.html (runtime: https://coinloader.com/runtime/hyperliquid_monitor.py, SHA-256 `d9b8b58b9be66617177c238b195c3393ec817dfc591366797fa30f582db7f952`; https://coinloader.com/runtime/bot_common.py, SHA-256 `d1941b61b95ca664e4c1286c3bf1918c00e976c2c1601199b19200257650e526`; live Hyperliquid L1 sample: https://coinloader.com/bots/hyperliquid-monitor.html#sample-output and https://coinloader.com/llms-full.txt)
 - **Cross-Chain Token RugScore & Honeypot Scanner ($29 in SOL, `sku: token-rugscore`, LIVE NOW - instant on-chain SOL checkout):** https://coinloader.com/bots/token-rugscore.html (runtime: https://coinloader.com/runtime/token_rugscore.py; rule IDs `RS-SOL-01..05`, `RS-EVM-01..04`; also included in `defi-wallet-security-pack` and `pro-trader-perps-suite`)
+- **Multi-Chain Cost-Basis, Wash-Sale & Tax Lot Auditor ($29 in SOL, `sku: cost-basis-ledger`, LIVE NOW - instant on-chain SOL checkout):** https://coinloader.com/bots/cost-basis-ledger.html (runtime: https://coinloader.com/runtime/cost_basis_ledger.py; rule IDs `CB-WASH-01`, `CB-FEE-01`, `CB-LOT-01`, `CB-HIFO-01`, `CB-STLT-01`; live sample: https://coinloader.com/bots/cost-basis-ledger.html#sample-output)
 
-## 1. Live Templates (Available Now — 11 Live Agents)
+## 1. Live Templates (Available Now — 12 Live Agents)
 
 ### 1.1 Web & API Text Extractor (FREE + 100 WATT Starter Grant)
 - **Status:** LIVE NOW (Free)
@@ -207,6 +208,18 @@
 - **Risk tiers:** 0-24 LOW, 25-49 MODERATE, 50-74 HIGH, 75-100 CRITICAL
 - **Boundaries:** strictly read-only; never asks for private keys or seed phrases; never builds, signs or broadcasts a transaction; never labels a token "safe", "audited" or "rug-proof"; not financial advice.
 - **Storefront Checkout URL:** https://coinloader.com/#card-token-rugscore
+
+### 1.12 Multi-Chain Cost-Basis, Wash-Sale & Tax Lot Auditor ($29 One-Time in SOL)
+- **Status:** LIVE NOW ($29 USD in SOL, settled on-chain via CoinLoader.com checkout modal; also payable by card via Stripe Checkout)
+- **Deliverable:** *Read-only, deterministic FIFO / LIFO / HIFO cost-basis audit with IRS Form 8949 / Schedule D compatible rows, short-term (< 365 days) vs long-term (>= 365 days) gains, wash-sale risk flags and an `audit_sha256`, from a normalized .json/.csv transaction export or a Solana, EVM or Bitcoin wallet address.*
+- **SKU Identifier:** `cost-basis-ledger`
+- **Product Page URL:** https://coinloader.com/bots/cost-basis-ledger.html
+- **Runtime URL:** https://coinloader.com/runtime/cost_basis_ledger.py (standalone zero-dependency Python 3 CLI, `--json` / `--markdown` / `--csv-out` output, 1200x675 PNG audit receipts) + https://coinloader.com/runtime/bot_common.py
+- **Included Skills:** `cost-basis-ledger-setup`, `cost-basis-ledger`
+- **Rule IDs:** `CB-WASH-01` (wash-sale 30-day rebuy), `CB-FEE-01` (unclaimed gas/network fees), `CB-LOT-01` (missing / zero cost basis), `CB-HIFO-01` (accounting-method tax delta), `CB-STLT-01` (330-364 day holding-period alert)
+- **Risk tiers:** 0-24 LOW, 25-49 MEDIUM, 50-74 HIGH, 75-100 CRITICAL
+- **Boundaries:** strictly read-only; never asks for private keys or seed phrases; never signs or broadcasts a transaction; `--wallet` without `--lots-file` uses a labelled sample ledger because public RPC history has no USD prices; wash-sale treatment of digital assets is unsettled; not tax, legal or financial advice.
+- **Storefront Checkout URL:** https://coinloader.com/#card-cost-basis-ledger
 
 ## Value Bundles — Multi-Bot Packs (3 Live Bundle SKUs; One License Key Unlocks All Included Bots)
 

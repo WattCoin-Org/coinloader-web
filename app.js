@@ -198,6 +198,27 @@ const CHECKOUT_SKUS = {
       'On Turn 1, <code>token-rugscore-setup</code> installs the read-only runtime (<code>bot_common.py</code> and <code>token_rugscore.py</code> verified by SHA-256), provisions your workspace agent key, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
     defaultPrompt: (code) => `Activate my Cross-Chain Token RugScore & Honeypot Scanner with license code ${code}`
   },
+  'cost-basis-ledger': {
+    sku: 'cost-basis-ledger',
+    name: 'Multi-Chain Cost-Basis, Wash-Sale & Tax Lot Auditor',
+    title: 'Multi-Chain Cost-Basis, Wash-Sale & Tax Lot Auditor',
+    badge: 'AVAILABLE NOW · COST-BASIS LEDGER',
+    slugMeta: 'sku: cost-basis-ledger · Skills: cost-basis-ledger-setup + cost-basis-ledger · 3 Rebinds',
+    priceUsd: 29,
+    priceUsdHtml: '$29.00 <small>USD</small>',
+    statusFooterText: 'Status: LIVE · $29 One-Time in SOL (Non-Custodial)',
+    ctaButtonText: 'Buy License ($29 in SOL) →',
+    pageUrl: '/bots/cost-basis-ledger.html',
+    runtimeUrl: '/runtime/cost_basis_ledger.py',
+    stepADescHtml:
+      'Click below to open the private <strong>Multi-Chain Cost-Basis, Wash-Sale &amp; Tax Lot Auditor</strong> template in Grok Bot and add it to your sidebar:',
+    stepABtnText: 'Open Cost-Basis Ledger in Grok Bot ↗',
+    stepCHintHtml:
+      'Paste this prompt on Turn 1 (or together with a normalized <code>.csv</code> / <code>.json</code> transaction export, or the Solana, EVM or Bitcoin wallet address you want audited):',
+    stepCFootHtml:
+      'On Turn 1, <code>cost-basis-ledger-setup</code> installs the read-only runtime (<code>bot_common.py</code> and <code>cost_basis_ledger.py</code> verified by SHA-256), provisions your workspace agent key, and binds your <code>wcl_...</code> license via <code>POST /api/v1/agents/license/claim</code>.',
+    defaultPrompt: (code) => `Activate my Multi-Chain Cost-Basis, Wash-Sale & Tax Lot Auditor with license code ${code}`
+  },
   'defi-wallet-security-pack': {
     sku: 'defi-wallet-security-pack',
     name: 'DeFi & Multi-Chain Wallet Security Pack (5-Bot Bundle)',
@@ -746,6 +767,36 @@ exit_code 0
       <ul>
         <li>Strictly read-only: never asks for private keys or seed phrases and never builds, signs or broadcasts a transaction.</li>
         <li>A low RugScore never means &ldquo;safe&rdquo;; the scanner never labels a token &ldquo;safe&rdquo;, &ldquo;audited&rdquo; or &ldquo;rug-proof&rdquo;. Not financial advice.</li>
+        <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>).</li>
+      </ul>
+    `
+  },
+  'cost-basis-ledger': {
+    title: 'Multi-Chain Cost-Basis, Wash-Sale & Tax Lot Auditor',
+    slug: 'cost-basis-ledger-setup + cost-basis-ledger',
+    badge: 'LIVE · $29 IN SOL',
+    badgeClass: 'live',
+    status: 'live',
+    statusLabel: 'AVAILABLE NOW · LIVE ON COINLOADER',
+    price: '$29 One-Time in SOL (Includes 3 Workspace-Reset Rebinds)',
+    ctaType: 'checkout',
+    sku: 'cost-basis-ledger',
+    pageUrl: '/bots/cost-basis-ledger.html',
+    runtimeUrl: '/runtime/cost_basis_ledger.py',
+    bodyHtml: `
+      <p><strong>Deliverable:</strong> <em>Read-only, deterministic FIFO / LIFO / HIFO cost-basis audit for Solana, EVM and Bitcoin activity: IRS Form 8949 / Schedule D compatible rows, short-term vs long-term gains, wash-sale risk and a reproducible <code>audit_sha256</code>.</em></p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> settled on-chain in SOL (or by card). Instant payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code.</p>
+      <h4>1. Capabilities (<code>cost-basis-ledger-setup</code> + <code>cost-basis-ledger</code>)</h4>
+      <ul>
+        <li><strong>Lot matching:</strong> <code>--method fifo|lifo|hifo</code> with a three-way method comparison; short-term (&lt; 365 days) vs long-term (&ge; 365 days) split per <code>--tax-year</code>.</li>
+        <li><strong>Rules <code>CB-WASH-01</code>, <code>CB-FEE-01</code>, <code>CB-LOT-01</code>, <code>CB-HIFO-01</code>, <code>CB-STLT-01</code>:</strong> wash-sale 30-day rebuy risk, unclaimed gas/network fees, missing or zero cost basis, method tax delta and 330&ndash;364 day holding-period alerts.</li>
+        <li><strong>Form 8949 rows:</strong> asset, dates, proceeds, basis, fee adjustment, gain/loss, term, wash-sale flag and lot ID; <code>--csv-out</code> exports them.</li>
+        <li><strong>Dual runtime:</strong> Grok Bot plus the zero-dependency <code>cost_basis_ledger.py</code> CLI for Cursor, Claude Code and any terminal; optional 1200x675 PNG audit receipts.</li>
+      </ul>
+      <h4>2. Hard Guardrails</h4>
+      <ul>
+        <li>Strictly read-only: never asks for private keys or seed phrases and never signs or broadcasts a transaction.</li>
+        <li>Not tax, legal or financial advice. Wash-sale treatment of digital assets is unsettled; a bare <code>--wallet</code> run uses a labelled sample ledger because public RPC history has no USD prices.</li>
         <li>Binds your <code>wcl_&lt;64-hex&gt;</code> license via <code>POST /api/v1/agents/license/claim</code> (up to <strong>3 workspace-reset rebinds</strong>).</li>
       </ul>
     `
@@ -2254,7 +2305,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Checkout card on-ramp helper + header Products dropdown (idempotent injectors)
 // ---------------------------------------------------------------------------
 (() => {
-  const NAV_MENU = {"trigger": "Products (11 Live) ▾", "label": "LIVE GROK BOT TEMPLATES (11)", "footer": "View All 11 Bots in Grid Catalog ↓", "items": [["web-text-extractor", "Web & API Text Extractor", "Web · Utility", "FREE"], ["solana-wallet-hygiene", "Solana Wallet Hygiene Bot", "Solana · Wallet", "$19 SOL"], ["evm-approval-auditor", "EVM Wallet Approval & Permit2 Auditor", "EVM · Wallet", "$19 SOL"], ["btc-utxo-hygiene", "Bitcoin Wallet & UTXO Hygiene Auditor", "Bitcoin · Wallet", "$19 SOL"], ["solana-token-scanner", "Retail Token Due-Diligence Bot", "Solana · Token", "$29 SOL"], ["bot-skill-auditor", "Bot & Skill Security Auditor", "Security · Audit", "$29 SOL"], ["pumpfun-coin-manager", "Pump.fun Coin & Community Manager", "Solana · Pump.fun", "$29 SOL"], ["evm-contract-inspector", "EVM Smart Contract & Proxy Inspector", "EVM · Contract", "$29 SOL"], ["hyperliquid-monitor", "Hyperliquid Risk Monitor", "Perps · Funding", "$29 SOL"], ["token-rugscore", "Cross-Chain Token RugScore & Honeypot Scanner", "Token · RugScore", "$29 SOL"], ["token-launch-command-center", "Token Launch Command Center", "Solana · Launch", "$49 SOL"]]};
+  const NAV_MENU = {"trigger": "Products (12 Live) ▾", "label": "LIVE GROK BOT TEMPLATES (12)", "footer": "View All 12 Bots in Grid Catalog ↓", "items": [["web-text-extractor", "Web & API Text Extractor", "Web · Utility", "FREE"], ["solana-wallet-hygiene", "Solana Wallet Hygiene Bot", "Solana · Wallet", "$19 SOL"], ["evm-approval-auditor", "EVM Wallet Approval & Permit2 Auditor", "EVM · Wallet", "$19 SOL"], ["btc-utxo-hygiene", "Bitcoin Wallet & UTXO Hygiene Auditor", "Bitcoin · Wallet", "$19 SOL"], ["solana-token-scanner", "Retail Token Due-Diligence Bot", "Solana · Token", "$29 SOL"], ["bot-skill-auditor", "Bot & Skill Security Auditor", "Security · Audit", "$29 SOL"], ["pumpfun-coin-manager", "Pump.fun Coin & Community Manager", "Solana · Pump.fun", "$29 SOL"], ["evm-contract-inspector", "EVM Smart Contract & Proxy Inspector", "EVM · Contract", "$29 SOL"], ["hyperliquid-monitor", "Hyperliquid Risk Monitor", "Perps · Funding", "$29 SOL"], ["token-rugscore", "Cross-Chain Token RugScore & Honeypot Scanner", "Token · RugScore", "$29 SOL"], ["cost-basis-ledger", "Multi-Chain Cost-Basis & Wash-Sale Auditor", "Tax · Cost Basis", "$29 SOL"], ["token-launch-command-center", "Token Launch Command Center", "Solana · Launch", "$49 SOL"]]};
 
   const ensureCardOnramp = () => {
     document.querySelectorAll('#checkout-step-pay').forEach((pay) => {
