@@ -7,6 +7,7 @@
 - **Canonical Storefront:** https://coinloader.com/
 - **Machine-Readable Catalog:** https://coinloader.com/llms.txt
 - **Full Catalog + Verbatim Sample Reports:** https://coinloader.com/llms-full.txt
+- **Product Catalog (JSON):** https://coinloader.com/catalog.json — every live SKU with USD price, inputs/outputs, when-to-use and checkout instructions; no auth, CORS-enabled.
 - **Sister OSINT & Enterprise Storefront:** https://botappstore.com/
 - **Value Bundles (Multi-Bot Packs, one `wcl_...` key unlocks all included bots):** https://coinloader.com/#bundles — `defi-wallet-security-pack` ($59 in SOL); `pro-trader-perps-suite` ($69 in SOL); `token-launch-command-center` ($49 in SOL)
 - **Free Web & API Text Extractor ($0):** https://coinloader.com/bots/web-text-extractor.html (Direct Grok Bot import: https://x.ai/bot/k1oyHmw4iS4VBW1U8_3Ol)

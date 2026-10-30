@@ -1,0 +1,458 @@
+{
+  "schema_version": "1.0",
+  "storefront": "coinloader",
+  "generated_at": "2026-10-30T17:21:23Z",
+  "operator": "AIguy / WattCoin team",
+  "currency": "USD",
+  "checkout": {
+    "card": {
+      "method": "POST",
+      "url": "https://www.wattcoin.org/api/v1/agents/license/stripe-checkout",
+      "body": {
+        "sku": "<sku>",
+        "storefront": "coinloader"
+      },
+      "returns": "checkout_url (hosted page; a human completes payment)",
+      "license_lookup": "GET https://www.wattcoin.org/api/v1/agents/license/stripe-session/{session_id}"
+    },
+    "sol": {
+      "quote": "POST https://www.wattcoin.org/api/v1/agents/license/quote",
+      "confirm": "POST https://www.wattcoin.org/api/v1/agents/license/purchase",
+      "note": "Each quote creates a 15-minute order. Add \"dry_run\": true to the POST quote body (or the stripe-checkout body) to see the price without creating an order."
+    },
+    "default": "card"
+  },
+  "products": [
+    {
+      "sku": "web-extractor",
+      "name": "Web & API Text Extractor",
+      "type": "bot",
+      "status": "live",
+      "storefront": "coinloader",
+      "price_usd": 0.0,
+      "payment_methods": [],
+      "url": "https://coinloader.com/bots/web-text-extractor.html",
+      "summary": "Free self-onboarding web and JSON endpoint text extractor with 10 free cloud text extractions per UTC day.",
+      "when_to_use": "Use when an agent needs readable text from a public web page or API response.",
+      "inputs": [
+        "a public URL"
+      ],
+      "outputs": [
+        "clean text (html/json modes are paid per call in WATT)"
+      ],
+      "runtime": null,
+      "license": {
+        "type": "free",
+        "rebinds": null
+      }
+    },
+    {
+      "sku": "bot-skill-auditor",
+      "name": "Bot & Skill Security Auditor",
+      "type": "bot",
+      "status": "live",
+      "storefront": "coinloader",
+      "price_usd": 29.0,
+      "payment_methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "sol"
+      ],
+      "url": "https://coinloader.com/bots/bot-skill-auditor.html",
+      "summary": "Line-cited static security review of third-party bot skills and SKILL.md files.",
+      "when_to_use": "Use when an agent needs a static security review of a third-party skill or bot before running it.",
+      "inputs": [
+        "skill or bot files, or a repo"
+      ],
+      "outputs": [
+        "line-cited findings in 5 buckets with a Files Audited / Skipped scope note"
+      ],
+      "runtime": {
+        "file": "bot_skill_auditor.py",
+        "sha256": "ed755eb5f93d2713f47bc01a63de5810d5fd0d1eb486a33d452e108a3459c8f5",
+        "license_gated": true
+      },
+      "license": {
+        "type": "one-time",
+        "rebinds": 3
+      }
+    },
+    {
+      "sku": "solana-wallet-hygiene",
+      "name": "Solana Wallet Hygiene & Approval Revoker",
+      "type": "bot",
+      "status": "live",
+      "storefront": "coinloader",
+      "price_usd": 19.0,
+      "payment_methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "sol"
+      ],
+      "url": "https://coinloader.com/bots/solana-wallet-hygiene.html",
+      "summary": "Non-custodial Solana rent reclaim and token delegate review; you run the generated commands yourself.",
+      "when_to_use": "Use when an agent needs to find reclaimable rent and stale delegations on a Solana wallet.",
+      "inputs": [
+        "a public wallet address"
+      ],
+      "outputs": [
+        "SAFE_TO_RECLAIM / NEEDS_CONFIRMATION / DO_NOT_TOUCH report with exact rent and CLI commands"
+      ],
+      "runtime": {
+        "file": "solana_wallet_hygiene.py",
+        "sha256": "f6a43a8dd3fc1f1d39c3e1ec9be28a55f176c04da03686b0296ee86c59f1c1b7",
+        "license_gated": true
+      },
+      "license": {
+        "type": "one-time",
+        "rebinds": 3
+      }
+    },
+    {
+      "sku": "solana-token-scanner",
+      "name": "Solana Token Launch & Rug Risk Scanner",
+      "type": "bot",
+      "status": "live",
+      "storefront": "coinloader",
+      "price_usd": 29.0,
+      "payment_methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "sol"
+      ],
+      "url": "https://coinloader.com/bots/solana-token-scanner.html",
+      "summary": "Solana SPL and Token-2022 due-diligence scanner: mint/freeze authorities, extensions, top-20 holders and DEX liquidity.",
+      "when_to_use": "Use when an agent needs verifiable on-chain facts about a Solana mint.",
+      "inputs": [
+        "a mint address"
+      ],
+      "outputs": [
+        "5-section report: authorities, Token-2022 extensions, top-20 holders, DEX liquidity, scope note"
+      ],
+      "runtime": {
+        "file": "solana_token_scanner.py",
+        "sha256": "d080476b03867d72b874198e735f7f49d4cd75cebdac6c1178a685f2e2d9928b",
+        "license_gated": true
+      },
+      "license": {
+        "type": "one-time",
+        "rebinds": 3
+      }
+    },
+    {
+      "sku": "token-launch-command-center",
+      "name": "Token Launch Command Center",
+      "type": "bot",
+      "status": "live",
+      "storefront": "coinloader",
+      "price_usd": 49.0,
+      "payment_methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "sol"
+      ],
+      "url": "https://coinloader.com/bots/token-launch-command-center.html",
+      "summary": "Pump.fun launch audit and delta monitor plus a gated X, Discord, Telegram and Bluesky publisher with lint and HMAC approval.",
+      "when_to_use": "Use when an agent needs a launch audit plus gated, approval-checked social drafting.",
+      "inputs": [
+        "a mint address",
+        "a launch config"
+      ],
+      "outputs": [
+        "audit, queued fact-only drafts, dry-run dispatch"
+      ],
+      "runtime": {
+        "file": "command_center.py",
+        "sha256": "f120fe580c1819d7f3d4d465b432ab296c157742e1af44b5fb52e0285ae806f5",
+        "license_gated": true
+      },
+      "license": {
+        "type": "one-time",
+        "rebinds": 3
+      }
+    },
+    {
+      "sku": "pumpfun-coin-manager",
+      "name": "Pump.fun Coin & Community Manager",
+      "type": "bot",
+      "status": "live",
+      "storefront": "coinloader",
+      "price_usd": 29.0,
+      "payment_methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "sol"
+      ],
+      "url": "https://coinloader.com/bots/pumpfun-coin-manager.html",
+      "summary": "Read-only Pump.fun launch auditor that finds missing links, creator gaps and holder shifts and drafts replies you review.",
+      "when_to_use": "Use when an agent needs a read-only audit and change monitor for a Pump.fun coin.",
+      "inputs": [
+        "a mint address",
+        "optional expected website/Discord/X links"
+      ],
+      "outputs": [
+        "audit findings, delta events, reply drafts for a human to post"
+      ],
+      "runtime": {
+        "file": "pumpfun_coin_manager.py",
+        "sha256": "4edce1b66c248ea54880941923ede566b71888d253ed3c049fd51795468226f7",
+        "license_gated": true
+      },
+      "license": {
+        "type": "one-time",
+        "rebinds": 3
+      }
+    },
+    {
+      "sku": "evm-contract-inspector",
+      "name": "EVM Smart Contract & Proxy Inspector",
+      "type": "bot",
+      "status": "live",
+      "storefront": "coinloader",
+      "price_usd": 29.0,
+      "payment_methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "sol"
+      ],
+      "url": "https://coinloader.com/bots/evm-contract-inspector.html",
+      "summary": "Read-only EVM proxy inspector for Ethereum, Base and Arbitrum: EIP-1967/UUPS admins, EOA admin flags and Sourcify checks.",
+      "when_to_use": "Use when an agent needs proxy upgradeability, admin and source-verification facts for an EVM contract.",
+      "inputs": [
+        "a contract address on Ethereum, Base or Arbitrum"
+      ],
+      "outputs": [
+        "implementation/admin/beacon slots, Safe/Timelock classification, opcode flags"
+      ],
+      "runtime": {
+        "file": "evm_contract_inspector.py",
+        "sha256": "036398c44b16fb9b59ba72dfc3ea1872dcb93296d16b3efd190a0fa249074820",
+        "license_gated": true
+      },
+      "license": {
+        "type": "one-time",
+        "rebinds": 3
+      }
+    },
+    {
+      "sku": "evm-approval-auditor",
+      "name": "EVM Wallet Approval & Permit2 Risk Auditor",
+      "type": "bot",
+      "status": "live",
+      "storefront": "coinloader",
+      "price_usd": 19.0,
+      "payment_methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "sol"
+      ],
+      "url": "https://coinloader.com/bots/evm-approval-auditor.html",
+      "summary": "Read-only audit of unlimited ERC-20 and Permit2 allowances on Ethereum, Base and Arbitrum with revoke call-data.",
+      "when_to_use": "Use when an agent needs to list risky token approvals and Permit2 allowances for a wallet.",
+      "inputs": [
+        "a wallet address on Ethereum, Base or Arbitrum"
+      ],
+      "outputs": [
+        "spenders classified by risk with revoke call-data you submit yourself"
+      ],
+      "runtime": {
+        "file": "evm_approval_auditor.py",
+        "sha256": "eab5dc79cb998a2ac39093748e6aba186f88a23e28f1155f807ade3a02eaa518",
+        "license_gated": true
+      },
+      "license": {
+        "type": "one-time",
+        "rebinds": 3
+      }
+    },
+    {
+      "sku": "btc-utxo-hygiene",
+      "name": "Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor",
+      "type": "bot",
+      "status": "live",
+      "storefront": "coinloader",
+      "price_usd": 19.0,
+      "payment_methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "sol"
+      ],
+      "url": "https://coinloader.com/bots/btc-utxo-hygiene.html",
+      "summary": "Read-only Bitcoin UTXO auditor: address reuse, dust, stranded UTXOs, Ordinals protection and consolidation planning.",
+      "when_to_use": "Use when an agent needs a privacy and fee review of a Bitcoin address.",
+      "inputs": [
+        "a mainnet address"
+      ],
+      "outputs": [
+        "UTXO and address-reuse findings, consolidation cost matrix, coin-control commands"
+      ],
+      "runtime": {
+        "file": "btc_utxo_hygiene.py",
+        "sha256": "e3b8d9be91fb2ae75d272fea248d484a2c4076fd472e40eaef73ea903257d5ee",
+        "license_gated": true
+      },
+      "license": {
+        "type": "one-time",
+        "rebinds": 3
+      }
+    },
+    {
+      "sku": "hyperliquid-monitor",
+      "name": "Hyperliquid Perps, Funding & Liquidation Risk Monitor",
+      "type": "bot",
+      "status": "live",
+      "storefront": "coinloader",
+      "price_usd": 29.0,
+      "payment_methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "sol"
+      ],
+      "url": "https://coinloader.com/bots/hyperliquid-monitor.html",
+      "summary": "Keyless Hyperliquid perps monitor: liquidation distance, margin utilisation, stop-loss coverage and funding drag.",
+      "when_to_use": "Use when an agent needs liquidation distance, stop coverage and funding checks for Hyperliquid perps.",
+      "inputs": [
+        "a public account address"
+      ],
+      "outputs": [
+        "position risk report, funding APR, mark-oracle basis, alerts"
+      ],
+      "runtime": {
+        "file": "hyperliquid_monitor.py",
+        "sha256": "d9b8b58b9be66617177c238b195c3393ec817dfc591366797fa30f582db7f952",
+        "license_gated": true
+      },
+      "license": {
+        "type": "one-time",
+        "rebinds": 3
+      }
+    },
+    {
+      "sku": "token-rugscore",
+      "name": "Cross-Chain Token RugScore & Honeypot Scanner",
+      "type": "bot",
+      "status": "live",
+      "storefront": "coinloader",
+      "price_usd": 29.0,
+      "payment_methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "sol"
+      ],
+      "url": "https://coinloader.com/bots/token-rugscore.html",
+      "summary": "Deterministic 0-100 RugScore and honeypot checks for Solana mints and Ethereum, Base and Arbitrum contracts.",
+      "when_to_use": "Use when an agent needs a deterministic rug/honeypot score for a token.",
+      "inputs": [
+        "a Solana mint or an Ethereum/Base/Arbitrum token contract"
+      ],
+      "outputs": [
+        "RugScore, risk tier, rule IDs and an audit_sha256"
+      ],
+      "runtime": {
+        "file": "token_rugscore.py",
+        "sha256": "2f8190fa27904d2ebd67606bea6290f39048c7ab77a6557440fc8ff67a1d363f",
+        "license_gated": true
+      },
+      "license": {
+        "type": "one-time",
+        "rebinds": 3
+      }
+    },
+    {
+      "sku": "cost-basis-ledger",
+      "name": "Multi-Chain Cost-Basis, Wash-Sale & Tax Lot Auditor",
+      "type": "bot",
+      "status": "live",
+      "storefront": "coinloader",
+      "price_usd": 29.0,
+      "payment_methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "sol"
+      ],
+      "url": "https://coinloader.com/bots/cost-basis-ledger.html",
+      "summary": "FIFO, LIFO and HIFO cost basis across Solana, EVM and Bitcoin with Form 8949 / Schedule D rows and wash-sale flags.",
+      "when_to_use": "Use when an agent needs a cost-basis and wash-sale audit. Not tax advice.",
+      "inputs": [
+        "a normalized .json/.csv transaction export, or a Solana/EVM/Bitcoin address"
+      ],
+      "outputs": [
+        "FIFO/LIFO/HIFO lots, Form 8949-style rows, wash-sale flags, audit_sha256"
+      ],
+      "runtime": {
+        "file": "cost_basis_ledger.py",
+        "sha256": "87c41f7e0b287d9ea64765e1fe6872ab72950474e156673fa0752ff4031a4824",
+        "license_gated": true
+      },
+      "license": {
+        "type": "one-time",
+        "rebinds": 3
+      }
+    }
+  ],
+  "bundles": [
+    {
+      "sku": "defi-wallet-security-pack",
+      "name": "DeFi & Multi-Chain Wallet Security Pack",
+      "type": "bundle",
+      "status": "live",
+      "storefront": "coinloader",
+      "price_usd": 59.0,
+      "payment_methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "sol"
+      ],
+      "includes": [
+        "solana-wallet-hygiene",
+        "solana-token-scanner",
+        "evm-approval-auditor",
+        "evm-contract-inspector",
+        "token-rugscore"
+      ],
+      "url": "https://coinloader.com/#bundle-defi-wallet-security-pack",
+      "license": {
+        "type": "one-time",
+        "rebinds": 3
+      }
+    },
+    {
+      "sku": "pro-trader-perps-suite",
+      "name": "Pro Trader & Perps Risk Suite",
+      "type": "bundle",
+      "status": "live",
+      "storefront": "coinloader",
+      "price_usd": 69.0,
+      "payment_methods": [
+        "card",
+        "apple_pay",
+        "google_pay",
+        "sol"
+      ],
+      "includes": [
+        "hyperliquid-monitor",
+        "solana-token-scanner",
+        "btc-utxo-hygiene",
+        "solana-wallet-hygiene",
+        "token-rugscore"
+      ],
+      "url": "https://coinloader.com/#bundle-pro-trader-perps-suite",
+      "license": {
+        "type": "one-time",
+        "rebinds": 3
+      }
+    }
+  ]
+}
