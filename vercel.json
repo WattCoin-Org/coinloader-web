@@ -1,39 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "(.*)text/markdown(.*)"
-        }
-      ],
-      "destination": "/index.md"
-    },
-    {
-      "source": "/bots/:slug.html",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "(.*)text/markdown(.*)"
-        }
-      ],
-      "destination": "/bots/:slug.md"
-    },
-    {
-      "source": "/bots/:slug",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "(.*)text/markdown(.*)"
-        }
-      ],
-      "destination": "/bots/:slug.md"
-    },
-    {
       "source": "/about",
       "destination": "/about.html"
     },
@@ -92,6 +59,15 @@
     },
     {
       "source": "/bots/(.*)",
+      "headers": [
+        {
+          "key": "Vary",
+          "value": "Accept"
+        }
+      ]
+    },
+    {
+      "source": "/(about|contact|privacy)(\\.html)?",
       "headers": [
         {
           "key": "Vary",

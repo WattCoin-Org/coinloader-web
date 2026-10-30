@@ -207,12 +207,29 @@ def build_index(cat):
     return "\n".join(parts)
 
 
+TRUST_PAGES = ("about", "contact", "privacy")
+
+
+def build_trust(slug):
+    src = (ROOT / f"{slug}.html").read_text(encoding="utf-8")
+    title = meta(src, r"<title>(.*?)</title>")
+    desc = meta(src, r'<meta name="description" content="(.*?)"')
+    main = re.search(r"<main[^>]*>(.*?)</main>", src, re.S).group(1)
+    c = Converter(set(), False)
+    c.sec_depth = 1
+    c.feed(main)
+    return "\n".join([f"# {title}", "", f"> {desc}", "", f"- Page: {SITE}/{slug}",
+                      f"- Markdown: {SITE}/{slug}.md", "", "---", "", c.markdown(), ""])
+
+
 def targets():
     cat = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8"))
     by_slug = {Path(p["url"]).stem: p for p in cat["products"]}
     out = {ROOT / "index.md": build_index(cat)}
     for page in sorted((ROOT / "bots").glob("*.html")):
         out[ROOT / "bots" / f"{page.stem}.md"] = build_bot(page, cat, by_slug)
+    for slug in TRUST_PAGES:
+        out[ROOT / f"{slug}.md"] = build_trust(slug)
     return out
 
 
