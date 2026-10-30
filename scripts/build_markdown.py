@@ -209,6 +209,15 @@ def build_index(cat):
 
 TRUST_PAGES = ("about", "contact", "privacy")
 
+# The HTML talks about a button; in Markdown there is no button, so point at the page instead.
+# The address itself is never printed here.
+MD_REWRITES = [
+    ("Reveal the support email with one click.",
+     "The support address is not printed in this file."),
+    ("The address is hidden from automated scrapers to cut down on spam. Click the button to reveal it.",
+     f"The support address is not printed here to limit spam. Open {SITE}/contact in a browser and use the Show support email button."),
+]
+
 
 def build_trust(slug):
     src = (ROOT / f"{slug}.html").read_text(encoding="utf-8")
@@ -218,8 +227,11 @@ def build_trust(slug):
     c = Converter(set(), False)
     c.sec_depth = 1
     c.feed(main)
-    return "\n".join([f"# {title}", "", f"> {desc}", "", f"- Page: {SITE}/{slug}",
+    text = "\n".join([f"# {title}", "", f"> {desc}", "", f"- Page: {SITE}/{slug}",
                       f"- Markdown: {SITE}/{slug}.md", "", "---", "", c.markdown(), ""])
+    for old, new in MD_REWRITES:
+        text = text.replace(old, new)
+    return text
 
 
 def targets():

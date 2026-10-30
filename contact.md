@@ -1,6 +1,6 @@
 # Contact & Support | CoinLoader.com
 
-> Contact CoinLoader.com support for license, payment or refund questions. Reveal the support email with one click.
+> Contact CoinLoader.com support for license, payment or refund questions. The support address is not printed in this file.
 
 - Page: https://coinloader.com/contact
 - Markdown: https://coinloader.com/contact.md
@@ -13,7 +13,7 @@ CoinLoader.com support is handled by AIguy and the WattCoin team. Use the suppor
 
 ## Support email
 
-The address is hidden from automated scrapers to cut down on spam. Click the button to reveal it.
+The support address is not printed here to limit spam. Open https://coinloader.com/contact in a browser and use the Show support email button.
 
 ## What to include
 
