@@ -1,6 +1,6 @@
-# EVM Smart Contract & Proxy Inspector ($29 SOL) | CoinLoader
+# EVM Smart Contract & Proxy Inspector ($29) | CoinLoader
 
-> Read-only EVM proxy inspector for Grok Bot ($29 SOL). Resolves EIP-1967/UUPS proxy admins on Ethereum, Base & Arbitrum, flags EOA admins and checks Sourcify.
+> Read-only EVM proxy inspector for Grok Bot ($29). Resolves EIP-1967/UUPS proxy admins on Ethereum, Base & Arbitrum, flags EOA admins and checks Sourcify.
 
 - SKU: `evm-contract-inspector`
 - Price: $29 USD (one-time)

@@ -1,6 +1,6 @@
-# Pump.fun Token Launch Command Center ($49 SOL) | CoinLoader
+# Pump.fun Token Launch Command Center ($49) | CoinLoader
 
-> Pump.fun launch bundle for Grok Bot ($49 SOL): coin audit and delta monitor plus a gated X, Discord, Telegram & Bluesky publisher with lint and HMAC approval.
+> Pump.fun launch bundle for Grok Bot ($49): coin audit and delta monitor plus a gated X, Discord, Telegram & Bluesky publisher with lint and HMAC approval.
 
 - SKU: `token-launch-command-center`
 - Price: $49 USD (one-time)

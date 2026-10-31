@@ -1,6 +1,6 @@
 # Bot & Skill Security Auditor — Prompt Injection Scan
 
-> AI skill security auditor for Grok Bot ($29 SOL). Line-cited 5-bucket static SKILL.md inspector for prompt injection, secret reads, webhooks & escalation.
+> AI skill security auditor for Grok Bot ($29). Line-cited 5-bucket static SKILL.md inspector for prompt injection, secret reads, webhooks & escalation.
 
 - SKU: `bot-skill-auditor`
 - Price: $29 USD (one-time)
@@ -63,6 +63,6 @@ Never. It is a strictly static, read-only inspector. Target files are normalized
 
 Static analysis can only verify what is present in the files at audit time. It cannot see dynamically fetched remote payloads whose server responses change later, delayed API prompt injections, or off-file maintainer compromise. Every report prepends SCOPE_NOTE.txt and cites exact line numbers instead of issuing false safety guarantees.
 
-**Can I use my $29 SOL license across both BotAppStore and CoinLoader?**
+**Can I use my $29 license across both BotAppStore and CoinLoader?**
 
 Yes. The SKU identifier (bot-skill-auditor) and WattCoin Registry license endpoints are shared across both storefronts, and every wcl_... license includes up to 3 workspace-reset rebinds.

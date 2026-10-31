@@ -1,6 +1,6 @@
-# Pump.fun Coin & Community Manager ($29 SOL) | CoinLoader
+# Pump.fun Coin & Community Manager ($29) | CoinLoader
 
-> Read-only Pump.fun launch auditor for Grok Bot ($29 SOL). Finds missing links, creator gaps and holder shifts, and drafts Callout replies you review and post.
+> Read-only Pump.fun launch auditor for Grok Bot ($29). Finds missing links, creator gaps and holder shifts, and drafts Callout replies you review and post.
 
 - SKU: `pumpfun-coin-manager`
 - Price: $29 USD (one-time)

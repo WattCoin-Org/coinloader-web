@@ -1,6 +1,6 @@
 # Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor
 
-> Read-only Bitcoin UTXO auditor for Grok Bot ($19 SOL). Flags address reuse, dust and stranded UTXOs, protects Ordinals, and plans consolidation by sats/vB fee.
+> Read-only Bitcoin UTXO auditor for Grok Bot ($19). Flags address reuse, dust and stranded UTXOs, protects Ordinals, and plans consolidation by sats/vB fee.
 
 - SKU: `btc-utxo-hygiene`
 - Price: $19 USD (one-time)

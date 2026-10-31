@@ -1,6 +1,6 @@
 # EVM Wallet Approval & Permit2 Risk Auditor
 
-> Read-only EVM approval auditor for Grok Bot ($19 SOL). Finds unlimited ERC-20 and Permit2 allowances on Ethereum, Base & Arbitrum and prints revoke call-data.
+> Read-only EVM approval auditor for Grok Bot ($19). Finds unlimited ERC-20 and Permit2 allowances on Ethereum, Base & Arbitrum and prints revoke call-data.
 
 - SKU: `evm-approval-auditor`
 - Price: $19 USD (one-time)

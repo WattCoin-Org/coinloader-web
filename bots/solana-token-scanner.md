@@ -1,6 +1,6 @@
 # Retail Token Due-Diligence Bot — Solana SPL Scanner
 
-> Solana SPL & Token-2022 due-diligence scanner for Grok Bot ($29 SOL). Audits mint/freeze authorities, extensions, top-20 holders and DEX liquidity.
+> Solana SPL & Token-2022 due-diligence scanner for Grok Bot ($29). Audits mint/freeze authorities, extensions, top-20 holders and DEX liquidity.
 
 - SKU: `solana-token-scanner`
 - Price: $29 USD (one-time)

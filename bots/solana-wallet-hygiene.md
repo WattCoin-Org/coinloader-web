@@ -1,6 +1,6 @@
 # Solana Wallet Hygiene Bot — Rent Reclaim
 
-> Non-custodial Solana rent reclaim & token delegate revoke bot for Grok ($19 SOL). Close empty SPL & Token-2022 accounts (0.00203928 SOL each), no keys shared.
+> Non-custodial Solana rent reclaim & token delegate revoke bot for Grok ($19). Close empty SPL & Token-2022 accounts (0.00203928 SOL each), no keys shared.
 
 - SKU: `solana-wallet-hygiene`
 - Price: $19 USD (one-time)
@@ -59,7 +59,7 @@ Each standard 165-byte SPL token account holds exactly 0.00203928 SOL (2,039,280
 
 **Does the Solana Wallet Hygiene Bot take a percentage fee of my reclaimed SOL?**
 
-Zero percent. Unlike web-based rent reclaim dApps that ask you to connect your wallet and take a 10%–25% cut of your reclaimed rent, Solana Wallet Hygiene Bot is a one-time $19 SOL license that runs read-only in /workspace and gives you the exact spl-token CLI and wallet UI steps to reclaim 100% of your SOL yourself.
+Zero percent. Unlike web-based rent reclaim dApps that ask you to connect your wallet and take a 10%–25% cut of your reclaimed rent, Solana Wallet Hygiene Bot is a one-time $19 license that runs read-only in /workspace and gives you the exact spl-token CLI and wallet UI steps to reclaim 100% of your SOL yourself.
 
 **Does it ever need my private key or wallet connection?**
 

@@ -1,6 +1,6 @@
 # Hyperliquid Perps, Funding & Liquidation Risk Monitor
 
-> Keyless Hyperliquid perps monitor for Grok Bot ($29 SOL). Tracks liquidation distance, margin utilisation, stop-loss coverage and funding drag with alerts.
+> Keyless Hyperliquid perps monitor for Grok Bot ($29). Tracks liquidation distance, margin utilisation, stop-loss coverage and funding drag with alerts.
 
 - SKU: `hyperliquid-monitor`
 - Price: $29 USD (one-time)
@@ -48,7 +48,7 @@ Monitor any Hyperliquid wallet or subaccount you own using only its public `0x` 
 
 ## Licensing & Setup
 
-One-time $29 license paid in SOL, up to 3 workspace-reset rebinds. On Turn 1 the `hyperliquid-monitor-setup` skill verifies and activates your workspace agent key, binds your `wcl_...` code through the read-only license helper (`POST /api/v1/agents/license/claim`), installs the SHA-256-pinned `bot_common.py` and `hyperliquid_monitor.py` runtime, runs a public market smoke test and offers an optional watchlist routine. The license code is never printed in chat.
+One-time $29 license paid by card or in SOL, up to 3 workspace-reset rebinds. On Turn 1 the `hyperliquid-monitor-setup` skill verifies and activates your workspace agent key, binds your `wcl_...` code through the read-only license helper (`POST /api/v1/agents/license/claim`), installs the SHA-256-pinned `bot_common.py` and `hyperliquid_monitor.py` runtime, runs a public market smoke test and offers an optional watchlist routine. The license code is never printed in chat.
 
 **One `wcl_...` key, two runtimes.** Your license key works inside Grok Bot *and* from any local terminal or IDE agent (Cursor, Claude Code, Windsurf, CI/CD) via the standalone single-file Python 3 CLI (`/runtime/hyperliquid_monitor.py`) — Python 3.10+ standard library only, zero `pip install` dependencies, with `--json` / `--markdown` output.
 
