@@ -2,7 +2,7 @@
 
 ## 2026-10-31 — Mobile optimization (CSS only)
 
-Approved by owner AIguy. Status: on branch `feat/mobile-optimization`, preview only, not merged, not deployed.
+Approved by owner AIguy. Status: merged to main and live in production. Merge commit `07576c5` (`feat/mobile-optimization` @ `1dfc1e3` into main). Production deploy `dpl_3eFziNYYAGECf7Ftdg4GMZkH55VQ` READY. Rollback deploy (previous production, `e87bc3a`): `dpl_8kacdfpZ5s25dXRsHNrdn6cEaTRQ`.
 
 ### Changes (`styles.css` only)
 - Removed the root causes of horizontal overflow at 360/390/414 px: status bar and ticker no longer force one line, hero card, architecture cards, FAQ list and nav button group can shrink and wrap, grids collapse to one column, long inline code wraps, code blocks and tables scroll inside their own box.
@@ -19,6 +19,11 @@ Approved by owner AIguy. Status: on branch `feat/mobile-optimization`, preview o
 - Checkout modal: before 514 px wide, clipped; after fully inside the viewport at all widths.
 - Remaining small tap targets: inline paragraph links only (73-80 per home page; now 1-5 per page).
 - Guards and tests: all pass.
+
+### Production
+- Guards pass on main: check_nav 12, check_sitemap 14, check_analytics 16, check_catalog 12.
+- Live check (playwright, 360/390/414 px, home + `/bots/cost-basis-ledger.html`): document and body scrollWidth equal the viewport width on all 6 runs, buy/checkout buttons render (15 on home, 2 on bot page), 0 clipped, minimum height 44px.
+- Live `styles.css` sha256 matches repo main.
 
 ### Commit
 - 8a70193 (styles.css)
