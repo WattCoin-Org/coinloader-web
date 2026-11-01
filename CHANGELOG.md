@@ -1,5 +1,26 @@
 # Changelog
 
+## 2026-11-01 — web-text-extractor canonical moved to coinloader.com
+
+Approved by owner AIguy. Status: merged to main; production deploy verification pending.
+
+### Changes
+- `bots/web-text-extractor.html`: `<link rel="canonical">` and `og:url` now point at `https://coinloader.com/bots/web-text-extractor.html` (were botappstore.com). All other og: / twitter: / JSON-LD URLs on the page already pointed at coinloader.com.
+- `sitemap.xml`: new entry for the page (lastmod 2026-11-01, weekly, priority 0.9), so `check_sitemap.py` sees sitemap == self-canonical pages (15 listed).
+- No `.md` twin or llms changes were needed (`build_markdown.py` wrote 0 files; llms files never claimed a botappstore.com canonical).
+
+### Kept on purpose
+- `bots/bot-skill-auditor.html` keeps its cross-canonical to botappstore.com (not approved for change) and stays out of the sitemap.
+- No WattCoin sweep here; CoinLoader may mention it.
+
+### Checks
+- check_analytics OK (16), check_catalog OK (12), check_nav OK (12), check_sitemap OK (15 self-canonical, 1 cross-canonical excluded), build_markdown --check OK (16). No test suite in this repo.
+- `rg 'canonical|og:url' bots/ *.html | rg botappstore` shows only `bots/bot-skill-auditor.html` (lines 8 and 16).
+- check_sitemap OK (15 self-canonical, 1 cross-canonical excluded); rollout QA 54 renders, 0 failing.
+
+### Commit
+- `8bd432a` page + sitemap (changelog commit follows)
+
 ## 2026-11-01 — After You Buy strip on all 12 listing pages
 
 Approved by owner AIguy. Status: merged to main and live in production. Page commit `24b1652`, changelog commit `0515205`. Production deploy `dpl_HSDJpwMzgKmv5kbo2NptZcKx6NPp` READY. Live check on coinloader.com (`token-rugscore`, `hyperliquid-monitor`, `token-launch-command-center`, `web-text-extractor`, `bot-skill-auditor`): the strip appears exactly once on each.
