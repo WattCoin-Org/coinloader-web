@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-11-01 — After You Buy strip on all 12 listing pages
+
+Approved by owner AIguy. Status: committed to main locally, not yet pushed or deployed. Page commit `24b1652`.
+
+### Changes (`bots/*.html` only, 12 pages)
+- New "After You Buy" section directly above "Licensing & Setup" on every listing: 1) check out, 2) add the bot to the Grok Bot sidebar, 3) run setup with the activation prompt, 4) first report. Payment step reads "Pay by card or SOL", as the pages and `app.js` offer both.
+- Steps 3 and 4 are written per bot from its setup skill (runtime download vs read-only helpers, multi-file toolkit for `token-launch-command-center`). `token-rugscore` uses the approved text.
+- `web-text-extractor` is free, so it gets "After You Install": no checkout, no license code, 10 free text scrapes per UTC day.
+- Scoped `<style>` block using existing page variables (`--accent-cyan` for the step numbers); steps stack on phones. No JS, checkout logic, prices, SKUs, catalog, sitemap, llms files or `.md` twins were touched (`build_markdown.py` ignores the new section).
+
+### Checks
+- Playwright at 1280 and 390 px on all 12 pages (local server, external requests blocked): strip present once, directly before `#licensing-flow`, strip does not overflow, text at least body size. The 1280 px header button overflow that already exists on the pages is unchanged.
+- Greps on the strip blocks: none of safe, guarantee, profit, human review, Stripe, MoonPay, BotAppStore, or time units.
+- Checkout modal and mocked receipt on `token-rugscore`: names, price and steps follow the clicked bot after `app.js` runs; no Auditor text.
+- Guards: check_analytics OK (16), check_catalog OK (12), check_nav OK (12), check_sitemap OK (14), build_markdown --check OK (16 up to date).
+
+### Commit
+- 24b1652 (12 listing pages)
+
 ## 2026-10-31 — Mobile optimization (CSS only)
 
 Approved by owner AIguy. Status: merged to main and live in production. Merge commit `07576c5` (`feat/mobile-optimization` @ `1dfc1e3` into main). Production deploy `dpl_3eFziNYYAGECf7Ftdg4GMZkH55VQ` READY. Rollback deploy (previous production, `e87bc3a`): `dpl_8kacdfpZ5s25dXRsHNrdn6cEaTRQ`.
