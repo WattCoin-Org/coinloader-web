@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-11-01 — bot-skill-auditor canonical moved to coinloader.com
+
+Approved by owner AIguy. Status: merged to main; production deploy verification pending.
+
+### Changes
+- `bots/bot-skill-auditor.html`: `<link rel="canonical">` and `og:url` now point at `https://coinloader.com/bots/bot-skill-auditor.html` (were botappstore.com). All other og: / twitter: / JSON-LD URLs on the page already pointed at coinloader.com.
+- `sitemap.xml`: new entry for the page (lastmod 2026-11-01, weekly, priority 0.9), placed after web-text-extractor, so `check_sitemap.py` sees sitemap == self-canonical pages (16 listed).
+- No script, `.md` twin or llms changes were needed (`build_markdown.py --check` reports twins up to date).
+
+### Kept on purpose
+- Footer "sister storefront" links to botappstore.com are unchanged.
+
+### Checks
+- check_analytics OK (16), check_catalog OK (12), check_nav OK (12), check_sitemap OK (16 self-canonical, 0 cross-canonical excluded), build_markdown --check OK (16 twins up to date).
+- `rg -n 'botappstore\.com' --glob '*.html' . | rg -i 'canonical|og:|twitter:'` returns nothing.
+
+Commit: `85e56c1` (changelog lands in a follow-up commit)
+
 ## 2026-11-01 — web-text-extractor canonical moved to coinloader.com
 
 Approved by owner AIguy. Status: merged to main; production deploy verification pending.
