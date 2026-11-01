@@ -2,7 +2,7 @@
 
 ## 2026-11-01 — After You Buy strip on all 12 listing pages
 
-Approved by owner AIguy. Status: committed to main locally, not yet pushed or deployed. Page commit `24b1652`.
+Approved by owner AIguy. Status: merged to main and live in production. Page commit `24b1652`, changelog commit `0515205`. Production deploy `dpl_HSDJpwMzgKmv5kbo2NptZcKx6NPp` READY. Live check on coinloader.com (`token-rugscore`, `hyperliquid-monitor`, `token-launch-command-center`, `web-text-extractor`, `bot-skill-auditor`): the strip appears exactly once on each.
 
 ### Changes (`bots/*.html` only, 12 pages)
 - New "After You Buy" section directly above "Licensing & Setup" on every listing: 1) check out, 2) add the bot to the Grok Bot sidebar, 3) run setup with the activation prompt, 4) first report. Payment step reads "Pay by card or SOL", as the pages and `app.js` offer both.
