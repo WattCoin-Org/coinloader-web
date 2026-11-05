@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-04 — TLCC checkout placeholder price corrected
+
+### Changes
+- `bots/token-launch-command-center.html`: checkout modal placeholder `#checkout-price-usd` changed from `$29.00 USD` to `$49.00 USD`, matching the canonical $49 price (backend price table, JSON-LD, badge and buy buttons).
+
+### Checks
+- No other `bots/*.html` page with a 49.00 JSON-LD price carried a stale `$29.00` placeholder.
+
 ## 2026-11-01 — bot-skill-auditor canonical moved to coinloader.com
 
 Approved by owner AIguy. Status: merged to main; production deploy verification pending.
