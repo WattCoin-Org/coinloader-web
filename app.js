@@ -56,7 +56,7 @@ const CHECKOUT_SKUS = {
     ctaButtonText: 'Buy License ($29 · card or SOL) →',
     stepADescHtml:
       'Click below to open the private <strong>Retail Token Due-Diligence Bot</strong> template in Grok Bot and add it to your sidebar:',
-    stepABtnText: 'Open Token Due-Diligence Bot in Grok Bot ↗',
+    stepABtnText: 'Open Retail Token Due-Diligence Bot in Grok Bot ↗',
     stepCHintHtml:
       'Paste this prompt on Turn 1 (or together with the Solana mint address you want inspected):',
     stepCFootHtml:

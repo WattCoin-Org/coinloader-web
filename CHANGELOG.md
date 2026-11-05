@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-05 — solana-token-scanner display name renamed to Retail Token Due-Diligence Bot
+
+Renamed the `solana-token-scanner` display name to Retail Token Due-Diligence Bot (catalog + after-buy button). Approved by owner AIguy. No price, sku or URL changes.
+
 ## 2026-11-04 — Bot-page checkout/fulfilled panel copy-paste leftovers corrected
 
 Scope: checkout modal only (`#checkout-price-usd` placeholder, sku line, fulfilled Step A template name, CTA text). Prices checked against the backend price table and `catalog.json`; no backend, template URL, nav or cross-sell changes.

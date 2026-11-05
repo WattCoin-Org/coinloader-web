@@ -10,7 +10,7 @@
 - [Web & API Text Extractor](https://coinloader.com/bots/web-text-extractor.md) — Free — `web-extractor` — Use when an agent needs readable text from a public web page or API response.
 - [Bot & Skill Security Auditor](https://coinloader.com/bots/bot-skill-auditor.md) — $29 USD (one-time) — `bot-skill-auditor` — Use when an agent needs a static security review of a third-party skill or bot before running it.
 - [Solana Wallet Hygiene & Approval Revoker](https://coinloader.com/bots/solana-wallet-hygiene.md) — $19 USD (one-time) — `solana-wallet-hygiene` — Use when an agent needs to find reclaimable rent and stale delegations on a Solana wallet.
-- [Solana Token Launch & Rug Risk Scanner](https://coinloader.com/bots/solana-token-scanner.md) — $29 USD (one-time) — `solana-token-scanner` — Use when an agent needs verifiable on-chain facts about a Solana mint.
+- [Retail Token Due-Diligence Bot](https://coinloader.com/bots/solana-token-scanner.md) — $29 USD (one-time) — `solana-token-scanner` — Use when an agent needs verifiable on-chain facts about a Solana mint.
 - [Token Launch Command Center](https://coinloader.com/bots/token-launch-command-center.md) — $49 USD (one-time) — `token-launch-command-center` — Use when an agent needs a launch audit plus gated, approval-checked social drafting.
 - [Pump.fun Coin & Community Manager](https://coinloader.com/bots/pumpfun-coin-manager.md) — $29 USD (one-time) — `pumpfun-coin-manager` — Use when an agent needs a read-only audit and change monitor for a Pump.fun coin.
 - [EVM Smart Contract & Proxy Inspector](https://coinloader.com/bots/evm-contract-inspector.md) — $29 USD (one-time) — `evm-contract-inspector` — Use when an agent needs proxy upgradeability, admin and source-verification facts for an EVM contract.

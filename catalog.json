@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "storefront": "coinloader",
-  "generated_at": "2026-10-30T17:21:23Z",
+  "generated_at": "2026-11-01T00:04:35Z",
   "operator": "AIguy / WattCoin team",
   "currency": "USD",
   "checkout": {
@@ -112,7 +112,7 @@
     },
     {
       "sku": "solana-token-scanner",
-      "name": "Solana Token Launch & Rug Risk Scanner",
+      "name": "Retail Token Due-Diligence Bot",
       "type": "bot",
       "status": "live",
       "storefront": "coinloader",
