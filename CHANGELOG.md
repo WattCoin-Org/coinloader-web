@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-11-04 — Bot-page checkout/fulfilled panel copy-paste leftovers corrected
+
+Scope: checkout modal only (`#checkout-price-usd` placeholder, sku line, fulfilled Step A template name, CTA text). Prices checked against the backend price table and `catalog.json`; no backend, template URL, nav or cross-sell changes.
+
+### Changes
+- `bots/btc-utxo-hygiene.html`: placeholder `$29.00` -> `$19.00`; sku line, Step A name and CTA were Bot & Skill Security Auditor.
+- `bots/evm-approval-auditor.html`: placeholder `$29.00` -> `$19.00`; sku line, Step A name and CTA were Auditor.
+- `bots/solana-wallet-hygiene.html`: placeholder `$29.00` -> `$19.00`; sku line, Step A name and CTA were Auditor.
+- `bots/cost-basis-ledger.html`, `bots/evm-contract-inspector.html`, `bots/hyperliquid-monitor.html`, `bots/pumpfun-coin-manager.html`, `bots/solana-token-scanner.html`, `bots/token-launch-command-center.html`, `bots/token-rugscore.html`: sku line, Step A name and CTA were Auditor (price $29/$49 placeholders were correct).
+- `bots/web-text-extractor.html`: free bot (catalog price 0, sku `web-extractor`) with a leftover paid Auditor panel; placeholder `$29.00` -> `$0.00`, sku line, Step A name and CTA corrected.
+
+### Checks
+- `bots/bot-skill-auditor.html` already correct.
+
 ## 2026-11-04 — TLCC checkout placeholder price corrected
 
 ### Changes
