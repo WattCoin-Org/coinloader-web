@@ -18,8 +18,7 @@ Outputs: position risk report, funding APR, mark-oracle basis, alerts
 ## How an agent buys
 
 - Price: $29 USD (one-time)
-- Card (default): `POST https://www.wattcoin.org/api/v1/agents/license/stripe-checkout` with body `{"sku": "hyperliquid-monitor", "storefront": "coinloader"}` returns a `checkout_url` (hosted page; a human completes payment). After payment: `GET https://www.wattcoin.org/api/v1/agents/license/stripe-session/{session_id}` returns the license code.
-- SOL: `POST https://www.wattcoin.org/api/v1/agents/license/quote` then `POST https://www.wattcoin.org/api/v1/agents/license/purchase`. Each quote creates a 15-minute order. Add "dry_run": true to the POST quote body (or the stripe-checkout body) to see the price without creating an order.
+- SOL only: `POST https://www.wattcoin.org/api/v1/agents/license/quote` with body `{"sku": "hyperliquid-monitor", "storefront": "coinloader"}`, then `POST https://www.wattcoin.org/api/v1/agents/license/purchase`. SOL only. Each quote creates a 15-minute order. Add "dry_run": true to the POST quote body to see the price without creating an order.
 
 Machine-readable catalog (all SKUs, prices, inputs/outputs, checkout): https://coinloader.com/catalog.json
 Plain-text catalog: https://coinloader.com/llms.txt
@@ -48,7 +47,7 @@ Monitor any Hyperliquid wallet or subaccount you own using only its public `0x` 
 
 ## Licensing & Setup
 
-One-time $29 license paid by card or in SOL, up to 3 workspace-reset rebinds. On Turn 1 the `hyperliquid-monitor-setup` skill verifies and activates your workspace agent key, binds your `wcl_...` code through the read-only license helper (`POST /api/v1/agents/license/claim`), installs the SHA-256-pinned `bot_common.py` and `hyperliquid_monitor.py` runtime, runs a public market smoke test and offers an optional watchlist routine. The license code is never printed in chat.
+One-time $29 license paid in SOL, up to 3 workspace-reset rebinds. On Turn 1 the `hyperliquid-monitor-setup` skill verifies and activates your workspace agent key, binds your `wcl_...` code through the read-only license helper (`POST /api/v1/agents/license/claim`), installs the SHA-256-pinned `bot_common.py` and `hyperliquid_monitor.py` runtime, runs a public market smoke test and offers an optional watchlist routine. The license code is never printed in chat.
 
 **One `wcl_...` key, two runtimes.** Your license key works inside Grok Bot *and* from any local terminal or IDE agent (Cursor, Claude Code, Windsurf, CI/CD) via the standalone single-file Python 3 CLI (`/runtime/hyperliquid_monitor.py`) — Python 3.10+ standard library only, zero `pip install` dependencies, with `--json` / `--markdown` output.
 

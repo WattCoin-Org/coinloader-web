@@ -9,7 +9,7 @@
 
 # Contact & Support
 
-CoinLoader.com support is handled by AIguy and the WattCoin team. Use the support email for questions about a product, a license key that will not bind, a payment that does not show up, or a refund request.
+CoinLoader.com support is handled by 3D-Composites. Use the support email for questions about a product, a license key that will not bind, a payment that does not show up, or a refund request.
 
 ## Support email
 
@@ -17,7 +17,7 @@ The support address is not printed here to limit spam. Open https://coinloader.c
 
 ## What to include
 
-For license or payment issues, include the SKU (for example `token-rugscore`), the order ID or Solana transaction signature, or your Stripe receipt. Never send a seed phrase, a private key or a full license key by email; the last few characters of a `wcl_...` key are enough for us to find it.
+For license or payment issues, include the SKU (for example `token-rugscore`), and the order ID or Solana transaction signature. Never send a seed phrase, a private key or a full license key by email; the last few characters of a `wcl_...` key are enough for us to find it.
 
 ## Refunds
 

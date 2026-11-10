@@ -152,7 +152,7 @@ def price_of(p):
 
 
 def checkout_block(cat, product=None):
-    card = cat["checkout"]["card"]
+    # CoinLoader is SOL-only (Nov 10, 2026): the catalog has no card checkout.
     sol = cat["checkout"]["sol"]
     sku = product["sku"] if product else "<sku>"
     lines = ["## How an agent buys", ""]
@@ -161,10 +161,8 @@ def checkout_block(cat, product=None):
     else:
         lines += [
             f"- Price: {price_of(product)}" if product else "- Prices: see the catalog.",
-            f"- Card (default): `{card['method']} {card['url']}` with body `{{\"sku\": \"{sku}\", \"storefront\": \"coinloader\"}}` "
-            f"returns a `checkout_url` (hosted page; a human completes payment). "
-            f"After payment: `{card['license_lookup']}` returns the license code.",
-            f"- SOL: `{sol['quote']}` then `{sol['confirm']}`. {sol['note']}",
+            f"- SOL only: `{sol['quote']}` with body `{{\"sku\": \"{sku}\", \"storefront\": \"coinloader\"}}`, "
+            f"then `{sol['confirm']}`. {sol['note']}",
         ]
         lines.append("")
     lines += [f"Machine-readable catalog (all SKUs, prices, inputs/outputs, checkout): {SITE}/catalog.json",

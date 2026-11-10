@@ -17,7 +17,7 @@ const CHECKOUT_SKUS = {
     priceUsd: 29,
     priceUsdHtml: '$29.00 <small>USD</small>',
     statusFooterText: 'Status: LIVE · $29 One-Time in SOL (Non-Custodial)',
-    ctaButtonText: 'Buy License ($29 · card or SOL) →',
+    ctaButtonText: 'Buy License ($29 in SOL) →',
     stepADescHtml:
       'Click below to open the private <strong>Bot &amp; Skill Security Auditor</strong> template in Grok Bot and add it to your sidebar:',
     stepABtnText: 'Open Security Auditor in Grok Bot ↗',
@@ -35,7 +35,7 @@ const CHECKOUT_SKUS = {
     priceUsd: 19,
     priceUsdHtml: '$19.00 <small>USD</small>',
     statusFooterText: 'Status: LIVE · $19 One-Time in SOL (Non-Custodial)',
-    ctaButtonText: 'Buy License ($19 · card or SOL) →',
+    ctaButtonText: 'Buy License ($19 in SOL) →',
     stepADescHtml:
       'Click below to open the private <strong>Solana Wallet Hygiene Bot</strong> template in Grok Bot and add it to your sidebar:',
     stepABtnText: 'Open Wallet Hygiene Bot in Grok Bot ↗',
@@ -53,7 +53,7 @@ const CHECKOUT_SKUS = {
     priceUsd: 29,
     priceUsdHtml: '$29.00 <small>USD</small>',
     statusFooterText: 'Status: LIVE · $29 One-Time in SOL (Non-Custodial)',
-    ctaButtonText: 'Buy License ($29 · card or SOL) →',
+    ctaButtonText: 'Buy License ($29 in SOL) →',
     stepADescHtml:
       'Click below to open the private <strong>Retail Token Due-Diligence Bot</strong> template in Grok Bot and add it to your sidebar:',
     stepABtnText: 'Open Retail Token Due-Diligence Bot in Grok Bot ↗',
@@ -71,7 +71,7 @@ const CHECKOUT_SKUS = {
     priceUsd: 29,
     priceUsdHtml: '$29.00 <small>USD</small>',
     statusFooterText: 'Status: LIVE · $29 One-Time in SOL (Non-Custodial)',
-    ctaButtonText: 'Buy License ($29 · card or SOL) →',
+    ctaButtonText: 'Buy License ($29 in SOL) →',
     stepADescHtml:
       'Click below to open the private <strong>Pump.fun Coin &amp; Community Manager</strong> template in Grok Bot and add it to your sidebar:',
     stepABtnText: 'Open Pump.fun Coin Manager in Grok Bot ↗',
@@ -89,7 +89,7 @@ const CHECKOUT_SKUS = {
     priceUsd: 49,
     priceUsdHtml: '$49.00 <small>USD</small>',
     statusFooterText: 'Status: LIVE · $49 One-Time Flagship Bundle in SOL (Non-Custodial)',
-    ctaButtonText: 'Buy Flagship Bundle ($49 · card or SOL) →',
+    ctaButtonText: 'Buy Flagship Bundle ($49 in SOL) →',
     stepADescHtml:
       'Click below to open the private <strong>Token Launch Command Center</strong> template in Grok Bot and add it to your sidebar:',
     stepABtnText: 'Open Token Launch Command Center in Grok Bot ↗',
@@ -107,7 +107,7 @@ const CHECKOUT_SKUS = {
     priceUsd: 29,
     priceUsdHtml: '$29.00 <small>USD</small>',
     statusFooterText: 'Status: LIVE · $29 One-Time in SOL (Non-Custodial)',
-    ctaButtonText: 'Buy License ($29 · card or SOL) →',
+    ctaButtonText: 'Buy License ($29 in SOL) →',
     stepADescHtml:
       'Click below to open the private <strong>EVM Smart Contract &amp; Proxy Inspector</strong> template in Grok Bot and add it to your sidebar:',
     stepABtnText: 'Open EVM Contract Inspector in Grok Bot ↗',
@@ -125,7 +125,7 @@ const CHECKOUT_SKUS = {
     priceUsd: 19,
     priceUsdHtml: '$19.00 <small>USD</small>',
     statusFooterText: 'Status: LIVE · $19 One-Time in SOL (Non-Custodial)',
-    ctaButtonText: 'Buy License ($19 · card or SOL) →',
+    ctaButtonText: 'Buy License ($19 in SOL) →',
     pageUrl: '/bots/evm-approval-auditor.html',
     stepADescHtml:
       'Click below to open the private <strong>EVM Wallet Approval &amp; Permit2 Risk Auditor</strong> template in Grok Bot and add it to your sidebar:',
@@ -144,7 +144,7 @@ const CHECKOUT_SKUS = {
     priceUsd: 19,
     priceUsdHtml: '$19.00 <small>USD</small>',
     statusFooterText: 'Status: LIVE · $19 One-Time in SOL (Non-Custodial)',
-    ctaButtonText: 'Buy License ($19 · card or SOL) →',
+    ctaButtonText: 'Buy License ($19 in SOL) →',
     pageUrl: '/bots/btc-utxo-hygiene.html',
     stepADescHtml:
       'Click below to open the private <strong>Bitcoin Wallet &amp; UTXO Privacy/Fee Hygiene Auditor</strong> template in Grok Bot and add it to your sidebar:',
@@ -164,7 +164,7 @@ const CHECKOUT_SKUS = {
     priceUsd: 29,
     priceUsdHtml: '$29.00 <small>USD</small>',
     statusFooterText: 'Status: LIVE · $29 One-Time in SOL (Non-Custodial)',
-    ctaButtonText: 'Buy License ($29 · card or SOL) →',
+    ctaButtonText: 'Buy License ($29 in SOL) →',
     pageUrl: '/bots/hyperliquid-monitor.html',
     runtimeUrl: '/runtime/hyperliquid_monitor.py',
     runtimeSha256: 'd9b8b58b9be66617177c238b195c3393ec817dfc591366797fa30f582db7f952',
@@ -186,7 +186,7 @@ const CHECKOUT_SKUS = {
     priceUsd: 29,
     priceUsdHtml: '$29.00 <small>USD</small>',
     statusFooterText: 'Status: LIVE · $29 One-Time in SOL (Non-Custodial)',
-    ctaButtonText: 'Buy License ($29 · card or SOL) →',
+    ctaButtonText: 'Buy License ($29 in SOL) →',
     pageUrl: '/bots/token-rugscore.html',
     runtimeUrl: '/runtime/token_rugscore.py',
     stepADescHtml:
@@ -207,7 +207,7 @@ const CHECKOUT_SKUS = {
     priceUsd: 29,
     priceUsdHtml: '$29.00 <small>USD</small>',
     statusFooterText: 'Status: LIVE · $29 One-Time in SOL (Non-Custodial)',
-    ctaButtonText: 'Buy License ($29 · card or SOL) →',
+    ctaButtonText: 'Buy License ($29 in SOL) →',
     pageUrl: '/bots/cost-basis-ledger.html',
     runtimeUrl: '/runtime/cost_basis_ledger.py',
     stepADescHtml:
@@ -227,7 +227,7 @@ const CHECKOUT_SKUS = {
     priceUsd: 59,
     priceUsdHtml: '$59.00 <small>USD</small>',
     statusFooterText: 'Status: LIVE · $59 One-Time 5-Bot Bundle in SOL (Non-Custodial)',
-    ctaButtonText: 'Unlock Bundle ($59 · card or SOL) →',
+    ctaButtonText: 'Unlock Bundle ($59 in SOL) →',
     shortName: 'DeFi & Wallet Security Pack',
     includedSkus: ['solana-wallet-hygiene', 'solana-token-scanner', 'evm-approval-auditor', 'evm-contract-inspector', 'token-rugscore'],
     stepADescHtml:
@@ -247,7 +247,7 @@ const CHECKOUT_SKUS = {
     priceUsd: 69,
     priceUsdHtml: '$69.00 <small>USD</small>',
     statusFooterText: 'Status: LIVE · $69 One-Time 5-Bot Bundle in SOL (Non-Custodial)',
-    ctaButtonText: 'Unlock Bundle ($69 · card or SOL) →',
+    ctaButtonText: 'Unlock Bundle ($69 in SOL) →',
     shortName: 'Pro Trader & Perps Suite',
     includedSkus: ['hyperliquid-monitor', 'solana-token-scanner', 'btc-utxo-hygiene', 'solana-wallet-hygiene', 'token-rugscore'],
     stepADescHtml:
@@ -290,14 +290,14 @@ const BOT_SPECS = {
   'bot-skill-auditor': {
     title: 'Bot & Skill Security Auditor',
     slug: 'auditor-setup + bot-skill-auditor',
-    badge: 'LIVE · $29 · CARD OR SOL',
+    badge: 'LIVE · $29 · PAID IN SOL',
     badgeClass: 'live',
-    price: '$29 One-Time · card or SOL (Includes 3 Workspace-Reset Rebinds)',
+    price: '$29 One-Time · paid in SOL (Includes 3 Workspace-Reset Rebinds)',
     ctaType: 'checkout',
     sku: 'bot-skill-auditor',
     bodyHtml: `
       <p><strong>Deliverable:</strong> <em>See every network call, credential read, and shell command in a third-party skill, with line numbers, before you run it.</em></p>
-      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> paid by card (Apple Pay / Google Pay) or settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
       <h4>1. Sample Audit Report Preview (<code>crypto-airdrop-helper/SKILL.md</code>)</h4>
       <pre class="modal-sample-audit"># Static Capability Audit: crypto-airdrop-helper
 - Files Audited (1/1): crypto-airdrop-helper/SKILL.md (read 1,420 of 1,420 bytes; hidden_unicode_lines: []; long_lines: [])
@@ -347,15 +347,15 @@ const BOT_SPECS = {
   'solana-wallet-hygiene': {
     title: 'Solana Wallet Hygiene Bot',
     slug: 'wallet-hygiene-setup + solana-wallet-hygiene',
-    badge: 'LIVE · $19 · CARD OR SOL',
+    badge: 'LIVE · $19 · PAID IN SOL',
     badgeClass: 'live',
-    status: 'Available Now — $19 One-Time License (Card or SOL)',
-    price: '$19 One-Time · card or SOL (Includes 3 Workspace-Reset Rebinds)',
+    status: 'Available Now — $19 One-Time License (Paid in SOL)',
+    price: '$19 One-Time · paid in SOL (Includes 3 Workspace-Reset Rebinds)',
     ctaType: 'checkout',
     sku: 'solana-wallet-hygiene',
     bodyHtml: `
       <p><strong>Deliverable:</strong> <em>Find the rent locked in empty token accounts and the stale delegations attached to your wallet—then reclaim it yourself, non-custodially.</em></p>
-      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$19 USD</strong> paid by card (Apple Pay / Google Pay) or settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$19 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
       <h4>1. Dual Token Program Discovery (<code>wallet-hygiene-setup</code> + <code>solana-wallet-hygiene</code>)</h4>
       <ul>
         <li>Queries <code>getParsedTokenAccountsByOwner</code> across both legacy SPL Token (<code>TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA</code>) and Token-2022 (<code>TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</code>).</li>
@@ -378,15 +378,15 @@ const BOT_SPECS = {
   'solana-token-scanner': {
     title: 'Retail Token Due-Diligence Bot',
     slug: 'solana-token-scanner-setup + solana-token-scanner',
-    badge: 'LIVE · $29 · CARD OR SOL',
+    badge: 'LIVE · $29 · PAID IN SOL',
     badgeClass: 'live',
-    status: 'Available Now — $29 One-Time License (Card or SOL)',
-    price: '$29 One-Time · card or SOL (Includes 3 Workspace-Reset Rebinds)',
+    status: 'Available Now — $29 One-Time License (Paid in SOL)',
+    price: '$29 One-Time · paid in SOL (Includes 3 Workspace-Reset Rebinds)',
     ctaType: 'checkout',
     sku: 'solana-token-scanner',
     bodyHtml: `
       <p><strong>Deliverable:</strong> <em>Verifiable, timestamped on-chain facts for any Solana mint—mechanics, not motives.</em></p>
-      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> paid by card (Apple Pay / Google Pay) or settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
       <h4>1. Five-Section Due-Diligence Report (<code>solana-token-scanner-setup</code> + <code>solana-token-scanner</code>)</h4>
       <ul>
         <li><strong>Section 1 — Mint &amp; Program Identity:</strong> Owning token program, decimals, supply, and creation slot.</li>
@@ -406,15 +406,15 @@ const BOT_SPECS = {
   'pumpfun-coin-manager': {
     title: 'Pump.fun Coin & Community Manager',
     slug: 'pumpfun-coin-manager-setup + pumpfun-coin-manager',
-    badge: 'LIVE · $29 · CARD OR SOL',
+    badge: 'LIVE · $29 · PAID IN SOL',
     badgeClass: 'live',
-    status: 'Available Now — $29 One-Time License (Card or SOL)',
-    price: '$29 One-Time · card or SOL (Includes 3 Workspace-Reset Rebinds)',
+    status: 'Available Now — $29 One-Time License (Paid in SOL)',
+    price: '$29 One-Time · paid in SOL (Includes 3 Workspace-Reset Rebinds)',
     ctaType: 'checkout',
     sku: 'pumpfun-coin-manager',
     bodyHtml: `
       <p><strong>Deliverable:</strong> <em>16-check Pump.fun v3, Token-2022/IPFS, DexScreener, GeckoTerminal, and RugCheck launch &amp; delta auditor plus copy-paste Callout, bio, and community reply drafts.</em></p>
-      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> paid by card (Apple Pay / Google Pay) or settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
       <h4>1. Audit &amp; 16-Key Delta Monitor (<code>pumpfun-coin-manager-setup</code> + <code>pumpfun-coin-manager</code>)</h4>
       <ul>
         <li><strong>Point-in-Time Launch Audit:</strong> Checks immutable IPFS metadata (dual hash-verified gateways), Token-2022 authorities and extensions, Pump.fun v3 creator profile &amp; Callouts tab, DexScreener pairs, GeckoTerminal social links, and RugCheck risk score.</li>
@@ -431,15 +431,15 @@ const BOT_SPECS = {
   'token-launch-command-center': {
     title: 'Token Launch Command Center',
     slug: 'token-launch-command-center-setup + token-launch-command-center',
-    badge: 'LIVE · $49 · CARD OR SOL · FLAGSHIP BUNDLE',
+    badge: 'LIVE · $49 · PAID IN SOL · FLAGSHIP BUNDLE',
     badgeClass: 'live',
-    status: 'Available Now — $49 One-Time Flagship Bundle (Card or SOL)',
-    price: '$49 One-Time · card or SOL (Includes Both Standalone Engines + 3 Rebinds)',
+    status: 'Available Now — $49 One-Time Flagship Bundle (Paid in SOL)',
+    price: '$49 One-Time · paid in SOL (Includes Both Standalone Engines + 3 Rebinds)',
     ctaType: 'checkout',
     sku: 'token-launch-command-center',
     bodyHtml: `
       <p><strong>Deliverable:</strong> <em>All-in-one Solana &amp; Pump.fun launch command center combining the 16-check Pump.fun Coin &amp; Community Manager with the Gate-1/Gate-2 HMAC-verified Multi-Channel Social Hub Publisher.</em></p>
-      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$49 USD</strong> paid by card (Apple Pay / Google Pay) or settled on-chain in SOL (save $9 vs. buying both standalone bots). Issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$49 USD</strong> settled on-chain in SOL (save $9 vs. buying both standalone bots). Issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
       <h4>1. End-to-End Launch Workflow (<code>token-launch-command-center-setup</code> + <code>token-launch-command-center</code>)</h4>
       <ul>
         <li><strong>Step 1 — Initialize:</strong> <code>command_center.py init</code> creates your multi-channel launch config from <code>crypto_launch_preset.json</code> (cashtag-collision protection, domain allowlist, X in free Web Intent mode by default).</li>
@@ -456,15 +456,15 @@ const BOT_SPECS = {
   'evm-contract-inspector': {
     title: 'EVM Smart Contract & Proxy Inspector',
     slug: 'evm-contract-inspector-setup + evm-contract-inspector',
-    badge: 'LIVE · $29 · CARD OR SOL',
+    badge: 'LIVE · $29 · PAID IN SOL',
     badgeClass: 'live',
-    status: 'Available Now — $29 One-Time License (Card or SOL)',
-    price: '$29 One-Time · card or SOL (Includes 3 Workspace-Reset Rebinds)',
+    status: 'Available Now — $29 One-Time License (Paid in SOL)',
+    price: '$29 One-Time · paid in SOL (Includes 3 Workspace-Reset Rebinds)',
     ctaType: 'checkout',
     sku: 'evm-contract-inspector',
     bodyHtml: `
       <p><strong>Deliverable:</strong> <em>Read-only Ethereum, Base, and Arbitrum proxy slot resolver (EIP-1967, EIP-1822, EIP-1167, ZeppelinOS), Safe/Timelock governance controller classifier, Sourcify v2 verifier, and bytecode opcode scanner with stateful delta monitoring.</em></p>
-      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> paid by card (Apple Pay / Google Pay) or settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
       <h4>1. Proxy &amp; Governance Inspection (<code>evm-contract-inspector-setup</code> + <code>evm-contract-inspector</code>)</h4>
       <ul>
         <li><strong>Multi-Standard Proxy Resolution:</strong> Reads EIP-1967 (<code>implementation</code>, <code>admin</code>, <code>beacon</code>), EIP-1822 UUPS, ZeppelinOS legacy (<code>0x7050c9e0...</code> / <code>0x10d6a54a...</code>), and EIP-1167 minimal proxy clones across Ethereum (<code>eth</code>), Base (<code>base</code>), and Arbitrum One (<code>arb</code>).</li>
@@ -481,16 +481,16 @@ const BOT_SPECS = {
   'evm-approval-auditor': {
     title: 'EVM Wallet Approval & Permit2 Risk Auditor',
     slug: 'evm-approval-auditor-setup + evm-approval-auditor',
-    badge: 'LIVE · $19 · CARD OR SOL',
+    badge: 'LIVE · $19 · PAID IN SOL',
     badgeClass: 'live',
-    status: 'Available Now — $19 One-Time License (Card or SOL)',
-    price: '$19 One-Time · card or SOL (Includes 3 Workspace-Reset Rebinds)',
+    status: 'Available Now — $19 One-Time License (Paid in SOL)',
+    price: '$19 One-Time · paid in SOL (Includes 3 Workspace-Reset Rebinds)',
     ctaType: 'checkout',
     sku: 'evm-approval-auditor',
     pageUrl: '/bots/evm-approval-auditor.html',
     bodyHtml: `
       <p><strong>Deliverable:</strong> <em>Read-only EVM wallet approval and Permit2 risk auditor for Grok Bot ($19). Reads live ERC-20 allowances and Permit2 sub-allowances across Ethereum, Base, and Arbitrum, classifies every spender (EOA, unverified, unlabeled, or curated), and prints exact approve(spender, 0) revoke and Permit2 lockdown call-data that you submit yourself.</em></p>
-      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$19 USD</strong> paid by card (Apple Pay / Google Pay) or settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$19 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
       <h4>1. Allowance &amp; Permit2 Audit (<code>evm-approval-auditor-setup</code> + <code>evm-approval-auditor</code>)</h4>
       <ul>
         <li>Live allowance reads across <strong>Ethereum (<code>eth</code>, 1)</strong>, <strong>Base (<code>base</code>, 8453)</strong>, and <strong>Arbitrum One (<code>arb</code>, 42161)</strong>: ERC-20 <code>allowance(owner, spender)</code> plus Permit2 <code>allowance(owner, token, spender)</code> (amount, expiration, nonce) over curated stablecoins, WETH, WBTC and LSTs, Blockscout-discovered holdings, and bounded <code>eth_getLogs</code> Approval-event discovery (<code>--lookback-blocks</code>, default 20000).</li>
@@ -572,16 +572,16 @@ SCOPE_NOTE: Read-only: only eth_blockNumber, eth_call, eth_getCode, eth_getStora
   'btc-utxo-hygiene': {
     title: 'Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor',
     slug: 'btc-utxo-hygiene-setup + btc-utxo-hygiene',
-    badge: 'LIVE · $19 · CARD OR SOL',
+    badge: 'LIVE · $19 · PAID IN SOL',
     badgeClass: 'live',
-    status: 'Available Now — $19 One-Time License (Card or SOL)',
-    price: '$19 One-Time · card or SOL (Includes 3 Workspace-Reset Rebinds)',
+    status: 'Available Now — $19 One-Time License (Paid in SOL)',
+    price: '$19 One-Time · paid in SOL (Includes 3 Workspace-Reset Rebinds)',
     ctaType: 'checkout',
     sku: 'btc-utxo-hygiene',
     pageUrl: '/bots/btc-utxo-hygiene.html',
     bodyHtml: `
       <p><strong>Deliverable:</strong> <em>Read-only Bitcoin wallet and UTXO privacy/fee hygiene auditor for Grok Bot ($19). Reads address stats, UTXO sets, recent transactions and fee estimates from public Mempool.space / Blockstream Esplora endpoints, flags address reuse, dusting, fragmentation, stranded UTXOs, Ordinals inscriptions and common-input-ownership exposure, and prints coin-control and consolidation commands that you run yourself.</em></p>
-      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$19 USD</strong> paid by card (Apple Pay / Google Pay) or settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$19 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
       <h4>1. UTXO &amp; Privacy Hygiene Audit (<code>btc-utxo-hygiene-setup</code> + <code>btc-utxo-hygiene</code>)</h4>
       <ul>
         <li>Validates Bitcoin mainnet addresses (Base58Check, Bech32, Bech32m) and reads address stats, the UTXO set, recent transactions, fee estimates and BTC/USD price from public Mempool.space with Blockstream Esplora fallback (or an <code>--offline</code> fixture).</li>
@@ -672,11 +672,11 @@ SCOPE_NOTE: Strictly read-only: only public Mempool.space / Blockstream Esplora 
   'hyperliquid-monitor': {
     title: 'Hyperliquid Perps, Funding & Liquidation Risk Monitor',
     slug: 'hyperliquid-monitor-setup + hyperliquid-monitor',
-    badge: 'LIVE · $29 · CARD OR SOL',
+    badge: 'LIVE · $29 · PAID IN SOL',
     badgeClass: 'live',
     status: 'live',
     statusLabel: 'AVAILABLE NOW · LIVE ON COINLOADER',
-    price: '$29 One-Time · card or SOL (Includes 3 Workspace-Reset Rebinds)',
+    price: '$29 One-Time · paid in SOL (Includes 3 Workspace-Reset Rebinds)',
     ctaType: 'checkout',
     sku: 'hyperliquid-monitor',
     pageUrl: '/bots/hyperliquid-monitor.html',
@@ -684,7 +684,7 @@ SCOPE_NOTE: Strictly read-only: only public Mempool.space / Blockstream Esplora 
     runtimeSha256: 'd9b8b58b9be66617177c238b195c3393ec817dfc591366797fa30f582db7f952',
     bodyHtml: `
       <p><strong>Deliverable:</strong> <em>Read-only, keyless Hyperliquid perps, funding &amp; liquidation risk monitor for Grok Bot ($29). Uses only the public <code>POST https://api.hyperliquid.xyz/info</code> endpoint to measure liquidation distance, margin utilisation and stop-loss coverage for wallets you own, scan funding APR, basis and cross-venue predicted funding, and inspect HLP / vault exposure.</em></p>
-      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> paid by card (Apple Pay / Google Pay) or settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> settled on-chain in SOL. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code and unlocks the unlisted Grok Bot template link.</p>
       <h4>1. Capabilities (<code>hyperliquid-monitor-setup</code> + <code>hyperliquid-monitor</code>)</h4>
       <ul>
         <li><strong>Wallet &amp; subaccount liquidation distance + TP/SL hygiene</strong> (<code>clearinghouseState</code>, <code>spotClearinghouseState</code>, <code>frontendOpenOrders</code>): <code>LIQ_DISTANCE_CRITICAL</code> / <code>HIGH</code> / <code>MEDIUM</code>, cross / isolated <code>MARGIN_UTIL_*</code>, <code>HIGH_EFFECTIVE_LEVERAGE</code>, <code>UNPROTECTED_POSITION_NO_SL</code>, <code>NON_REDUCE_ONLY_STOP</code>, <code>ADVERSE_FUNDING_BLEED</code> ($/day carry) and <code>SINGLE_POSITION_CONCENTRATION</code>.</li>
@@ -744,18 +744,18 @@ exit_code 0
   'token-rugscore': {
     title: 'Cross-Chain Token RugScore & Honeypot Scanner',
     slug: 'token-rugscore-setup + token-rugscore',
-    badge: 'LIVE · $29 · CARD OR SOL',
+    badge: 'LIVE · $29 · PAID IN SOL',
     badgeClass: 'live',
     status: 'live',
     statusLabel: 'AVAILABLE NOW · LIVE ON COINLOADER',
-    price: '$29 One-Time · card or SOL (Includes 3 Workspace-Reset Rebinds)',
+    price: '$29 One-Time · paid in SOL (Includes 3 Workspace-Reset Rebinds)',
     ctaType: 'checkout',
     sku: 'token-rugscore',
     pageUrl: '/bots/token-rugscore.html',
     runtimeUrl: '/runtime/token_rugscore.py',
     bodyHtml: `
       <p><strong>Deliverable:</strong> <em>Read-only, deterministic 0&ndash;100 RugScore for Solana SPL / Token-2022 mints and Ethereum, Base &amp; Arbitrum token contracts, with a risk tier, per-rule evidence and a reproducible <code>audit_sha256</code>.</em></p>
-      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> paid by card (Apple Pay / Google Pay) or settled on-chain in SOL. Also included in the DeFi &amp; Multi-Chain Wallet Security Pack ($59) and Pro Trader &amp; Perps Risk Suite ($69) at no extra cost. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code.</p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> settled on-chain in SOL. Also included in the DeFi &amp; Multi-Chain Wallet Security Pack ($59) and Pro Trader &amp; Perps Risk Suite ($69) at no extra cost. Instant on-chain payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code.</p>
       <h4>1. Capabilities (<code>token-rugscore-setup</code> + <code>token-rugscore</code>)</h4>
       <ul>
         <li><strong>Solana rules <code>RS-SOL-01..05</code>:</strong> mint authority, freeze authority, Token-2022 extension traps (permanent delegate, transfer hook, transfer fee), top-holder concentration and DEX liquidity depth.</li>
@@ -775,18 +775,18 @@ exit_code 0
   'cost-basis-ledger': {
     title: 'Multi-Chain Cost-Basis, Wash-Sale & Tax Lot Auditor',
     slug: 'cost-basis-ledger-setup + cost-basis-ledger',
-    badge: 'LIVE · $29 · CARD OR SOL',
+    badge: 'LIVE · $29 · PAID IN SOL',
     badgeClass: 'live',
     status: 'live',
     statusLabel: 'AVAILABLE NOW · LIVE ON COINLOADER',
-    price: '$29 One-Time · card or SOL (Includes 3 Workspace-Reset Rebinds)',
+    price: '$29 One-Time · paid in SOL (Includes 3 Workspace-Reset Rebinds)',
     ctaType: 'checkout',
     sku: 'cost-basis-ledger',
     pageUrl: '/bots/cost-basis-ledger.html',
     runtimeUrl: '/runtime/cost_basis_ledger.py',
     bodyHtml: `
       <p><strong>Deliverable:</strong> <em>Read-only, deterministic FIFO / LIFO / HIFO cost-basis audit for Solana, EVM and Bitcoin activity: IRS Form 8949 / Schedule D compatible rows, short-term vs long-term gains, wash-sale risk and a reproducible <code>audit_sha256</code>.</em></p>
-      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> paid by card (Apple Pay / Google Pay) or paid by card (Apple Pay / Google Pay) or settled on-chain in SOL. Instant payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code.</p>
+      <p><strong>Status:</strong> <span style="color: var(--accent-solana); font-weight: 700;">LIVE NOW</span> — One-time <strong>$29 USD</strong> settled on-chain in SOL. Instant payment verification issues your private <code>wcl_&lt;64-hex&gt;</code> bearer license code.</p>
       <h4>1. Capabilities (<code>cost-basis-ledger-setup</code> + <code>cost-basis-ledger</code>)</h4>
       <ul>
         <li><strong>Lot matching:</strong> <code>--method fifo|lifo|hifo</code> with a three-way method comparison; short-term (&lt; 365 days) vs long-term (&ge; 365 days) split per <code>--tax-year</code>.</li>
@@ -1118,176 +1118,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return 'wcl_active_quote_' + (sku || currentCheckoutSku || 'bot-skill-auditor');
   }
 
-  // ---------------------------------------------------------------------------
-  // Stripe Checkout (Card / Apple Pay / Google Pay) + post-redirect license reveal
-  // ---------------------------------------------------------------------------
-  const STRIPE_STOREFRONT = 'coinloader';
-  const STRIPE_ALLOWED_ORIGINS = ['https://coinloader.com', 'https://www.coinloader.com'];
+  // CoinLoader is SOL-only (Nov 10, 2026): the Stripe card checkout and post-redirect reveal were
+  // removed. The session-id pattern stays so licenses saved in this browser from an earlier card
+  // purchase still display correctly.
   const STRIPE_SESSION_ID_RE = /^cs_(?:test_|live_)?[A-Za-z0-9_]{10,128}$/;
-  const STRIPE_READY_SUBTEXT =
-    'Instant wcl_... license key issued on redirect · Corporate cards, Apple Pay & Google Pay accepted.';
-  const STRIPE_ACTIVATING_NOTE = 'Card gateway activating — use SOL checkout below or click to retry';
-  const STRIPE_NOT_READY_MESSAGE =
-    'Card checkout is being activated and is not live yet. SOL checkout below is live right now — scroll down to pay with SOL.';
-
-  let stripeBoxEl = null;
-  let stripeBtnEl = null;
-  let stripeSubtextEl = null;
-  let stripeFeedbackEl = null;
-  let isStartingStripeCheckout = false;
-
-  function ensureStripeBox() {
-    const pay = document.getElementById('checkout-step-pay');
-    if (!pay) return;
-    let box = document.getElementById('checkout-stripe-box');
-    if (!box) {
-      box = document.createElement('div');
-      box.id = 'checkout-stripe-box';
-      box.className = 'checkout-card-box checkout-stripe-box';
-
-      const header = document.createElement('div');
-      header.className = 'checkout-step-header';
-      const title = document.createElement('span');
-      title.textContent = 'FASTEST · INSTANT CARD / APPLE PAY / GOOGLE PAY CHECKOUT';
-      const badge = document.createElement('span');
-      badge.className = 'checkout-stripe-badge';
-      badge.textContent = 'STRIPE SECURE CHECKOUT';
-      header.appendChild(title);
-      header.appendChild(badge);
-
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.id = 'checkout-stripe-pay-btn';
-      btn.className = 'btn btn-primary checkout-stripe-btn';
-
-      const sub = document.createElement('p');
-      sub.id = 'checkout-stripe-subtext';
-      sub.className = 'checkout-field-help checkout-stripe-subtext';
-      sub.textContent = STRIPE_READY_SUBTEXT;
-
-      const fb = document.createElement('div');
-      fb.id = 'checkout-stripe-feedback';
-      fb.className = 'checkout-feedback';
-      fb.setAttribute('role', 'alert');
-      fb.setAttribute('aria-live', 'polite');
-      fb.setAttribute('hidden', '');
-
-      box.appendChild(header);
-      box.appendChild(btn);
-      box.appendChild(sub);
-      box.appendChild(fb);
-
-      const statusBar = document.getElementById('checkout-quote-status');
-      if (statusBar && statusBar.parentNode === pay) {
-        statusBar.insertAdjacentElement('afterend', box);
-      } else {
-        pay.insertBefore(box, pay.firstChild);
-      }
-    }
-    stripeBoxEl = box;
-    stripeBtnEl = document.getElementById('checkout-stripe-pay-btn');
-    stripeSubtextEl = document.getElementById('checkout-stripe-subtext');
-    stripeFeedbackEl = document.getElementById('checkout-stripe-feedback');
-    if (stripeBtnEl && !stripeBtnEl.dataset.stripeWired) {
-      stripeBtnEl.dataset.stripeWired = '1';
-      stripeBtnEl.addEventListener('click', startStripeCheckout);
-    }
-    updateStripeButtonLabel(currentCheckoutSku);
-  }
-
-  function stripePriceLabel(sku) {
-    const cfg = getCheckoutSkuConfig(sku);
-    const m = /\$(\d+(?:\.\d+)?)/.exec(cfg.priceUsdHtml || '');
-    if (!m) return '';
-    const n = Number(m[1]);
-    return Number.isFinite(n) ? `$${Number.isInteger(n) ? n : n.toFixed(2)} USD` : '';
-  }
-
-  function updateStripeButtonLabel(sku) {
-    if (!stripeBtnEl) return;
-    const price = stripePriceLabel(sku);
-    stripeBtnEl.textContent = `\u{1F4B3} Pay with Card / Apple Pay${price ? ` (${price})` : ''} →`;
-  }
-
-  function updateStripeUi(quote) {
-    if (!stripeBtnEl || !stripeSubtextEl) return;
-    updateStripeButtonLabel(currentCheckoutSku);
-    stripeBtnEl.disabled = false;
-    if (quote && quote.stripe_enabled === false) {
-      stripeBtnEl.classList.add('checkout-stripe-btn-pending');
-      stripeSubtextEl.textContent = STRIPE_ACTIVATING_NOTE;
-    } else {
-      stripeBtnEl.classList.remove('checkout-stripe-btn-pending');
-      stripeSubtextEl.textContent = STRIPE_READY_SUBTEXT;
-    }
-  }
-
-  function showStripeFeedback(type, message) {
-    if (!stripeFeedbackEl) return;
-    stripeFeedbackEl.className = `checkout-feedback ${type}`;
-    stripeFeedbackEl.textContent = message;
-    stripeFeedbackEl.removeAttribute('hidden');
-  }
-
-  function hideStripeFeedback() {
-    if (!stripeFeedbackEl) return;
-    stripeFeedbackEl.setAttribute('hidden', '');
-    stripeFeedbackEl.textContent = '';
-  }
-
-  async function startStripeCheckout() {
-    if (isStartingStripeCheckout) return;
-    const sku = currentCheckoutSku || 'bot-skill-auditor';
-    isStartingStripeCheckout = true;
-    if (stripeBtnEl) stripeBtnEl.disabled = true;
-    hideStripeFeedback();
-    if (activeQuote && activeQuote.stripe_enabled === false) {
-      showStripeFeedback('pending', STRIPE_NOT_READY_MESSAGE + ' Checking card gateway status…');
-    } else {
-      showStripeFeedback('pending', 'Opening secure Stripe Checkout…');
-    }
-
-    const payload = { sku, storefront: STRIPE_STOREFRONT };
-    if (STRIPE_ALLOWED_ORIGINS.includes(window.location.origin)) {
-      const base = `${window.location.origin}${window.location.pathname}`;
-      payload.success_url = `${base}?stripe_session_id={CHECKOUT_SESSION_ID}&sku=${encodeURIComponent(sku)}`;
-      payload.cancel_url = `${base}?sku=${encodeURIComponent(sku)}`;
-    }
-
-    let redirecting = false;
-    try {
-      const resp = await fetch(`${WATTCOIN_API_BASE}/api/v1/agents/license/stripe-checkout`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      const data = await resp.json().catch(() => ({}));
-      if (
-        resp.ok &&
-        data &&
-        data.success &&
-        typeof data.checkout_url === 'string' &&
-        /^https:\/\/checkout\.stripe\.com\//.test(data.checkout_url)
-      ) {
-        redirecting = true;
-        showStripeFeedback('pending', 'Redirecting to Stripe secure checkout…');
-        window.location.assign(data.checkout_url);
-        return;
-      }
-      if (resp.status === 503 || (data && data.error === 'STRIPE_NOT_CONFIGURED')) {
-        showStripeFeedback('error', STRIPE_NOT_READY_MESSAGE);
-      } else if (resp.status === 429) {
-        showStripeFeedback('error', 'Too many checkout attempts. Please wait a few minutes and try again.');
-      } else {
-        showStripeFeedback('error', (data && data.error) || 'Could not start card checkout. Please try again or pay with SOL below.');
-      }
-    } catch (_) {
-      showStripeFeedback('error', 'Network error reaching card checkout. Please try again or pay with SOL below.');
-    } finally {
-      isStartingStripeCheckout = false;
-      if (stripeBtnEl && !redirecting) stripeBtnEl.disabled = false;
-    }
-  }
 
   function cliRuntimeCommands(receipt) {
     const code = receipt.license_code;
@@ -1322,76 +1156,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return box;
   }
 
-  async function revealStripeSession(sessionId, urlSku) {
-    const sku = urlSku && CHECKOUT_SKUS[urlSku] ? urlSku : 'bot-skill-auditor';
-    openCheckoutModal(sku, document.activeElement);
-    showStripeFeedback('pending', 'Verifying Stripe card payment & minting your wcl_... license…');
-    try {
-      let resp = null;
-      let data = {};
-      for (let attempt = 0; attempt < 5; attempt += 1) {
-        resp = await fetch(
-          `${WATTCOIN_API_BASE}/api/v1/agents/license/stripe-session/${encodeURIComponent(sessionId)}`
-        );
-        data = await resp.json().catch(() => ({}));
-        if (resp.status !== 402) break;
-        await new Promise((r) => setTimeout(r, 3000));
-      }
-      if (resp.ok && data && data.success && data.license_code) {
-        const cleanReceipt = savePurchasedLicense({
-          sku: data.sku || sku,
-          name: data.name || getCheckoutSkuConfig(sku).name,
-          order_id: data.order_id || '',
-          tx_signature: '',
-          payment_method: 'stripe',
-          stripe_session_id: data.session_id || sessionId,
-          payment_intent: data.payment_intent || '',
-          license_code: data.license_code,
-          template_url: data.template_url || '',
-          included_skus: data.included_skus,
-          bundle_templates: data.bundle_templates,
-          activation_prompt: data.activation_prompt || '',
-          purchased_at: new Date().toISOString()
-        });
-        if (!cleanReceipt) {
-          showStripeFeedback('error', 'Server returned an unexpected license format. Please contact support with your Stripe receipt.');
-          return;
-        }
-        hideStripeFeedback();
-        renderFulfilledReceipt(cleanReceipt, true);
-        showToast('✓ Payment verified & license issued!');
-        return;
-      }
-      const reason = (data && data.reason) || '';
-      if (reason === 'payment_pending') {
-        showStripeFeedback('pending', 'Stripe has not confirmed this payment yet. Reload this page in a minute to retry.');
-      } else if (reason === 'session_reveal_expired') {
-        showStripeFeedback('error', 'The 15-minute window to reveal this license has expired. If you saved it in this browser, click "View Saved License →" above; otherwise contact support with your Stripe receipt.');
-      } else if (reason === 'order_already_claimed') {
-        showStripeFeedback('error', 'This license was already claimed by an agent. If you saved it in this browser, click "View Saved License →" above.');
-      } else if (reason === 'session_not_found' || reason === 'invalid_session_id') {
-        showStripeFeedback('error', 'Stripe checkout session not found. Please contact support with your Stripe receipt.');
-      } else {
-        showStripeFeedback('error', (data && data.error) || 'Could not verify your Stripe payment. Please reload to retry.');
-      }
-    } catch (_) {
-      showStripeFeedback('error', 'Network error while verifying your Stripe payment. Reload this page to retry.');
-    }
-  }
-
-  function handleStripeReturn() {
-    const params = new URLSearchParams(window.location.search);
-    const stripeSessionId = params.get('stripe_session_id');
-    const urlSku = params.get('sku');
-    if (!stripeSessionId) return;
-    // Remove the session id (and sku) from the address bar / history right away.
-    window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
-    if (!STRIPE_SESSION_ID_RE.test(stripeSessionId)) return;
-    revealStripeSession(stripeSessionId, urlSku);
-  }
-
-  ensureStripeBox();
-
   function applyCheckoutSkuLabels(sku) {
     const cfg = getCheckoutSkuConfig(sku);
     if (checkoutModalTitle) checkoutModalTitle.textContent = cfg.title;
@@ -1401,7 +1165,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fulfilledOpenTemplateBtn) fulfilledOpenTemplateBtn.textContent = cfg.stepABtnText;
     if (fulfilledStepCHint) fulfilledStepCHint.innerHTML = cfg.stepCHintHtml;
     if (fulfilledStepCFoot) fulfilledStepCFoot.innerHTML = cfg.stepCFootHtml;
-    updateStripeButtonLabel(sku);
   }
 
   function isValidQuote(q, expectedSku) {
@@ -1676,7 +1439,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     activeQuote = quote;
-    updateStripeUi(quote);
     quoteStatusBar.classList.remove('error');
     const hasBuyerWallet = typeof quote.buyer_wallet === 'string' && quote.buyer_wallet.length >= 10;
     const walletInfo = hasBuyerWallet
@@ -2300,7 +2062,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  handleStripeReturn();
 });
 
 // ---------------------------------------------------------------------------

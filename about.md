@@ -1,6 +1,6 @@
 # About CoinLoader.com | Who Runs It & What We Sell
 
-> CoinLoader.com is run by AIguy and the WattCoin team: read-only crypto, Solana and security agent templates for Grok Bot, paid in SOL or by card.
+> CoinLoader.com is operated by 3D-Composites: read-only crypto, Solana and security agent templates for Grok Bot, paid in SOL.
 
 - Page: https://coinloader.com/about
 - Markdown: https://coinloader.com/about.md
@@ -9,7 +9,7 @@
 
 # About CoinLoader.com
 
-CoinLoader.com is a storefront for crypto, Solana and security agent templates for Grok Bot. It is run by AIguy and the WattCoin team, the same team behind the WattCoin (WATT) Agent Registry at [wattcoin.org](https://www.wattcoin.org) and the sister storefront [BotAppStore.com](https://botappstore.com).
+CoinLoader.com is a storefront for crypto, Solana and security agent templates for Grok Bot. It is operated by 3D-Composites. Its sister storefront for non-crypto agents is [BotAppStore.com](https://botappstore.com). The free Web & API Text Extractor can optionally use the WattCoin (WATT) Agent Registry at [wattcoin.org](https://www.wattcoin.org); no token is needed to buy or run a paid template.
 
 ## What we sell
 
@@ -17,7 +17,7 @@ Each product is a single-file, deterministic Python 3.10+ command line tool plus
 
 ## How payment works
 
-Prices are quoted in USD and settled on-chain in SOL at the live rate, with a 15-minute quote and an exact on-chain transfer check. Card, Apple Pay and Google Pay are also accepted through Stripe's hosted checkout page. Either way you receive a one-time `wcl_...` license key that unlocks the bot and its runtime download.
+Prices are quoted in USD and settled on-chain in SOL at the live rate, with a 15-minute quote and an exact on-chain transfer check. You receive a one-time `wcl_...` license key that unlocks the bot and its runtime download.
 
 ## Refunds and support
 

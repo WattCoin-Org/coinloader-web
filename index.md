@@ -28,8 +28,7 @@
 ## How an agent buys
 
 - Prices: see the catalog.
-- Card (default): `POST https://www.wattcoin.org/api/v1/agents/license/stripe-checkout` with body `{"sku": "<sku>", "storefront": "coinloader"}` returns a `checkout_url` (hosted page; a human completes payment). After payment: `GET https://www.wattcoin.org/api/v1/agents/license/stripe-session/{session_id}` returns the license code.
-- SOL: `POST https://www.wattcoin.org/api/v1/agents/license/quote` then `POST https://www.wattcoin.org/api/v1/agents/license/purchase`. Each quote creates a 15-minute order. Add "dry_run": true to the POST quote body (or the stripe-checkout body) to see the price without creating an order.
+- SOL only: `POST https://www.wattcoin.org/api/v1/agents/license/quote` with body `{"sku": "<sku>", "storefront": "coinloader"}`, then `POST https://www.wattcoin.org/api/v1/agents/license/purchase`. SOL only. Each quote creates a 15-minute order. Add "dry_run": true to the POST quote body to see the price without creating an order.
 
 Machine-readable catalog (all SKUs, prices, inputs/outputs, checkout): https://coinloader.com/catalog.json
 Plain-text catalog: https://coinloader.com/llms.txt
@@ -40,7 +39,7 @@ Plain-text catalog: https://coinloader.com/llms.txt
 
 # Solana Rent Reclaim, Token Due-Diligence & Skill Security Bots. Runs on Your Linux Box.
 
- CoinLoader is a store of Grok Bot crypto-agent templates. Import pre-engineered Grok Bot templates in one click—paid once by card or in SOL, or free via the WattCoin Agent Registry. Check a token for rug pull and honeypot traps, mint authority and freeze authority; reclaim SOL rent; revoke approval exposure to a wallet drainer; and watch your Hyperliquid liquidation price. Every template runs inside your own isolated Grok Bot Linux environment with strict read-only and non-custodial guardrails.
+ CoinLoader is a store of Grok Bot crypto-agent templates. Import pre-engineered Grok Bot templates in one click—paid once in SOL, or free via the WattCoin Agent Registry. Check a token for rug pull and honeypot traps, mint authority and freeze authority; reclaim SOL rent; revoke approval exposure to a wallet drainer; and watch your Hyperliquid liquidation price. Every template runs inside your own isolated Grok Bot Linux environment with strict read-only and non-custodial guardrails.
 
  ✓ 12 Live Agents Now (Free + $19–$49) ✓ No Monthly Subscriptions ✓ Zero Custodial Private Keys ✓ Local `/workspace` Execution (`0600`)
 
@@ -89,7 +88,7 @@ VERIFIED GROK BOT SKILL CATALOG
 
 ## Crypto, Solana & Security Agent Templates
 
- 12 live agents available now: 1 free utility and 11 one-time licenses ($19–$49, card or SOL) covering Solana, EVM, Bitcoin, Hyperliquid perps, and AI skill security. Every template ships with deterministic, fail-closed `SKILL.md` rules: read-only by default, zero seed-phrase prompts, and zero speculative investment or trading verdicts.
+ 12 live agents available now: 1 free utility and 11 one-time licenses ($19–$49, paid in SOL) covering Solana, EVM, Bitcoin, Hyperliquid perps, and AI skill security. Every template ships with deterministic, fail-closed `SKILL.md` rules: read-only by default, zero seed-phrase prompts, and zero speculative investment or trading verdicts.
 
 ### Available Now (12)
 
@@ -107,11 +106,11 @@ FREE / 100 WATT
 
  **Guardrail:** Never prints `WATTCOIN_AGENT_KEY` in chat; writes `/workspace/.wattcoin_env` with `0600` permissions.
 
- ● LIVE · $29 · CARD OR SOL auditor-setup + bot-skill-auditor
+ ● LIVE · $29 · PAID IN SOL auditor-setup + bot-skill-auditor
 
 ### Bot & Skill Security Auditor
 
-$29 card or SOL · One-Time
+$29 paid in SOL · One-Time
 
  **See every network call, credential read, and shell command in a third-party skill, with line numbers, before you run it.** Static, read-only inspector for Grok Bot templates, `SKILL.md` files & GitHub repos via `.wattcoin_audit_prep.py`.
 
@@ -121,11 +120,11 @@ $29 card or SOL · One-Time
 
  **Guardrail:** Never executes audited code, never curls embedded URLs, never reads `/workspace/.wattcoin_env` into context, and never issues a "safe/pass" badge or numeric grade.
 
- ● LIVE · $19 · CARD OR SOL solana-wallet-hygiene
+ ● LIVE · $19 · PAID IN SOL solana-wallet-hygiene
 
 ### Solana Wallet Hygiene Bot
 
-$19 card or SOL · One-Time
+$19 paid in SOL · One-Time
 
  **Find the rent locked in your empty token accounts and the stale delegations still attached to your wallet—then reclaim it yourself, non-custodially.** Each empty standard SPL account holds exactly `0.00203928 SOL` (`2,039,280 lamports`) of reclaimable rent.
 
@@ -135,11 +134,11 @@ $19 card or SOL · One-Time
 
 **Preview sample Wallet Hygiene ReportGuardrail:** Read-only audit first, always. Never asks for seed phrases, never holds keys, and never signs or broadcasts transactions.
 
- ● LIVE · $29 · CARD OR SOL solana-token-scanner
+ ● LIVE · $29 · PAID IN SOL solana-token-scanner
 
 ### Retail Token Due-Diligence Bot
 
-$29 card or SOL · One-Time
+$29 paid in SOL · One-Time
 
  **Verifiable, timestamped on-chain facts for any Solana mint—mechanics, not motives.** A 5-section report covering identity, authorities, holder concentration, DEX liquidity, and a mandatory non-advice scope note.
 
@@ -149,11 +148,11 @@ $29 card or SOL · One-Time
 
 **Preview sample Token Due-Diligence ReportGuardrail:** Mechanics, not motives. Never outputs "safe/unsafe" verdicts, "rug/scam" labels, or numerical safety scores.
 
- ● AVAILABLE NOW · $29 · card or SOL pumpfun-coin-manager-setup + pumpfun-coin-manager
+ ● AVAILABLE NOW · $29 · paid in SOL pumpfun-coin-manager-setup + pumpfun-coin-manager
 
 ### [Pump.fun Coin & Community Manager](https://coinloader.com/bots/pumpfun-coin-manager.html)
 
-$29 card or SOL · 3 Rebinds
+$29 paid in SOL · 3 Rebinds
 
 **Know what holders see before they ask.** Audit your Pump.fun coin the way a skeptical holder would see it: which official links are missing from the immutable metadata, whether the creator profile and Callout tab point people to the right place, and whether DexScreener, GeckoTerminal and RugCheck agree.
 
@@ -161,11 +160,11 @@ $29 card or SOL · 3 Rebinds
 - Point-in-time audit: missing website/Discord/Telegram in IPFS metadata, creator bio vs `--expected-website`, `--expected-discord`, `--expected-x`, empty Callout tab, GeckoTerminal link gaps, dormant DexScreener pairs, RugCheck risks.
 - IPFS metadata read through two hash-verified gateways; Token-2022 authorities and extensions read from public Solana RPC.
 
- ● AVAILABLE NOW · $49 · card or SOL token-launch-command-center-setup + token-launch-command-center
+ ● AVAILABLE NOW · $49 · paid in SOL token-launch-command-center-setup + token-launch-command-center
 
 ### [Token Launch Command Center](https://coinloader.com/bots/token-launch-command-center.html)
 
-$49 card or SOL · 3 Rebinds
+$49 paid in SOL · 3 Rebinds
 
 **Audit, draft, gate, send.** One bundle for the launch week: audit the coin, turn the verified facts (authorities, supply, mint, your official links) into announcement drafts for four channels, lint them, sign them, and send only what you approve.
 
@@ -173,11 +172,11 @@ $49 card or SOL · 3 Rebinds
 - `command_center.py audit MINT --queue` runs the read-only audit and queues fact-only drafts; Gate 1 lint runs on each draft.
 - Gate 2 re-verifies an HMAC over the exact approved text, expiry and lint before any send; edited text is refused. Dispatcher is a dry run unless `--live`.
 
- ● AVAILABLE NOW · $29 · card or SOL evm-contract-inspector-setup + evm-contract-inspector
+ ● AVAILABLE NOW · $29 · paid in SOL evm-contract-inspector-setup + evm-contract-inspector
 
 ### [EVM Smart Contract & Proxy Inspector](https://coinloader.com/bots/evm-contract-inspector.html)
 
-$29 card or SOL · 3 Rebinds
+$29 paid in SOL · 3 Rebinds
 
 **Know who can upgrade the contract before you deposit.** Inspect any Ethereum, Base, or Arbitrum contract before you deposit or integrate: resolve EIP-1967, EIP-1822 UUPS, EIP-1167 clone, and ZeppelinOS legacy proxy storage slots in one batch, trace who actually controls upgrades (Safe M/N threshold & owners, TimelockController delay, ProxyAdmin, or a single EOA), check Sourcify v2 source verification, and scan runtime bytecode for SELFDESTRUCT and DELEGATECALL.
 
@@ -185,11 +184,11 @@ $29 card or SOL · 3 Rebinds
 - Governance & controller chain probing (`--deep`, `--max-depth 2`): classifies Safe multisigs (`getThreshold()` / `getOwners()`), Timelocks (`getMinDelay()` / `delay()`), ProxyAdmin contracts, or single-key EOAs (`EOA_ADMIN`).
 - Source verification via **Sourcify v2** (`fields=abi,proxyResolution,compilation`) with Blockscout v2 fallback, plus CBOR-stripped opcode scanning that skips `PUSH1..PUSH32` immediate bytes before flagging `SELFDESTRUCT` (`0xff`) or unexpected `DELEGATECALL` (`0xf4`).
 
- ● AVAILABLE NOW · $19 · card or SOL evm-approval-auditor-setup + evm-approval-auditor
+ ● AVAILABLE NOW · $19 · paid in SOL evm-approval-auditor-setup + evm-approval-auditor
 
 ### [EVM Wallet Approval & Permit2 Risk Auditor](https://coinloader.com/bots/evm-approval-auditor.html)
 
-$19 card or SOL · 3 Rebinds
+$19 paid in SOL · 3 Rebinds
 
 **Find the unlimited approvals that can still pull your tokens.** Audit any Ethereum, Base, or Arbitrum wallet you own: read the live ERC-20 `allowance()` and Permit2 sub-allowance for every curated and discovered token/spender pair, see the balance actually at risk behind each one, classify the spender (EOA, unverified contract, unlabeled contract, or curated protocol), and get exact `approve(spender, 0)` revoke and Permit2 `lockdown` call-data to sign in your own wallet.
 
@@ -197,11 +196,11 @@ $19 card or SOL · 3 Rebinds
 - Spender classification with balance-at-risk per pair: `EOA_SPENDER` and unverified unlabeled contracts (`UNVERIFIED_SPENDER`) are CRITICAL, unlimited allowances to unlabeled verified contracts (`UNKNOWN_VERIFIED_SPENDER`) are HIGH, unlimited allowances to curated spenders (Uniswap Permit2 & routers, 1inch, CoW Protocol, 0x, ParaSwap, Morpho Blue, Aave V3) are MEDIUM, plus `PERMIT2_ACTIVE_SUBALLOWANCE` / `PERMIT2_EXPIRED_SUBALLOWANCE`.
 - Non-custodial remediation call-data: exact `to` + `data` for `approve(spender, 0)` on each flagged token and a single batched Permit2 `lockdown((token, spender)[])` transaction, displayed for you to submit from your own wallet (Rabby, MetaMask, Safe, or hardware signer).
 
- ● AVAILABLE NOW · $19 · card or SOL btc-utxo-hygiene-setup + btc-utxo-hygiene
+ ● AVAILABLE NOW · $19 · paid in SOL btc-utxo-hygiene-setup + btc-utxo-hygiene
 
 ### [Bitcoin Wallet & UTXO Privacy/Fee Hygiene Auditor](https://coinloader.com/bots/btc-utxo-hygiene.html)
 
-$19 card or SOL · 3 Rebinds
+$19 paid in SOL · 3 Rebinds
 
 **Find the dust, address reuse and fee waste hiding in your UTXO set.** Audit any Bitcoin address you own: bucket every UTXO, flag stranded inputs, address reuse, dusting attacks and Ordinals-inscription UTXOs, measure common-input-ownership privacy leaks, and get a consolidation cost-vs-savings matrix plus copy-paste `bitcoin-cli`, Sparrow and Electrum coin-control commands to run in your own wallet.
 
@@ -209,11 +208,11 @@ $19 card or SOL · 3 Rebinds
 - Findings with a 0–100 hygiene score: `ADDRESS_REUSE`, `UTXO_FRAGMENTATION`, `STRANDED_UTXOS`, `DUSTING_ATTACK_SUSPECT`, `INSCRIPTION_PROTECTED`, `CIOH_COSPEND_EXPOSURE`, `ROUND_NUMBER_CHANGE_LEAK` and `CONSOLIDATION_WINDOW_OPEN`.
 - Non-custodial remediation: `bitcoin-cli lockunspent` freeze commands and an unsigned-PSBT `sendall` consolidation plan, displayed for you to run yourself. Strictly read-only: never accepts keys, seeds or PSBTs.
 
- ● AVAILABLE NOW · $29 · card or SOL hyperliquid-monitor-setup + hyperliquid-monitor
+ ● AVAILABLE NOW · $29 · paid in SOL hyperliquid-monitor-setup + hyperliquid-monitor
 
 ### [Hyperliquid Perps, Funding & Liquidation Risk Monitor](https://coinloader.com/bots/hyperliquid-monitor.html)
 
-$29 card or SOL · 3 Rebinds
+$29 paid in SOL · 3 Rebinds
 
 **Know how far every perp is from liquidation.** Monitor any Hyperliquid wallet or subaccount you own from its public `0x` address: liquidation distance per position, cross/isolated margin utilisation, missing reduceOnly stop-losses and the funding you pay per day. Scan every perp for extreme funding APR, mark-oracle basis and Hyperliquid vs Binance / Bybit predicted funding, and inspect HLP across its child sub-vaults.
 
@@ -221,11 +220,11 @@ $29 card or SOL · 3 Rebinds
 - Market scanner: funding APR, basis bps, OI and volume for 179+ perps, funding extremes, and `CROSS_VENUE_FUNDING_DIVERGENCE` against Binance and Bybit predicted funding. HLP and vault posture across 354+ open positions.
 - Stateful delta routine (`--state --delta`): `LIQ_DISTANCE_TIGHTENED`, `MARGIN_UTIL_SPIKE`, `FUNDING_REGIME_SHIFT`. Keyless: never accepts keys, never calls `/exchange`, never places orders.
 
- ● AVAILABLE NOW · $29 · card or SOL token-rugscore-setup + token-rugscore
+ ● AVAILABLE NOW · $29 · paid in SOL token-rugscore-setup + token-rugscore
 
 ### [Cross-Chain Token RugScore & Honeypot Scanner](https://coinloader.com/bots/token-rugscore.html)
 
-$29 card or SOL · 3 Rebinds
+$29 paid in SOL · 3 Rebinds
 
 **Get one 0–100 rug-risk number before you buy the token.** Audit a Solana SPL / Token-2022 mint or an Ethereum, Base or Arbitrum contract and get a deterministic RugScore with a risk tier, the exact rule IDs that fired (`RS-SOL-01..05`, `RS-EVM-01..04`) and an `audit_sha256` you can re-run and compare.
 
@@ -233,11 +232,11 @@ $29 card or SOL · 3 Rebinds
 - EVM (`eth` / `base` / `arb`): upgradeable-proxy admin, honeypot-style opcode traps, unverified source and thin liquidity.
 - Runs in Grok Bot or as a zero-dependency Python 3 CLI (`token_rugscore.py`) in Cursor, Claude Code or CI/CD. Read-only: never asks for keys and never calls a token “safe”.
 
- ● AVAILABLE NOW · $29 · card or SOL cost-basis-ledger-setup + cost-basis-ledger
+ ● AVAILABLE NOW · $29 · paid in SOL cost-basis-ledger-setup + cost-basis-ledger
 
 ### [Multi-Chain Cost-Basis, Wash-Sale & Tax Lot Auditor](https://coinloader.com/bots/cost-basis-ledger.html)
 
-$29 card or SOL · 3 Rebinds
+$29 paid in SOL · 3 Rebinds
 
 **Know your gains, lots and wash-sale risk before tax season.** Match every disposal to a lot with FIFO, LIFO or HIFO across Solana, EVM and Bitcoin and get IRS Form 8949 / Schedule D compatible rows, a short-term vs long-term split, the exact rule IDs that fired (`CB-WASH-01`, `CB-FEE-01`, `CB-LOT-01`, `CB-HIFO-01`, `CB-STLT-01`) and an `audit_sha256` you can re-run and compare.
 
@@ -249,9 +248,9 @@ VALUE BUNDLES
 
 ## Value Bundles — Multi-Bot Packs (One License Key Unlocks All Included Bots)
 
- Buy a pack once by card or in SOL and receive a single `wcl_...` license code plus an unlisted Grok Bot template link for every bot in the bundle. The same code activates each included bot (up to 3 rebinds).
+ Buy a pack once in SOL and receive a single `wcl_...` license code plus an unlisted Grok Bot template link for every bot in the bundle. The same code activates each included bot (up to 3 rebinds).
 
- ● 5-BOT BUNDLE · $59 · CARD OR SOL SAVE $66 vs $125 list
+ ● 5-BOT BUNDLE · $59 · PAID IN SOL SAVE $66 vs $125 list
 
 ### DeFi & Multi-Chain Wallet Security Pack
 
@@ -265,9 +264,9 @@ Read-only Solana + EVM wallet, approval, token and contract due-diligence in one
 - [EVM Smart Contract & Proxy Inspector](https://coinloader.com/bots/evm-contract-inspector.html) ($29 list)
 - [Cross-Chain Token RugScore & Honeypot Scanner](https://coinloader.com/bots/token-rugscore.html) ($29 list · now included at no extra cost)
 
-**SKU:** `defi-wallet-security-pack` · card or non-custodial SOL checkout · up to 3 rebinds
+**SKU:** `defi-wallet-security-pack` · non-custodial SOL checkout · up to 3 rebinds
 
- ● 5-BOT BUNDLE · $69 · CARD OR SOL SAVE $56 vs $125 list
+ ● 5-BOT BUNDLE · $69 · PAID IN SOL SAVE $56 vs $125 list
 
 ### Pro Trader & Perps Risk Suite
 
@@ -281,9 +280,9 @@ Perps funding/liquidation monitoring plus token, Bitcoin UTXO and wallet hygiene
 - [Solana Wallet Hygiene Bot](https://coinloader.com/bots/solana-wallet-hygiene.html) ($19 list)
 - [Cross-Chain Token RugScore & Honeypot Scanner](https://coinloader.com/bots/token-rugscore.html) ($29 list · now included at no extra cost)
 
-**SKU:** `pro-trader-perps-suite` · card or non-custodial SOL checkout · up to 3 rebinds
+**SKU:** `pro-trader-perps-suite` · non-custodial SOL checkout · up to 3 rebinds
 
- ● FLAGSHIP · $49 · CARD OR SOL FLAGSHIP · ALL-IN-ONE
+ ● FLAGSHIP · $49 · PAID IN SOL FLAGSHIP · ALL-IN-ONE
 
 ### Token Launch Command Center
 
@@ -294,7 +293,7 @@ Flagship all-in-one launch workflow: Pump.fun coin manager, social hub, dispatch
 - [Token Launch Command Center detail page →](https://coinloader.com/bots/token-launch-command-center.html)
 - [Pump.fun Coin & Community Manager](https://coinloader.com/bots/pumpfun-coin-manager.html) runtime included
 
-**SKU:** `token-launch-command-center` · card or non-custodial SOL checkout · up to 3 rebinds
+**SKU:** `token-launch-command-center` · non-custodial SOL checkout · up to 3 rebinds
 
 VERIFIED SYSTEM ARCHITECTURE
 
@@ -337,15 +336,15 @@ VERIFIED SYSTEM ARCHITECTURE
 
  [ Read wattcoin.org/llms.txt ↗ ](https://www.wattcoin.org/llms.txt) [ Visit WattCoin.org ↗ ](https://www.wattcoin.org)
 
-NON-CUSTODIAL EXECUTION, CARD OR SOL LICENSING & ON-CHAIN VERIFICATION
+NON-CUSTODIAL EXECUTION, PAID IN SOL LICENSING & ON-CHAIN VERIFICATION
 
 ## Frequently Asked Questions
 
- How one-time card or SOL checkout, non-custodial local `/workspace` execution, 3-rebind license recovery, and verifiable on-chain refusal boundaries work on CoinLoader.com.
+ How one-time SOL checkout, non-custodial local `/workspace` execution, 3-rebind license recovery, and verifiable on-chain refusal boundaries work on CoinLoader.com.
 
 **How does one-time card-or-SOL licensing work—are there any monthly subscriptions?**
 
-Every paid CoinLoader template ($19 or $29 · card or SOL) is a one-time on-chain purchase with zero recurring subscriptions. Clicking Buy License lets you pay by card (Apple Pay or Google Pay) or in SOL. The SOL path requests a 15-minute locked SOL/USD quote from POST https://www.wattcoin.org/api/v1/agents/license/quote, and pasting your confirmed Solana transaction signature issues your wcl_... bearer license code immediately.
+Every paid CoinLoader template ($19 or $29 in SOL) is a one-time on-chain purchase with zero recurring subscriptions. Clicking Buy License gives you a SOL quote to pay from your own wallet. The SOL path requests a 15-minute locked SOL/USD quote from POST https://www.wattcoin.org/api/v1/agents/license/quote, and pasting your confirmed Solana transaction signature issues your wcl_... bearer license code immediately.
 
 **Is CoinLoader non-custodial? Does any bot ever touch my private keys or seed phrase?**
 
@@ -365,15 +364,15 @@ The Web & API Text Extractor (<template link>) is free forever. On Turn 1, it re
 
 **How do I check a Solana token for rug pull and honeypot risk, mint authority and freeze authority?**
 
-Use the Retail Token Due-Diligence Bot ($29 · card or SOL). It reads the mint account of any SPL or Token-2022 token and reports whether the mint authority and freeze authority are still active (an active freeze authority can lock your tokens, and an active mint authority can inflate supply), plus Token-2022 extensions that can behave like a honeypot or rug pull such as PermanentDelegate, TransferHook, TransferFeeConfig and DefaultAccountState, top-20 holder concentration and DEX liquidity depth. It reports verifiable mechanics and never labels a token 'safe' or 'rug'.
+Use the Retail Token Due-Diligence Bot ($29 in SOL). It reads the mint account of any SPL or Token-2022 token and reports whether the mint authority and freeze authority are still active (an active freeze authority can lock your tokens, and an active mint authority can inflate supply), plus Token-2022 extensions that can behave like a honeypot or rug pull such as PermanentDelegate, TransferHook, TransferFeeConfig and DefaultAccountState, top-20 holder concentration and DEX liquidity depth. It reports verifiable mechanics and never labels a token 'safe' or 'rug'.
 
 **How do I revoke approval exposure and reduce wallet drainer risk on EVM chains?**
 
-Use the EVM Wallet Approval & Permit2 Risk Auditor ($19 · card or SOL). It lists unlimited ERC-20 allowances and Uniswap Permit2 sub-allowances on Ethereum, Base and Arbitrum, classifies each spender, and prints exact approve(spender, 0) revoke call-data that you submit yourself. It never asks for a private key or seed phrase and never signs a transaction. For the Solana equivalent, the Solana Wallet Hygiene Bot ($19 · card or SOL) revokes token delegates and can reclaim SOL rent, 0.00203928 SOL per closed empty token account, without sharing keys.
+Use the EVM Wallet Approval & Permit2 Risk Auditor ($19 in SOL). It lists unlimited ERC-20 allowances and Uniswap Permit2 sub-allowances on Ethereum, Base and Arbitrum, classifies each spender, and prints exact approve(spender, 0) revoke call-data that you submit yourself. It never asks for a private key or seed phrase and never signs a transaction. For the Solana equivalent, the Solana Wallet Hygiene Bot ($19 in SOL) revokes token delegates and can reclaim SOL rent, 0.00203928 SOL per closed empty token account, without sharing keys.
 
 **Can CoinLoader show my Hyperliquid liquidation price and funding drag?**
 
-Yes. The Hyperliquid Perps, Funding & Liquidation Risk Monitor ($29 · card or SOL) takes only a public 0x address and reports the distance between mark price and liquidation price for every position, margin utilisation, missing stop-losses and the funding you pay per day. Run it on a schedule with --state and --delta to be alerted only when your liquidation price distance tightens. It is read-only and keyless, with no trading permissions. Pair it with the Bitcoin UTXO auditor and Solana tools in the Pro Trader & Perps Risk Suite bundle ($69 · card or SOL).
+Yes. The Hyperliquid Perps, Funding & Liquidation Risk Monitor ($29 in SOL) takes only a public 0x address and reports the distance between mark price and liquidation price for every position, margin utilisation, missing stop-losses and the funding you pay per day. Run it on a schedule with --state and --delta to be alerted only when your liquidation price distance tightens. It is read-only and keyless, with no trading permissions. Pair it with the Bitcoin UTXO auditor and Solana tools in the Pro Trader & Perps Risk Suite bundle ($69 in SOL).
 
 **Does one license key unlock both the Grok Bot template and a standalone CLI I can run in Cursor or Claude Code?**
 

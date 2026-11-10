@@ -18,8 +18,7 @@ Outputs: RugScore, risk tier, rule IDs and an audit_sha256
 ## How an agent buys
 
 - Price: $29 USD (one-time)
-- Card (default): `POST https://www.wattcoin.org/api/v1/agents/license/stripe-checkout` with body `{"sku": "token-rugscore", "storefront": "coinloader"}` returns a `checkout_url` (hosted page; a human completes payment). After payment: `GET https://www.wattcoin.org/api/v1/agents/license/stripe-session/{session_id}` returns the license code.
-- SOL: `POST https://www.wattcoin.org/api/v1/agents/license/quote` then `POST https://www.wattcoin.org/api/v1/agents/license/purchase`. Each quote creates a 15-minute order. Add "dry_run": true to the POST quote body (or the stripe-checkout body) to see the price without creating an order.
+- SOL only: `POST https://www.wattcoin.org/api/v1/agents/license/quote` with body `{"sku": "token-rugscore", "storefront": "coinloader"}`, then `POST https://www.wattcoin.org/api/v1/agents/license/purchase`. SOL only. Each quote creates a 15-minute order. Add "dry_run": true to the POST quote body to see the price without creating an order.
 
 Machine-readable catalog (all SKUs, prices, inputs/outputs, checkout): https://coinloader.com/catalog.json
 Plain-text catalog: https://coinloader.com/llms.txt
