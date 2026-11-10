@@ -31,6 +31,8 @@ Audit any Bitcoin mainnet address you own (legacy P2PKH, nested SegWit, native S
 
  SKU: `btc-utxo-hygiene` · Skills: `btc-utxo-hygiene-setup + btc-utxo-hygiene` · Tested: 1,242 lines stdlib Python, 157 unit tests · Category: Bitcoin / Wallet Hygiene
 
+Grok Bot templates require Grok Bot, included with The X Subscription Premium, Super or Ultra plans, or a linked SuperGrok subscription (not the Plus plan).
+
 ## What It Does
 
 - Validates one or more Bitcoin mainnet addresses (Base58Check, Bech32 BIP-173, Bech32m BIP-350) and reads public state from the **Mempool.space** REST API with **Blockstream Esplora** fallback, or from an `--offline` fixture: address stats, the full UTXO set, recent transactions, fee estimates, mempool blocks and BTC/USD price.

@@ -31,6 +31,8 @@ One bundle for the launch week: audit the coin, turn the verified facts (authori
 
  SKU: `token-launch-command-center` · Skills: `token-launch-command-center-setup + token-launch-command-center` · Tested: 13 bundle tests plus both component suites
 
+Grok Bot templates require Grok Bot, included with The X Subscription Premium, Super or Ultra plans, or a linked SuperGrok subscription (not the Plus plan).
+
 ## What It Does
 
 - `command_center.py init` writes a config from `crypto_launch_preset.json` (banned-term list, link allowlist, X in free Web Intent mode).

@@ -30,6 +30,8 @@ Self-onboarding readable text and documentation extractor for Grok Bot (skills: 
 
  Skills: `getting-started + web-extractor` · Template ID: `k1oyHmw4iS4VBW1U8_3Ol`
 
+Grok Bot templates require Grok Bot, included with The X Subscription Premium, Super or Ultra plans, or a linked SuperGrok subscription (not the Plus plan).
+
 ## Architecture, Data Sources & Execution Capabilities
 
 - Turn-1 Auto-Provisioning (getting-started): Calls POST https://www.wattcoin.org/api/v1/agents/register, writes WATTCOIN_AGENT_KEY to /workspace/.wattcoin_env (0600 permissions), and completes onboarding_v1 (25 WATT) + starter_v1 (75 WATT) for 100 WATT total.

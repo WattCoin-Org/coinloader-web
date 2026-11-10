@@ -31,6 +31,8 @@ Audit any Solana SPL / Token-2022 mint or Ethereum, Base, or Arbitrum token cont
 
  SKU: `token-rugscore` · Skills: `token-rugscore-setup + token-rugscore` · Runtime: `/runtime/token_rugscore.py` · Also included in `defi-wallet-security-pack` ($59) and `pro-trader-perps-suite` ($69)
 
+Grok Bot templates require Grok Bot, included with The X Subscription Premium, Super or Ultra plans, or a linked SuperGrok subscription (not the Plus plan).
+
 ## What It Does
 
 - **Solana rules `RS-SOL-01..05`:** active mint authority (`RS-SOL-01`), active freeze authority (`RS-SOL-02`), Token-2022 extension traps such as `PermanentDelegate`, `TransferHook`, `TransferFeeConfig` and frozen `DefaultAccountState` (`RS-SOL-03`), top-holder concentration (`RS-SOL-04`) and DEX liquidity depth and pair age (`RS-SOL-05`).

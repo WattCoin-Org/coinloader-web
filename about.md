@@ -21,4 +21,4 @@ Prices are quoted in USD and settled on-chain in SOL at the live rate, with a 15
 
 ## Refunds and support
 
-Refunds are available within 15 days of purchase. When a refund is issued, the license is revoked. See the [privacy and refund policy](https://coinloader.com/privacy.html) and the [contact page](https://coinloader.com/contact.html) for how to reach us.
+SOL purchases are final. The one exception: if you paid but did not receive a working license and we can't fix it, we refund the same SOL amount to the wallet that paid. See the [privacy and refund policy](https://coinloader.com/privacy.html) and the [contact page](https://coinloader.com/contact.html) for how to reach us.

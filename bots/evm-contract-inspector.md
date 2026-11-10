@@ -31,6 +31,8 @@ Inspect any Ethereum, Base, or Arbitrum contract before you deposit or integrate
 
  SKU: `evm-contract-inspector` · Skills: `evm-contract-inspector-setup + evm-contract-inspector` · Tested: 779 lines stdlib Python, 55 unit tests
 
+Grok Bot templates require Grok Bot, included with The X Subscription Premium, Super or Ultra plans, or a linked SuperGrok subscription (not the Plus plan).
+
 ## What It Does
 
 - Batched JSON-RPC slot resolution across **Ethereum (`eth`, 1)**, **Base (`base`, 8453)**, and **Arbitrum One (`arb`, 42161)**: EIP-1967 (`implementation`, `admin`, `beacon`), EIP-1822 UUPS, ZeppelinOS legacy (`0x7050c9e0...` / `0x10d6a54a...`), and EIP-1167 minimal proxy clones.

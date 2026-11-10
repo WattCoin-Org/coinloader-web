@@ -31,6 +31,8 @@ Get verifiable, timestamped on-chain facts for any Solana SPL or Token-2022 mint
 
  SKU: `solana-token-scanner` · Skills: `solana-token-scanner-setup + solana-token-scanner` · Registry Name: *Solana Token & Mint Due-Diligence Scanner*
 
+Grok Bot templates require Grok Bot, included with The X Subscription Premium, Super or Ultra plans, or a linked SuperGrok subscription (not the Plus plan).
+
 ## Architecture, Data Sources & Execution Capabilities
 
 - Section 1 & Section 2 — Mint Authorities & Token-2022 Extension Controls: Inspects getAccountInfo and getTokenSupply to report whether mint authority and freeze authority are PRESENT (with exact address) or REVOKED (null), and parses Token-2022 extensions including PermanentDelegate, TransferFeeConfig (bps and max fee), TransferHook, MintCloseAuthority, and DefaultAccountState.

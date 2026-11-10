@@ -31,6 +31,8 @@ Audit any Ethereum, Base, or Arbitrum wallet you own: read the live ERC-20 `allo
 
  SKU: `evm-approval-auditor` · Skills: `evm-approval-auditor-setup + evm-approval-auditor` · Tested: 1,181 lines stdlib Python, 87 unit tests
 
+Grok Bot templates require Grok Bot, included with The X Subscription Premium, Super or Ultra plans, or a linked SuperGrok subscription (not the Plus plan).
+
 ## What It Does
 
 - Live allowance reads across **Ethereum (`eth`, 1)**, **Base (`base`, 8453)**, and **Arbitrum One (`arb`, 42161)**: ERC-20 `allowance(owner, spender)` plus Permit2 `allowance(owner, token, spender)` (amount, expiration, nonce) over curated stablecoins, WETH, WBTC and LSTs, Blockscout-discovered holdings, and bounded `eth_getLogs` Approval-event discovery (`--lookback-blocks`, default 20000).

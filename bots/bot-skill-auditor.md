@@ -31,6 +31,8 @@ See every network call, credential read, prompt-bypass instruction, and shell co
 
  SKU: `bot-skill-auditor` · Skills: `auditor-setup + bot-skill-auditor` · Registry Name: *AI Skill & SKILL.md Static Security Auditor*
 
+Grok Bot templates require Grok Bot, included with The X Subscription Premium, Super or Ultra plans, or a linked SuperGrok subscription (not the Plus plan).
+
 ## Architecture, Data Sources & Execution Capabilities
 
 - Bucket 1 — Prompt, Confirmation & Auditor Bypass: Flags hidden HTML comments, invisible/bidirectional Unicode characters, and instructions that attempt to override user confirmation rules or suppress scanner findings.

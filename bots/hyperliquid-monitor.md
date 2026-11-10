@@ -31,6 +31,8 @@ Monitor any Hyperliquid wallet or subaccount you own using only its public `0x` 
 
  SKU: `hyperliquid-monitor` · Skills: `hyperliquid-monitor-setup + hyperliquid-monitor` · Tested: 1,312 lines stdlib Python, 252 unit tests · Category: Perps & DeFi / Risk Monitoring
 
+Grok Bot templates require Grok Bot, included with The X Subscription Premium, Super or Ultra plans, or a linked SuperGrok subscription (not the Plus plan).
+
 ## What It Does
 
 - **Wallet & subaccount liquidation distance + TP/SL hygiene** (`clearinghouseState`, `spotClearinghouseState`, `frontendOpenOrders`): per-position mark vs liquidation price in % and $, with `LIQ_DISTANCE_CRITICAL` / `HIGH` / `MEDIUM` (defaults 5% / 10% / 20%), cross or isolated `MARGIN_UTIL_*`, `HIGH_EFFECTIVE_LEVERAGE`, `SINGLE_POSITION_CONCENTRATION`, `UNPROTECTED_POSITION_NO_SL` when no reduceOnly stop trigger covers the position, and `NON_REDUCE_ONLY_STOP` when a closing-side trigger could flip it. `ADVERSE_FUNDING_BLEED` estimates the $/day carry you pay.

@@ -31,6 +31,8 @@ Feed it a normalized transaction export (or a Solana, EVM or Bitcoin wallet addr
 
  SKU: `cost-basis-ledger` · Skills: `cost-basis-ledger-setup + cost-basis-ledger` · Runtime: `/runtime/cost_basis_ledger.py`
 
+Grok Bot templates require Grok Bot, included with The X Subscription Premium, Super or Ultra plans, or a linked SuperGrok subscription (not the Plus plan).
+
 ## What It Does
 
 - **Lot matching engines:** `--method fifo` (oldest first), `lifo` (newest first) and `hifo` (highest cost first), with a side-by-side method comparison of net P&L and illustrative tax for all three.

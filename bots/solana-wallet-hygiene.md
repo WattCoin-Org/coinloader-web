@@ -31,6 +31,8 @@ Find the SOL rent locked in your empty SPL & Token-2022 token accounts (0.002039
 
  SKU: `solana-wallet-hygiene` · Skills: `wallet-hygiene-setup + solana-wallet-hygiene` · Registry Name: *Solana Wallet Hygiene & Rent Reclaim*
 
+Grok Bot templates require Grok Bot, included with The X Subscription Premium, Super or Ultra plans, or a linked SuperGrok subscription (not the Plus plan).
+
 ## Architecture, Data Sources & Execution Capabilities
 
 - Dual Token Program RPC Scan: Queries getParsedTokenAccountsByOwner across both Legacy SPL Token (TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA) and SPL Token-2022 (TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb) using only your public Base58 wallet address.

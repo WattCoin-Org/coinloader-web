@@ -45,7 +45,7 @@ One line per live listing (12). Each is a single-file local Python 3.10+ runtime
 ## How an agent buys
 
 - **SOL (only payment method):** `POST https://www.wattcoin.org/api/v1/agents/license/quote` with `{"sku": "<sku>", "source": "coinloader"}` -> send the exact SOL amount with the memo -> `POST https://www.wattcoin.org/api/v1/agents/license/purchase` with `order_id`, `checkout_token`, `tx_signature`. To see a price without creating an order, send `{"sku": "<sku>", "dry_run": true}` to the quote endpoint.
-- **Refunds:** available within 15 days of purchase; the license is revoked when a refund is issued. Support: https://coinloader.com/contact.html
+- **Refunds:** SOL purchases are final, except a refund of the same SOL amount when a buyer paid but never received a working license and it can't be fixed. Support: https://coinloader.com/contact.html
 
 ## 1. Live Templates (Available Now — 12 Live Agents)
 

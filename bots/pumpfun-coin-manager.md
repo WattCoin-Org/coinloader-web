@@ -31,6 +31,8 @@ Audit your Pump.fun coin the way a skeptical holder would see it: which official
 
  SKU: `pumpfun-coin-manager` · Skills: `pumpfun-coin-manager-setup + pumpfun-coin-manager` · Tested: 48 KB helper, 23 unit tests
 
+Grok Bot templates require Grok Bot, included with The X Subscription Premium, Super or Ultra plans, or a linked SuperGrok subscription (not the Plus plan).
+
 ## What It Does
 
 - 16-key delta monitor (`--state` + `--delta`): authority reinstated, metadata URI changed, supply increased, ban or hidden coin, new Callouts and replies, fee-sharing and creator-profile edits, large new holders, creator sells, liquidity drops, pair dormant/active, closed link gaps, new bot followers.

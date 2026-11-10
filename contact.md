@@ -21,6 +21,6 @@ For license or payment issues, include the SKU (for example `token-rugscore`), a
 
 ## Refunds
 
-Refunds are available within 15 days of purchase. When a refund is issued, the license is revoked. To request one, email support with your order details. Full terms are on the [privacy and refund policy](https://coinloader.com/privacy.html) page.
+SOL purchases are final. The one exception: if you paid but did not receive a working license and we can't fix it, we refund the same SOL amount to the wallet that paid. To ask about one, email support with your SKU, order ID and transaction signature. Full terms are on the [privacy and refund policy](https://coinloader.com/privacy.html) page.
 
 You can also read [who runs CoinLoader.com](https://coinloader.com/about.html) and what we sell.

@@ -21,7 +21,7 @@ CoinLoader.com accepts SOL only. Payments are made from your own wallet and veri
 
 ## Refund policy
 
-Refunds are available within 15 days of purchase. When a refund is issued, the license is revoked. To ask for a refund, use the [support email on the contact page](https://coinloader.com/contact.html) and include your SKU and order ID or transaction signature.
+SOL purchases are final. The one exception: if you paid but did not receive a working license and we can't fix it, we refund the same SOL amount to the wallet that paid. Any license issued for a refunded order is revoked, and network fees are not refunded. To ask about a refund, use the [support email on the contact page](https://coinloader.com/contact.html) and include your SKU and order ID or transaction signature.
 
 ## Not advice
 
