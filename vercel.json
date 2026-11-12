@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/CLAUDE.md",
+      "destination": "/__not_found_claude_md"
+    },
+    {
       "source": "/about",
       "destination": "/about.html"
     },
