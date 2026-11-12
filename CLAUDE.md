@@ -48,4 +48,4 @@ For current IDs, deploys, SKUs, and infrastructure state, read `/workspace/GROKB
 ## Decisions log
 
 - 2026-11-12 (America/New_York): Added this CLAUDE.md so Claude Code sessions keep project context across bots. Public deploy must not serve this file. Per-repo session helper: `/workspace/claude-sessions/claude-repo`. (Programmer bot)
-
+- 2026-11-12 (America/New_York): Public operator copy names AIguy only (About, Contact, Privacy, catalog.json). Do not restore 3D-Composites or any legal name. (Programmer bot)

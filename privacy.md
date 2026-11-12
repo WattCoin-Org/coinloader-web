@@ -9,7 +9,7 @@
 
 # Privacy & Refund Policy
 
-This page explains what data CoinLoader.com handles and how refunds work. CoinLoader.com is operated by 3D-Composites.
+This page explains what data CoinLoader.com handles and how refunds work. CoinLoader.com is operated by AIguy.
 
 ## Data handling
 

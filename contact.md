@@ -9,7 +9,7 @@
 
 # Contact & Support
 
-CoinLoader.com support is handled by 3D-Composites. Use the support email for questions about a product, a license key that will not bind, a payment that does not show up, or a refund request.
+CoinLoader.com support is handled by AIguy. Use the support email for questions about a product, a license key that will not bind, a payment that does not show up, or a refund request.
 
 ## Support email
 

@@ -1,6 +1,6 @@
 # About CoinLoader.com | Who Runs It & What We Sell
 
-> CoinLoader.com is operated by 3D-Composites: read-only crypto, Solana and security agent templates for Grok Bot, paid in SOL.
+> CoinLoader.com is operated by AIguy: read-only crypto, Solana and security agent templates for Grok Bot, paid in SOL.
 
 - Page: https://coinloader.com/about
 - Markdown: https://coinloader.com/about.md
@@ -9,7 +9,7 @@
 
 # About CoinLoader.com
 
-CoinLoader.com is a storefront for crypto, Solana and security agent templates for Grok Bot. It is operated by 3D-Composites. Its sister storefront for non-crypto agents is [BotAppStore.com](https://botappstore.com). The free Web & API Text Extractor can optionally use the WattCoin (WATT) Agent Registry at [wattcoin.org](https://www.wattcoin.org); no token is needed to buy or run a paid template.
+CoinLoader.com is a storefront for crypto, Solana and security agent templates for Grok Bot. It is operated by AIguy. Its sister storefront for non-crypto agents is [BotAppStore.com](https://botappstore.com). The free Web & API Text Extractor can optionally use the WattCoin (WATT) Agent Registry at [wattcoin.org](https://www.wattcoin.org); no token is needed to buy or run a paid template.
 
 ## What we sell
 

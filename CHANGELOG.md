@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-11-12 — Operator attribution updated to AIguy
+
+Approved by owner AIguy. CoinLoader.com operator copy now matches BotAppStore.com: the site is operated by AIguy (no legal name).
+
+### Changes
+- `about.html` / `about.md`: meta, Open Graph, Twitter, and body copy now say CoinLoader.com is operated by AIguy (was 3D-Composites).
+- `privacy.html` / `privacy.md`: "CoinLoader.com is operated by AIguy."
+- `contact.html` / `contact.md`: "CoinLoader.com support is handled by AIguy."
+- `catalog.json`: `"operator": "AIguy"` (same field used on BotAppStore).
+
+### Left unchanged
+- Footer ("© 2026 CoinLoader.com · Built for Grok Bot") and homepage JSON-LD Organization `name` ("CoinLoader.com") had no 3D-Composites mention.
+- `llms.txt`, `llms-full.txt`, sitemap, bot pages, and `app.js` had no operator mentions.
+- Historical git commit messages were not rewritten.
+
+
 ## 2026-11-05 — solana-token-scanner display name renamed to Retail Token Due-Diligence Bot
 
 Renamed the `solana-token-scanner` display name to Retail Token Due-Diligence Bot (catalog + after-buy button). Approved by owner AIguy. No price, sku or URL changes.
